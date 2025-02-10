@@ -123,7 +123,7 @@ namespace TPRandomizer
                 || CanUse(Item.Ball_and_Chain)
                 || HasBowAndArrows()
                 || hasBombs()
-                || CanUse(Item.Iron_Boots)
+                || CanFightWithBoots()
                 || CanUse(Item.Shadow_Crystal)
                 || CanUse(Item.Spinner);
         }
