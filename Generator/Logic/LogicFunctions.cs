@@ -133,7 +133,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool HasSword()
         {
-            return getItemCount(Item.Progressive_Sword) >= 1;
+            return CanUse(Item.Progressive_Sword);
         }
 
         /// <summary>
