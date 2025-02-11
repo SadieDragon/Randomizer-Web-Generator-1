@@ -1,6 +1,6 @@
 {
-    "requirements": "HasDamagingItem",
-    "glitchedRequirements": "HasDamagingItem",
+    "requirements": "hasSword or hasBombs or Iron_Boots or Progressive_Bow or Shadow_Crystal or Spinner",
+    "glitchedRequirements": "hasSword or Bombs or Iron_Boots or Progressive_Bow or Shadow_Crystal or Spinner",
     "checkCategory": ["Overworld", "Bulblin Camp"],
     "itemId": "Piece_of_Heart"
 }
