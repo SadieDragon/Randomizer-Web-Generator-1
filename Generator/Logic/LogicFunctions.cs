@@ -230,7 +230,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDefeatBabyGohma()
         {
-            return HasDamagingItem(exclude="Shadow_Crystal")
+            return HasDamagingItem("Shadow_Crystal")
             // return HasSword()
             //     || CanUse(Item.Ball_and_Chain)
             //     || HasBowAndArrows()
@@ -328,7 +328,7 @@ namespace TPRandomizer
         public static bool CanDefeatBombling()
         {
             return (
-                HasDamagingItem(exclude="Bombs")
+                HasDamagingItem("Bombs")
                 // HasSword()
                 // || CanUse(Item.Ball_and_Chain)
                 // || HasBowAndArrows()
@@ -353,7 +353,7 @@ namespace TPRandomizer
         public static bool CanDefeatBubble()
         {
             return (
-                HasDamagingItem(exclude="Bombs")
+                HasDamagingItem("Bombs")
                 // HasSword()
                 // || CanUse(Item.Ball_and_Chain)
                 // || HasBowAndArrows()
@@ -378,7 +378,7 @@ namespace TPRandomizer
         public static bool CanDefeatChilfos()
         {
             return (
-                HasDamagingItem(exclude="Bow")
+                HasDamagingItem("Bow")
                 // HasSword()
                 // || CanUse(Item.Ball_and_Chain)
                 // || CanFightWithBoots()
@@ -396,7 +396,7 @@ namespace TPRandomizer
         {
             return (
                 (
-                    HasDamagingItem(exclude="Bombs")
+                    HasDamagingItem("Bombs")
                     // HasSword()
                     // || CanUse(Item.Ball_and_Chain)
                     // || HasBowAndArrows()
@@ -423,7 +423,7 @@ namespace TPRandomizer
         public static bool CanDefeatDekuBaba()
         {
             return (
-                HasDamagingItem(exclude="Shadow_Crystal")
+                HasDamagingItem("Shadow_Crystal")
                 // HasSword()
                 // || CanUse(Item.Ball_and_Chain)
                 // || HasBowAndArrows()
@@ -467,7 +467,7 @@ namespace TPRandomizer
         public static bool CanDefeatFireBubble()
         {
             return (
-                HasDamagingItem(exclude="Bombs")
+                HasDamagingItem("Bombs")
                 // HasSword()
                 // || CanUse(Item.Ball_and_Chain)
                 // || HasBowAndArrows()
@@ -484,7 +484,7 @@ namespace TPRandomizer
         public static bool CanDefeatFireKeese()
         {
             return (
-                HasDamagingItem(exclude="Bombs")
+                HasDamagingItem("Bombs")
                 // HasSword()
                 // || CanUse(Item.Ball_and_Chain)
                 // || HasBowAndArrows()
@@ -524,7 +524,7 @@ namespace TPRandomizer
         public static bool CanDefeatGoron()
         {
             return (
-                HasDamagingItem(exclude=new List<string> {"Shadow_Crystal", "Spinner"})
+                HasDamagingItem(new List<string> {"Shadow_Crystal", "Spinner"})
                 // HasSword()
                 // || CanUse(Item.Ball_and_Chain)
                 // || HasBowAndArrows()
@@ -553,7 +553,7 @@ namespace TPRandomizer
         public static bool CanDefeatGuay()
         {
             return (
-                HasDamagingItem(exclude=new List<string> {"Bombs", "Spinner"})
+                HasDamagingItem(new List<string> {"Bombs", "Spinner"})
                 // HasSword()
                 // || CanUse(Item.Ball_and_Chain)
                 // || HasBowAndArrows()
@@ -586,7 +586,7 @@ namespace TPRandomizer
         public static bool CanDefeatIceBubble()
         {
             return (
-                HasDamagingItem(exclude="Bombs")
+                HasDamagingItem("Bombs")
                 // HasSword()
                 // || CanUse(Item.Ball_and_Chain)
                 // || HasBowAndArrows()
@@ -603,7 +603,7 @@ namespace TPRandomizer
         public static bool CanDefeatIceKeese()
         {
             return (
-                HasDamagingItem(exclude="Bombs")
+                HasDamagingItem("Bombs")
                 // HasSword()
                 // || CanUse(Item.Ball_and_Chain)
                 // || HasBowAndArrows()
@@ -629,7 +629,7 @@ namespace TPRandomizer
         public static bool CanDefeatKargarok()
         {
             return (
-                HasDamagingItem(exclude="Bombs")
+                HasDamagingItem("Bombs")
                 // HasSword()
                 // || CanUse(Item.Ball_and_Chain)
                 // || HasBowAndArrows()
@@ -646,7 +646,7 @@ namespace TPRandomizer
         public static bool CanDefeatKeese()
         {
             return (
-                HasDamagingItem(exclude="Bombs")
+                HasDamagingItem("Bombs")
                 // HasSword()
                 // || CanUse(Item.Ball_and_Chain)
                 // || HasBowAndArrows()
@@ -672,7 +672,7 @@ namespace TPRandomizer
         public static bool CanDefeatLizalfos()
         {
             return (
-                HasDamagingItem(exclude="Spinner")
+                HasDamagingItem("Spinner")
                 // HasSword()
                 // || CanUse(Item.Ball_and_Chain)
                 // || HasBowAndArrows()
@@ -705,7 +705,7 @@ namespace TPRandomizer
         public static bool CanDefeatPoisonMite()
         {
             return (
-                HasDamagingItem(exclude=new List<string> {"Bombs", "Boots"})
+                HasDamagingItem(new List<string> {"Bombs", "Boots"})
                 // HasSword()
                 // || CanUse(Item.Ball_and_Chain)
                 // || HasBowAndArrows()
@@ -740,7 +740,7 @@ namespace TPRandomizer
         public static bool CanDefeatRedeadKnight()
         {
             return (
-                HasDamagingItem(exclude="Spinner")
+                HasDamagingItem("Spinner")
                 // HasSword()
                 // || CanUse(Item.Ball_and_Chain)
                 // || HasBowAndArrows()
@@ -773,7 +773,7 @@ namespace TPRandomizer
         public static bool CanDefeatShadowDekuBaba()
         {
             return (
-                HasDamagingItem(exclude="Shadow_Crystal")
+                HasDamagingItem("Shadow_Crystal")
                 // HasSword()
                 // || CanUse(Item.Ball_and_Chain)
                 // || HasBowAndArrows()
@@ -809,7 +809,7 @@ namespace TPRandomizer
         public static bool CanDefeatShadowKeese()
         {
             return (
-                HasDamagingItem(exclude="Bombs")
+                HasDamagingItem("Bombs")
                 // HasSword()
                 // || CanUse(Item.Ball_and_Chain)
                 // || HasBowAndArrows()
@@ -849,7 +849,7 @@ namespace TPRandomizer
         public static bool CanDefeatSkullfish()
         {
             return (
-                HasDamagingItem(exclude="Bombs")
+                HasDamagingItem("Bombs")
                 // HasSword()
                 // || CanUse(Item.Ball_and_Chain)
                 // || HasBowAndArrows()
@@ -913,7 +913,7 @@ namespace TPRandomizer
         public static bool CanDefeatToado()
         {
             return (
-                HasDamagingItem(exclude=new List<string> {"Bombs", "Boots"})
+                HasDamagingItem(new List<string> {"Bombs", "Boots"})
                 // HasSword()
                 // || CanUse(Item.Ball_and_Chain)
                 // || HasBowAndArrows()
@@ -942,7 +942,7 @@ namespace TPRandomizer
         public static bool CanDefeatTorchSlug()
         {
             return (
-                HasDamagingItem(exclude=new List<string> {"Boots", "Spinner"})
+                HasDamagingItem(new List<string> {"Boots", "Spinner"})
                 // HasSword()
                 // || CanUse(Item.Ball_and_Chain)
                 // || HasBowAndArrows()
@@ -995,7 +995,7 @@ namespace TPRandomizer
         public static bool CanDefeatOok()
         {
             return (
-                HasDamagingItem(exclude="Spinner")
+                HasDamagingItem("Spinner")
                 // HasSword()
                 // || CanUse(Item.Ball_and_Chain)
                 // || HasBowAndArrows()
@@ -1045,7 +1045,7 @@ namespace TPRandomizer
         public static bool CanDefeatDekuToad()
         {
             return (
-                HasDamagingItem(exclude="Spinner")
+                HasDamagingItem("Spinner")
                 // HasSword()
                 // || CanUse(Item.Ball_and_Chain)
                 // || HasBowAndArrows()
@@ -1139,7 +1139,7 @@ namespace TPRandomizer
         public static bool CanDefeatDarkhammer()
         {
             return (
-                HasDamagingItem(exclude="Spinner")
+                HasDamagingItem("Spinner")
                 // HasSword()
                 // || CanUse(Item.Ball_and_Chain)
                 // || HasBowAndArrows()
@@ -1167,7 +1167,7 @@ namespace TPRandomizer
                 || (
                     CanUse(Item.Boomerang)
                     && (
-                        HasDamagingItem(exclude="Spinner")
+                        HasDamagingItem("Spinner")
                         // HasSword()
                         // || CanUse(Item.Ball_and_Chain)
                         // || CanFightWithBoots()
