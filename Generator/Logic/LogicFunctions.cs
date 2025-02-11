@@ -170,9 +170,8 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDefeatArmos()
         {
-            return HasDamagingItem()
-                || CanUse(Item.Progressive_Clawshot)
-                || CanUseBacksliceAsSword();
+            return CanStandardOrBacksliceCombat()
+                || CanUse(Item.Progressive_Clawshot);
         }
 
         /// <summary>
@@ -180,8 +179,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDefeatBabaSerpent()
         {
-            return HasDamagingItem()
-                || CanUseBacksliceAsSword();
+            return CanStandardOrBacksliceCombat();
         }
 
         public static bool CanDefeatHangingBabaSerpent()
@@ -231,8 +229,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDefeatBigBaba()
         {
-            return HasDamagingItem()
-                || CanUseBacksliceAsSword();
+            return CanStandardOrBacksliceCombat();
         }
 
         /// <summary>
@@ -241,9 +238,8 @@ namespace TPRandomizer
         public static bool CanDefeatChu()
         {
             return (
-                HasDamagingItem()
+                CanStandardOrBacksliceCombat()
                 || CanUse(Item.Progressive_Clawshot)
-                || CanUseBacksliceAsSword()
             );
         }
 
@@ -253,9 +249,8 @@ namespace TPRandomizer
         public static bool CanDefeatBokoblin()
         {
             return (
-                HasDamagingItem()
+                CanStandardOrBacksliceCombat()
                 || CanUse(Item.Slingshot)
-                || CanUseBacksliceAsSword()
             );
         }
 
@@ -312,10 +307,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDefeatBomskit()
         {
-            return (
-                HasDamagingItem()
-                || CanUseBacksliceAsSword()
-            );
+            return CanStandardOrBacksliceCombat();
         }
 
         /// <summary>
@@ -339,10 +331,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDefeatBulblin()
         {
-            return (
-                HasDamagingItem()
-                || CanUseBacksliceAsSword()
-            );
+            return CanStandardOrBacksliceCombat();
         }
 
         /// <summary>
@@ -420,10 +409,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDefeatDodongo()
         {
-            return (
-                HasDamagingItem()
-                || CanUseBacksliceAsSword()
-            );
+            return CanStandardOrBacksliceCombat();
         }
 
         /// <summary>
@@ -538,10 +524,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDefeatHelmasaur()
         {
-            return (
-                HasDamagingItem()
-                || CanUseBacksliceAsSword()
-            );
+            return CanStandardOrBacksliceCombat();
         }
 
         /// <summary>
@@ -549,10 +532,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDefeatHelmasaurus()
         {
-            return (
-                HasDamagingItem()
-                || CanUseBacksliceAsSword()
-            );
+            return CanStandardOrBacksliceCombat();
         }
 
         /// <summary>
@@ -658,10 +638,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDefeatMiniFreezard()
         {
-            return (
-                HasDamagingItem()
-                || CanUseBacksliceAsSword()
-            );
+            return CanStandardOrBacksliceCombat();
         }
 
         /// <summary>
@@ -692,10 +669,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDefeatPuppet()
         {
-            return (
-                HasDamagingItem()
-                || CanUseBacksliceAsSword()
-            );
+            return CanStandardOrBacksliceCombat();
         }
 
         /// <summary>
@@ -704,9 +678,8 @@ namespace TPRandomizer
         public static bool CanDefeatRat()
         {
             return (
-                HasDamagingItem()
+                CanStandardOrBacksliceCombat()
                 || CanUse(Item.Slingshot)
-                || CanUseBacksliceAsSword()
             );
         }
 
@@ -739,10 +712,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDefeatShadowBulblin()
         {
-            return (
-                HasDamagingItem()
-                || CanUseBacksliceAsSword()
-            );
+            return CanStandardOrBacksliceCombat();
         }
 
         /// <summary>
@@ -777,10 +747,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDefeatShadowKargarok()
         {
-            return (
-                HasDamagingItem()
-                || CanUseBacksliceAsSword()
-            );
+            return CanStandardOrBacksliceCombat();
         }
 
         /// <summary>
@@ -805,10 +772,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDefeatShadowVermin()
         {
-            return (
-                HasDamagingItem()
-                || CanUseBacksliceAsSword()
-            );
+            return CanStandardOrBacksliceCombat();
         }
 
         /// <summary>
@@ -845,10 +809,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDefeatSkulltula()
         {
-            return (
-                HasDamagingItem()
-                || CanUseBacksliceAsSword()
-            );
+            return CanStandardOrBacksliceCombat();
         }
 
         /// <summary>
@@ -864,10 +825,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDefeatStalhound()
         {
-            return (
-                HasDamagingItem()
-                || CanUseBacksliceAsSword()
-            );
+            return CanStandardOrBacksliceCombat();
         }
 
         /// <summary>
@@ -875,10 +833,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDefeatStalchild()
         {
-            return (
-                HasDamagingItem()
-                || CanUseBacksliceAsSword()
-            );
+            return CanStandardOrBacksliceCombat();
         }
 
         /// <summary>
@@ -886,10 +841,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDefeatTektite()
         {
-            return (
-                HasDamagingItem()
-                || CanUseBacksliceAsSword()
-            );
+            return CanStandardOrBacksliceCombat();
         }
 
         /// <summary>
@@ -897,12 +849,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDefeatTileWorm()
         {
-            return (
-                (
-                    HasDamagingItem()
-                    || CanUseBacksliceAsSword()
-                ) && CanUse(Item.Boomerang)
-            );
+            return (CanStandardOrBacksliceCombat() && CanUse(Item.Boomerang));
         }
 
         /// <summary>
@@ -1933,6 +1880,18 @@ namespace TPRandomizer
         public static bool CanUseBacksliceAsSword()
         {
             return CanDoNicheStuff() && getItemCount(Item.Progressive_Hidden_Skill) >= 3;
+        }
+
+        /// <summary>
+        /// Checks for any damaging items or ability to use backslice.
+        /// </summary>
+        /// TODO: Name better? Naming this was a struggle. - Lupa
+        public static bool CanStandardOrBacksliceCombat()
+        {
+            return (
+                HasDamagingItem()
+                || CanUseBacksliceAsSword()
+            );
         }
 
         public static bool CanGetBugWithLantern()
