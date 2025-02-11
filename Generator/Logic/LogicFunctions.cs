@@ -115,18 +115,51 @@ namespace TPRandomizer
         }
 
         /// <summary>
-        /// summary text.
+        /// Checks for one of a list of damaging items.
         /// </summary>
-        public static bool HasDamagingItem()
+        /// <param name="exclude"></param>
+        /// <returns></returns>
+        /// TODO: better documentation, in a rush.
+        public static bool HasDamagingItem(object exclude = null)
         {
+            // If exclude is null, we check all items. Create an empty list to avoid errors.
+            if (exclude == null)
+            {
+                exclude = new List<string>();
+            }
+
+            // If exclude is a single item name, convert it to a list.
+            if (exclude is string)
+            {
+                exclude = new List<string> { (string)exclude };
+            }
+
+            // Cast exclude to a list of strings.
+            List<string> exclusions = (List<string>)exclude;
+
             return HasSword()
                 || CanUse(Item.Ball_and_Chain)
-                || HasBowAndArrows()
-                || hasBombs()
-                || CanFightWithBoots()
-                || CanUse(Item.Shadow_Crystal)
-                || CanUse(Item.Spinner);
+                || (!exclusions.Contains("Bombs") && hasBombs())
+                || (!exclusions.Contains("Boots") && CanFightWithBoots())
+                || (!exclusions.Contains("Bow") && HasBowAndArrows())
+                || (!exclusions.Contains("Shadow_Crystal") && CanUse(Item.Shadow_Crystal))
+                || (!exclusions.Contains("Spinner") && CanUse(Item.Spinner));
         }
+
+
+        // /// <summary>
+        // /// summary text.
+        // /// </summary>
+        // public static bool HasDamagingItem()
+        // {
+        //     return HasSword()
+        //         || CanUse(Item.Ball_and_Chain)
+        //         || HasBowAndArrows()
+        //         || hasBombs()
+        //         || CanFightWithBoots()
+        //         || CanUse(Item.Shadow_Crystal)
+        //         || CanUse(Item.Spinner);
+        // }
 
         /// <summary>
         /// summary text.
@@ -292,12 +325,7 @@ namespace TPRandomizer
         public static bool CanDefeatBombling()
         {
             return (
-                HasSword()
-                || CanUse(Item.Ball_and_Chain)
-                || HasBowAndArrows()
-                || CanFightWithBoots()
-                || CanUse(Item.Spinner)
-                || CanUse(Item.Shadow_Crystal)
+                HasDamagingItem("Bombs")
                 || CanUse(Item.Progressive_Clawshot)
             );
         }
@@ -1123,7 +1151,7 @@ namespace TPRandomizer
         public static bool CanDefeatFyrus()
         {
             return (
-                getItemCount(Item.Progressive_Bow) >= 1
+                CanUse(Item.Progressive_Bow)
                 && CanUse(Item.Iron_Boots)
                 && (HasSword() || (CanDoDifficultCombat() && CanUseBacksliceAsSword()))
             );
