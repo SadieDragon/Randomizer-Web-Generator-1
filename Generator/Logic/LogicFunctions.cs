@@ -1744,7 +1744,7 @@ namespace TPRandomizer
         public static bool CanDoMapGlitch()
         {
             return CanUse(Item.Shadow_Crystal)
-                && HasReachedRoom("Kakariko Gorge")
+                && HasReachedRoom("Kakariko Gorge");
         }
 
         /// <summary>
