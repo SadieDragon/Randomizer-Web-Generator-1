@@ -39,8 +39,6 @@ namespace TPRandomizer
             // DEBUG
             // This *might* be where my bug is coming from?
             // If so, then I would like a different way to handle this than extra if statements...
-            Console.WriteLine($"Checking CanUse({item})");
-
             if (Randomizer.Items == null)
             {
                 Console.WriteLine("Error: Randomizer.Items is null!");
