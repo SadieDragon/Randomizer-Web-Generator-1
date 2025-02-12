@@ -224,7 +224,7 @@ namespace TPRandomizer
         public static bool CanDefeatBabyGohma()
         {
             return HasDamagingItemOrClawshot(new List<string>() { "Shadow_Crystal" })
-                || CanUse(Item.Slingshot)
+                || CanUse(Item.Slingshot);
         }
 
         /// <summary>
