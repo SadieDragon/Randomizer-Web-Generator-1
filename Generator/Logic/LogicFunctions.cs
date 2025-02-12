@@ -119,11 +119,9 @@ namespace TPRandomizer
         /// TODO: If this works, then I should also add backslice to this rather than having it as a sep. helper fn.
         public static bool HasDamagingItem(List<string> exclusions = null)
         {
-            // Prevents issues if exclusions is null.
+            // Prevents issues if exclusions is null. Safety net.
             if (exclusions == null)
             {
-                // DEBUG so I can see it happening *egads i'mma get spammed again*
-                Console.WriteLine("Exclusions list is NULL. Initializing it to an empty list.");
                 exclusions = new List<string>();
             }
 
