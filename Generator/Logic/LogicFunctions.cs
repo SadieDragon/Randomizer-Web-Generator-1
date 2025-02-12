@@ -1048,12 +1048,12 @@ namespace TPRandomizer
 
         public static bool CanUseBottledFairy()
         {
-            return HasBottle() && HasReachedRoom("Lake Hylia");
+            return HasBottle() && HasReachedLakeHylia;
         }
 
         public static bool CanUseBottledFairies()
         {
-            return HasBottles() && HasReachedRoom("Lake Hylia");
+            return HasBottles() && HasReachedLakeHylia;
         }
 
         public static bool CanUseOilBottle()
@@ -1226,6 +1226,9 @@ namespace TPRandomizer
         /// South Castle Town
         public static bool HasReachedSouthCastleTown = HasReachedRoom("Castle Town South");
 
+        /// Lake Hylia
+        public static bool HasReachedLakeHylia = HasReachedRoom("Lake Hylia");
+
         /// End of helper functions to check for ER looking things - Lupa
 
         /// <summary>
@@ -1379,7 +1382,7 @@ namespace TPRandomizer
                     && HasReachedRoom("Zoras Domain")
                     && HasReachedRoom("Zoras Domain Throne Room")
                     && HasReachedRoom("Upper Zoras River")
-                    && HasReachedRoom("Lake Hylia")
+                    && HasReachedLakeHylia
                     && HasReachedRoom("Lake Hylia Lanayru Spring")
                     && HasReachedSouthCastleTown
                     && CanSurviveBonkDamage()
