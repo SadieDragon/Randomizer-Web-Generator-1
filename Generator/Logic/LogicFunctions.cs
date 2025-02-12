@@ -31,9 +31,8 @@ namespace TPRandomizer
             return isEqual;
         }
 
-        /// Functions and vars which also check "is this setting equal to this value?"
-        /// (I have no idea if I should just use that one...)
-        /// Can remove the () if preferred.
+        // TODO: Should the above function be used in place of these vars? - Lupa
+        //  P.S. Can remove those (), I just find it easier to read like this.
 
         /// <summary>
         /// Checks if Faron Woods is set to Open.
@@ -49,8 +48,6 @@ namespace TPRandomizer
         /// Checks if the small keys are set to keysy.
         /// </summary>
         public static bool IsSmallKeysy = (Randomizer.SSettings.smallKeySettings == SmallKeySettings.Keysy);
-
-        // End of Functions and vars that do that - Lupa
 
         /// <summary>
         /// summary text.
@@ -111,7 +108,6 @@ namespace TPRandomizer
         /// List of expected item names: "Bombs", "Boots", "Bow", "Shadow_Crystal", "Spinner", "Backslice".
         /// </summary>
         /// <param name="exclusions">Optional (defaults to null for no exclusions). Pass a list of item names to not check for them.</param>
-        /// <returns></returns>
         public static bool HasDamagingItem(List<string> exclusions = null)
         {
             // Prevents issues if exclusions is null. Safety net.
@@ -133,6 +129,19 @@ namespace TPRandomizer
         //  This would be a bit less repetitive. I didn't implement it because I don't know how that would affect memory usage,
         //  or if memory usage is a problem to consider.
         // - Lupa (SadieDragon)
+
+        /// <summary>
+        /// Checks if any damaging items are available, or if a clawshot is available.
+        // See HasDamagingItems for the list of "damaging items".
+        /// </summary>
+        /// <param name="exclusions">Optional (defaults to null for no exclusions). Pass a list of item names to not check for them.</param>
+        public static bool HasDamagingItemOrClawshot(List<string> exclusions = null)
+        {
+            return HasDamagingItem(exclusions) || CanUse(Item.Progressive_Clawshot);
+        }
+
+        // or slingshot
+        // claw is also used with sling
 
         /// <summary>
         /// summary text.
@@ -160,9 +169,13 @@ namespace TPRandomizer
 
         //TODO: Helper functions or variables for frequent exclusions? (Need names)
 
-         //TODO: Make my parameter variables consistent
+        //TODO: Functions with (x or y) only could probs be a var. Look into this.
+
+        //TODO: Make my parameter variables consistent
 
         //TODO Go through and set variables within fns for repeated checks in those functions.
+
+        //TODO: DifficultCombat & Backslice
 
         /// <summary>
         /// summary text.
@@ -185,7 +198,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDefeatArmos()
         {
-            return HasDamagingItem() || CanUse(Item.Progressive_Clawshot);
+            return HasDamagingItemOrClawshot();
         }
 
         /// <summary>
@@ -207,9 +220,8 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDefeatBabyGohma()
         {
-            return HasDamagingItem(new List<string>() { "Shadow_Crystal" })
+            return HasDamagingItemOrClawshot(new List<string>() { "Shadow_Crystal" })
                 || CanUse(Item.Slingshot)
-                || CanUse(Item.Progressive_Clawshot);
         }
 
         /// <summary>
@@ -241,7 +253,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDefeatChu()
         {
-            return HasDamagingItem() || CanUse(Item.Progressive_Clawshot);
+            return HasDamagingItemOrClawshot();
         }
 
         /// <summary>
@@ -282,7 +294,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDefeatBombling()
         {
-            return HasDamagingItem(new List<string>() { "Bombs", "Backslice" }) || CanUse(Item.Progressive_Clawshot);
+            return HasDamagingItemOrClawshot(new List<string>() { "Bombs", "Backslice" });
         }
 
         /// <summary>
@@ -340,10 +352,9 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDefeatDekuBaba()
         {
-            return HasDamagingItem(new List<string>() { "Shadow_Crystal" })
+            return HasDamagingItemOrClawshot(new List<string>() { "Shadow_Crystal" })
                 || CanSheildAttack()
-                || CanUse(Item.Slingshot)
-                || CanUse(Item.Progressive_Clawshot);
+                || CanUse(Item.Slingshot);
         }
 
         /// <summary>
@@ -412,11 +423,10 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDefeatGoron()
         {
-            return HasDamagingItem(new List<string>() {"Shadow_Crystal", "Spinner"})
+            return HasDamagingItemOrClawshot(new List<string>() {"Shadow_Crystal", "Spinner"})
                 || CanSheildAttack()
                 || CanUse(Item.Slingshot)
-                || (CanDoDifficultCombat() && CanUse(Item.Lantern))
-                || CanUse(Item.Progressive_Clawshot);
+                || (CanDoDifficultCombat() && CanUse(Item.Lantern));
         }
 
         /// <summary>
@@ -581,10 +591,9 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDefeatShadowDekuBaba()
         {
-            return HasDamagingItem(new List<string>() { "Shadow_Crystal" })
+            return HasDamagingItemOrClawshot(new List<string>() { "Shadow_Crystal" })
                 || CanSheildAttack()
-                || CanUse(Item.Slingshot)
-                || CanUse(Item.Progressive_Clawshot);
+                || CanUse(Item.Slingshot);
         }
 
         /// <summary>
