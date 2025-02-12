@@ -103,6 +103,11 @@ namespace TPRandomizer
         }
 
         /// <summary>
+        /// Checks for if Sword or Ball and Chain are available.
+        /// </summary>
+        public static bool HasSwordOrBallAndChain = HasSword() || CanUse(Item.Ball_and_Chain);
+
+        /// <summary>
         /// Checks for one of a list of damaging items. Allows for one or more of that list to not be excluded from the check.
         /// List of damaging items: Sword, Ball and Chain, Bombs, Boots, Bow, Shadow Crystal, Spinner, Backslice (if can be used).
         /// List of expected item names: "Bombs", "Boots", "Bow", "Shadow_Crystal", "Spinner", "Backslice".
@@ -116,8 +121,7 @@ namespace TPRandomizer
                 exclusions = new List<string>();
             }
 
-            return HasSword()
-                || CanUse(Item.Ball_and_Chain)
+            return HasSwordOrBallAndChain
                 || (!exclusions.Contains("Bombs") && hasBombs())
                 || (!exclusions.Contains("Boots") && CanFightWithBoots())
                 || (!exclusions.Contains("Bow") && HasBowAndArrows())
@@ -141,7 +145,7 @@ namespace TPRandomizer
         }
 
         // or slingshot
-        // claw is also used with sling
+        // claw is also used with sling frequently
 
         /// <summary>
         /// summary text.
@@ -185,8 +189,7 @@ namespace TPRandomizer
             return (
                 CanUse(Item.Progressive_Clawshot)
                 && (
-                    HasSword()
-                    || CanUse(Item.Ball_and_Chain)
+                    HasSwordOrBallAndChain
                     || CanUse(Item.Shadow_Crystal)
                     || CanFightWithBoots()
                 )
@@ -378,7 +381,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDefeatDinalfos()
         {
-            return HasSword() || CanUse(Item.Ball_and_Chain) || CanUse(Item.Shadow_Crystal);
+            return HasSwordOrBallAndChain || CanUse(Item.Shadow_Crystal);
         }
 
         /// <summary>
@@ -403,8 +406,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDefeatFireToadpoli()
         {
-            return HasSword()
-                || CanUse(Item.Ball_and_Chain)
+            return HasSwordOrBallAndChain
                 || HasBowAndArrows()
                 || CanSheildAttack()
                 || (CanDoDifficultCombat() && CanUse(Item.Shadow_Crystal));
@@ -710,8 +712,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDefeatWaterToadpoli()
         {
-            return HasSword()
-                || CanUse(Item.Ball_and_Chain)
+            return HasSwordOrBallAndChain
                 || HasBowAndArrows()
                 || CanSheildAttack()
                 || CanDoDifficultCombat() && CanUse(Item.Shadow_Crystal);
@@ -829,8 +830,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDefeatKingBulblinDesert()
         {
-            return HasSword()
-                || CanUse(Item.Ball_and_Chain)
+            return HasSwordOrBallAndChain
                 || CanUse(Item.Shadow_Crystal)
                 || getItemCount(Item.Progressive_Bow) > 2
                 || CanUseBacksliceAsSword()
@@ -850,8 +850,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDefeatKingBulblinCastle()
         {
-            return HasSword()
-                || CanUse(Item.Ball_and_Chain)
+            return HasSwordOrBallAndChain
                 || CanUse(Item.Shadow_Crystal)
                 || getItemCount(Item.Progressive_Bow) > 2
                 || (
