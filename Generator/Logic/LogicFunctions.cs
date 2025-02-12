@@ -162,7 +162,6 @@ namespace TPRandomizer
             return hasShield() && (getItemCount(Item.Progressive_Hidden_Skill) >= 2);
         }
 
-        //TODO: Niche + MA
         //TODO: Helper functions for "has reached room?" to be more readable?
         //  (there are a lot of repeated rooms...)
         //TODO: Helper functions for frequent exclusions? (Need names)
@@ -640,7 +639,7 @@ namespace TPRandomizer
             return CanUseWaterBombs()
                 || (
                     HasSword()
-                    && (CanUse(Item.Iron_Boots) || (CanDoNicheStuff() && CanUse(Item.Magic_Armor)))
+                    && (CanUse(Item.Iron_Boots) || (CanUseMagicArmorAsBoots))
                 );
         }
 
@@ -977,7 +976,7 @@ namespace TPRandomizer
         {
             return getItemCount(Item.Progressive_Clawshot) >= 2
                 && getItemCount(Item.Progressive_Sword) >= 2
-                && (CanUse(Item.Iron_Boots) || (CanDoNicheStuff() && CanUse(Item.Magic_Armor)));
+                && (CanUse(Item.Iron_Boots) || (CanUseMagicArmorAsBoots));
         }
 
         /// <summary>
@@ -991,7 +990,7 @@ namespace TPRandomizer
                     CanUse(Item.Boomerang)
                     && CanUse(Item.Progressive_Clawshot)
                     && CanUse(Item.Ball_and_Chain)
-                    && (CanUse(Item.Iron_Boots) || (CanDoNicheStuff() && CanUse(Item.Magic_Armor)))
+                    && (CanUse(Item.Iron_Boots) || (CanUseMagicArmorAsBoots))
                     && (
                         CanUse(Item.Zora_Armor)
                         || (
@@ -1631,6 +1630,14 @@ namespace TPRandomizer
         public static bool CanFightWithBoots()
         {
             return CanDoNicheStuff() && CanUse(Item.Iron_Boots);
+        }
+
+        /// <summary>
+        /// Checks if the user can use Magic Armor as Iron Boots.
+        /// </summary>
+        public static bool CanUseMagicArmorAsBoots()
+        {
+            return CanDoNicheStuff() && CanUse(Item.Magic_Armor);
         }
 
         public static bool CanUseBacksliceAsSword()
