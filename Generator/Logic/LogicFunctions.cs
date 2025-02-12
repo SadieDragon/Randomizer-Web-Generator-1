@@ -277,18 +277,12 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDefeatBombfish()
         {
-            return (
-                (
-                    CanUse(Item.Iron_Boots)
-                    || CanDoNicheStuff()
-                        && CanUse(Item.Magic_Armor)
-                )
+            return (CanUse(Item.Iron_Boots) || CanUseMagicArmorAsBoots())
                 && (
                     HasSword()
                     || CanUse(Item.Progressive_Clawshot)
                     || CanSheildAttack()
-                )
-            );
+                );
         }
 
         /// <summary>
@@ -639,7 +633,7 @@ namespace TPRandomizer
             return CanUseWaterBombs()
                 || (
                     HasSword()
-                    && (CanUse(Item.Iron_Boots) || (CanUseMagicArmorAsBoots))
+                    && (CanUse(Item.Iron_Boots) || CanUseMagicArmorAsBoots())
                 );
         }
 
@@ -976,7 +970,7 @@ namespace TPRandomizer
         {
             return getItemCount(Item.Progressive_Clawshot) >= 2
                 && getItemCount(Item.Progressive_Sword) >= 2
-                && (CanUse(Item.Iron_Boots) || (CanUseMagicArmorAsBoots));
+                && (CanUse(Item.Iron_Boots) || CanUseMagicArmorAsBoots());
         }
 
         /// <summary>
@@ -990,7 +984,7 @@ namespace TPRandomizer
                     CanUse(Item.Boomerang)
                     && CanUse(Item.Progressive_Clawshot)
                     && CanUse(Item.Ball_and_Chain)
-                    && (CanUse(Item.Iron_Boots) || (CanUseMagicArmorAsBoots))
+                    && (CanUse(Item.Iron_Boots) || CanUseMagicArmorAsBoots())
                     && (
                         CanUse(Item.Zora_Armor)
                         || (
