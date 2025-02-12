@@ -138,21 +138,6 @@ namespace TPRandomizer
         //  or if memory usage is a problem to consider.
         // - Lupa (SadieDragon)
 
-
-        // /// <summary>
-        // /// summary text.
-        // /// </summary>
-        // public static bool HasDamagingItem()
-        // {
-        //     return HasSword()
-        //         || CanUse(Item.Ball_and_Chain)
-        //         || HasBowAndArrows()
-        //         || hasBombs()
-        //         || CanFightWithBoots()
-        //         || CanUse(Item.Shadow_Crystal)
-        //         || CanUse(Item.Spinner);
-        // }
-
         /// <summary>
         /// summary text.
         /// </summary>
@@ -169,8 +154,7 @@ namespace TPRandomizer
             return (CanUse(Item.Progressive_Bow) && CanGetArrows());
         }
 
-        //TODO: There's a lot of "Has items" where not all the things are the same.
-        //  (BS in some, but not others; Bombs are missing but the rest there; Spinner missing but the rest there; ...)
+        //TODO: add backslice to HasDamagingItem as a possible exclusion.
         //TODO: ShieldBash - has shield + 2 hidden skills
         //TODO: Niche + MA
 
@@ -221,14 +205,8 @@ namespace TPRandomizer
         public static bool CanDefeatBabyGohma()
         {
             return HasDamagingItem(new List<string>() { "Shadow_Crystal" })
-            // return HasSword()
-            //     || CanUse(Item.Ball_and_Chain)
-            //     || HasBowAndArrows()
-            //     || CanFightWithBoots()
-            //     || CanUse(Item.Spinner)
                 || CanUse(Item.Slingshot)
                 || CanUse(Item.Progressive_Clawshot)
-            //     || hasBombs()
                 || CanUseBacksliceAsSword();
         }
 
@@ -319,12 +297,6 @@ namespace TPRandomizer
         {
             return (
                 HasDamagingItem(new List<string>() { "Bombs" })
-                // HasSword()
-                // || CanUse(Item.Ball_and_Chain)
-                // || HasBowAndArrows()
-                // || CanFightWithBoots()
-                // || CanUse(Item.Spinner)
-                // || CanUse(Item.Shadow_Crystal)
                 || CanUse(Item.Progressive_Clawshot)
             );
         }
@@ -344,12 +316,6 @@ namespace TPRandomizer
         {
             return (
                 HasDamagingItem(new List<string>() { "Bombs" })
-                // HasSword()
-                // || CanUse(Item.Ball_and_Chain)
-                // || HasBowAndArrows()
-                // || CanFightWithBoots()
-                // || CanUse(Item.Spinner)
-                // || CanUse(Item.Shadow_Crystal)
                 || CanUseBacksliceAsSword()
             );
         }
@@ -369,12 +335,6 @@ namespace TPRandomizer
         {
             return (
                 HasDamagingItem(new List<string>() { "Bow" })
-                // HasSword()
-                // || CanUse(Item.Ball_and_Chain)
-                // || CanFightWithBoots()
-                // || CanUse(Item.Shadow_Crystal)
-                // || CanUse(Item.Spinner)
-                // || hasBombs()
                 || CanUseBacksliceAsSword()
             );
         }
@@ -387,12 +347,6 @@ namespace TPRandomizer
             return (
                 (
                     HasDamagingItem(new List<string>() { "Bombs" })
-                    // HasSword()
-                    // || CanUse(Item.Ball_and_Chain)
-                    // || HasBowAndArrows()
-                    // || CanFightWithBoots()
-                    // || CanUse(Item.Spinner)
-                    // || CanUse(Item.Shadow_Crystal)
                     || CanUseBacksliceAsSword()
                 ) && (hasBombs() || CanUse(Item.Progressive_Clawshot))
             );
@@ -414,15 +368,9 @@ namespace TPRandomizer
         {
             return (
                 HasDamagingItem(new List<string>() { "Shadow_Crystal" })
-                // HasSword()
-                // || CanUse(Item.Ball_and_Chain)
-                // || HasBowAndArrows()
-                // || CanFightWithBoots()
-                // || CanUse(Item.Spinner)
                 || (hasShield() && getItemCount(Item.Progressive_Hidden_Skill) >= 2)
                 || CanUse(Item.Slingshot)
                 || CanUse(Item.Progressive_Clawshot)
-                // || hasBombs()
                 || CanUseBacksliceAsSword()
             );
         }
@@ -458,12 +406,6 @@ namespace TPRandomizer
         {
             return (
                 HasDamagingItem(new List<string>() { "Bombs" })
-                // HasSword()
-                // || CanUse(Item.Ball_and_Chain)
-                // || HasBowAndArrows()
-                // || CanFightWithBoots()
-                // || CanUse(Item.Spinner)
-                // || CanUse(Item.Shadow_Crystal)
                 || CanUseBacksliceAsSword()
             );
         }
@@ -475,13 +417,7 @@ namespace TPRandomizer
         {
             return (
                 HasDamagingItem(new List<string>() { "Bombs" })
-                // HasSword()
-                // || CanUse(Item.Ball_and_Chain)
-                // || HasBowAndArrows()
-                // || CanFightWithBoots()
-                // || CanUse(Item.Spinner)
                 || CanUse(Item.Slingshot)
-                // || CanUse(Item.Shadow_Crystal)
                 || CanUseBacksliceAsSword()
             );
         }
@@ -515,16 +451,10 @@ namespace TPRandomizer
         {
             return (
                 HasDamagingItem(new List<string> {"Shadow_Crystal", "Spinner"})
-                // HasSword()
-                // || CanUse(Item.Ball_and_Chain)
-                // || HasBowAndArrows()
-                // || CanFightWithBoots()
-                // || CanUse(Item.Spinner)
                 || (hasShield() && (getItemCount(Item.Progressive_Hidden_Skill) >= 2))
                 || CanUse(Item.Slingshot)
                 || (CanDoDifficultCombat() && CanUse(Item.Lantern))
                 || CanUse(Item.Progressive_Clawshot)
-                // || hasBombs()
                 || CanUseBacksliceAsSword()
             );
         }
@@ -544,12 +474,7 @@ namespace TPRandomizer
         {
             return (
                 HasDamagingItem(new List<string> {"Bombs", "Spinner"})
-                // HasSword()
-                // || CanUse(Item.Ball_and_Chain)
-                // || HasBowAndArrows()
-                // || CanFightWithBoots()
                 || (CanDoDifficultCombat() && CanUse(Item.Spinner))
-                // || CanUse(Item.Shadow_Crystal)
                 || CanUse(Item.Slingshot)
             );
         }
@@ -577,12 +502,6 @@ namespace TPRandomizer
         {
             return (
                 HasDamagingItem(new List<string>() { "Bombs" })
-                // HasSword()
-                // || CanUse(Item.Ball_and_Chain)
-                // || HasBowAndArrows()
-                // || CanFightWithBoots()
-                // || CanUse(Item.Spinner)
-                // || CanUse(Item.Shadow_Crystal)
                 || CanUseBacksliceAsSword()
             );
         }
@@ -594,13 +513,7 @@ namespace TPRandomizer
         {
             return (
                 HasDamagingItem(new List<string>() { "Bombs" })
-                // HasSword()
-                // || CanUse(Item.Ball_and_Chain)
-                // || HasBowAndArrows()
-                // || CanFightWithBoots()
-                // || CanUse(Item.Spinner)
                 || CanUse(Item.Slingshot)
-                // || CanUse(Item.Shadow_Crystal)
                 || CanUseBacksliceAsSword()
             );
         }
@@ -620,12 +533,6 @@ namespace TPRandomizer
         {
             return (
                 HasDamagingItem(new List<string>() { "Bombs" })
-                // HasSword()
-                // || CanUse(Item.Ball_and_Chain)
-                // || HasBowAndArrows()
-                // || CanFightWithBoots()
-                // || CanUse(Item.Spinner)
-                // || CanUse(Item.Shadow_Crystal)
                 || CanUseBacksliceAsSword()
             );
         }
@@ -637,13 +544,7 @@ namespace TPRandomizer
         {
             return (
                 HasDamagingItem(new List<string>() { "Bombs" })
-                // HasSword()
-                // || CanUse(Item.Ball_and_Chain)
-                // || HasBowAndArrows()
-                // || CanFightWithBoots()
-                // || CanUse(Item.Spinner)
                 || CanUse(Item.Slingshot)
-                // || CanUse(Item.Shadow_Crystal)
                 || CanUseBacksliceAsSword()
             );
         }
@@ -663,12 +564,6 @@ namespace TPRandomizer
         {
             return (
                 HasDamagingItem(new List<string>() { "Spinner" })
-                // HasSword()
-                // || CanUse(Item.Ball_and_Chain)
-                // || HasBowAndArrows()
-                // || CanFightWithBoots()
-                // || CanUse(Item.Shadow_Crystal)
-                // || hasBombs()
                 || CanUseBacksliceAsSword()
             );
         }
@@ -696,12 +591,7 @@ namespace TPRandomizer
         {
             return (
                 HasDamagingItem(new List<string> {"Bombs", "Boots"})
-                // HasSword()
-                // || CanUse(Item.Ball_and_Chain)
-                // || HasBowAndArrows()
                 || CanUse(Item.Lantern)
-                // || CanUse(Item.Spinner)
-                // || CanUse(Item.Shadow_Crystal)
             );
         }
 
@@ -731,12 +621,6 @@ namespace TPRandomizer
         {
             return (
                 HasDamagingItem(new List<string>() { "Spinner" })
-                // HasSword()
-                // || CanUse(Item.Ball_and_Chain)
-                // || HasBowAndArrows()
-                // || CanFightWithBoots()
-                // || CanUse(Item.Shadow_Crystal)
-                // || hasBombs()
                 || CanUseBacksliceAsSword()
             );
         }
@@ -764,15 +648,9 @@ namespace TPRandomizer
         {
             return (
                 HasDamagingItem(new List<string>() { "Shadow_Crystal" })
-                // HasSword()
-                // || CanUse(Item.Ball_and_Chain)
-                // || HasBowAndArrows()
-                // || CanFightWithBoots()
-                // || CanUse(Item.Spinner)
                 || (hasShield() && getItemCount(Item.Progressive_Hidden_Skill) >= 2)
                 || CanUse(Item.Slingshot)
                 || CanUse(Item.Progressive_Clawshot)
-                // || hasBombs()
                 || CanUseBacksliceAsSword()
             );
         }
@@ -800,13 +678,7 @@ namespace TPRandomizer
         {
             return (
                 HasDamagingItem(new List<string>() { "Bombs" })
-                // HasSword()
-                // || CanUse(Item.Ball_and_Chain)
-                // || HasBowAndArrows()
-                // || CanFightWithBoots()
-                // || CanUse(Item.Spinner)
                 || CanUse(Item.Slingshot)
-                // || CanUse(Item.Shadow_Crystal)
                 || CanUseBacksliceAsSword()
             );
         }
@@ -840,12 +712,6 @@ namespace TPRandomizer
         {
             return (
                 HasDamagingItem(new List<string>() { "Bombs" })
-                // HasSword()
-                // || CanUse(Item.Ball_and_Chain)
-                // || HasBowAndArrows()
-                // || CanFightWithBoots()
-                // || CanUse(Item.Spinner)
-                // || CanUse(Item.Shadow_Crystal)
             );
         }
 
@@ -904,11 +770,6 @@ namespace TPRandomizer
         {
             return (
                 HasDamagingItem(new List<string> {"Bombs", "Boots"})
-                // HasSword()
-                // || CanUse(Item.Ball_and_Chain)
-                // || HasBowAndArrows()
-                // || CanUse(Item.Spinner)
-                // || CanUse(Item.Shadow_Crystal)
             );
         }
 
@@ -933,11 +794,6 @@ namespace TPRandomizer
         {
             return (
                 HasDamagingItem(new List<string> {"Boots", "Spinner"})
-                // HasSword()
-                // || CanUse(Item.Ball_and_Chain)
-                // || HasBowAndArrows()
-                // || CanUse(Item.Shadow_Crystal)
-                // || hasBombs()
             );
         }
 
@@ -986,12 +842,6 @@ namespace TPRandomizer
         {
             return (
                 HasDamagingItem(new List<string>() { "Spinner" })
-                // HasSword()
-                // || CanUse(Item.Ball_and_Chain)
-                // || HasBowAndArrows()
-                // || CanFightWithBoots()
-                // || CanUse(Item.Shadow_Crystal)
-                // || hasBombs()
                 || CanUseBacksliceAsSword()
             );
         }
@@ -1036,12 +886,6 @@ namespace TPRandomizer
         {
             return (
                 HasDamagingItem(new List<string>() { "Spinner" })
-                // HasSword()
-                // || CanUse(Item.Ball_and_Chain)
-                // || HasBowAndArrows()
-                // || CanFightWithBoots()
-                // || CanUse(Item.Shadow_Crystal)
-                // || hasBombs()
                 || CanUseBacksliceAsSword()
             );
         }
@@ -1130,12 +974,6 @@ namespace TPRandomizer
         {
             return (
                 HasDamagingItem(new List<string>() { "Spinner" })
-                // HasSword()
-                // || CanUse(Item.Ball_and_Chain)
-                // || HasBowAndArrows()
-                // || CanFightWithBoots()
-                // || CanUse(Item.Shadow_Crystal)
-                // || hasBombs()
                 || (CanDoDifficultCombat() && CanUseBacksliceAsSword())
             );
         }
@@ -1158,11 +996,6 @@ namespace TPRandomizer
                     CanUse(Item.Boomerang)
                     && (
                         HasDamagingItem(new List<string>() { "Spinner" })
-                        // HasSword()
-                        // || CanUse(Item.Ball_and_Chain)
-                        // || CanFightWithBoots()
-                        // || CanUse(Item.Shadow_Crystal)
-                        // || hasBombs()
                         || (CanDoDifficultCombat() && CanUseBacksliceAsSword())
                     )
                 );
