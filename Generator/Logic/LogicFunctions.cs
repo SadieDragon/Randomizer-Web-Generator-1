@@ -1209,7 +1209,7 @@ namespace TPRandomizer
             return HasReachedRoom(room) && !Randomizer.SSettings.shuffleShopItems;
         }
 
-        /// Frequently checked rooms!
+        /// Repeated checked rooms!
 
         /// Barnes' Bomb Shop
         public static bool HasReachedBarnesBombs = HasReachedRoom("Kakariko Barnes Bomb Shop Lower");
@@ -1219,6 +1219,9 @@ namespace TPRandomizer
 
         /// North Faron Woods
         public static bool HasReachedNorthFaronWoods = HasReachedRoom("North Faron Woods");
+
+        /// South Castle Town
+        public static bool HasReachedSouthCastleTown = 
 
         /// End of helper functions to check for ER looking things - Lupa
 
@@ -1296,7 +1299,7 @@ namespace TPRandomizer
             return (Randomizer.SSettings.skipMdh == true)
                 || (
                     canCompleteLakebedTemple()
-                    && HasReachedRoom("Castle Town South")
+                    && HasReachedSouthCastleTown
                 );
             //return (canCompleteLakebedTemple() || (Randomizer.SSettings.skipMdh == true));
         }
@@ -1375,7 +1378,7 @@ namespace TPRandomizer
                     && HasReachedRoom("Upper Zoras River")
                     && HasReachedRoom("Lake Hylia")
                     && HasReachedRoom("Lake Hylia Lanayru Spring")
-                    && HasReachedRoom("Castle Town South")
+                    && HasReachedSouthCastleTown
                     && CanSurviveBonkDamage()
                 );
         }
