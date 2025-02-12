@@ -100,7 +100,7 @@ namespace TPRandomizer
         public static bool canGetHotSpringWater()
         {
             return (
-                    HasReachedRoom("Lower Kakariko Village")
+                    HasReachedLowerKakariko
                     || (
                         HasReachedRoom("Death Mountain Elevator Lower")
                         && CanDefeatGoron()
@@ -1217,6 +1217,9 @@ namespace TPRandomizer
         /// Kakariko Malo Mart
         public static bool HasReachedKakarikoMaloMart = HasReachedRoom("Kakariko Malo Mart");
 
+        /// Lower Kakariko Village
+        public static bool HasReachedLowerKakariko = HasReachedRoom("Lower Kakariko Village");
+
         /// North Faron Woods
         public static bool HasReachedNorthFaronWoods = HasReachedRoom("North Faron Woods");
 
@@ -1354,7 +1357,7 @@ namespace TPRandomizer
             return Randomizer.SSettings.eldinTwilightCleared
                 || (
                     HasReachedRoom("Faron Field")
-                    && HasReachedRoom("Lower Kakariko Village")
+                    && HasReachedLowerKakariko
                     && HasReachedRoom("Kakariko Graveyard")
                     && HasReachedKakarikoMaloMart
                     && HasReachedRoom("Kakariko Barnes Bomb Shop Upper")
