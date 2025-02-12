@@ -61,37 +61,13 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanChangeTime()
         {
-            if (CanUse(Item.Shadow_Crystal))
-            {
-                // Can change time on any stage with shadow crystal
-                return true;
-            }
-            else
-            {
-                foreach (string timeStage in RoomFunctions.timeFlowStages)
-                {
-                    if (Randomizer.Rooms.RoomDict[timeStage].ReachedByPlaythrough)
-                    {
-                        return true;
-                    }
-                }
-            }
-            return false;
+            // Can change time on any stage with shadow crystal
+            return CanUse(Item.Shadow_Crystal) && HasReachedAllRooms(RoomFunctions.timeFlowStages);
         }
 
         public static bool CanWarp()
         {
-            if (CanUse(Item.Shadow_Crystal))
-            {
-                foreach (string warpStage in RoomFunctions.WarpableStages)
-                {
-                    if (Randomizer.Rooms.RoomDict[warpStage].ReachedByPlaythrough)
-                    {
-                        return true;
-                    }
-                }
-            }
-            return false;
+            return CanUse(Item.Shadow_Crystal) && HasReachedAllRooms(RoomFunctions.WarpableStages);
         }
 
         /// <summary>
@@ -161,9 +137,11 @@ namespace TPRandomizer
             return hasShield() && (getItemCount(Item.Progressive_Hidden_Skill) >= 2);
         }
 
-        //TODO: Helper functions for "has reached room?" to be more readable?
+        //TODO: Helper functions or variables for "has reached room?" to be more readable?
         //  (there are a lot of repeated rooms...)
-        //TODO: Helper functions for frequent exclusions? (Need names)
+        //TODO: Helper functions or variables for frequent exclusions? (Need names)
+
+         //TODO: Make my parameter variables consistent
 
         //TODO Go through and set variables within fns for repeated checks in those functions.
 
@@ -1209,6 +1187,25 @@ namespace TPRandomizer
             return HasReachedRoom(room) && !Randomizer.SSettings.shuffleShopItems;
         }
 
+        /// <summary>
+        /// Checks if all maps within a given list of rooms have been reached.
+        /// </summary>
+        /// <param name="ListOfRooms">The list of rooms to check.</param>
+        public static bool HasReachedAllRooms(List<string> ListOfRooms)
+        {
+            // Loop through the provided list to see if we have reached any rooms.
+            foreach (string mapRoom in ListOfRooms)
+            {
+                if (Randomizer.Rooms.RoomDict[mapRoom].ReachedByPlaythrough)
+                {
+                    return true;
+                }
+            }
+
+            // If we are out of the loop, then we have not reached any.
+            return false;
+        }
+
         /// Repeated checked rooms!
 
         /// Barnes' Bomb Shop
@@ -1497,23 +1494,9 @@ namespace TPRandomizer
         public static bool CanUnlockRegionalMap(List<string> rooms_on_map)
         {
             // If openMap is true, then the map is already open.
-            if (Randomizer.SSettings.openMap)
-            {
-                return true;
-            }
-
-            // Otherwise, loop through each room on the map to see if we have reached it.
-            foreach (string mapRoom in rooms_on_map)
-            {
-                if (Randomizer.Rooms.RoomDict[mapRoom].ReachedByPlaythrough)
-                {
-                    return true;
-                }
-            }
-
-            // If we the above has not passed, then we cannot unlock the map.
-            return false;
-
+            // Otherwise, we need to check if all rooms on the map have been accessed.
+            // TODO: Can someone check me on the || here? - Lupa
+            return Randomizer.SSettings.openMap || HasReachedAllRooms(rooms_on_map);
         }
 
         public static bool CanUnlockOrdonaMap()
