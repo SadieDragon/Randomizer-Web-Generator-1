@@ -296,7 +296,8 @@ namespace TPRandomizer
         }
 
         /// <summary>
-        /// summary text.
+        /// Checks if at least one item to defeat Bubble is available.
+        /// [Valid Items: Sword, Ball and Chain, Boots, Bow, Shadow Crystal, Spinner, Backslice (if can be used).]
         /// </summary>
         public static bool CanDefeatBubble()
         {
@@ -376,7 +377,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDefeatFireBubble()
         {
-            return HasDamagingItem(new List<string>() { "Bombs" });
+            return CanDefeatBubble();
         }
 
         /// <summary>
@@ -459,7 +460,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDefeatIceBubble()
         {
-            return HasDamagingItem(new List<string>() { "Bombs" });
+            return CanDefeatBubble();
         }
 
         /// <summary>
@@ -489,7 +490,7 @@ namespace TPRandomizer
 
         /// <summary>
         /// Checks if at least one item to defeat Keese is available.
-        /// Valid Items: Sword, B&C, Boots, Bow, SC, Spinner, Backslice, Slingshot.
+        /// [Valid Items: Sword, B&C, Boots, Bow, SC, Spinner, Backslice (if can be used), Slingshot.]
         /// </summary>
         public static bool CanDefeatKeese()
         {
