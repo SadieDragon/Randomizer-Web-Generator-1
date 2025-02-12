@@ -227,10 +227,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDefeatBeamos()
         {
-            //TODO: Smash?
-            return CanUse(Item.Ball_and_Chain)
-                || HasBowAndArrows()
-                || hasBombs();
+            return canSmash() || HasBowAndArrows();
         }
 
         /// <summary>
@@ -261,10 +258,9 @@ namespace TPRandomizer
         {
             return (
                 HasSword()
-                || CanUse(Item.Ball_and_Chain)
+                || canSmash()
                 || ((getItemCount(Item.Progressive_Bow) >= 3) && CanGetArrows())
                 || CanUse(Item.Shadow_Crystal)
-                || hasBombs()
                 || CanUseBacksliceAsSword()
                 || (CanDoDifficultCombat() && (CanUse(Item.Iron_Boots) || CanUse(Item.Spinner)))
             );
@@ -337,8 +333,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDefeatDarknut()
         {
-            return HasSword()
-                || (CanDoDifficultCombat() && (hasBombs() || CanUse(Item.Ball_and_Chain)));
+            return HasSword() || (CanDoDifficultCombat() && canSmash());
         }
 
         /// <summary>
