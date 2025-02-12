@@ -1214,8 +1214,8 @@ namespace TPRandomizer
         /// Barnes' Bomb Shop
         public static bool HasReachedBarnesBombs = HasReachedRoom("Kakariko Barnes Bomb Shop Lower");
 
-        /// <summary>
-        /// Frequ
+        /// Kakariko Malo Mart
+        public static bool HasReachedKakarikoMaloMart = HasReachedRoom("Kakariko Malo Mart");
 
         /// End of helper functions to check for ER looking things - Lupa
 
@@ -1262,7 +1262,7 @@ namespace TPRandomizer
             return HasReachedRoom("Lost Woods")
                 || (
                     canCompleteGoronMines()
-                    && HasReachedRoom("Kakariko Malo Mart")
+                    && HasReachedKakarikoMaloMart
                 )
                 || CanShopFromRoom("Castle Town Goron House Balcony");
         }
@@ -1350,7 +1350,7 @@ namespace TPRandomizer
                     HasReachedRoom("Faron Field")
                     && HasReachedRoom("Lower Kakariko Village")
                     && HasReachedRoom("Kakariko Graveyard")
-                    && HasReachedRoom("Kakariko Malo Mart")
+                    && HasReachedKakarikoMaloMart
                     && HasReachedRoom("Kakariko Barnes Bomb Shop Upper")
                     && HasReachedRoom("Kakariko Renados Sanctuary Basement")
                     && HasReachedRoom("Kakariko Elde Inn")
