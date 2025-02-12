@@ -100,11 +100,10 @@ namespace TPRandomizer
         public static bool canGetHotSpringWater()
         {
             return (
-                    Randomizer.Rooms.RoomDict["Lower Kakariko Village"].ReachedByPlaythrough
+                    HasReachedRoom("Lower Kakariko Village")
                     || (
-                        Randomizer.Rooms.RoomDict[
-                            "Death Mountain Elevator Lower"
-                        ].ReachedByPlaythrough && CanDefeatGoron()
+                        HasReachedRoom("Death Mountain Elevator Lower")
+                        && CanDefeatGoron()
                     )
                 ) && HasBottle();
         }
@@ -1042,24 +1041,24 @@ namespace TPRandomizer
         {
             return CanUse(Item.Hylian_Shield)
                 || (
-                    Randomizer.Rooms.RoomDict["Kakariko Malo Mart"].ReachedByPlaythrough
+                    HasReachedRoom("Kakariko Malo Mart")
                     && !Randomizer.SSettings.shuffleShopItems
                 )
                 || (
-                    Randomizer.Rooms.RoomDict["Castle Town Goron House"].ReachedByPlaythrough
+                    HasReachedRoom("Castle Town Goron House")
                     && !Randomizer.SSettings.shuffleShopItems
                 )
-                || Randomizer.Rooms.RoomDict["Death Mountain Hot Spring"].ReachedByPlaythrough;
+                || HasReachedRoom("Death Mountain Hot Spring");
         }
 
         public static bool CanUseBottledFairy()
         {
-            return HasBottle() && Randomizer.Rooms.RoomDict["Lake Hylia"].ReachedByPlaythrough;
+            return HasBottle() && HasReachedRoom("Lake Hylia");
         }
 
         public static bool CanUseBottledFairies()
         {
-            return HasBottles() && Randomizer.Rooms.RoomDict["Lake Hylia"].ReachedByPlaythrough;
+            return HasBottles() && HasReachedRoom("Lake Hylia");
         }
 
         public static bool CanUseOilBottle()
