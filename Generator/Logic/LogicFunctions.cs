@@ -36,23 +36,6 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanUse(Item item)
         {
-            // DEBUG
-            // This *might* be where my bug is coming from?
-            // If so, then I would like a different way to handle this than extra if statements...
-            if (Randomizer.Items == null)
-            {
-                Console.WriteLine("Error: Randomizer.Items is null!");
-                return false; // Else null thus bug
-            }
-            if (Randomizer.Items.heldItems == null)
-            {
-                Console.WriteLine("Error: Randomizer.Items.heldItems is null!");
-                return false; // Else null thus bug
-            }
-            // END OF DEBUG
-
-            // Returns true if the item is in the list, else false.
-            // No need for an if statement or boolean variable.
             return Randomizer.Items.heldItems.Contains(item);
         }
 
