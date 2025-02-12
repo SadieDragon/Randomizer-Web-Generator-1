@@ -396,7 +396,7 @@ namespace TPRandomizer
             return HasSword()
                 || CanUse(Item.Ball_and_Chain)
                 || HasBowAndArrows()
-                || (CanUse(Item.Hylian_Shield) && getItemCount(Item.Progressive_Hidden_Skill) >= 2)
+                || CanSheildAttack()
                 || (CanDoDifficultCombat() && CanUse(Item.Shadow_Crystal));
         }
 
