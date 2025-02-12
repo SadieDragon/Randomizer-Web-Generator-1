@@ -165,9 +165,8 @@ namespace TPRandomizer
         //TODO: Helper functions for "has reached room?" to be more readable?
         //  (there are a lot of repeated rooms...)
         //TODO: Helper functions for frequent exclusions? (Need names)
-        //TODO: EF WBF Grotto + Fishing Rod
 
-        //TODO Bonksdo damage
+        //TODO Go through and set variables within fns for repeated checks in those functions.
 
         /// <summary>
         /// summary text.
@@ -1217,9 +1216,18 @@ namespace TPRandomizer
             return CanUse(Item.Filled_Bomb_Bag)
                 && (
                     HasReachedRoom("Kakariko Barnes Bomb Shop Lower")
-                    || (HasReachedRoom("Eldin Field Water Bomb Fish Grotto") && CanUse(Item.Progressive_Fishing_Rod))
+                    || CanFishForWaterBombs()
                     || HasReachedRoom("City in The Sky Entrance")
                 );
+        }
+
+        /// <summary>
+        /// Checks if Eldin Field Water Bomb Fish Grotto has been reached, and there is a fishing rod.
+        /// </summary>
+        /// <returns></returns>
+        public static bool CanFishForWaterBombs()
+        {
+            return HasReachedRoom("Eldin Field Water Bomb Fish Grotto") && CanUse(Item.Progressive_Fishing_Rod);
         }
 
         /// <summary>
@@ -1230,7 +1238,7 @@ namespace TPRandomizer
             return CanUse(Item.Filled_Bomb_Bag)
                 && (
                     HasReachedRoom("Kakariko Barnes Bomb Shop Lower")
-                    || (HasReachedRoom("Eldin Field Water Bomb Fish Grotto") && CanUse(Item.Progressive_Fishing_Rod))
+                    || CanFishForWaterBombs()
                     || (HasReachedRoom("Kakariko Barnes Bomb Shop Lower") && HasReachedRoom("Castle Town Malo Mart"))
                 );
         }
