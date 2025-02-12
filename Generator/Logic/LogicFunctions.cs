@@ -1039,15 +1039,10 @@ namespace TPRandomizer
         /// </summary>
         public static bool hasShield()
         {
+            // Please use CanShopFromRoom in the future for DM HotSpring if randomizable- Lupa
             return CanUse(Item.Hylian_Shield)
-                || (
-                    HasReachedRoom("Kakariko Malo Mart")
-                    && !Randomizer.SSettings.shuffleShopItems
-                )
-                || (
-                    HasReachedRoom("Castle Town Goron House")
-                    && !Randomizer.SSettings.shuffleShopItems
-                )
+                || CanShopFromRoom("Kakariko Malo Mart")
+                || CanShopFromRoom("Castle Town Goron House")
                 || HasReachedRoom("Death Mountain Hot Spring");
         }
 
@@ -1186,7 +1181,7 @@ namespace TPRandomizer
             return CanUse(Item.Shadow_Crystal) || HasSword() || canSmash() || CanUseBacksliceAsSword();
         }
 
-        /// Start of helper functions to check for specific rooms and room groups - Lupa
+        /// Start of helper functions for ER looking things - Lupa
 
         /// <summary>
         /// A function for this file to use. Checks if the provided room has been reached by the playthrough.
@@ -1205,7 +1200,16 @@ namespace TPRandomizer
             return false;
         }
 
-        /// End of helper functions to check for specific rooms and room groups - Lupa
+        /// <summary>
+        /// Checks for if it is not shop sanity, and if the room can be accessed.
+        /// </summary>
+        /// <param name="room">Name of the room to check.</param>
+        public static bool CanShopFromRoom(string room)
+        {
+            return HasReachedRoom(room) && !Randomizer.SSettings.shuffleShopItems;
+        }
+
+        /// End of helper functions to check for ER looking things - Lupa
 
         /// <summary>
         /// summary text.
@@ -1252,10 +1256,7 @@ namespace TPRandomizer
                     canCompleteGoronMines()
                     && HasReachedRoom("Kakariko Malo Mart")
                 )
-                || (
-                    HasReachedRoom("Castle Town Goron House Balcony")
-                    && !Randomizer.SSettings.shuffleShopItems
-                );
+                || CanShopFromRoom("Castle Town Goron House Balcony");
         }
 
         /// <summary>
