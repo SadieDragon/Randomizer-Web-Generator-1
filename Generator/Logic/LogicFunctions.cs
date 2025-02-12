@@ -280,7 +280,7 @@ namespace TPRandomizer
             return (
                 (
                     CanUse(Item.Iron_Boots)
-                    || Randomizer.SSettings.logicRules == LogicRules.Glitched
+                    || CanDoNicheStuff()
                         && CanUse(Item.Magic_Armor)
                 )
                 && (
@@ -994,7 +994,7 @@ namespace TPRandomizer
                     && (
                         CanUse(Item.Zora_Armor)
                         || (
-                            Randomizer.SSettings.logicRules == LogicRules.Glitched
+                            CanDoNicheStuff()
                             && CanDoAirRefill()
                         )
                     )
@@ -1124,7 +1124,7 @@ namespace TPRandomizer
                     )
                 )
                 || (
-                    Randomizer.SSettings.logicRules == LogicRules.Glitched
+                    CanDoNicheStuff()
                     && ((HasSword() && CanDoMoonBoots()) || CanDoBSMoonBoots())
                 );
         }
