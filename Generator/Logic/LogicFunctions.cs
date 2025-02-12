@@ -154,10 +154,18 @@ namespace TPRandomizer
             return CanUse(Item.Progressive_Bow) && CanGetArrows();
         }
 
-        //TODO: ShieldBash - has shield + 2 hidden skills
+        /// <summary>
+        /// Determines if the user has a shield and at least 2 hidden skills.
+        /// </summary>
+        public static bool CanSheildAttack()
+        {
+            return hasShield() && (getItemCount(Item.Progressive_Hidden_Skill) >= 2);
+        }
+
         //TODO: Niche + MA
         //TODO: Helper functions for "has reached room?" to be more readable?
         //  (there are a lot of repeated rooms...)
+        //TODO: Helper functions for frequent exclusions? (Need names)
 
         /// <summary>
         /// summary text.
@@ -279,7 +287,7 @@ namespace TPRandomizer
                 && (
                     HasSword()
                     || CanUse(Item.Progressive_Clawshot)
-                    || (hasShield() && getItemCount(Item.Progressive_Hidden_Skill) >= 2)
+                    || CanSheildAttack()
                 )
             );
         }
@@ -348,7 +356,7 @@ namespace TPRandomizer
         public static bool CanDefeatDekuBaba()
         {
             return HasDamagingItem(new List<string>() { "Shadow_Crystal" })
-                || (hasShield() && getItemCount(Item.Progressive_Hidden_Skill) >= 2)
+                || CanSheildAttack()
                 || CanUse(Item.Slingshot)
                 || CanUse(Item.Progressive_Clawshot);
         }
@@ -420,7 +428,7 @@ namespace TPRandomizer
         public static bool CanDefeatGoron()
         {
             return HasDamagingItem(new List<string>() {"Shadow_Crystal", "Spinner"})
-                || (hasShield() && (getItemCount(Item.Progressive_Hidden_Skill) >= 2))
+                || CanSheildAttack()
                 || CanUse(Item.Slingshot)
                 || (CanDoDifficultCombat() && CanUse(Item.Lantern))
                 || CanUse(Item.Progressive_Clawshot);
@@ -587,7 +595,7 @@ namespace TPRandomizer
         public static bool CanDefeatShadowDekuBaba()
         {
             return HasDamagingItem(new List<string>() { "Shadow_Crystal" })
-                || (hasShield() && getItemCount(Item.Progressive_Hidden_Skill) >= 2)
+                || CanSheildAttack()
                 || CanUse(Item.Slingshot)
                 || CanUse(Item.Progressive_Clawshot);
         }
@@ -708,8 +716,8 @@ namespace TPRandomizer
             return HasSword()
                 || CanUse(Item.Ball_and_Chain)
                 || HasBowAndArrows()
-                || (hasShield() && getItemCount(Item.Progressive_Hidden_Skill) >= 2)
-                || CanDoDifficultCombat() && (CanUse(Item.Shadow_Crystal));
+                || CanSheildAttack()
+                || CanDoDifficultCombat() && CanUse(Item.Shadow_Crystal);
         }
 
         /// <summary>
@@ -1135,11 +1143,7 @@ namespace TPRandomizer
                 || hasBombs()
                 || HasBowAndArrows()
                 || CanUse(Item.Progressive_Clawshot)
-                || (
-                    CanDoNicheStuff()
-                    && hasShield()
-                    && getItemCount(Item.Progressive_Hidden_Skill) >= 2
-                );
+                || CanDoNicheStuff() && CanSheildAttack();
         }
 
         /// <summary>
