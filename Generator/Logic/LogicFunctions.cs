@@ -40,6 +40,11 @@ namespace TPRandomizer
         /// </summary>
         public static bool IsFaronWoodsOpen = (Randomizer.SSettings.faronWoodsLogic == FaronWoodsLogic.Open);
 
+        ///<summary>
+        /// Checks if Eldin Twilight has been skipped.
+        ///</summary>
+        public static bool IsEldinTwilightSkipped = Randomizer.SSettings.eldinTwilightCleared;
+
         /// <summary>
         /// Checks if the small keys are set to keysy.
         /// </summary>
@@ -1368,7 +1373,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanCompleteEldinTwilight()
         {
-            return Randomizer.SSettings.eldinTwilightCleared
+            return IsEldinTwilightSkipped
                 || (
                     HasReachedRoom("Faron Field")
                     && HasReachedLowerKakariko
@@ -1841,7 +1846,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanCompleteEldinTwilightGlitched()
         {
-            return Randomizer.SSettings.eldinTwilightCleared || canClearForestGlitched();
+            return IsEldinTwilightSkipped || canClearForestGlitched();
         }
 
         /// <summary>
