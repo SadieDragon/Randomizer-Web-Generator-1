@@ -168,18 +168,6 @@ namespace TPRandomizer
         //TODO: EF WBF Grotto + Fishing Rod
 
         //TODO Bonksdo damage
-        // (
-        //     !Randomizer.SSettings.bonksDoDamage
-        //     || (
-        //         Randomizer.SSettings.bonksDoDamage
-        //         && (
-        //             (
-        //                 Randomizer.SSettings.damageMagnification
-        //                 != DamageMagnification.OHKO
-        //             ) || CanUseBottledFairies()
-        //         )
-        //     )
-        // )
 
         /// <summary>
         /// summary text.
@@ -1332,18 +1320,7 @@ namespace TPRandomizer
                     && HasReachedRoom("Mist Area Near Faron Woods Cave")
                     && HasReachedRoom("North Faron Woods")
                     && HasReachedRoom("Ordon Spring")
-                    && (
-                        !Randomizer.SSettings.bonksDoDamage
-                        || (
-                            Randomizer.SSettings.bonksDoDamage
-                            && (
-                                (
-                                    Randomizer.SSettings.damageMagnification
-                                    != DamageMagnification.OHKO
-                                ) || CanUseBottledFairies()
-                            )
-                        )
-                    )
+                    && CanSurviveBonkDamage()
                 );
         }
 
@@ -1365,18 +1342,7 @@ namespace TPRandomizer
                     && HasReachedRoom("Upper Kakariko Village")
                     && HasReachedRoom("Kakariko Watchtower")
                     && HasReachedRoom("Death Mountain Volcano")
-                    && (
-                        !Randomizer.SSettings.bonksDoDamage
-                        || (
-                            Randomizer.SSettings.bonksDoDamage
-                            && (
-                                (
-                                    Randomizer.SSettings.damageMagnification
-                                    != DamageMagnification.OHKO
-                                ) || CanUseBottledFairies()
-                            )
-                        )
-                    )
+                    && CanSurviveBonkDamage()
                 );
         }
 
@@ -1391,18 +1357,7 @@ namespace TPRandomizer
                     && HasReachedRoom("Lake Hylia")
                     && HasReachedRoom("Lake Hylia Lanayru Spring")
                     && HasReachedRoom("Castle Town South")
-                    && (
-                        !Randomizer.SSettings.bonksDoDamage
-                        || (
-                            Randomizer.SSettings.bonksDoDamage
-                            && (
-                                (
-                                    Randomizer.SSettings.damageMagnification
-                                    != DamageMagnification.OHKO
-                                ) || CanUseBottledFairies()
-                            )
-                        )
-                    )
+                    && CanSurviveBonkDamage()
                 );
         }
 
@@ -1612,7 +1567,26 @@ namespace TPRandomizer
             return false;
         }
 
-        /// <sumamry>
+        /// <summary>
+        /// Checks for the ability to survive damage done by bonks in OHKO mode.
+        /// </summary>
+        public static bool CanSurviveBonkDamage()
+        {
+            // Check the setting "bonksDoDamage"
+            bool BonksDamageEnabled = Randomizer.SSettings.bonksDoDamage;
+
+            // Check if OHKO is enabled.
+            bool OneHitKnockOutEnabled = !Randomizer.SSettings.damageMagnification.Equals(DamageMagnification.OHKO);
+
+            // If bonks do damage, check for the ability to use fairies.
+            return !BonksDamageEnabled
+                || (
+                    BonksDamageEnabled
+                    && (OneHitKnockOutEnabled || CanUseBottledFairies())
+                );
+        }
+
+        /// <summary>
         /// Checks the setting for niche stuff. Niche stuff includes things that may not be obvious to most players, such as damaging enemies with boots, lantern on Gorons, drained Magic Armor for heavy mod, etc.
         /// </summary>
         public static bool CanDoNicheStuff()
