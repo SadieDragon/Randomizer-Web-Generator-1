@@ -179,7 +179,8 @@ namespace TPRandomizer
 
         //TODO Go through and set variables within fns for repeated checks in those functions.
 
-        //TODO: DifficultCombat & Backslice
+        //TODO: DifficultCombat & SC        - 2
+        //                      & Spinner   - 2
 
         /// <summary>
         /// summary text.
@@ -883,7 +884,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDefeatDarkhammer()
         {
-            return HasDamagingItem(new List<string>() { "Spinner", "Backslice" }) || (CanDoDifficultCombat() && CanUseBacksliceAsSword());
+            return HasDamagingItem(new List<string>() { "Spinner", "Backslice" }) || CanDoDifficultCombatWithBackslice();
         }
 
         /// <summary>
@@ -904,7 +905,7 @@ namespace TPRandomizer
                     CanUse(Item.Boomerang)
                     && (
                         HasDamagingItem(new List<string>() { "Spinner", "Backslice" })
-                        || (CanDoDifficultCombat() && CanUseBacksliceAsSword())
+                        || CanDoDifficultCombatWithBackslice()
                     )
                 );
         }
@@ -916,7 +917,7 @@ namespace TPRandomizer
         {
             return CanUse(Item.Progressive_Bow)
                 && CanUse(Item.Iron_Boots)
-                && (HasSword() || (CanDoDifficultCombat() && CanUseBacksliceAsSword()));
+                && (HasSword() || CanDoDifficultCombatWithBackslice());
         }
 
         /// <summary>
@@ -1563,6 +1564,14 @@ namespace TPRandomizer
         {
             // TODO: Change to use setting once it's made
             return false;
+        }
+
+        /// <summary>
+        /// Checks if backslice can be used in difficult combat.
+        /// </summary>
+        public static bool CanDoDifficultCombatWithBackslice()
+        {
+            return CanDoDifficultCombat() && CanUseBacksliceAsSword();
         }
 
         /// <summary>
