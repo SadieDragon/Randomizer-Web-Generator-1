@@ -1217,6 +1217,9 @@ namespace TPRandomizer
         /// Kakariko Malo Mart
         public static bool HasReachedKakarikoMaloMart = HasReachedRoom("Kakariko Malo Mart");
 
+        /// North Faron Woods
+        public static bool HasReachedNorthFaronWoods = HasReachedRoom("North Faron Woods");
+
         /// End of helper functions to check for ER looking things - Lupa
 
         /// <summary>
@@ -1274,7 +1277,7 @@ namespace TPRandomizer
         {
             return (
                 (
-                    HasReachedRoom("North Faron Woods")
+                    HasReachedNorthFaronWoods
                     && CanDefeatBokoblin()
                 ) || (Randomizer.SSettings.skipPrologue == true)
             );
@@ -1334,7 +1337,7 @@ namespace TPRandomizer
                     && HasReachedRoom("South Faron Woods")
                     && HasReachedRoom("Faron Woods Coros House Lower")
                     && HasReachedRoom("Mist Area Near Faron Woods Cave")
-                    && HasReachedRoom("North Faron Woods")
+                    && HasReachedNorthFaronWoods
                     && HasReachedRoom("Ordon Spring")
                     && CanSurviveBonkDamage()
                 );
