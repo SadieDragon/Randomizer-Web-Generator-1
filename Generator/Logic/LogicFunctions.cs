@@ -200,10 +200,8 @@ namespace TPRandomizer
 
         public static bool CanDefeatHangingBabaSerpent()
         {
-            return (
-                    CanUse(Item.Boomerang)
-                    || HasBowAndArrows()
-                ) && LogicFunctions.CanDefeatBabaSerpent();
+            return (CanUse(Item.Boomerang) || HasBowAndArrows())
+                && CanDefeatBabaSerpent();
         }
 
         /// <summary>
