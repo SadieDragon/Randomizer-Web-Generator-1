@@ -1224,7 +1224,7 @@ namespace TPRandomizer
         public static bool HasReachedNorthFaronWoods = HasReachedRoom("North Faron Woods");
 
         /// South Castle Town
-        public static bool HasReachedSouthCastleTown = 
+        public static bool HasReachedSouthCastleTown = HasReachedRoom("Castle Town South");
 
         /// End of helper functions to check for ER looking things - Lupa
 
