@@ -111,12 +111,11 @@ namespace TPRandomizer
 
         /// <summary>
         /// Checks for one of a list of damaging items. Allows for one or more of that list to not be excluded from the check.
-        /// List of damaging items: Sword, Ball and Chain, Bombs, Boots, Bow, Shadow Crystal, Spinner.
-        /// List of expected item names: "Bombs", "Boots", "Bow", "Shadow_Crystal", "Spinner".
+        /// List of damaging items: Sword, Ball and Chain, Bombs, Boots, Bow, Shadow Crystal, Spinner, Backslice (if can be used).
+        /// List of expected item names: "Bombs", "Boots", "Bow", "Shadow_Crystal", "Spinner", "Backslice".
         /// </summary>
         /// <param name="exclusions">Optional (defaults to null for no exclusions). Pass a list of item names to not check for them.</param>
         /// <returns></returns>
-        /// TODO: If this works, then I should also add backslice to this rather than having it as a sep. helper fn.
         public static bool HasDamagingItem(List<string> exclusions = null)
         {
             // Prevents issues if exclusions is null. Safety net.
@@ -131,7 +130,8 @@ namespace TPRandomizer
                 || (!exclusions.Contains("Boots") && CanFightWithBoots())
                 || (!exclusions.Contains("Bow") && HasBowAndArrows())
                 || (!exclusions.Contains("Shadow_Crystal") && CanUse(Item.Shadow_Crystal))
-                || (!exclusions.Contains("Spinner") && CanUse(Item.Spinner));
+                || (!exclusions.Contains("Spinner") && CanUse(Item.Spinner))
+                || (!exclusions.Contains("Backslice") && CanUseBacksliceAsSword());
         }
         // NOTE: You could probably add variables with the different possible exclusions and exclusion combinations.
         //  This would be a bit less repetitive. I didn't implement it because I don't know how that would affect memory usage,
@@ -154,7 +154,6 @@ namespace TPRandomizer
             return (CanUse(Item.Progressive_Bow) && CanGetArrows());
         }
 
-        //TODO: add backslice to HasDamagingItem as a possible exclusion.
         //TODO: ShieldBash - has shield + 2 hidden skills
         //TODO: Niche + MA
 
@@ -179,8 +178,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDefeatArmos()
         {
-            return CanStandardOrBacksliceCombat()
-                || CanUse(Item.Progressive_Clawshot);
+            return HasDamagingItem() || CanUse(Item.Progressive_Clawshot);
         }
 
         /// <summary>
@@ -188,7 +186,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDefeatBabaSerpent()
         {
-            return CanStandardOrBacksliceCombat();
+            return HasDamagingItem();
         }
 
         public static bool CanDefeatHangingBabaSerpent()
@@ -206,8 +204,7 @@ namespace TPRandomizer
         {
             return HasDamagingItem(new List<string>() { "Shadow_Crystal" })
                 || CanUse(Item.Slingshot)
-                || CanUse(Item.Progressive_Clawshot)
-                || CanUseBacksliceAsSword();
+                || CanUse(Item.Progressive_Clawshot);
         }
 
         /// <summary>
@@ -223,6 +220,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDefeatBeamos()
         {
+            //TODO: Smash?
             return CanUse(Item.Ball_and_Chain)
                 || HasBowAndArrows()
                 || hasBombs();
@@ -233,7 +231,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDefeatBigBaba()
         {
-            return CanStandardOrBacksliceCombat();
+            return HasDamagingItem();
         }
 
         /// <summary>
@@ -241,10 +239,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDefeatChu()
         {
-            return (
-                CanStandardOrBacksliceCombat()
-                || CanUse(Item.Progressive_Clawshot)
-            );
+            return HasDamagingItem() || CanUse(Item.Progressive_Clawshot);
         }
 
         /// <summary>
@@ -252,10 +247,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDefeatBokoblin()
         {
-            return (
-                CanStandardOrBacksliceCombat()
-                || CanUse(Item.Slingshot)
-            );
+            return HasDamagingItem() || CanUse(Item.Slingshot);
         }
 
         public static bool CanDefeatBokoblinRed()
@@ -295,10 +287,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDefeatBombling()
         {
-            return (
-                HasDamagingItem(new List<string>() { "Bombs" })
-                || CanUse(Item.Progressive_Clawshot)
-            );
+            return HasDamagingItem(new List<string>() { "Bombs", "Backslice" }) || CanUse(Item.Progressive_Clawshot);
         }
 
         /// <summary>
@@ -306,7 +295,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDefeatBomskit()
         {
-            return CanStandardOrBacksliceCombat();
+            return HasDamagingItem(new List<string>() { "Backslice" });
         }
 
         /// <summary>
@@ -314,10 +303,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDefeatBubble()
         {
-            return (
-                HasDamagingItem(new List<string>() { "Bombs" })
-                || CanUseBacksliceAsSword()
-            );
+            return HasDamagingItem(new List<string>() { "Bombs" });
         }
 
         /// <summary>
@@ -325,7 +311,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDefeatBulblin()
         {
-            return CanStandardOrBacksliceCombat();
+            return HasDamagingItem();
         }
 
         /// <summary>
@@ -333,10 +319,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDefeatChilfos()
         {
-            return (
-                HasDamagingItem(new List<string>() { "Bow" })
-                || CanUseBacksliceAsSword()
-            );
+            return HasDamagingItem(new List<string>() { "Bow" });
         }
 
         /// <summary>
@@ -345,10 +328,8 @@ namespace TPRandomizer
         public static bool CanDefeatChuWorm()
         {
             return (
-                (
-                    HasDamagingItem(new List<string>() { "Bombs" })
-                    || CanUseBacksliceAsSword()
-                ) && (hasBombs() || CanUse(Item.Progressive_Clawshot))
+                HasDamagingItem(new List<string>() { "Bombs" })
+                && (hasBombs() || CanUse(Item.Progressive_Clawshot))
             );
         }
 
@@ -371,7 +352,6 @@ namespace TPRandomizer
                 || (hasShield() && getItemCount(Item.Progressive_Hidden_Skill) >= 2)
                 || CanUse(Item.Slingshot)
                 || CanUse(Item.Progressive_Clawshot)
-                || CanUseBacksliceAsSword()
             );
         }
 
@@ -388,7 +368,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDefeatDodongo()
         {
-            return CanStandardOrBacksliceCombat();
+            return HasDamagingItem();
         }
 
         /// <summary>
@@ -404,10 +384,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDefeatFireBubble()
         {
-            return (
-                HasDamagingItem(new List<string>() { "Bombs" })
-                || CanUseBacksliceAsSword()
-            );
+            return HasDamagingItem(new List<string>() { "Bombs" });
         }
 
         /// <summary>
@@ -418,7 +395,6 @@ namespace TPRandomizer
             return (
                 HasDamagingItem(new List<string>() { "Bombs" })
                 || CanUse(Item.Slingshot)
-                || CanUseBacksliceAsSword()
             );
         }
 
@@ -450,12 +426,11 @@ namespace TPRandomizer
         public static bool CanDefeatGoron()
         {
             return (
-                HasDamagingItem(new List<string> {"Shadow_Crystal", "Spinner"})
+                HasDamagingItem(new List<string>() {"Shadow_Crystal", "Spinner"})
                 || (hasShield() && (getItemCount(Item.Progressive_Hidden_Skill) >= 2))
                 || CanUse(Item.Slingshot)
                 || (CanDoDifficultCombat() && CanUse(Item.Lantern))
                 || CanUse(Item.Progressive_Clawshot)
-                || CanUseBacksliceAsSword()
             );
         }
 
@@ -473,7 +448,7 @@ namespace TPRandomizer
         public static bool CanDefeatGuay()
         {
             return (
-                HasDamagingItem(new List<string> {"Bombs", "Spinner"})
+                HasDamagingItem(new List<string>() {"Bombs", "Spinner", "Backslice"})
                 || (CanDoDifficultCombat() && CanUse(Item.Spinner))
                 || CanUse(Item.Slingshot)
             );
@@ -484,7 +459,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDefeatHelmasaur()
         {
-            return CanStandardOrBacksliceCombat();
+            return HasDamagingItem();
         }
 
         /// <summary>
@@ -492,7 +467,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDefeatHelmasaurus()
         {
-            return CanStandardOrBacksliceCombat();
+            return HasDamagingItem();
         }
 
         /// <summary>
@@ -500,10 +475,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDefeatIceBubble()
         {
-            return (
-                HasDamagingItem(new List<string>() { "Bombs" })
-                || CanUseBacksliceAsSword()
-            );
+            return HasDamagingItem(new List<string>() { "Bombs" });
         }
 
         /// <summary>
@@ -511,11 +483,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDefeatIceKeese()
         {
-            return (
-                HasDamagingItem(new List<string>() { "Bombs" })
-                || CanUse(Item.Slingshot)
-                || CanUseBacksliceAsSword()
-            );
+            return HasDamagingItem(new List<string>() { "Bombs" }) || CanUse(Item.Slingshot);
         }
 
         /// <summary>
@@ -531,10 +499,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDefeatKargarok()
         {
-            return (
-                HasDamagingItem(new List<string>() { "Bombs" })
-                || CanUseBacksliceAsSword()
-            );
+            return HasDamagingItem(new List<string>() { "Bombs" });
         }
 
         /// <summary>
@@ -542,11 +507,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDefeatKeese()
         {
-            return (
-                HasDamagingItem(new List<string>() { "Bombs" })
-                || CanUse(Item.Slingshot)
-                || CanUseBacksliceAsSword()
-            );
+            return HasDamagingItem(new List<string>() { "Bombs" }) || CanUse(Item.Slingshot);
         }
 
         /// <summary>
@@ -554,7 +515,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDefeatLeever()
         {
-            return HasDamagingItem();
+            return HasDamagingItem(new List<string>() { "Backslice" });
         }
 
         /// <summary>
@@ -562,10 +523,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDefeatLizalfos()
         {
-            return (
-                HasDamagingItem(new List<string>() { "Spinner" })
-                || CanUseBacksliceAsSword()
-            );
+            return HasDamagingItem(new List<string>() { "Spinner" });
         }
 
         /// <summary>
@@ -573,7 +531,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDefeatMiniFreezard()
         {
-            return CanStandardOrBacksliceCombat();
+            return HasDamagingItem();
         }
 
         /// <summary>
@@ -581,7 +539,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDefeatMoldorm()
         {
-            return HasDamagingItem();
+            return HasDamagingItem(new List<string>() { "Backslice" });
         }
 
         /// <summary>
@@ -590,7 +548,7 @@ namespace TPRandomizer
         public static bool CanDefeatPoisonMite()
         {
             return (
-                HasDamagingItem(new List<string> {"Bombs", "Boots"})
+                HasDamagingItem(new List<string>() {"Bombs", "Boots", "Backslice"})
                 || CanUse(Item.Lantern)
             );
         }
@@ -600,7 +558,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDefeatPuppet()
         {
-            return CanStandardOrBacksliceCombat();
+            return HasDamagingItem();
         }
 
         /// <summary>
@@ -608,10 +566,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDefeatRat()
         {
-            return (
-                CanStandardOrBacksliceCombat()
-                || CanUse(Item.Slingshot)
-            );
+            return HasDamagingItem() || CanUse(Item.Slingshot);
         }
 
         /// <summary>
@@ -619,10 +574,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDefeatRedeadKnight()
         {
-            return (
-                HasDamagingItem(new List<string>() { "Spinner" })
-                || CanUseBacksliceAsSword()
-            );
+            return HasDamagingItem(new List<string>() { "Spinner" });
         }
 
         /// <summary>
@@ -638,7 +590,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDefeatShadowBulblin()
         {
-            return CanStandardOrBacksliceCombat();
+            return HasDamagingItem();
         }
 
         /// <summary>
@@ -651,7 +603,6 @@ namespace TPRandomizer
                 || (hasShield() && getItemCount(Item.Progressive_Hidden_Skill) >= 2)
                 || CanUse(Item.Slingshot)
                 || CanUse(Item.Progressive_Clawshot)
-                || CanUseBacksliceAsSword()
             );
         }
 
@@ -668,7 +619,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDefeatShadowKargarok()
         {
-            return CanStandardOrBacksliceCombat();
+            return HasDamagingItem();
         }
 
         /// <summary>
@@ -676,11 +627,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDefeatShadowKeese()
         {
-            return (
-                HasDamagingItem(new List<string>() { "Bombs" })
-                || CanUse(Item.Slingshot)
-                || CanUseBacksliceAsSword()
-            );
+            return HasDamagingItem(new List<string>() { "Bombs" }) || CanUse(Item.Slingshot);
         }
 
         /// <summary>
@@ -688,7 +635,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDefeatShadowVermin()
         {
-            return CanStandardOrBacksliceCombat();
+            return HasDamagingItem();
         }
 
         /// <summary>
@@ -710,9 +657,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDefeatSkullfish()
         {
-            return (
-                HasDamagingItem(new List<string>() { "Bombs" })
-            );
+            return HasDamagingItem(new List<string>() { "Bombs", "Backslice" });
         }
 
         /// <summary>
@@ -720,7 +665,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDefeatSkulltula()
         {
-            return CanStandardOrBacksliceCombat();
+            return HasDamagingItem();
         }
 
         /// <summary>
@@ -736,7 +681,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDefeatStalhound()
         {
-            return CanStandardOrBacksliceCombat();
+            return HasDamagingItem();
         }
 
         /// <summary>
@@ -744,7 +689,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDefeatStalchild()
         {
-            return CanStandardOrBacksliceCombat();
+            return HasDamagingItem();
         }
 
         /// <summary>
@@ -752,7 +697,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDefeatTektite()
         {
-            return CanStandardOrBacksliceCombat();
+            return HasDamagingItem();
         }
 
         /// <summary>
@@ -760,7 +705,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDefeatTileWorm()
         {
-            return (CanStandardOrBacksliceCombat() && CanUse(Item.Boomerang));
+            return HasDamagingItem() && CanUse(Item.Boomerang);
         }
 
         /// <summary>
@@ -768,9 +713,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDefeatToado()
         {
-            return (
-                HasDamagingItem(new List<string> {"Bombs", "Boots"})
-            );
+            return HasDamagingItem(new List<string>() {"Bombs", "Boots", "Backslice"});
         }
 
         /// <summary>
@@ -792,9 +735,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDefeatTorchSlug()
         {
-            return (
-                HasDamagingItem(new List<string> {"Boots", "Spinner"})
-            );
+            return HasDamagingItem(new List<string>() {"Boots", "Spinner", "Backslice"});
         }
 
         /// <summary>
@@ -816,7 +757,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDefeatWhiteWolfos()
         {
-            return HasDamagingItem();
+            return HasDamagingItem(new List<string>() { "Backslice" });
         }
 
         /// <summary>
@@ -824,7 +765,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDefeatYoungGohma()
         {
-            return HasDamagingItem();
+            return HasDamagingItem(new List<string>() { "Backslice" });
         }
 
         /// <summary>
@@ -840,10 +781,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDefeatOok()
         {
-            return (
-                HasDamagingItem(new List<string>() { "Spinner" })
-                || CanUseBacksliceAsSword()
-            );
+            return HasDamagingItem(new List<string>() { "Spinner" });
         }
 
         /// <summary>
@@ -884,10 +822,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDefeatDekuToad()
         {
-            return (
-                HasDamagingItem(new List<string>() { "Spinner" })
-                || CanUseBacksliceAsSword()
-            );
+            return HasDamagingItem(new List<string>() { "Spinner" });
         }
 
         /// <summary>
@@ -973,7 +908,7 @@ namespace TPRandomizer
         public static bool CanDefeatDarkhammer()
         {
             return (
-                HasDamagingItem(new List<string>() { "Spinner" })
+                HasDamagingItem(new List<string>() { "Spinner", "Backslice" })
                 || (CanDoDifficultCombat() && CanUseBacksliceAsSword())
             );
         }
@@ -995,7 +930,7 @@ namespace TPRandomizer
                 || (
                     CanUse(Item.Boomerang)
                     && (
-                        HasDamagingItem(new List<string>() { "Spinner" })
+                        HasDamagingItem(new List<string>() { "Spinner", "Backslice" })
                         || (CanDoDifficultCombat() && CanUseBacksliceAsSword())
                     )
                 );
@@ -1764,18 +1699,6 @@ namespace TPRandomizer
         public static bool CanUseBacksliceAsSword()
         {
             return CanDoNicheStuff() && getItemCount(Item.Progressive_Hidden_Skill) >= 3;
-        }
-
-        /// <summary>
-        /// Checks for any damaging items or ability to use backslice.
-        /// </summary>
-        /// TODO: Name better? Naming this was a struggle. - Lupa
-        public static bool CanStandardOrBacksliceCombat()
-        {
-            return (
-                HasDamagingItem()
-                || CanUseBacksliceAsSword()
-            );
         }
 
         public static bool CanGetBugWithLantern()
