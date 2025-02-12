@@ -1209,6 +1209,14 @@ namespace TPRandomizer
             return HasReachedRoom(room) && !Randomizer.SSettings.shuffleShopItems;
         }
 
+        /// Frequently checked rooms!
+
+        /// Barnes' Bomb Shop
+        public static bool HasReachedBarnesBombs = HasReachedRoom("Kakariko Barnes Bomb Shop Lower");
+
+        /// <summary>
+        /// Frequ
+
         /// End of helper functions to check for ER looking things - Lupa
 
         /// <summary>
@@ -1218,7 +1226,7 @@ namespace TPRandomizer
         {
             return CanUse(Item.Filled_Bomb_Bag)
                 && (
-                    HasReachedRoom("Kakariko Barnes Bomb Shop Lower")
+                    HasReachedBarnesBombs
                     || CanFishForWaterBombs()
                     || HasReachedRoom("City in The Sky Entrance")
                 );
@@ -1240,9 +1248,9 @@ namespace TPRandomizer
         {
             return CanUse(Item.Filled_Bomb_Bag)
                 && (
-                    HasReachedRoom("Kakariko Barnes Bomb Shop Lower")
+                    HasReachedBarnesBombs
                     || CanFishForWaterBombs()
-                    || (HasReachedRoom("Kakariko Barnes Bomb Shop Lower") && HasReachedRoom("Castle Town Malo Mart"))
+                    || (HasReachedBarnesBombs && HasReachedRoom("Castle Town Malo Mart"))
                 );
         }
 
