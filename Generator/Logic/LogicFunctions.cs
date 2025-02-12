@@ -151,11 +151,13 @@ namespace TPRandomizer
         /// </summary>
         public static bool HasBowAndArrows()
         {
-            return (CanUse(Item.Progressive_Bow) && CanGetArrows());
+            return CanUse(Item.Progressive_Bow) && CanGetArrows();
         }
 
         //TODO: ShieldBash - has shield + 2 hidden skills
         //TODO: Niche + MA
+        //TODO: Helper functions for "has reached room?" to be more readable?
+        //  (there are a lot of repeated rooms...)
 
         /// <summary>
         /// summary text.
@@ -327,10 +329,8 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDefeatChuWorm()
         {
-            return (
-                HasDamagingItem(new List<string>() { "Bombs" })
-                && (hasBombs() || CanUse(Item.Progressive_Clawshot))
-            );
+            return HasDamagingItem(new List<string>() { "Bombs" })
+                && (hasBombs() || CanUse(Item.Progressive_Clawshot));
         }
 
         /// <summary>
@@ -347,12 +347,10 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDefeatDekuBaba()
         {
-            return (
-                HasDamagingItem(new List<string>() { "Shadow_Crystal" })
+            return HasDamagingItem(new List<string>() { "Shadow_Crystal" })
                 || (hasShield() && getItemCount(Item.Progressive_Hidden_Skill) >= 2)
                 || CanUse(Item.Slingshot)
-                || CanUse(Item.Progressive_Clawshot)
-            );
+                || CanUse(Item.Progressive_Clawshot);
         }
 
         /// <summary>
@@ -360,7 +358,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDefeatDekuLike()
         {
-            return (hasBombs());
+            return hasBombs();
         }
 
         /// <summary>
@@ -376,7 +374,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDefeatDinalfos()
         {
-            return (HasSword() || CanUse(Item.Ball_and_Chain) || CanUse(Item.Shadow_Crystal));
+            return HasSword() || CanUse(Item.Ball_and_Chain) || CanUse(Item.Shadow_Crystal);
         }
 
         /// <summary>
@@ -392,10 +390,8 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDefeatFireKeese()
         {
-            return (
-                HasDamagingItem(new List<string>() { "Bombs" })
-                || CanUse(Item.Slingshot)
-            );
+            return HasDamagingItem(new List<string>() { "Bombs" })
+                || CanUse(Item.Slingshot);
         }
 
         /// <summary>
@@ -403,13 +399,11 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDefeatFireToadpoli()
         {
-            return (
-                HasSword()
+            return HasSword()
                 || CanUse(Item.Ball_and_Chain)
                 || HasBowAndArrows()
                 || (CanUse(Item.Hylian_Shield) && getItemCount(Item.Progressive_Hidden_Skill) >= 2)
-                || (CanDoDifficultCombat() && CanUse(Item.Shadow_Crystal))
-            );
+                || (CanDoDifficultCombat() && CanUse(Item.Shadow_Crystal));
         }
 
         /// <summary>
@@ -425,13 +419,11 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDefeatGoron()
         {
-            return (
-                HasDamagingItem(new List<string>() {"Shadow_Crystal", "Spinner"})
+            return HasDamagingItem(new List<string>() {"Shadow_Crystal", "Spinner"})
                 || (hasShield() && (getItemCount(Item.Progressive_Hidden_Skill) >= 2))
                 || CanUse(Item.Slingshot)
                 || (CanDoDifficultCombat() && CanUse(Item.Lantern))
-                || CanUse(Item.Progressive_Clawshot)
-            );
+                || CanUse(Item.Progressive_Clawshot);
         }
 
         /// <summary>
@@ -447,11 +439,9 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDefeatGuay()
         {
-            return (
-                HasDamagingItem(new List<string>() {"Bombs", "Spinner", "Backslice"})
+            return HasDamagingItem(new List<string>() {"Bombs", "Spinner", "Backslice"})
                 || (CanDoDifficultCombat() && CanUse(Item.Spinner))
-                || CanUse(Item.Slingshot)
-            );
+                || CanUse(Item.Slingshot);
         }
 
         /// <summary>
@@ -547,10 +537,8 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDefeatPoisonMite()
         {
-            return (
-                HasDamagingItem(new List<string>() {"Bombs", "Boots", "Backslice"})
-                || CanUse(Item.Lantern)
-            );
+            return HasDamagingItem(new List<string>() {"Bombs", "Boots", "Backslice"})
+                || CanUse(Item.Lantern);
         }
 
         /// <summary>
@@ -598,12 +586,10 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDefeatShadowDekuBaba()
         {
-            return (
-                HasDamagingItem(new List<string>() { "Shadow_Crystal" })
+            return HasDamagingItem(new List<string>() { "Shadow_Crystal" })
                 || (hasShield() && getItemCount(Item.Progressive_Hidden_Skill) >= 2)
                 || CanUse(Item.Slingshot)
-                || CanUse(Item.Progressive_Clawshot)
-            );
+                || CanUse(Item.Progressive_Clawshot);
         }
 
         /// <summary>
@@ -643,13 +629,11 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDefeatShellBlade()
         {
-            return (
-                CanUseWaterBombs()
+            return CanUseWaterBombs()
                 || (
                     HasSword()
                     && (CanUse(Item.Iron_Boots) || (CanDoNicheStuff() && CanUse(Item.Magic_Armor)))
-                )
-            );
+                );
         }
 
         /// <summary>
@@ -673,7 +657,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDefeatStalfos()
         {
-            return (canSmash());
+            return canSmash();
         }
 
         /// <summary>
@@ -721,13 +705,11 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDefeatWaterToadpoli()
         {
-            return (
-                HasSword()
+            return HasSword()
                 || CanUse(Item.Ball_and_Chain)
                 || HasBowAndArrows()
                 || (hasShield() && getItemCount(Item.Progressive_Hidden_Skill) >= 2)
-                || CanDoDifficultCombat() && (CanUse(Item.Shadow_Crystal))
-            );
+                || CanDoDifficultCombat() && (CanUse(Item.Shadow_Crystal));
         }
 
         /// <summary>
@@ -743,13 +725,11 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDefeatWalltula()
         {
-            return (
-                CanUse(Item.Ball_and_Chain)
+            return CanUse(Item.Ball_and_Chain)
                 || CanUse(Item.Slingshot)
                 || HasBowAndArrows()
                 || CanUse(Item.Boomerang)
-                || CanUse(Item.Progressive_Clawshot)
-            );
+                || CanUse(Item.Progressive_Clawshot);
         }
 
         /// <summary>
@@ -773,7 +753,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDefeatZantHead()
         {
-            return (CanUse(Item.Shadow_Crystal) || HasSword()) || CanUseBacksliceAsSword();
+            return CanUse(Item.Shadow_Crystal) || HasSword() || CanUseBacksliceAsSword();
         }
 
         /// <summary>
@@ -790,15 +770,13 @@ namespace TPRandomizer
         public static bool CanDefeatDangoro()
         {
             return (
-                (
                     HasSword()
                     || CanUse(Item.Shadow_Crystal)
                     || (
                         CanDoNicheStuff() && CanUse(Item.Ball_and_Chain)
                         || (CanUse(Item.Progressive_Bow) && hasBombs())
                     )
-                ) && CanUse(Item.Iron_Boots)
-            );
+                ) && CanUse(Item.Iron_Boots);
         }
 
         /// <summary>
@@ -846,8 +824,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDefeatKingBulblinDesert()
         {
-            return (
-                HasSword()
+            return HasSword()
                 || CanUse(Item.Ball_and_Chain)
                 || CanUse(Item.Shadow_Crystal)
                 || getItemCount(Item.Progressive_Bow) > 2
@@ -860,8 +837,7 @@ namespace TPRandomizer
                         || hasBombs()
                         || getItemCount(Item.Progressive_Bow) >= 2
                     )
-                )
-            );
+                );
         }
 
         /// <summary>
@@ -869,8 +845,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDefeatKingBulblinCastle()
         {
-            return (
-                HasSword()
+            return HasSword()
                 || CanUse(Item.Ball_and_Chain)
                 || CanUse(Item.Shadow_Crystal)
                 || getItemCount(Item.Progressive_Bow) > 2
@@ -882,8 +857,7 @@ namespace TPRandomizer
                         || hasBombs()
                         || CanUseBacksliceAsSword()
                     )
-                )
-            );
+                );
         }
 
         /// <summary>
@@ -891,15 +865,13 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDefeatDeathSword()
         {
-            return (
-                HasSword()
+            return HasSword()
                 && (
                     CanUse(Item.Boomerang)
                     || HasBowAndArrows()
                     || CanUse(Item.Progressive_Clawshot)
                 )
-                && CanUse(Item.Shadow_Crystal)
-            );
+                && CanUse(Item.Shadow_Crystal);
         }
 
         /// <summary>
@@ -907,10 +879,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDefeatDarkhammer()
         {
-            return (
-                HasDamagingItem(new List<string>() { "Spinner", "Backslice" })
-                || (CanDoDifficultCombat() && CanUseBacksliceAsSword())
-            );
+            return HasDamagingItem(new List<string>() { "Spinner", "Backslice" }) || (CanDoDifficultCombat() && CanUseBacksliceAsSword());
         }
 
         /// <summary>
@@ -918,7 +887,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDefeatPhantomZant()
         {
-            return (CanUse(Item.Shadow_Crystal) || HasSword());
+            return CanUse(Item.Shadow_Crystal) || HasSword();
         }
 
         /// <summary>
@@ -941,11 +910,9 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDefeatFyrus()
         {
-            return (
-                CanUse(Item.Progressive_Bow)
+            return CanUse(Item.Progressive_Bow)
                 && CanUse(Item.Iron_Boots)
-                && (HasSword() || (CanDoDifficultCombat() && CanUseBacksliceAsSword()))
-            );
+                && (HasSword() || (CanDoDifficultCombat() && CanUseBacksliceAsSword()));
         }
 
         /// <summary>
@@ -976,10 +943,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDefeatStallord()
         {
-            return (
-                (CanUse(Item.Spinner) && HasSword())
-                || (CanDoDifficultCombat() && CanUse(Item.Spinner))
-            );
+            return (CanUse(Item.Spinner) && HasSword()) || (CanDoDifficultCombat() && CanUse(Item.Spinner));
         }
 
         /// <summary>
@@ -995,10 +959,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDefeatArmogohma()
         {
-            return (
-                CanUse(Item.Progressive_Bow)
-                && CanUse(Item.Progressive_Dominion_Rod)
-            );
+            return CanUse(Item.Progressive_Bow) && CanUse(Item.Progressive_Dominion_Rod);
         }
 
         /// <summary>
@@ -1006,11 +967,9 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDefeatArgorok()
         {
-            return (
-                getItemCount(Item.Progressive_Clawshot) >= 2
+            return getItemCount(Item.Progressive_Clawshot) >= 2
                 && getItemCount(Item.Progressive_Sword) >= 2
-                && (CanUse(Item.Iron_Boots) || (CanDoNicheStuff() && CanUse(Item.Magic_Armor)))
-            );
+                && (CanUse(Item.Iron_Boots) || (CanDoNicheStuff() && CanUse(Item.Magic_Armor)));
         }
 
         /// <summary>
@@ -1051,7 +1010,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool canSmash()
         {
-            return (CanUse(Item.Ball_and_Chain) || hasBombs());
+            return CanUse(Item.Ball_and_Chain) || hasBombs();
         }
 
         /// <summary>
@@ -1081,8 +1040,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool hasShield()
         {
-            return (
-                CanUse(Item.Hylian_Shield)
+            return CanUse(Item.Hylian_Shield)
                 || (
                     Randomizer.Rooms.RoomDict["Kakariko Malo Mart"].ReachedByPlaythrough
                     && !Randomizer.SSettings.shuffleShopItems
@@ -1091,8 +1049,7 @@ namespace TPRandomizer
                     Randomizer.Rooms.RoomDict["Castle Town Goron House"].ReachedByPlaythrough
                     && !Randomizer.SSettings.shuffleShopItems
                 )
-                || Randomizer.Rooms.RoomDict["Death Mountain Hot Spring"].ReachedByPlaythrough
-            );
+                || Randomizer.Rooms.RoomDict["Death Mountain Hot Spring"].ReachedByPlaythrough;
         }
 
         public static bool CanUseBottledFairy()
@@ -1151,8 +1108,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool canKnockDownHCPainting()
         {
-            return (
-                getItemCount(Item.Progressive_Bow) >= 1
+            return getItemCount(Item.Progressive_Bow) >= 1
                 || (
                     CanDoNicheStuff()
                     && (
@@ -1163,8 +1119,7 @@ namespace TPRandomizer
                 || (
                     Randomizer.SSettings.logicRules == LogicRules.Glitched
                     && ((HasSword() && CanDoMoonBoots()) || CanDoBSMoonBoots())
-                )
-            );
+                );
         }
 
         /// <summary>
@@ -1172,8 +1127,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool canBreakMonkeyCage()
         {
-            return (
-                HasSword()
+            return HasSword()
                 || CanUse(Item.Iron_Boots)
                 || CanUse(Item.Spinner)
                 || CanUse(Item.Ball_and_Chain)
@@ -1185,8 +1139,7 @@ namespace TPRandomizer
                     CanDoNicheStuff()
                     && hasShield()
                     && getItemCount(Item.Progressive_Hidden_Skill) >= 2
-                )
-            );
+                );
         }
 
         /// <summary>
@@ -1202,8 +1155,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool canFreeAllMonkeys()
         {
-            return (
-                canBreakMonkeyCage()
+            return canBreakMonkeyCage()
                 && (
                     CanUse(Item.Lantern)
                     || (
@@ -1217,8 +1169,7 @@ namespace TPRandomizer
                 && (
                     (getItemCount(Item.Forest_Temple_Small_Key) >= 4)
                     || (Randomizer.SSettings.smallKeySettings == SmallKeySettings.Keysy)
-                )
-            );
+                );
         }
 
         /// <summary>
@@ -1226,12 +1177,10 @@ namespace TPRandomizer
         /// </summary>
         public static bool canKnockDownHangingBaba()
         {
-            return (
-                CanUse(Item.Progressive_Bow)
+            return CanUse(Item.Progressive_Bow)
                 || CanUse(Item.Progressive_Clawshot)
                 || CanUse(Item.Boomerang)
-                || CanUse(Item.Slingshot)
-            );
+                || CanUse(Item.Slingshot);
         }
 
         /// <summary>
@@ -1239,9 +1188,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool canBreakWoodenDoor()
         {
-            return (
-                CanUse(Item.Shadow_Crystal) || HasSword() || canSmash() || CanUseBacksliceAsSword()
-            );
+            return CanUse(Item.Shadow_Crystal) || HasSword() || canSmash() || CanUseBacksliceAsSword();
         }
 
         /// <summary>
@@ -1249,8 +1196,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool hasBombs()
         {
-            return (
-                CanUse(Item.Filled_Bomb_Bag)
+            return CanUse(Item.Filled_Bomb_Bag)
                 && (
                     Randomizer.Rooms.RoomDict[
                         "Kakariko Barnes Bomb Shop Lower"
@@ -1261,8 +1207,7 @@ namespace TPRandomizer
                         ].ReachedByPlaythrough && CanUse(Item.Progressive_Fishing_Rod)
                     )
                     || Randomizer.Rooms.RoomDict["City in The Sky Entrance"].ReachedByPlaythrough
-                )
-            );
+                );
         }
 
         /// <summary>
@@ -1270,8 +1215,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanUseWaterBombs()
         {
-            return (
-                CanUse(Item.Filled_Bomb_Bag)
+            return CanUse(Item.Filled_Bomb_Bag)
                 && (
                     Randomizer.Rooms.RoomDict[
                         "Kakariko Barnes Bomb Shop Lower"
@@ -1287,8 +1231,7 @@ namespace TPRandomizer
                         ].ReachedByPlaythrough
                         && Randomizer.Rooms.RoomDict["Castle Town Malo Mart"].ReachedByPlaythrough
                     )
-                )
-            );
+                );
         }
 
         /// <summary>
@@ -1296,8 +1239,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanGetArrows()
         {
-            return (
-                Randomizer.Rooms.RoomDict["Lost Woods"].ReachedByPlaythrough
+            return Randomizer.Rooms.RoomDict["Lost Woods"].ReachedByPlaythrough
                 || (
                     canCompleteGoronMines()
                     && Randomizer.Rooms.RoomDict["Kakariko Malo Mart"].ReachedByPlaythrough
@@ -1306,8 +1248,7 @@ namespace TPRandomizer
                     Randomizer.Rooms.RoomDict[
                         "Castle Town Goron House Balcony"
                     ].ReachedByPlaythrough && !Randomizer.SSettings.shuffleShopItems
-                )
-            );
+                );
         }
 
         /// <summary>
@@ -1325,10 +1266,8 @@ namespace TPRandomizer
 
         public static bool CanCompleteGoats1()
         {
-            return (
-                Randomizer.Rooms.RoomDict["Ordon Ranch"].ReachedByPlaythrough
-                || canCompletePrologue()
-            );
+            return Randomizer.Rooms.RoomDict["Ordon Ranch"].ReachedByPlaythrough
+                || canCompletePrologue();
         }
 
         /// <summary>
@@ -1336,13 +1275,11 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanCompleteMDH()
         {
-            return (
-                (Randomizer.SSettings.skipMdh == true)
+            return (Randomizer.SSettings.skipMdh == true)
                 || (
                     canCompleteLakebedTemple()
                     && Randomizer.Rooms.RoomDict["Castle Town South"].ReachedByPlaythrough
-                )
-            );
+                );
             //return (canCompleteLakebedTemple() || (Randomizer.SSettings.skipMdh == true));
         }
 
@@ -1471,11 +1408,9 @@ namespace TPRandomizer
 
         public static bool CanCompleteAllTwilight()
         {
-            return (
-                CanCompleteFaronTwilight()
+            return CanCompleteFaronTwilight()
                 && CanCompleteEldinTwilight()
-                && CanCompleteLanayruTwilight()
-            );
+                && CanCompleteLanayruTwilight();
         }
 
         /// <summary>
@@ -1547,16 +1482,14 @@ namespace TPRandomizer
         /// </summary>
         public static bool canCompleteAllDungeons()
         {
-            return (
-                canCompleteForestTemple()
+            return canCompleteForestTemple()
                 && canCompleteGoronMines()
                 && canCompleteLakebedTemple()
                 && canCompleteArbitersGrounds()
                 && canCompleteSnowpeakRuins()
                 && canCompleteTempleofTime()
                 && canCompleteCityinTheSky()
-                && canCompletePalaceofTwilight()
-            );
+                && canCompletePalaceofTwilight();
         }
 
         /// <summary>
@@ -1693,7 +1626,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanFightWithBoots()
         {
-            return (CanDoNicheStuff() && CanUse(Item.Iron_Boots));
+            return CanDoNicheStuff() && CanUse(Item.Iron_Boots);
         }
 
         public static bool CanUseBacksliceAsSword()
