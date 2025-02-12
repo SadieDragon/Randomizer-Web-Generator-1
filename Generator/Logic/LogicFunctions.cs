@@ -1490,100 +1490,60 @@ namespace TPRandomizer
             return false;
         }
 
-        public static bool CanUnlockOrdonaMap()
+        /// <summary>
+        /// Cycles through the list of rooms requested to check if all the rooms on that map have been reached.
+        /// </summary>
+        /// <param name="rooms_on_map" >The list of maps to check.</param>
+        public static bool CanUnlockRegionalMap(List<string> rooms_on_map)
         {
+            // If openMap is true, then the map is already open.
             if (Randomizer.SSettings.openMap)
             {
                 return true;
             }
-            foreach (string mapRoom in RoomFunctions.OrdonaMapRooms)
+
+            // Otherwise, loop through each room on the map to see if we have reached it.
+            foreach (string mapRoom in rooms_on_map)
             {
                 if (Randomizer.Rooms.RoomDict[mapRoom].ReachedByPlaythrough)
                 {
                     return true;
                 }
             }
+
+            // If we the above has not passed, then we cannot unlock the map.
             return false;
+
+        }
+
+        public static bool CanUnlockOrdonaMap()
+        {
+            return CanUnlockRegionalMap(RoomFunctions.OrdonaMapRooms);
         }
 
         public static bool CanUnlockFaronMap()
         {
-            if (Randomizer.SSettings.openMap)
-            {
-                return true;
-            }
-            foreach (string mapRoom in RoomFunctions.FaronMapRooms)
-            {
-                if (Randomizer.Rooms.RoomDict[mapRoom].ReachedByPlaythrough)
-                {
-                    return true;
-                }
-            }
-            return false;
+            return CanUnlockRegionalMap(RoomFunctions.FaronMapRooms);
         }
 
         public static bool CanUnlockEldinMap()
         {
-            if (Randomizer.SSettings.openMap)
-            {
-                return true;
-            }
-            foreach (string mapRoom in RoomFunctions.EldinMapRooms)
-            {
-                if (Randomizer.Rooms.RoomDict[mapRoom].ReachedByPlaythrough)
-                {
-                    return true;
-                }
-            }
-            return false;
+            return CanUnlockRegionalMap(RoomFunctions.EldinMapRooms);
         }
 
         public static bool CanUnlockLanayruMap()
         {
-            if (Randomizer.SSettings.openMap)
-            {
-                return true;
-            }
-            foreach (string mapRoom in RoomFunctions.LanayruMapRooms)
-            {
-                if (Randomizer.Rooms.RoomDict[mapRoom].ReachedByPlaythrough)
-                {
-                    return true;
-                }
-            }
-            return false;
+            return CanUnlockRegionalMap(RoomFunctions.LanayruMapRooms);
         }
 
         public static bool CanUnlockSnowpeakMap()
         {
-            if (Randomizer.SSettings.openMap || Randomizer.SSettings.skipSnowpeakEntrance)
-            {
-                return true;
-            }
-            foreach (string mapRoom in RoomFunctions.SnowpeakMapRooms)
-            {
-                if (Randomizer.Rooms.RoomDict[mapRoom].ReachedByPlaythrough)
-                {
-                    return true;
-                }
-            }
-            return false;
+            return CanUnlockRegionalMap(RoomFunctions.SnowpeakMapRooms);
         }
 
         public static bool CanUnlockGerudoMap()
         {
-            if (Randomizer.SSettings.openMap)
-            {
-                return true;
-            }
-            foreach (string mapRoom in RoomFunctions.GerudoMapRooms)
-            {
-                if (Randomizer.Rooms.RoomDict[mapRoom].ReachedByPlaythrough)
-                {
-                    return true;
-                }
-            }
-            return false;
+            return CanUnlockRegionalMap(RoomFunctions.GerudoMapRooms);
         }
 
         /// <summary>
