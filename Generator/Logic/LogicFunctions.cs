@@ -384,8 +384,8 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDefeatFireKeese()
         {
-            return HasDamagingItem(new List<string>() { "Bombs" })
-                || CanUse(Item.Slingshot);
+            // Same logic.
+            return CanDefeatKeese();
         }
 
         /// <summary>
@@ -467,7 +467,8 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDefeatIceKeese()
         {
-            return HasDamagingItem(new List<string>() { "Bombs" }) || CanUse(Item.Slingshot);
+            // Same logic.
+            return CanDefeatKeese();
         }
 
         /// <summary>
@@ -487,7 +488,8 @@ namespace TPRandomizer
         }
 
         /// <summary>
-        /// summary text.
+        /// Checks if at least one item to defeat Keese is available.
+        /// Valid Items: Sword, B&C, Boots, Bow, SC, Spinner, Backslice, Slingshot.
         /// </summary>
         public static bool CanDefeatKeese()
         {
@@ -607,7 +609,8 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDefeatShadowKeese()
         {
-            return HasDamagingItem(new List<string>() { "Bombs" }) || CanUse(Item.Slingshot);
+            // Same logic.
+            return CanDefeatKeese();
         }
 
         /// <summary>
