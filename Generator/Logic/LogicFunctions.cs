@@ -1076,6 +1076,14 @@ namespace TPRandomizer
         }
 
         /// <summary>
+        /// Checks if the small keys are set to keysy.
+        /// </summary>
+        public static bool IsSmallKeysy()
+        {
+            return Randomizer.SSettings.smallKeySettings == SmallKeySettings.Keysy;
+        }
+
+        /// <summary>
         /// summary text.
         /// </summary>
         public static bool canKnockDownHCPainting()
@@ -1127,7 +1135,7 @@ namespace TPRandomizer
                 && (
                     CanUse(Item.Lantern)
                     || (
-                        (Randomizer.SSettings.smallKeySettings == SmallKeySettings.Keysy)
+                        IsSmallKeysy()
                         && (hasBombs() || CanUse(Item.Iron_Boots))
                     )
                 )
@@ -1136,7 +1144,7 @@ namespace TPRandomizer
                 && CanDefeatBokoblin()
                 && (
                     (getItemCount(Item.Forest_Temple_Small_Key) >= 4)
-                    || (Randomizer.SSettings.smallKeySettings == SmallKeySettings.Keysy)
+                    || IsSmallKeysy()
                 );
         }
 
@@ -1208,22 +1216,22 @@ namespace TPRandomizer
 
         /// Repeated checked rooms!
 
-        /// Barnes' Bomb Shop
+        // Barnes' Bomb Shop
         public static bool HasReachedBarnesBombs = HasReachedRoom("Kakariko Barnes Bomb Shop Lower");
 
-        /// Kakariko Malo Mart
+        // Kakariko Malo Mart
         public static bool HasReachedKakarikoMaloMart = HasReachedRoom("Kakariko Malo Mart");
 
-        /// Lower Kakariko Village
+        // Lower Kakariko Village
         public static bool HasReachedLowerKakariko = HasReachedRoom("Lower Kakariko Village");
 
-        /// North Faron Woods
+        // North Faron Woods
         public static bool HasReachedNorthFaronWoods = HasReachedRoom("North Faron Woods");
 
-        /// South Castle Town
+        // South Castle Town
         public static bool HasReachedSouthCastleTown = HasReachedRoom("Castle Town South");
 
-        /// Lake Hylia
+        // Lake Hylia
         public static bool HasReachedLakeHylia = HasReachedRoom("Lake Hylia");
 
         /// End of helper functions to check for ER looking things - Lupa
@@ -1835,7 +1843,7 @@ namespace TPRandomizer
         ///
         public static bool CanSkipKeyToDekuToad()
         {
-            return Randomizer.SSettings.smallKeySettings == SmallKeySettings.Keysy
+            return IsSmallKeysy()
                 || getItemCount(Item.Progressive_Hidden_Skill) >= 3
                 || CanDoBSMoonBoots()
                 || CanDoJSMoonBoots()
