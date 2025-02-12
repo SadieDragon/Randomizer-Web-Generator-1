@@ -31,6 +31,17 @@ namespace TPRandomizer
             return isEqual;
         }
 
+        /// Functions and vars which also check "is this setting equal to this value?"
+        /// (I have no idea if I should just use that one...)
+        /// Can remove the () if preferred.
+
+        /// <summary>
+        /// Checks if Faron Woods is set to Open.
+        /// </summary>
+        public static bool IsFaronWoodsOpen = (Randomizer.SSettings.faronWoodsLogic == FaronWoodsLogic.Open);
+
+        // End of Functions and vars that do that - Lupa
+
         /// <summary>
         /// summary text.
         /// </summary>
@@ -137,8 +148,6 @@ namespace TPRandomizer
             return hasShield() && (getItemCount(Item.Progressive_Hidden_Skill) >= 2);
         }
 
-        //TODO: Helper functions or variables for "has reached room?" to be more readable?
-        //  (there are a lot of repeated rooms...)
         //TODO: Helper functions or variables for frequent exclusions? (Need names)
 
          //TODO: Make my parameter variables consistent
@@ -1293,7 +1302,7 @@ namespace TPRandomizer
                 (
                     HasReachedNorthFaronWoods
                     && CanDefeatBokoblin()
-                ) || (Randomizer.SSettings.skipPrologue == true)
+                ) || Randomizer.SSettings.skipPrologue
             );
         }
 
@@ -1307,7 +1316,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanCompleteMDH()
         {
-            return (Randomizer.SSettings.skipMdh == true)
+            return Randomizer.SSettings.skipMdh
                 || (
                     canCompleteLakebedTemple()
                     && HasReachedSouthCastleTown
@@ -1333,7 +1342,7 @@ namespace TPRandomizer
             return (
                 (
                     canCompleteForestTemple()
-                    || (Randomizer.SSettings.faronWoodsLogic == FaronWoodsLogic.Open)
+                    || IsFaronWoodsOpen
                 )
                 && canCompletePrologue()
                 && CanCompleteFaronTwilight()
@@ -1824,7 +1833,7 @@ namespace TPRandomizer
             return (
                 canCompletePrologue()
                 && (
-                    (Randomizer.SSettings.faronWoodsLogic == FaronWoodsLogic.Open)
+                    IsFaronWoodsOpen
                     || (canCompleteForestTemple() || CanDoLJA() || CanDoMapGlitch())
                 )
             );
