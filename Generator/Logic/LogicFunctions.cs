@@ -40,6 +40,11 @@ namespace TPRandomizer
         /// </summary>
         public static bool IsFaronWoodsOpen = (Randomizer.SSettings.faronWoodsLogic == FaronWoodsLogic.Open);
 
+        /// <summary>
+        /// Checks if the small keys are set to keysy.
+        /// </summary>
+        public static bool IsSmallKeysy = (Randomizer.SSettings.smallKeySettings == SmallKeySettings.Keysy);
+
         // End of Functions and vars that do that - Lupa
 
         /// <summary>
@@ -1085,14 +1090,6 @@ namespace TPRandomizer
         }
 
         /// <summary>
-        /// Checks if the small keys are set to keysy.
-        /// </summary>
-        public static bool IsSmallKeysy()
-        {
-            return Randomizer.SSettings.smallKeySettings == SmallKeySettings.Keysy;
-        }
-
-        /// <summary>
         /// summary text.
         /// </summary>
         public static bool canKnockDownHCPainting()
@@ -1144,7 +1141,7 @@ namespace TPRandomizer
                 && (
                     CanUse(Item.Lantern)
                     || (
-                        IsSmallKeysy()
+                        IsSmallKeysy
                         && (hasBombs() || CanUse(Item.Iron_Boots))
                     )
                 )
@@ -1153,7 +1150,7 @@ namespace TPRandomizer
                 && CanDefeatBokoblin()
                 && (
                     (getItemCount(Item.Forest_Temple_Small_Key) >= 4)
-                    || IsSmallKeysy()
+                    || IsSmallKeysy
                 );
         }
 
@@ -1852,7 +1849,7 @@ namespace TPRandomizer
         ///
         public static bool CanSkipKeyToDekuToad()
         {
-            return IsSmallKeysy()
+            return IsSmallKeysy
                 || getItemCount(Item.Progressive_Hidden_Skill) >= 3
                 || CanDoBSMoonBoots()
                 || CanDoJSMoonBoots()
