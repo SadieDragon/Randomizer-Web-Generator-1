@@ -20,7 +20,7 @@ namespace TPRandomizer
     /// The collection of logic functions.
     /// Evaluate the tokenized settings to their respective values that are set by the settings string.
     /// </summary>
-    public class LogicFunctionsRefactored
+    public class LogicFunctions
     {
         // class WrapperFunctions
 
