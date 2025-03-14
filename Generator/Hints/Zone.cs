@@ -293,7 +293,8 @@ namespace TPRandomizer.Hints
                         "Kakariko Graveyard Lantern Chest",
                         "Kakariko Graveyard Male Ant",
                         "Kakariko Graveyard Open Poe",
-                        "Rutelas Blessing"
+                        "Rutelas Blessing",
+                        "Shad Dominion Rod"
                     }
                 },
                 {
