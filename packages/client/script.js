@@ -312,7 +312,7 @@ document
   .getElementById('hiddenSkillsCheckbox')
   .addEventListener('click', setSettingsString);
 document
-  .getElementById('rupeeCheckbox')
+  .getElementById('hiddenRupeeCheckbox')
   .addEventListener('click', setSettingsString);
 document
   .getElementById('hcShortcutCheckbox')
@@ -1251,7 +1251,7 @@ function populateSSettings(s) {
     'checked',
     s.randomizeStartingPoint
   );
-  $('#rupeeCheckbox').prop('checked', s.rupees);
+  $('#hiddenRupeeCheckbox').prop('checked', s.hiddenRupees);
   $('#hcShortcutCheckbox').prop('checked', s.hcShortcut);
 
   const $excludedChecksParent = $('#baseExcludedChecksListbox');

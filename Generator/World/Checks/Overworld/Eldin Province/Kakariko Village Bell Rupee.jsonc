@@ -1,6 +1,6 @@
 {
     "requirements": "canLaunchBombs and (Shadow_Crystal or Boomerang)",
     "glitchedRequirements": "canLaunchBombs and (Shadow_Crystal or Boomerang)",
-    "checkCategory": ["Overworld", "Kakariko Village", "Rupee"],
+    "checkCategory": ["Overworld", "Kakariko Village", "Rupee - Hidden"],
     "itemId": "Silver_Rupee"
 }

@@ -62,7 +62,7 @@ namespace TPRandomizer
         public StartingToD startingToD { get; set; }
         public HintDistribution hintDistribution { get; set; }
         public bool randomizeStartingPoint { get; set; }
-        public bool shuffleRupees { get; set; }
+        public bool shuffleHiddenRupees { get; set; }
         public List<Item> startingItems { get; set; }
         public List<string> excludedChecks { get; set; }
         public List<(string, Item)> plandoChecks { get; set; }
@@ -119,7 +119,7 @@ namespace TPRandomizer
             startingToD = (StartingToD)processor.NextInt(3);
             hintDistribution = (HintDistribution)processor.NextInt(5);
             randomizeStartingPoint = processor.NextBool();
-            shuffleRupees = processor.NextBool();
+            shuffleHiddenRupees = processor.NextBool();
             hcShortcut = processor.NextBool();
             // We sort these lists so that the order which the UI happens to
             // pass the data up does not affect anything.

@@ -520,9 +520,9 @@ namespace TPRandomizer
                     }
                 }
 
-                if (!parseSetting.shuffleRupees)
+                if (!parseSetting.shuffleHiddenRupees)
                 {
-                    if (currentCheck.checkCategory.Contains("Rupee"))
+                    if (currentCheck.checkCategory.Contains("Rupee - Hidden"))
                     {
                         currentCheck.checkStatus = "Vanilla";
                     }

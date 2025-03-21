@@ -442,7 +442,7 @@
       { id: 'todFieldset', bitLength: 3 },
       { id: 'hintDistributionFieldset', bitLength: 5 },
       { id: 'randomizeStartingPointCheckbox' },
-      { id: 'rupeeCheckbox' },
+      { id: 'hiddenRupeeCheckbox' },
       { id: 'hcShortcutCheckbox' },
     ].map(({ id, bitLength }) => {
       const val = getVal(id);
@@ -916,11 +916,11 @@
     }
     if (version >= 6) {
       processBasic({ id: 'randomizeStartingPoint' });
-      processBasic({ id: 'rupees' });
+      processBasic({ id: 'hiddenRupees' });
       processBasic({ id: 'hcShortcut' });
     } else {
       res.randomizeStartingPoint = false; // Vanilla
-      res.rupees = false; // Vanilla
+      res.hiddenRupees = false; // Vanilla
       res.hcShortcut = false;
     }
 
