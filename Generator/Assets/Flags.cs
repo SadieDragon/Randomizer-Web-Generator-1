@@ -48,6 +48,7 @@ namespace TPRandomizer.Assets
         {
             { 0x0, 0x57 }, // Spider on Link's Ladder killed.
             { 0x2, 0x63 }, // Trill lets you shop at his store.
+            { 0x2, 0x48 }, // Talked to Coro after bugs
             { 0x3, 0xB9 }, // Barnes sells water bombs.
             { 0x3, 0xB3 }, // Colin Rescued CS (Malo Mart is Open).
             { 0x2, 0x60 }, // Got Lantern Back from Monkey
