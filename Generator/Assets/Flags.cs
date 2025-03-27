@@ -87,7 +87,6 @@ namespace TPRandomizer.Assets
             { 0x0, 0x6B }, // Ordon Spring Portal.
             { 0x0, 0x44 }, // Midna Text after Ordon Shield (Spawns sword)
             { 0x0, 0x46 }, // Midna Text after Ordon Sword
-            { 0x0, 0x70 }, // Midna Text after sewers
             { 0x0, 0x68 }, // Approach faron wall with Midna
             { 0x0, 0xA0 }, // Midna allows player to approach Faron Twilight Wall
             { 0x0, 0xBA }, // Explored area outside Link's house as wolf
