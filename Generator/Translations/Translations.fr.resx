@@ -1886,11 +1886,11 @@
     <comment></comment>
   </data>
   <data name="item.ee-north_faron_woods_gate_key@ac(f)" xml:space="preserve">
-    <value>clé de la Forêt de Firone</value>
+    <value>clé du Nord de la Forêt de Firone</value>
     <comment></comment>
   </data>
   <data name="item.ee-north_faron_woods_gate_key#other@ac(f)" xml:space="preserve">
-    <value>clés de la Forêt de Firone</value>
+    <value>clés du Nord de la Forêt de Firone</value>
     <comment></comment>
   </data>
   <data name="item.f3-gate_keys@ac(f)" xml:space="preserve">
@@ -1931,6 +1931,14 @@
   </data>
   <data name="item.f9-goron_mines_key_shard#other@ac(m)" xml:space="preserve">
     <value>fragments de clé</value>
+    <comment></comment>
+  </data>
+  <data name="item.fe-faron_woods_coro_key@ac(f)" xml:space="preserve">
+    <value>clé de Kikolou</value>
+    <comment></comment>
+  </data>
+  <data name="item.fe-faron_woods_coro_key#other@ac(f)" xml:space="preserve">
+    <value>clés de Kikolou</value>
     <comment></comment>
   </data>
   <data name="noun.a-bug" xml:space="preserve">
