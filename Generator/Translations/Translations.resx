@@ -1265,6 +1265,10 @@
     <value>key shard</value>
     <comment></comment>
   </data>
+  <data name="item.fe-faron_woods_coro_key@ac(,a,b,s)" xml:space="preserve">
+    <value>Coro&apos;s key</value>
+    <comment></comment>
+  </data>
   <data name="junk-hint.000" xml:space="preserve">
     <value>I mean, is perpetual twilight really all that bad?</value>
     <comment>Meet Zelda cutscnene</comment>
