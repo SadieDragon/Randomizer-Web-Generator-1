@@ -1886,11 +1886,11 @@
     <comment></comment>
   </data>
   <data name="item.ee-north_faron_woods_gate_key@ac(f)" xml:space="preserve">
-    <value>clé de la Forêt de Firone</value>
+    <value>clé du Nord de la Forêt de Firone</value>
     <comment></comment>
   </data>
   <data name="item.ee-north_faron_woods_gate_key#other@ac(f)" xml:space="preserve">
-    <value>clés de la Forêt de Firone</value>
+    <value>clés du Nord de la Forêt de Firone</value>
     <comment></comment>
   </data>
   <data name="item.f3-gate_keys@ac(f)" xml:space="preserve">

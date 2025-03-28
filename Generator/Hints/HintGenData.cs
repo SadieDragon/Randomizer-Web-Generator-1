@@ -167,6 +167,10 @@ namespace TPRandomizer.Hints
             if (!sSettings.skipArbitersEntrance)
                 itemSet.Add(Item.Gerudo_Desert_Bulblin_Camp_Key);
 
+            // Note: Coro's key should be handled by starting items with keysy
+            // as well I think. Will be updating all of this logic with the
+            // better algorithm in a few weeks. - isaac
+
             // Add all of the dungeon stuff.
 
             bool bigKeysPreventBarren =
@@ -480,6 +484,7 @@ namespace TPRandomizer.Hints
                     // __Other__
                     { Item.Shadow_Crystal, 1 },
                     { Item.Gate_Keys, 1 },
+                    { Item.Faron_Woods_Coro_Key, 1 },
                     { Item.North_Faron_Woods_Gate_Key, 1 },
                     { Item.Gerudo_Desert_Bulblin_Camp_Key, 1 },
                     { Item.Progressive_Fused_Shadow, 3 },
