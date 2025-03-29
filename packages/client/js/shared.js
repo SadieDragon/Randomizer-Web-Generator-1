@@ -255,12 +255,12 @@
       .find('input[type="checkbox"]')
       .each(function () {
         if ($(this).prop('checked')) {
-          const itemId = parseInt($(this).attr('data-checkId'), 10);
-          bits += numToPaddedBits(itemId, 9);
+          const checkId = parseInt($(this).attr('data-checkId'), 10);
+          bits += numToPaddedBits(checkId, 10);
         }
       });
 
-    bits += '111111111';
+    bits += '1111111111';
 
     return {
       type: RawSettingType.bitString,
@@ -273,13 +273,13 @@
     $('.plandoListItem').each(function () {
       const itemId = parseInt($(this).attr('data-itemid'), 10);
       const checkId = parseInt($(this).attr('data-checkid'), 10);
-      bits += numToPaddedBits(checkId, 9);
+      bits += numToPaddedBits(checkId, 10);
       bits += numToPaddedBits(itemId, 8);
     });
     if (bits.length < 1) {
       bits = '0';
     } else {
-      bits = '1' + bits + '111111111';
+      bits = '1' + bits + '1111111111';
     }
 
     return {
@@ -648,10 +648,7 @@
     }
 
     function nextEolList(bitLength) {
-      let eolValue = 0;
-      for (let i = 0; i < bitLength; i++) {
-        eolValue += 1 << i;
-      }
+      const eolValue = genEolValue(bitLength);
 
       const list = [];
 
@@ -672,17 +669,26 @@
       return list;
     }
 
-    function nextPlandoList() {
-      // 9 bits of all 1s
-      const eolValue = 0x1ff;
+    function genEolValue(bitLength) {
+      let eolValue = 0;
+      for (let i = 0; i < bitLength; i++) {
+        eolValue += 1 << i;
+      }
+      return eolValue;
+    }
+
+    function nextPlandoList(version) {
       const list = [];
 
+      const numCheckIdBits = version >= 6 ? 10 : 9;
+      const eolValue = genEolValue(numCheckIdBits);
+
       while (true) {
-        if (remaining.length < 9) {
+        if (remaining.length < numCheckIdBits) {
           throw new Error('Not enough bits remaining.');
         }
 
-        const checkId = nextXBitsAsNum(9);
+        const checkId = nextXBitsAsNum(numCheckIdBits);
         if (checkId === eolValue) {
           break;
         } else {
@@ -925,12 +931,15 @@
     }
 
     res.startingItems = processor.nextEolList(9);
-    res.excludedChecks = processor.nextEolList(9);
+
+    const numCheckIdBits = version >= 6 ? 10 : 9;
+    res.excludedChecks = processor.nextEolList(numCheckIdBits);
+
     if (version >= 5) {
       res.plando = [];
       const hasPlando = processor.nextBoolean();
       if (hasPlando) {
-        res.plando = processor.nextPlandoList();
+        res.plando = processor.nextPlandoList(version);
       }
     } else {
       res.plando = [];
