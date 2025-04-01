@@ -574,21 +574,8 @@ namespace TPRandomizer.Assets
                             )
                         );
                         listOfDZXReplacements.Add(Converter.GcByte(currentCheck.stageIDX[i]));
-                        if (currentCheck.magicByte == null)
-                        {
-                            listOfDZXReplacements.Add(Converter.GcByte(0xFF)); // If a magic byte is not set, use 0xFF as a default.
-                        }
-                        else
-                        {
-                            listOfDZXReplacements.Add(
-                                Converter.GcByte(
-                                    byte.Parse(
-                                        currentCheck.magicByte[i],
-                                        System.Globalization.NumberStyles.HexNumber
-                                    )
-                                )
-                            );
-                        }
+                        listOfDZXReplacements.Add(Converter.GcByte(0xFF)); // padding
+                        
 
                         listOfDZXReplacements.AddRange(dataArray);
                         count++;

@@ -50,8 +50,6 @@ namespace TPRandomizer
 
         public List<string> arcOffsets { get; set; } // Used by ARC checks.
 
-        public List<string> magicByte { get; set; }
-
         public string fileName { get; set; }
 
         public List<string> overrideInstruction { get; set; } // Used by REL checks. The override instruction to be used when replacing the item in the rel.
