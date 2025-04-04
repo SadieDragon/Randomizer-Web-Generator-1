@@ -748,9 +748,9 @@ namespace TPRandomizer
 
         void RemoveEntrance(Entrance entranceToRemove)
         {
-            Randomizer
-                .Rooms.RoomDict[entranceToRemove.GetParentArea()]
-                .Exits.Remove(entranceToRemove);
+            Randomizer.Rooms.RoomDict[entranceToRemove.GetParentArea()].Exits.Remove(
+                entranceToRemove
+            );
         }
 
         void SetShuffledEntrances(Dictionary<EntranceType, EntrancePool> entrancePools)

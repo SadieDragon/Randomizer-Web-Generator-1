@@ -1,7 +1,7 @@
 [
-    // Overworld Exits
+    // Exterior Exits
     {
-        "Type": "Overworld",
+        "Type": "Exterior",
         "SourceRoomSpawn":
         {
             "SourceRoom": "Outside Links House",
@@ -26,7 +26,7 @@
         }
     },
     {
-        "Type": "Overworld",
+        "Type": "Exterior",
         "SourceRoomSpawn":
         {
             "SourceRoom": "Ordon Village",
@@ -51,7 +51,7 @@
         }
     },
     {
-        "Type": "Overworld",
+        "Type": "Exterior",
         "SourceRoomSpawn":
         {
             "SourceRoom": "Outside Links House",
@@ -76,7 +76,7 @@
         }
     },
     {
-        "Type": "Overworld",
+        "Type": "Exterior",
         "SourceRoomSpawn":
         {
             "SourceRoom": "Ordon Bridge",
@@ -101,7 +101,7 @@
         }
     },
     {
-        "Type": "Overworld",
+        "Type": "Exterior",
         "SourceRoomSpawn":
         {
             "SourceRoom": "South Faron Woods Above Owl Statue",
@@ -126,7 +126,7 @@
         }
     },
     {
-        "Type": "Overworld",
+        "Type": "Exterior",
         "SourceRoomSpawn":
         {
             "SourceRoom": "Mist Area Near North Faron Woods Behind Gate",
@@ -151,7 +151,7 @@
         }
     },
     {
-        "Type": "Overworld",
+        "Type": "Exterior",
         "SourceRoomSpawn":
         {
             "SourceRoom": "North Faron Lost Woods Entrance",
@@ -176,7 +176,7 @@
         }
     },
     {
-        "Type": "Overworld",
+        "Type": "Exterior",
         "SourceRoomSpawn":
         {
             "SourceRoom": "Lost Woods Lower Battle Arena",
@@ -201,7 +201,7 @@
         }
     },
     {
-        "Type": "Overworld",
+        "Type": "Exterior",
         "SourceRoomSpawn":
         {
             "SourceRoom": "Lost Woods Upper Battle Arena",
@@ -226,7 +226,7 @@
         }
     },
     {
-        "Type": "Overworld",
+        "Type": "Exterior",
         "SourceRoomSpawn":
         {
             "SourceRoom": "Sacred Grove Upper",
@@ -251,7 +251,7 @@
         }
     },
     {
-        "Type": "Overworld",
+        "Type": "Exterior",
         "SourceRoomSpawn":
         {
             "SourceRoom": "South Faron Woods",
@@ -276,7 +276,7 @@
         }
     },
     {
-        "Type": "Overworld",
+        "Type": "Exterior",
         "SourceRoomSpawn":
         {
             "SourceRoom": "Faron Field Behind Boulder",
@@ -301,7 +301,7 @@
         }
     },
     {
-        "Type": "Overworld",
+        "Type": "Exterior",
         "SourceRoomSpawn":
         {
             "SourceRoom": "Kakariko Gorge Behind Gate",
@@ -326,7 +326,7 @@
         }
     },
     {
-        "Type": "Overworld",
+        "Type": "Exterior",
         "SourceRoomSpawn":
         {
             "SourceRoom": "Lower Kakariko Village",
@@ -351,7 +351,7 @@
         }
     },
     {
-        "Type": "Overworld",
+        "Type": "Exterior",
         "SourceRoomSpawn":
         {
             "SourceRoom": "Lower Kakariko Village",
@@ -376,7 +376,7 @@
         }
     },
     {
-        "Type": "Overworld",
+        "Type": "Exterior",
         "SourceRoomSpawn":
         {
             "SourceRoom": "Kakariko Village Behind Gate",
@@ -401,7 +401,7 @@
         }
     },
     {
-        "Type": "Overworld",
+        "Type": "Exterior",
         "SourceRoomSpawn":
         {
             "SourceRoom": "Eldin Field Near Castle Town",
@@ -426,7 +426,7 @@
         }
     },
     {
-        "Type": "Overworld",
+        "Type": "Exterior",
         "SourceRoomSpawn":
         {
             "SourceRoom": "Eldin Field Outside Hidden Village",
@@ -451,7 +451,7 @@
         }
     },
     {
-        "Type": "Overworld",
+        "Type": "Exterior",
         "SourceRoomSpawn":
         {
             "SourceRoom": "Lanayru Field Behind Boulder",
@@ -476,7 +476,7 @@
         }
     },
     {
-        "Type": "Overworld",
+        "Type": "Exterior",
         "SourceRoomSpawn":
         {
             "SourceRoom": "Upper Zoras River",
@@ -501,7 +501,7 @@
         }
     },
     {
-        "Type": "Overworld",
+        "Type": "Exterior",
         "SourceRoomSpawn":
         {
             "SourceRoom": "Upper Zoras River",
@@ -526,7 +526,7 @@
         }
     },
     {
-        "Type": "Overworld",
+        "Type": "Exterior",
         "SourceRoomSpawn":
         {
             "SourceRoom": "Zoras Domain Top of Waterfall",
@@ -551,7 +551,7 @@
         }
     },
     {
-        "Type": "Overworld",
+        "Type": "Exterior",
         "SourceRoomSpawn":
         {
             "SourceRoom": "Zoras Domain Snowpeak Entrance",
@@ -576,7 +576,7 @@
         }
     },
     {
-        "Type": "Overworld",
+        "Type": "Exterior",
         "SourceRoomSpawn":
         {
             "SourceRoom": "Snowpeak Climb Upper",
@@ -601,7 +601,7 @@
         }
     },
     {
-        "Type": "Overworld",
+        "Type": "Exterior",
         "SourceRoomSpawn":
         {
             "SourceRoom": "Lanayru Field",
@@ -626,7 +626,7 @@
         }
     },
     {
-        "Type": "Overworld",
+        "Type": "Exterior",
         "SourceRoomSpawn":
         {
             "SourceRoom": "Outside Castle Town West",
@@ -651,7 +651,7 @@
         }
     },
     {
-        "Type": "Overworld",
+        "Type": "Exterior",
         "SourceRoomSpawn":
         {
             "SourceRoom": "Castle Town West",
@@ -676,7 +676,7 @@
         }
     },
     {
-        "Type": "Overworld",
+        "Type": "Exterior",
         "SourceRoomSpawn":
         {
             "SourceRoom": "Castle Town West",
@@ -701,7 +701,7 @@
         }
     },
     {
-        "Type": "Overworld",
+        "Type": "Exterior",
         "SourceRoomSpawn":
         {
             "SourceRoom": "Castle Town Center",
@@ -726,7 +726,7 @@
         }
     },
     {
-        "Type": "Overworld",
+        "Type": "Exterior",
         "SourceRoomSpawn":
         {
             "SourceRoom": "Castle Town Center",
@@ -751,7 +751,7 @@
         }
     },
     {
-        "Type": "Overworld",
+        "Type": "Exterior",
         "SourceRoomSpawn":
         {
             "SourceRoom": "Castle Town Center",
@@ -776,7 +776,7 @@
         }
     },
     {
-        "Type": "Overworld",
+        "Type": "Exterior",
         "SourceRoomSpawn":
         {
             "SourceRoom": "Castle Town East",
@@ -801,7 +801,7 @@
         }
     },
     {
-        "Type": "Overworld",
+        "Type": "Exterior",
         "SourceRoomSpawn":
         {
             "SourceRoom": "Castle Town East",
@@ -826,7 +826,7 @@
         }
     },
     {
-        "Type": "Overworld",
+        "Type": "Exterior",
         "SourceRoomSpawn":
         {
             "SourceRoom": "South Castle Town Doors",
@@ -851,7 +851,7 @@
         }
     },
     {
-        "Type": "Overworld",
+        "Type": "Exterior",
         "SourceRoomSpawn":
         {
             "SourceRoom": "Outside Castle Town West",
@@ -876,7 +876,7 @@
         }
     },
     {
-        "Type": "Overworld",
+        "Type": "Exterior",
         "SourceRoomSpawn":
         {
             "SourceRoom": "Lake Hylia Bridge",
@@ -901,7 +901,7 @@
         }
     },
     {
-        "Type": "Overworld",
+        "Type": "Exterior",
         "SourceRoomSpawn":
         {
             "SourceRoom": "Gerudo Desert Outside Bulblin Camp",
@@ -926,7 +926,7 @@
         }
     },
     {
-        "Type": "Overworld",
+        "Type": "Exterior",
         "SourceRoomSpawn":
         {
             "SourceRoom": "Bulblin Camp",
@@ -950,9 +950,9 @@
             "State": "FF"
         }
     },
-    // Overworld One-Way Exits
+    // Exterior One-Way Exits
     {
-        "Type": "Overworld One-Way",
+        "Type": "Exterior One-Way",
         "SourceRoomSpawn":
         {
             "SourceRoom": "Kakariko Graveyard",
@@ -966,7 +966,7 @@
         }
     },
     {
-        "Type": "Overworld One-Way",
+        "Type": "Exterior One-Way",
         "SourceRoomSpawn":
         {
             "SourceRoom": "Upper Zoras River",
@@ -980,7 +980,7 @@
         }
     },
     {
-        "Type": "Overworld One-Way",
+        "Type": "Exterior One-Way",
         "SourceRoomSpawn":
         {
             "SourceRoom": "Outside Castle Town South",
@@ -994,7 +994,7 @@
         }
     },
     {
-        "Type": "Overworld One-Way",
+        "Type": "Exterior One-Way",
         "SourceRoomSpawn":
         {
             "SourceRoom": "Lake Hylia",
@@ -1008,7 +1008,7 @@
         }
     },
     {
-        "Type": "Overworld One-Way",
+        "Type": "Exterior One-Way",
         "SourceRoomSpawn":
         {
             "SourceRoom": "Lake Hylia",
