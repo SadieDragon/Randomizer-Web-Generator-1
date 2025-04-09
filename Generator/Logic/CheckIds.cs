@@ -3,6 +3,7 @@ namespace TPRandomizer
     using System;
     using System.Collections.Generic;
     using System.Drawing;
+    using TPRandomizer.Util;
 
     public class CheckIdClass
     {
@@ -663,6 +664,14 @@ namespace TPRandomizer
             }
 
             return nameToIdNum;
+        }
+
+        public static bool GetIsHideFromUiCheckName(string checkName)
+        {
+            if (StringUtils.isEmpty(checkName))
+                throw new Exception($"checkName was empty.");
+
+            return hideFromUiCheckNames.Contains(checkName);
         }
     }
 }
