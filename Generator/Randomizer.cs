@@ -1765,7 +1765,7 @@ namespace TPRandomizer
                 }
             }
 
-            // Validate that all checks belong to a hint zone
+            // Validate that all non-hidden checks belong to a hint zone
             foreach (KeyValuePair<string, Check> pair in Randomizer.Checks.CheckDict)
             {
                 string checkName = pair.Value.checkName;
