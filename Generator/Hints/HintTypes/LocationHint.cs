@@ -239,7 +239,8 @@ namespace TPRandomizer.Hints
 
                 string itemText = customMsgData.GenItemText3(
                     out _,
-                    contents,
+                    // contents,
+                    Item.Lantern_Oil_Shop,
                     status,
                     contextIn: useDefiniteArticle ? "def" : "indef",
                     checkStatusDisplay: display,

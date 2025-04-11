@@ -220,17 +220,18 @@ namespace TPRandomizer
             public byte requiredDungeons { get; private set; }
             public bool updateShopText { get; private set; } = true;
             private bool forceNotUpdateShopText = false;
-            private Dictionary<string, bool> selfHinterChecksToIsShop = new()
-            {
-                { "Barnes Bomb Bag", true },
-                { "Charlo Donation Blessing", false },
-                { "Fishing Hole Bottle", false },
-                { "Coro Bottle", true },
-                { "Castle Town Goron Shop Red Potion", true },
-                { "Castle Town Goron Shop Lantern Oil", true },
-                { "Castle Town Goron Shop Arrow Refill", true },
-                { "Castle Town Goron Shop Hylian Shield", true },
-            };
+            private Dictionary<string, bool> selfHinterChecksToIsShop =
+                new()
+                {
+                    { "Barnes Bomb Bag", true },
+                    { "Charlo Donation Blessing", false },
+                    { "Fishing Hole Bottle", false },
+                    { "Coro Bottle", true },
+                    { "Castle Town Goron Shop Red Potion", true },
+                    { "Castle Town Goron Shop Lantern Oil", true },
+                    { "Castle Town Goron Shop Arrow Refill", true },
+                    { "Castle Town Goron Shop Hylian Shield", true },
+                };
             public List<HintSpot> hintSpots { get; private set; } = new();
 
             public Builder(HintGenData genData, byte requiredDungeons)
@@ -250,22 +251,23 @@ namespace TPRandomizer
             {
                 // Based off of the models that are used in the cpp minus items
                 // that people might skip such as slingshot or hawkeye.
-                HashSet<Item> items = new()
-                {
-                    Item.Magic_Armor,
-                    Item.Progressive_Sword,
-                    Item.Shadow_Crystal,
-                    Item.Boomerang,
-                    Item.Spinner,
-                    Item.Ball_and_Chain,
-                    Item.Progressive_Bow,
-                    Item.Progressive_Clawshot,
-                    Item.Iron_Boots,
-                    Item.Progressive_Fishing_Rod,
-                    Item.Progressive_Dominion_Rod,
-                    Item.Filled_Bomb_Bag,
-                    Item.Progressive_Sky_Book,
-                };
+                HashSet<Item> items =
+                    new()
+                    {
+                        Item.Magic_Armor,
+                        Item.Progressive_Sword,
+                        Item.Shadow_Crystal,
+                        Item.Boomerang,
+                        Item.Spinner,
+                        Item.Ball_and_Chain,
+                        Item.Progressive_Bow,
+                        Item.Progressive_Clawshot,
+                        Item.Iron_Boots,
+                        Item.Progressive_Fishing_Rod,
+                        Item.Progressive_Dominion_Rod,
+                        Item.Filled_Bomb_Bag,
+                        Item.Progressive_Sky_Book,
+                    };
 
                 List<Item> itemsToPickFrom = new();
                 foreach (Item item in items)
@@ -676,17 +678,22 @@ namespace TPRandomizer
 
         private void GenLinkHouseSignText(List<MessageEntry> results)
         {
-            List<(string, byte, string)> dungeonData = new()
-            {
-                ("required-dungeon.forest-temple", 0x01, CustomMessages.messageColorGreen),
-                ("required-dungeon.goron-mines", 0x02, CustomMessages.messageColorRed),
-                ("required-dungeon.lakebed-temple", 0x04, CustomMessages.messageColorBlue),
-                ("required-dungeon.arbiters-grounds", 0x08, CustomMessages.messageColorOrange),
-                ("required-dungeon.snowpeak-ruins", 0x10, CustomMessages.messageColorLightBlue),
-                ("required-dungeon.temple-of-time", 0x20, CustomMessages.messageColorDarkGreen),
-                ("required-dungeon.city-in-the-sky", 0x40, CustomMessages.messageColorYellow),
-                ("required-dungeon.palace-of-twilight", 0x80, CustomMessages.messageColorPurple),
-            };
+            List<(string, byte, string)> dungeonData =
+                new()
+                {
+                    ("required-dungeon.forest-temple", 0x01, CustomMessages.messageColorGreen),
+                    ("required-dungeon.goron-mines", 0x02, CustomMessages.messageColorRed),
+                    ("required-dungeon.lakebed-temple", 0x04, CustomMessages.messageColorBlue),
+                    ("required-dungeon.arbiters-grounds", 0x08, CustomMessages.messageColorOrange),
+                    ("required-dungeon.snowpeak-ruins", 0x10, CustomMessages.messageColorLightBlue),
+                    ("required-dungeon.temple-of-time", 0x20, CustomMessages.messageColorDarkGreen),
+                    ("required-dungeon.city-in-the-sky", 0x40, CustomMessages.messageColorYellow),
+                    (
+                        "required-dungeon.palace-of-twilight",
+                        0x80,
+                        CustomMessages.messageColorPurple
+                    ),
+                };
 
             StringBuilder sb = new();
             foreach (var tuple in dungeonData)
@@ -733,9 +740,11 @@ namespace TPRandomizer
 
                 string itemText = GenItemText3(
                     out _,
-                    charloData.itemToHint,
+                    // charloData.itemToHint,
+                    Item.Lantern_Oil_Shop,
                     CheckStatus.Unknown,
-                    contextIn: charloData.useDefArticle ? "def" : "indef",
+                    // contextIn: charloData.useDefArticle ? "def" : "indef",
+                    contextIn: "def",
                     optionalContextMetaIn: resultSlotMetaItem
                 );
 
@@ -765,7 +774,8 @@ namespace TPRandomizer
             {
                 string fishingBottleItemText = GenItemText3(
                     out _,
-                    fishingBottleData.itemToHint,
+                    // fishingBottleData.itemToHint,
+                    Item.Lantern_Oil_Shop,
                     CheckStatus.Unknown,
                     contextIn: "fishing-bottle"
                 );
@@ -1610,10 +1620,8 @@ namespace TPRandomizer
             if (includeColor)
                 result += CustomMessages.messageColorPurple;
 
-            Dictionary<string, string> interpolation = new()
-            {
-                { "count", amount.ToString(CultureInfo.InvariantCulture) },
-            };
+            Dictionary<string, string> interpolation =
+                new() { { "count", amount.ToString(CultureInfo.InvariantCulture) }, };
 
             string shopText = Res.Msg("shop.price", interpolation, priceContextMeta)
                 .Substitute(interpolation);
