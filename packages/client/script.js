@@ -399,6 +399,7 @@ document
 document
   .getElementById('randomizeStartingPointCheckbox')
   .addEventListener('click', setSettingsString);
+  document.getElementById('iliaQuestFieldset').onchange = setSettingsString;
 document
   .getElementById('importSettingsStringButton')
   .addEventListener('click', importSettingsString);
@@ -1253,6 +1254,7 @@ function populateSSettings(s) {
   );
   $('#hiddenRupeeCheckbox').prop('checked', s.hiddenRupees);
   $('#hcShortcutCheckbox').prop('checked', s.hcShortcut);
+  $('#iliaQuestFieldset').val(s.iliaQuest);
 
   const $excludedChecksParent = $('#baseExcludedChecksListbox');
   s.excludedChecks.forEach((checkNumId) => {

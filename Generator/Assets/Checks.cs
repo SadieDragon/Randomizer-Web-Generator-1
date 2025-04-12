@@ -311,15 +311,13 @@ namespace TPRandomizer
                 "Palace of Twilight Zant Heart Container",
             };
 
+        public static List<string> questChecks =
+            new() { "Renados Letter", "Telma Invoice", "Wooden Statue", "Ilia Charm", };
+
         // All of these checks are forced to be vanilla until a way to randomize them is figured out or if they are not meant to be randomized for the sake of events and the like.
         public static List<string> vanillaChecks =
             new()
             {
-                "Renados Letter",
-                "Telma Invoice",
-                "Wooden Statue",
-                "Ilia Charm",
-                "Ilia Memory Reward",
                 "South Faron Portal",
                 "North Faron Portal",
                 "Sacred Grove Portal",
@@ -527,7 +525,59 @@ namespace TPRandomizer
                 }
             }
 
+            List<string> removedQuestChecks = new();
+
+            switch (parseSetting.iliaQuest)
+            {
+                case IliaQuest.Letter:
+                {
+                    removedQuestChecks.Add("Renados Letter");
+                    Randomizer.Items.RandomizedImportantItems.Add(Item.Renados_Letter);
+                    break;
+                }
+                case IliaQuest.Invoice:
+                {
+                    removedQuestChecks.Add("Renados Letter");
+                    removedQuestChecks.Add("Telma Invoice");
+                    Randomizer.Items.RandomizedImportantItems.Add(Item.Invoice);
+                    break;
+                }
+                case IliaQuest.Statue:
+                {
+                    removedQuestChecks.Add("Renados Letter");
+                    removedQuestChecks.Add("Telma Invoice");
+                    removedQuestChecks.Add("Wooden Statue");
+                    Randomizer.Items.RandomizedImportantItems.Add(Item.Wooden_Statue);
+                    break;
+                }
+                case IliaQuest.Charm:
+                {
+                    removedQuestChecks.Add("Renados Letter");
+                    removedQuestChecks.Add("Telma Invoice");
+                    removedQuestChecks.Add("Wooden Statue");
+                    removedQuestChecks.Add("Ilia Charm");
+                    Randomizer.Items.RandomizedImportantItems.Add(Item.Ilias_Charm);
+                    break;
+                }
+
+                default:
+                {
+                    break;
+                }
+            }
+
+            foreach (string questCheck in removedQuestChecks)
+            {
+                questChecks.Remove(questCheck);
+                Randomizer.Checks.CheckDict[questCheck].checkStatus = "Excluded";
+                Randomizer.Items.RandomizedImportantItems.Remove(
+                    Randomizer.Checks.CheckDict[questCheck].itemId
+                );
+            }
+
             // set up the vanilla checks
+
+            vanillaChecks.AddRange(questChecks);
             foreach (string vanillaCheck in vanillaChecks)
             {
                 Randomizer.Checks.CheckDict[vanillaCheck].checkStatus = "Vanilla";

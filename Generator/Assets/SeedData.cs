@@ -1123,6 +1123,24 @@ namespace TPRandomizer.Assets
             List<ARCReplacement> listOfStaticReplacements =
             [
                 new ARCReplacement(
+                    "2F58",
+                    "FFFF3777",
+                    (byte)FileDirectory.Room,
+                    (byte)ReplacementType.Instruction,
+                    (int)StageIDs.Ordon_Village,
+                    0
+                ), // Patch Bo Right Door so it always opens
+
+                new ARCReplacement(
+                    "2F7C",
+                    "FFFFB778",
+                    (byte)FileDirectory.Room,
+                    (byte)ReplacementType.Instruction,
+                    (int)StageIDs.Ordon_Village,
+                    0
+                ), // Patch Bo Left Door so it always opens
+
+                new ARCReplacement(
                     "1A62",
                     "00060064",
                     (byte)FileDirectory.Message,

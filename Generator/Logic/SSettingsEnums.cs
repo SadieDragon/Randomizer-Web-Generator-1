@@ -127,4 +127,13 @@ namespace TPRandomizer.SSettings.Enums
         Strong = 4,
         Very_Strong = 5,
     }
+
+    public enum IliaQuest
+    {
+        Vanilla = 0,
+        Letter = 1,
+        Invoice = 2,
+        Statue = 3,
+        Charm = 4,
+    }
 }

@@ -444,6 +444,7 @@
       { id: 'randomizeStartingPointCheckbox' },
       { id: 'hiddenRupeeCheckbox' },
       { id: 'hcShortcutCheckbox' },
+      { id: 'iliaQuestFieldset', bitLength: 3 },
     ].map(({ id, bitLength }) => {
       const val = getVal(id);
       if (bitLength) {
@@ -924,10 +925,12 @@
       processBasic({ id: 'randomizeStartingPoint' });
       processBasic({ id: 'hiddenRupees' });
       processBasic({ id: 'hcShortcut' });
+      processBasic({ id: 'iliaQuest', bitLength: 3 });
     } else {
       res.randomizeStartingPoint = false; // Vanilla
       res.hiddenRupees = false; // Vanilla
       res.hcShortcut = false;
+      res.iliaQuest = 0; // Vanilla
     }
 
     res.startingItems = processor.nextEolList(9);
