@@ -556,9 +556,11 @@ namespace TPRandomizer
 
             string itemText = GenItemText3(
                 out Dictionary<string, string> itemMeta,
-                item,
+                // item,
+                Item.Lantern_Oil_Shop,
                 CheckStatus.Unknown,
-                contextIn: useDefArticle ? "def" : "indef",
+                // contextIn: useDefArticle ? "def" : "indef",
+                contextIn: "def",
                 prefStartColor: CustomMessages.messageColorOrange,
                 optionalContextMetaIn: resultSlotMetaItem
             );

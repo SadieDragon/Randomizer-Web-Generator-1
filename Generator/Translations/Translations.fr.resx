@@ -1293,6 +1293,30 @@
     <value>bouteilles de lait à moitié vide</value>
     <comment></comment>
   </data>
+  <data name="item.66-lantern_oil_shop" xml:space="preserve">
+    <value>$(gender:f){que-transform}huile de lanterne</value>
+    <comment></comment>
+  </data>
+  <data name="item.66-lantern_oil_shop$def" xml:space="preserve">
+    <value>$(gender:f)l'{cs}huile de lanterne{ce}</value>
+    <comment></comment>
+  </data>
+  <data name="item.66-lantern_oil_shop$indef" xml:space="preserve">
+    <value>$(gender:f)une {cs}huile de lanterne{ce}</value>
+    <comment></comment>
+  </data>
+  <data name="item.66-lantern_oil_shop$count" xml:space="preserve">
+    <value>$(gender:f){cs}{count} recharge d'huile{ce}</value>
+    <comment></comment>
+  </data>
+  <data name="item.66-lantern_oil_shop$count#zero" xml:space="preserve">
+    <value>$(gender:f,negative){cs}aucune recharge d'huile{ce}</value>
+    <comment></comment>
+  </data>
+  <data name="item.66-lantern_oil_shop$count#other" xml:space="preserve">
+    <value>$(gender:f,plural){cs}{count} recharges d'huile{ce}</value>
+    <comment></comment>
+  </data>
   <data name="item.75-jovani_bottle@ac(f)" xml:space="preserve">
     <value>bouteille de larmes de Fée</value>
     <comment></comment>
