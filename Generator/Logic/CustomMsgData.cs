@@ -556,11 +556,9 @@ namespace TPRandomizer
 
             string itemText = GenItemText3(
                 out Dictionary<string, string> itemMeta,
-                // item,
-                Item.Lantern_Oil_Shop,
+                item,
                 CheckStatus.Unknown,
-                // contextIn: useDefArticle ? "def" : "indef",
-                contextIn: "def",
+                contextIn: useDefArticle ? "def" : "indef",
                 prefStartColor: CustomMessages.messageColorOrange,
                 optionalContextMetaIn: resultSlotMetaItem
             );
@@ -742,11 +740,9 @@ namespace TPRandomizer
 
                 string itemText = GenItemText3(
                     out _,
-                    // charloData.itemToHint,
-                    Item.Lantern_Oil_Shop,
+                    charloData.itemToHint,
                     CheckStatus.Unknown,
-                    // contextIn: charloData.useDefArticle ? "def" : "indef",
-                    contextIn: "def",
+                    contextIn: charloData.useDefArticle ? "def" : "indef",
                     optionalContextMetaIn: resultSlotMetaItem
                 );
 
@@ -776,8 +772,7 @@ namespace TPRandomizer
             {
                 string fishingBottleItemText = GenItemText3(
                     out _,
-                    // fishingBottleData.itemToHint,
-                    Item.Lantern_Oil_Shop,
+                    fishingBottleData.itemToHint,
                     CheckStatus.Unknown,
                     contextIn: "fishing-bottle"
                 );

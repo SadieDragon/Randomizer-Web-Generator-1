@@ -1298,11 +1298,11 @@
     <comment></comment>
   </data>
   <data name="item.66-lantern_oil_shop$def" xml:space="preserve">
-    <value>$(gender:f)l'{cs}huile de lanterne{ce}</value>
+    <value>$(gender:f,objpro:en)l'{cs}huile de lanterne{ce}</value>
     <comment></comment>
   </data>
   <data name="item.66-lantern_oil_shop$indef" xml:space="preserve">
-    <value>$(gender:f)une {cs}huile de lanterne{ce}</value>
+    <value>$(gender:f,objpro:en)une {cs}huile de lanterne{ce}</value>
     <comment></comment>
   </data>
   <data name="item.66-lantern_oil_shop$count" xml:space="preserve">
@@ -2001,19 +2001,27 @@
     <value>quelque chose de bien</value>
     <comment></comment>
   </data>
-  <data name="noun.the-article" xml:space="preserve">
+  <data name="noun.objpro" xml:space="preserve">
     <value>le</value>
     <comment></comment>
   </data>
-  <data name="noun.the-article$gender-f" xml:space="preserve">
+  <data name="noun.objpro$gender-f" xml:space="preserve">
     <value>la</value>
     <comment></comment>
   </data>
-  <data name="noun.the-article$gender-f,plural" xml:space="preserve">
+  <data name="noun.objpro$objpro-en" xml:space="preserve">
+    <value>en</value>
+    <comment></comment>
+  </data>
+  <data name="noun.objpro$gender-f,objpro-en" xml:space="preserve">
+    <value>en</value>
+    <comment></comment>
+  </data>
+  <data name="noun.objpro$gender-f,plural" xml:space="preserve">
     <value>les</value>
     <comment></comment>
   </data>
-  <data name="noun.the-article$plural" xml:space="preserve">
+  <data name="noun.objpro$plural" xml:space="preserve">
     <value>les</value>
     <comment></comment>
   </data>
@@ -2086,11 +2094,11 @@
     <comment>From magic armor, minus the MA reference.</comment>
   </data>
   <data name="shop.bought$sera" xml:space="preserve">
-    <value>Je ne pensais pas que tu voudrais {noun(name:the-article)} {que-transform}acheter...</value>
+    <value>Je ne pensais pas que tu voudrais {noun(name:objpro)} {que-transform}acheter...</value>
     <comment></comment>
   </data>
   <data name="shop.cant-afford" xml:space="preserve">
-    <value>{item(capitalize,shop-group-of)} {verb(name:costs)} {price}. Si tu {noun(name:the-article)} veux, il faut {noun2} payer.</value>
+    <value>{item(capitalize,shop-group-of)} {verb(name:costs)} {price}. Si tu {noun(name:objpro)} veux, il faut {noun2} payer.</value>
     <comment>From Sera Slingshot</comment>
   </data>
   <data name="shop.cant-afford$barnes-bomb-bag" xml:space="preserve">
@@ -2118,7 +2126,7 @@
     <comment></comment>
   </data>
   <data name="shop.confirmation" xml:space="preserve">
-    <value>{item(capitalize,shop-group-of)} {verb(name:costs)} {price}, tu {noun(name:the-article)} veux?</value>
+    <value>{item(capitalize,shop-group-of)} {verb(name:costs)} {price}, tu {noun(name:objpro)} veux?</value>
     <comment></comment>
   </data>
   <data name="shop.confirmation$coro" xml:space="preserve">
@@ -2146,11 +2154,11 @@
     <comment></comment>
   </data>
   <data name="shop.confirmation$ct-goron-shield-later" xml:space="preserve">
-    <value>{item(capitalize,shop-group-of)} {verb(name:costs)} {price}, tu {noun(name:the-article)} veux?</value>
+    <value>{item(capitalize,shop-group-of)} {verb(name:costs)} {price}, tu {noun(name:objpro)} veux?</value>
     <comment>Matches the base shop.confirmation, but putting here so this doesn&apos;t change if the fallback changes.</comment>
   </data>
   <data name="shop.confirmation$sera" xml:space="preserve">
-    <value>{item(capitalize,shop-group-of)} {verb(name:costs)} {price}.\nTu {noun(name:the-article)} veux?</value>
+    <value>{item(capitalize,shop-group-of)} {verb(name:costs)} {price}.\nTu {noun(name:objpro)} veux?</value>
     <comment></comment>
   </data>
   <data name="shop.no" xml:space="preserve">
