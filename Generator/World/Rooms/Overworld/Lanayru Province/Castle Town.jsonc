@@ -363,8 +363,8 @@
     [
       {
         "ConnectedArea": "Castle Town Doctors Office Entrance",
-        "Requirements": "Invoice",
-        "GlitchedRequirements": "Invoice"
+        "Requirements": "Invoice or (Setting.iliaQuest not equals Vanilla) or (Setting.iliaQuest not equals Letter)",
+        "GlitchedRequirements": "Invoice or (Setting.iliaQuest not equals Vanilla) or (Setting.iliaQuest not equals Letter)"
       },
       {
         "ConnectedArea": "Castle Town Doctors Office Upper",

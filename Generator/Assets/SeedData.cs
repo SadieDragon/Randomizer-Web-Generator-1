@@ -1537,13 +1537,13 @@ namespace TPRandomizer.Assets
                     4
                 ), // Check coro key flag
                 new ARCReplacement(
-                    "4F4",
-                    "00000000",
+                    "4FC",
+                    "00000003",
                     (byte)FileDirectory.Stage,
                     (byte)ReplacementType.Instruction,
                     (int)StageIDs.City_in_the_Sky,
                     0
-                ), // Delete Savemem actr that causes the player to spawn in west wing
+                ), // Modify Savemem actr that causes the player to spawn in west wing
 
                 // Shad FLW Patches
                 new ARCReplacement(

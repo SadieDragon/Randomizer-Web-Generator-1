@@ -237,8 +237,8 @@
       },
       {
         "ConnectedArea": "Eldin Field Outside Hidden Village",
-        "Requirements": "Room.Kakariko_Renados_Sanctuary and Wooden_Statue",
-        "GlitchedRequirements": "Room.Kakariko_Renados_Sanctuary and Wooden_Statue"
+        "Requirements": "(Room.Kakariko_Renados_Sanctuary and Wooden_Statue) or (Setting.iliaQuest equals Charm)",
+        "GlitchedRequirements": "(Room.Kakariko_Renados_Sanctuary and Wooden_Statue) or (Setting.iliaQuest equals Charm)"
       },
       {
         "ConnectedArea": "Eldin Field Grotto Platform",
