@@ -93,6 +93,7 @@ namespace TPRandomizer.Assets
             { 0x0, 0x61 }, // Defeated first bulblin outside link's house
             { 0x0, 0x62 }, // Defeated second bulblin outside link's house
             { 0x0, 0x60 }, // Defeated Hugo
+            { 0x3, 0xBE }, // Impaz in her house
         };
 
         /// <summary>
@@ -487,6 +488,12 @@ namespace TPRandomizer.Assets
             { 0x19, 0xBB },
         };
 
+        public static readonly byte[,] CharmRegionFlags = new byte[,]
+        {
+            { 0x6, 0x43 }, // Remove HV rocks from Hyrule field
+            { 0x3, 0x70 }, // Darbus destroyed HV rocks
+        };
+
         /// <summary>
         /// summary text.
         /// </summary>
@@ -510,6 +517,7 @@ namespace TPRandomizer.Assets
                 { 20, OpenDotRegionFlags },
                 { 21, OpenMapRegionFlags },
                 { 22, HcShortcutFlags },
+                { 27, CharmRegionFlags },
             };
 
         /// <summary>
@@ -519,10 +527,11 @@ namespace TPRandomizer.Assets
         {
             { 0x3, 0x82 }, // Gave wooden sword to Talo. Talked to squirrel outside link's house
             { 0x6, 0x29 }, // Tame Epona, KB1 trigger activated, Warped Kakariko Bridge Back.
+            { 0xF, 0x40 }, // Talked to Doctor for the first time.
             { 0x12, 0x8 }, // Can use Sera's Shop.
             { 0x14, 0x10 }, // Put Bo outside, ready to wrestle
             { 0xA, 0x2F }, // Bridge of Eldin Stolen, KB1 defeated, KB1 started
-            { 0xF, 0x8 }, // Bridge of Eldin Warped Back
+            { 0xF, 0x68 }, // Bridge of Eldin Warped Back, forced text when entering dr. clinic, talked to dr before giving invoice
             { 0x40, 0x88 }, // Saved monkey from puppets, Visited Gerudo Desert for the first time.
             { 0x41, 0x18 }, // Talked to Fado after Faron and Eldin Twilight
             { 0x7, 0xA0 }, // Watched Colin CS after KB1, talked to Bo before sumo
@@ -597,7 +606,7 @@ namespace TPRandomizer.Assets
             { 0x6, 0xC0 }, // CS After beating Ordon Shadow, CS after entering Faron Twilight.
             { 0x7, 0x2 }, // First Time Talking to Gor Coron in Sumo Hall
             { 0x15, 0x1 }, // Talked to Agitha for the first time.
-            { 0xF, 0x40 }, // Talked to Doctor for the first time.
+            { 0x20, 0x1 }, // Talked to Telma for the first time.
             { 0x5E, 0x10 }, // Midna text after beating Forest Temple.
             { 0x1D, 0x40 }, // Listened to Fyer at drained lake.
             { 0x22, 0x1 }, // Plumm initial CS watched.
@@ -675,6 +684,27 @@ namespace TPRandomizer.Assets
             { 0xC, 0x10 }, // Midna accompanies Wolf
         };
 
+        public static readonly byte[,] RenadoLetterEventFlags = new byte[,]
+        {
+            { 0x20, 0x4 }, // ToT Story Progression Flag
+            { 0xF, 0x80 }, // Renados Letter Check
+        };
+
+        public static readonly byte[,] WoodStatueEventFlags = new byte[,]
+        {
+            { 0x27, 0x10 }, // Showed Invoice to Doctor
+            { 0x2F, 0x4 }, // Got Medicine Scent
+            { 0x21, 0x2 }, // Talked to Louise after Medicine Scent
+            { 0x22, 0x4 }, // Got Wooden Statue
+        };
+
+        public static readonly byte[,] CharmEventFlags = new byte[,]
+        {
+            { 0x23, 0x40 }, // Gave statue to Ilia
+            { 0x2E, 0x8 }, // HV barrier removed
+            { 0x22, 0x80 }, // Got Ilia's Charm
+        };
+
         /// <summary>
         /// summary text.
         /// </summary>
@@ -695,7 +725,10 @@ namespace TPRandomizer.Assets
                 { 14, OpenArbitersEventFlags },
                 { 15, OpenSnowpeakEventFlags },
                 { 17, OpenCityEventFlags },
-                { 23, OverworldEREventFlags }
+                { 23, OverworldEREventFlags },
+                { 24, RenadoLetterEventFlags },
+                { 26, WoodStatueEventFlags },
+                { 27, CharmEventFlags }
             };
         private static readonly SharedSettings RandomizerSettings = Randomizer.SSettings;
 
@@ -728,6 +761,10 @@ namespace TPRandomizer.Assets
             /* 21 */RandomizerSettings.openMap,
             /* 22 */RandomizerSettings.hcShortcut,
             /* 23 */RandomizerSettings.randomizeStartingPoint,
+            /* 24 */RandomizerSettings.iliaQuest >= IliaQuest.Letter,
+            /* 25 */RandomizerSettings.iliaQuest >= IliaQuest.Invoice,
+            /* 26 */RandomizerSettings.iliaQuest >= IliaQuest.Statue,
+            /* 27 */RandomizerSettings.iliaQuest >= IliaQuest.Charm,
         };
     }
 }
