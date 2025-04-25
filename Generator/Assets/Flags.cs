@@ -488,6 +488,11 @@ namespace TPRandomizer.Assets
             { 0x19, 0xBB },
         };
 
+        public static readonly byte[,] StatueRegionFlags = new byte[,]
+        {
+            { 0x9, 0x56 }, // Remove invisible wall from Doctor
+        };
+
         public static readonly byte[,] CharmRegionFlags = new byte[,]
         {
             { 0x6, 0x43 }, // Remove HV rocks from Hyrule field
@@ -517,6 +522,7 @@ namespace TPRandomizer.Assets
                 { 20, OpenDotRegionFlags },
                 { 21, OpenMapRegionFlags },
                 { 22, HcShortcutFlags },
+                { 26, StatueRegionFlags },
                 { 27, CharmRegionFlags },
             };
 

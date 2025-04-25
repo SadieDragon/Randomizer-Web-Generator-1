@@ -563,6 +563,7 @@ namespace TPRandomizer
             result.Add("randomizeStartingPoint", sSettings.randomizeStartingPoint);
             result.Add("shuffleHiddenRupees", sSettings.shuffleHiddenRupees);
             result.Add("hcShortcut", sSettings.hcShortcut);
+            result.Add("iliaQuest", sSettings.iliaQuest.ToString());
 
             result.Add("startingItems", sSettings.startingItems);
             result.Add("excludedChecks", sSettings.excludedChecks);
