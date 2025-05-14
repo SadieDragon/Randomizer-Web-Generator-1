@@ -359,8 +359,8 @@
       },
       {
         "ConnectedArea": "Faron Field",
-        "Requirements": "Gate_Keys",
-        "GlitchedRequirements": "Gate_Keys or Shadow_Crystal"
+        "Requirements": "Gate_Keys and (CanCompleteLanayruTwilight or CanWarpMeteor)",
+        "GlitchedRequirements": "(Gate_Keys or Shadow_Crystal) and (CanCompleteLanayruTwilight or CanWarpMeteor)"
       }
     ],
     "Checks":
