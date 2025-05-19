@@ -64,6 +64,7 @@ namespace TPRandomizer
         public bool randomizeStartingPoint { get; set; }
         public bool shuffleHiddenRupees { get; set; }
         public IliaQuest iliaQuest { get; set; }
+        public MirrorChamberEntrance mirrorChamberEntrance { get; set; }
         public List<Item> startingItems { get; set; }
         public List<string> excludedChecks { get; set; }
         public List<(string, Item)> plandoChecks { get; set; }

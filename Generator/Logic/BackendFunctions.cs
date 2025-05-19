@@ -352,7 +352,7 @@ namespace TPRandomizer
                 sphereCount++;
                 if ((hasCompletedSphere == false) && !hasConcludedPlaythrough)
                 {
-                    Console.WriteLine(
+                    throw new Exception(
                         "Could not validate playthrough. There possibly is an error in logic or the specific playthrough has failed."
                     );
                     break;
@@ -457,7 +457,7 @@ namespace TPRandomizer
                 sphereItems.Clear();
                 foreach (Room graphRoom in currentPlaythroughGraph)
                 {
-                    //Console.WriteLine("Currently Exploring: " + graphRoom.RoomName);
+                    Console.WriteLine("Currently Exploring: " + graphRoom.RoomName);
 
                     for (int i = 0; i < graphRoom.Checks.Count; i++)
                     {
@@ -525,7 +525,7 @@ namespace TPRandomizer
                 sphereCount++;
                 if ((hasCompletedSphere == false) && !hasConcludedPlaythrough)
                 {
-                    Console.WriteLine(
+                    throw new Exception(
                         "Could not validate playthrough. There possibly is an error in logic or the specific playthrough has failed."
                     );
                     break;

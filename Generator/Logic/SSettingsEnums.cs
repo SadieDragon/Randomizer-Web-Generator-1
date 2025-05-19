@@ -136,4 +136,11 @@ namespace TPRandomizer.SSettings.Enums
         Statue = 3,
         Charm = 4,
     }
+
+    public enum MirrorChamberEntrance
+    {
+        Open = 0,
+        Barrier = 1,
+        Closed = 2,
+    }
 }

@@ -3166,6 +3166,105 @@
             "State": "FF"
         }
     },
+    // Boss Room Exit
+    {
+        "Type": "Boss Room Exit",
+        "SourceRoomSpawn":
+        {
+            "SourceRoom": "Forest Temple Boss Room",
+            "TargetRoom": "South Faron Woods",
+            "Stage": 45,
+            "Room": 1,
+            "Spawn": "01",
+            "SpawnType": "60",
+            "Parameters": "F01F",
+            "State": "FF"
+        }
+    },
+    {
+        "Type": "Boss Room Exit",
+        "SourceRoomSpawn":
+        {
+            "SourceRoom": "Goron Mines Boss Room",
+            "TargetRoom": "Lower Kakariko Village",
+            "Stage": 46,
+            "Room": 0,
+            "Spawn": "46",
+            "SpawnType": "60",
+            "Parameters": "F01F",
+            "State": "2"
+        }
+    },
+    {
+        "Type": "Boss Room Exit",
+        "SourceRoomSpawn":
+        {
+            "SourceRoom": "Lakebed Temple Boss Room",
+            "TargetRoom": "Lake Hylia Lanayru Spring",
+            "Stage": 52,
+            "Room": 1,
+            "Spawn": "16",
+            "SpawnType": "60",
+            "Parameters": "F01F",
+            "State": "FF"
+        }
+    },
+    {
+        "Type": "Boss Room Exit",
+        "SourceRoomSpawn":
+        {
+            "SourceRoom": "Snowpeak Ruins Boss Room",
+            "TargetRoom": "Snowpeak Summit Lower",
+            "Stage": 51,
+            "Room": 1,
+            "Spawn": "0B",
+            "SpawnType": "60",
+            "Parameters": "F01F",
+            "State": "2"
+        }
+    },
+    {
+        "Type": "Boss Room Exit",
+        "SourceRoomSpawn":
+        {
+            "SourceRoom": "Temple of Time Boss Room",
+            "TargetRoom": "Sacred Grove Past",
+            "Stage": 54,
+            "Room": 2,
+            "Spawn": "65",
+            "SpawnType": "60",
+            "Parameters": "F01F",
+            "State": "FF"
+        }
+    },
+    {
+        "Type": "Boss Room Exit",
+        "SourceRoomSpawn":
+        {
+            "SourceRoom": "City in The Sky Boss Room",
+            "TargetRoom": "City in The Sky Entrance",
+            "Stage": 12,
+            "Room": 0,
+            "Spawn": "04",
+            "SpawnType": "60",
+            "Parameters": "F01F",
+            "State": "FF"
+        }
+    },
+    {
+        "Type": "Boss Room Exit",
+        "SourceRoomSpawn":
+        {
+            "SourceRoom": "Palace of Twilight Boss Room",
+            "TargetRoom": "Palace of Twilight Entrance",
+            "Stage": 15,
+            "Room": 0,
+            "Spawn": "04",
+            "SpawnType": "60",
+            "Parameters": "F01F",
+            "State": "FF"
+        }
+    },
 	// Boss Room Second Exit
     {
         "Type": "Boss Room Second Exit",
