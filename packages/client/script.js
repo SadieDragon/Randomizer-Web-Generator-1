@@ -402,7 +402,8 @@ document
   document.getElementById('iliaQuestFieldset').onchange = setSettingsString;
 document.getElementById('mirrorChamberFieldset').onchange =
   setSettingsString;
-document.getElementById('dungeonERCheckbox').addEventListener('click', setEntranceRandoSettings);
+document.getElementById('dungeonERFieldset').onchange =
+setEntranceRandoSettings;
 document
   .getElementById('importSettingsStringButton')
   .addEventListener('click', importSettingsString);
@@ -413,7 +414,7 @@ function importSettingsString() {
 
 function setEntranceRandoSettings()
 {
-  if (document.getElementById('dungeonERCheckbox').checked)
+  if (document.getElementById('dungeonERFieldset').value !=0)
   {
     document.getElementById('mdhCheckbox').checked = true;
     document.getElementById('mdhCheckbox').disabled = true;
@@ -1274,7 +1275,7 @@ function populateSSettings(s) {
   $('#hcShortcutCheckbox').prop('checked', s.hcShortcut);
   $('#iliaQuestFieldset').val(s.iliaQuest);
   $('#mirrorChamberFieldset').val(s.mirrorChamber);
-  $('#dungeonERCheckbox').prop('checked', s.dungeonER);
+  $('#dungeonERFieldset').val(s.dungeonER);
 
   const $excludedChecksParent = $('#baseExcludedChecksListbox');
   s.excludedChecks.forEach((checkNumId) => {

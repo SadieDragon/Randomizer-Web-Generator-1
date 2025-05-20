@@ -143,4 +143,11 @@ namespace TPRandomizer.SSettings.Enums
         Barrier = 1,
         Closed = 2,
     }
+
+    public enum DungeonER
+    {
+        Off = 0,
+        Dungeon = 1,
+        Dungeon_Hyrule = 2,
+    }
 }

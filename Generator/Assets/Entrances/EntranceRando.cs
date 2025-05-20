@@ -460,7 +460,7 @@ namespace TPRandomizer
             // Keep track of the types we need to decouple to make things cleaner
             List<EntranceType> typesToDecouple = new();
 
-            if (Randomizer.SSettings.shuffleDungeonEntrances)
+            if (Randomizer.SSettings.shuffleDungeonEntrances != SSettings.Enums.DungeonER.Off)
             {
                 // If we are shuffling dungeon entrances, loop through the entrance table and make note of all of the dungeon entrances and add them to the pool.
                 newEntrancePools.Add(
@@ -532,6 +532,17 @@ namespace TPRandomizer
                             + " -> "
                             + tableEntry.SourceRoomSpawn.TargetRoom
                     );
+                }
+
+                if (
+                    Randomizer.SSettings.shuffleDungeonEntrances
+                    == SSettings.Enums.DungeonER.Dungeon_Hyrule
+                )
+                {
+                    if (tableEntry.Type == "Dungeon - Hyrule")
+                    {
+                        tableEntry.Type = "Dungeon";
+                    }
                 }
 
                 forwardEntrance.SetEntranceType(tableEntry.Type);
@@ -1169,7 +1180,10 @@ namespace TPRandomizer
         void ShuffleSpecialEntrances()
         {
             bool shuffleBossRooms = false;
-            if (shuffleBossRooms || Randomizer.SSettings.shuffleDungeonEntrances)
+            if (
+                shuffleBossRooms
+                || (Randomizer.SSettings.shuffleDungeonEntrances != SSettings.Enums.DungeonER.Off)
+            )
             {
                 // If boss rooms or dungeons are shuffled, we want to return the player to the previous room they entered from once the boss is defeated. If the previous room is a dungeon, we want to return them to the entrance of that dungeon.
                 List<string> bossRooms =

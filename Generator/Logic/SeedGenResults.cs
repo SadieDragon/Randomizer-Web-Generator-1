@@ -565,7 +565,7 @@ namespace TPRandomizer
             result.Add("hcShortcut", sSettings.hcShortcut);
             result.Add("iliaQuest", sSettings.iliaQuest.ToString());
             result.Add("mirrorChamberEntrance", sSettings.mirrorChamberEntrance.ToString());
-            result.Add("shuffleDungeonEntrances", sSettings.shuffleDungeonEntrances);
+            result.Add("shuffleDungeonEntrances", sSettings.shuffleDungeonEntrances.ToString());
 
             result.Add("startingItems", sSettings.startingItems);
             result.Add("excludedChecks", sSettings.excludedChecks);
