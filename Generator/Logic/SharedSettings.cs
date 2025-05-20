@@ -65,6 +65,7 @@ namespace TPRandomizer
         public bool shuffleHiddenRupees { get; set; }
         public IliaQuest iliaQuest { get; set; }
         public MirrorChamberEntrance mirrorChamberEntrance { get; set; }
+        public bool shuffleDungeonEntrances { get; set; }
         public List<Item> startingItems { get; set; }
         public List<string> excludedChecks { get; set; }
         public List<(string, Item)> plandoChecks { get; set; }
@@ -124,6 +125,8 @@ namespace TPRandomizer
             shuffleHiddenRupees = processor.NextBool();
             hcShortcut = processor.NextBool();
             iliaQuest = (IliaQuest)processor.NextInt(3);
+            mirrorChamberEntrance = (MirrorChamberEntrance)processor.NextInt(2);
+            shuffleDungeonEntrances = processor.NextBool();
             // We sort these lists so that the order which the UI happens to
             // pass the data up does not affect anything.
             startingItems = processor.NextItemList();

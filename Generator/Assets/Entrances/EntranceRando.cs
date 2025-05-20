@@ -333,9 +333,6 @@ namespace TPRandomizer
 
         // If enabled, all entrances are "one way" so if you go through Faron Woods -> FT Entrance and end up in GM, going back the way you came may not lead you to Faron Woods.
         bool decoupleEntrances = false;
-
-        // Placeholder until I get the settings actually created
-        bool isDungeonEREnabled = false;
         public List<SpawnTableEntry> SpawnTable = new();
         public EntranceInfo vanillaSpawn = new("Outside Links House", "", 43, 1, "1", "FF", "");
         public List<Entrance> spawnList = new();
@@ -463,7 +460,7 @@ namespace TPRandomizer
             // Keep track of the types we need to decouple to make things cleaner
             List<EntranceType> typesToDecouple = new();
 
-            if (isDungeonEREnabled)
+            if (Randomizer.SSettings.shuffleDungeonEntrances)
             {
                 // If we are shuffling dungeon entrances, loop through the entrance table and make note of all of the dungeon entrances and add them to the pool.
                 newEntrancePools.Add(
@@ -765,7 +762,7 @@ namespace TPRandomizer
                 foreach (Entrance entrance in currentPool.EntranceList)
                 {
                     entrance.SetAsShuffled();
-                    //Console.WriteLine(entrance.GetOriginalName() + " has been shuffled");
+                    // Console.WriteLine(entrance.GetOriginalName() + " has been shuffled");
                     if (entrance.GetReverse() != null)
                     {
                         entrance.GetReverse().SetAsShuffled();
@@ -863,7 +860,7 @@ namespace TPRandomizer
             entrances.EntranceList.Shuffle(rnd);
             foreach (Entrance entrance in entrances.EntranceList)
             {
-                Console.WriteLine("Attempting to shuffle: " + entrance.GetOriginalName());
+                // Console.WriteLine("Attempting to shuffle: " + entrance.GetOriginalName());
                 EntranceShuffleError err = EntranceShuffleError.NONE;
                 if (entrance.GetConnectedArea() != "")
                 {
@@ -1033,7 +1030,12 @@ namespace TPRandomizer
                             // We want to loop through every room until we find a match for the entrance information provided.
                             foreach (Entrance secondEntrance in currentRoom2.Exits)
                             {
-                                if (entrance.PairedEntranceName == secondEntrance.GetOriginalName())
+                                if (
+                                    (
+                                        entrance.PairedEntranceName
+                                        == secondEntrance.GetOriginalName()
+                                    ) && (entrance.PairedEntranceName != null)
+                                )
                                 {
                                     // If we have a match, we want to set the type to the 'Paired' type so that no other pools try to pick it up and use it.
                                     secondEntrance.SetEntranceType("Paired");
@@ -1116,7 +1118,7 @@ namespace TPRandomizer
                     roomName = dungeon;
                     if (dungeon == "Snowpeak Ruins")
                     {
-                        roomName += "Right Door";
+                        roomName += " Left Door";
                     }
                     else
                     {
@@ -1132,7 +1134,10 @@ namespace TPRandomizer
                 Room currentRoom = roomEntry.Value;
                 foreach (Entrance exit in currentRoom.Exits)
                 {
-                    if (exit.ConnectedArea == roomName)
+                    if (
+                        (exit.ConnectedArea == roomName)
+                        && (exit.GetEntranceType() == EntranceType.Dungeon)
+                    )
                     {
                         return exit;
                     }
@@ -1164,17 +1169,39 @@ namespace TPRandomizer
         void ShuffleSpecialEntrances()
         {
             bool shuffleBossRooms = false;
-            if (shuffleBossRooms || isDungeonEREnabled)
+            if (shuffleBossRooms || Randomizer.SSettings.shuffleDungeonEntrances)
             {
                 // If boss rooms or dungeons are shuffled, we want to return the player to the previous room they entered from once the boss is defeated. If the previous room is a dungeon, we want to return them to the entrance of that dungeon.
+                List<string> bossRooms =
+                    new()
+                    {
+                        "Forest Temple Boss Room",
+                        "Goron Mines Boss Room",
+                        "Lakebed Temple Boss Room",
+                        "Snowpeak Ruins Boss Room",
+                        "Temple of Time Boss Room",
+                        "City in The Sky Boss Room",
+                        "Palace of Twilight Boss Room"
+                    };
+                foreach (string bossRoomName in bossRooms)
+                {
+                    Randomizer.Rooms.RoomDict[bossRoomName].Exits[0].SetAsShuffled();
+                    Entrance newEntrance = GetDungeonEntrance(
+                        GetReverseConnectionEntrance(bossRoomName)[0]
+                    );
 
-                // NOTE: when it comes time to implement, we will have to see about how we want to set the flags for this.
-                // This will most likely be on the rando side of things. NOTE: we wont patch the flags for morpheel due to MDH shenanigans. So basically, beating LBT for the first time starts MDH. After that, it will take you back where yo uneed to be.
-                string bossRoomName = "Forest Temple Boss Room";
-                Randomizer.Rooms.RoomDict[bossRoomName].Exits[0].SetAsShuffled();
-                Randomizer.Rooms.RoomDict[bossRoomName].Exits[0].SetReplacedEntrance(
-                    GetDungeonEntrance(GetReverseConnectionEntrance(bossRoomName)[0])
-                );
+                    if (pairEntrances)
+                    {
+                        newEntrance = newEntrance.GetReverse();
+                    }
+
+                    Randomizer.Rooms.RoomDict[bossRoomName].Exits[0].Connect(
+                        newEntrance.GetConnectedArea()
+                    );
+                    Randomizer.Rooms.RoomDict[bossRoomName].Exits[0].SetReplacedEntrance(
+                        newEntrance
+                    );
+                }
             }
 
             // If Mirror Chamber is isolated from the world graph, exiting the Stallord room takes you to the reverse connection instead (assuming entrances are paired)

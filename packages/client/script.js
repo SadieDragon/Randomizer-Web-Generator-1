@@ -400,12 +400,30 @@ document
   .getElementById('randomizeStartingPointCheckbox')
   .addEventListener('click', setSettingsString);
   document.getElementById('iliaQuestFieldset').onchange = setSettingsString;
+document.getElementById('mirrorChamberFieldset').onchange =
+  setSettingsString;
+document.getElementById('dungeonERCheckbox').addEventListener('click', setEntranceRandoSettings);
 document
   .getElementById('importSettingsStringButton')
   .addEventListener('click', importSettingsString);
 
 function importSettingsString() {
   parseSettingsString(document.getElementById('settingsStringTextbox').value);
+}
+
+function setEntranceRandoSettings()
+{
+  if (document.getElementById('dungeonERCheckbox').checked)
+  {
+    document.getElementById('mdhCheckbox').checked = true;
+    document.getElementById('mdhCheckbox').disabled = true;
+  }
+  else
+  {
+    document.getElementById('mdhCheckbox').disabled = false;
+  }
+  setSettingsString();
+  
 }
 
 function setSettingsString() {
@@ -1255,6 +1273,8 @@ function populateSSettings(s) {
   $('#hiddenRupeeCheckbox').prop('checked', s.hiddenRupees);
   $('#hcShortcutCheckbox').prop('checked', s.hcShortcut);
   $('#iliaQuestFieldset').val(s.iliaQuest);
+  $('#mirrorChamberFieldset').val(s.mirrorChamber);
+  $('#dungeonERCheckbox').prop('checked', s.dungeonER);
 
   const $excludedChecksParent = $('#baseExcludedChecksListbox');
   s.excludedChecks.forEach((checkNumId) => {

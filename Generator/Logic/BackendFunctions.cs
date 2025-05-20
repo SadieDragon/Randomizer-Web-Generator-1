@@ -457,7 +457,7 @@ namespace TPRandomizer
                 sphereItems.Clear();
                 foreach (Room graphRoom in currentPlaythroughGraph)
                 {
-                    Console.WriteLine("Currently Exploring: " + graphRoom.RoomName);
+                    //Console.WriteLine("Currently Exploring: " + graphRoom.RoomName);
 
                     for (int i = 0; i < graphRoom.Checks.Count; i++)
                     {

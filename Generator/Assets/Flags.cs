@@ -93,7 +93,6 @@ namespace TPRandomizer.Assets
             { 0x0, 0x61 }, // Defeated first bulblin outside link's house
             { 0x0, 0x62 }, // Defeated second bulblin outside link's house
             { 0x0, 0x60 }, // Defeated Hugo
-            { 0x3, 0xBE }, // Impaz in her house
         };
 
         /// <summary>
