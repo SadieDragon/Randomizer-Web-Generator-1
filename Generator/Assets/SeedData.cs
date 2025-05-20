@@ -298,6 +298,8 @@ namespace TPRandomizer.Assets
                 )
             );
 
+            seedHeader.Add(Converter.GcByte((int)randomizerSettings.mirrorChamberEntrance));
+
             while (seedHeader.Count < SeedHeaderSize)
             {
                 seedHeader.Add((byte)0x0);
