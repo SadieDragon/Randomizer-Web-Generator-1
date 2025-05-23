@@ -266,7 +266,7 @@ namespace TPRandomizer
         {
             ConnectedArea = newConnectedArea;
             //Console.WriteLine("Connecting " + this.ParentArea + " to " + ConnectedArea);
-            Randomizer.Rooms.RoomDict[ConnectedArea].Exits.Add(this);
+            //Randomizer.Rooms.RoomDict[ConnectedArea].Exits.Add(this);
             Randomizer.Rooms.RoomDict[this.ParentArea].Exits.Add(this);
         }
 
@@ -686,7 +686,7 @@ namespace TPRandomizer
             );
             entrance.Connect(targetEntrance.Disconnect());
             entrance.SetReplacedEntrance(targetEntrance.GetReplacedEntrance());
-            if ((entrance.GetReplacedEntrance() != null) && !entrance.IsDecoupled())
+            if ((entrance.GetReverse() != null) && !entrance.IsDecoupled())
             {
                 targetEntrance
                     .GetReplacedEntrance()
@@ -936,12 +936,7 @@ namespace TPRandomizer
             EntranceShuffleError err = EntranceShuffleError.NONE;
             err = CheckEntranceCompatibility(entrance, target, rollBacks);
             EntranceShuffleErrorCheck(err);
-            if (err != EntranceShuffleError.NONE)
-            {
-                return err;
-            }
             ChangeConnections(entrance, target);
-
             err = ValidateWorld();
 
             // If the replacement produces an invalid world graph, then undo the connection and try again
@@ -1199,22 +1194,20 @@ namespace TPRandomizer
                     };
                 foreach (string bossRoomName in bossRooms)
                 {
-                    Randomizer.Rooms.RoomDict[bossRoomName].Exits[0].SetAsShuffled();
+                    Entrance bossEntrance = Randomizer.Rooms.RoomDict[bossRoomName].Exits[0];
                     Entrance newEntrance = GetDungeonEntrance(
                         GetReverseConnectionEntrance(bossRoomName)[0]
                     );
 
                     if (pairEntrances)
                     {
-                        newEntrance = newEntrance.GetReverse();
+                        newEntrance = newEntrance.GetReplacedEntrance().GetReverse();
                     }
 
-                    Randomizer.Rooms.RoomDict[bossRoomName].Exits[0].Connect(
-                        newEntrance.GetConnectedArea()
-                    );
-                    Randomizer.Rooms.RoomDict[bossRoomName].Exits[0].SetReplacedEntrance(
-                        newEntrance
-                    );
+                    bossEntrance.Disconnect();
+                    bossEntrance.SetAsShuffled();
+                    bossEntrance.Connect(newEntrance.GetConnectedArea());
+                    bossEntrance.SetReplacedEntrance(newEntrance);
                 }
             }
 
@@ -1225,20 +1218,20 @@ namespace TPRandomizer
             )
             {
                 string bossRoomName = "Arbiters Grounds Boss Room";
-                Randomizer.Rooms.RoomDict[bossRoomName].Exits[0].SetAsShuffled();
+                Entrance bossEntrance = Randomizer.Rooms.RoomDict[bossRoomName].Exits[0];
                 Entrance newEntrance = GetDungeonEntrance(
                     GetReverseConnectionEntrance(bossRoomName)[0]
                 );
 
                 if (pairEntrances)
                 {
-                    newEntrance = newEntrance.GetReverse();
+                    newEntrance = newEntrance.GetReplacedEntrance().GetReverse();
                 }
 
-                Randomizer.Rooms.RoomDict[bossRoomName].Exits[0].Connect(
-                    newEntrance.GetConnectedArea()
-                );
-                Randomizer.Rooms.RoomDict[bossRoomName].Exits[0].SetReplacedEntrance(newEntrance);
+                bossEntrance.Disconnect();
+                bossEntrance.SetAsShuffled();
+                bossEntrance.Connect(newEntrance.GetConnectedArea());
+                bossEntrance.SetReplacedEntrance(newEntrance);
             }
 
             // Handle Mirror Chamber entrance
