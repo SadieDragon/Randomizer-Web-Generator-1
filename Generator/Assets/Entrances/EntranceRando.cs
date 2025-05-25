@@ -195,6 +195,11 @@ namespace TPRandomizer
             return ConnectedArea;
         }
 
+        public string GetOriginalConnectedArea()
+        {
+            return OriginalConnectedArea;
+        }
+
         public string GetParentArea()
         {
             return ParentArea;
@@ -887,7 +892,7 @@ namespace TPRandomizer
                         continue;
                     }
 
-                    err = ReplaceEntrance(entrance, target, rollBacks, rnd);
+                    err = ReplaceEntrance(entrance, target, rollBacks);
                     if (err == EntranceShuffleError.NONE)
                     {
                         break;
@@ -922,8 +927,7 @@ namespace TPRandomizer
         EntranceShuffleError ReplaceEntrance(
             Entrance entrance,
             Entrance target,
-            Dictionary<Entrance, Entrance> rollBacks,
-            Random rnd
+            Dictionary<Entrance, Entrance> rollBacks
         )
         {
             Console.WriteLine(
@@ -1150,7 +1154,7 @@ namespace TPRandomizer
                 }
             }
 
-            return pairedEntrance.PairedEntrance;
+            return pairedEntrance;
         }
 
         // returns all entrances that are connected to a room.
@@ -1201,12 +1205,15 @@ namespace TPRandomizer
 
                     if (pairEntrances)
                     {
-                        newEntrance = newEntrance.GetReplacedEntrance().GetReverse();
+                        newEntrance = newEntrance
+                            .GetReplacedEntrance()
+                            .GetReverse()
+                            .GetReplacedEntrance();
                     }
 
                     bossEntrance.Disconnect();
                     bossEntrance.SetAsShuffled();
-                    bossEntrance.Connect(newEntrance.GetConnectedArea());
+                    bossEntrance.Connect(newEntrance.GetOriginalConnectedArea());
                     bossEntrance.SetReplacedEntrance(newEntrance);
                 }
             }
