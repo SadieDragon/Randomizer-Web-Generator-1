@@ -1354,7 +1354,7 @@ namespace TPRandomizer.Assets
                     4
                 ), // Set the new flag for buying the shield
                 new ARCReplacement(
-                    "5418",
+                    "418",
                     "C493D583",
                     (byte)FileDirectory.Room,
                     (byte)ReplacementType.Instruction,
