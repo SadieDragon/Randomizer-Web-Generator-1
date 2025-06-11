@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Reflection;
 using TPRandomizer.SSettings.Enums;
+using ERLF = LogicFunctionsNS.ERLogicFunctions;
 
 namespace TPRandomizer
 {
@@ -21,6 +22,61 @@ namespace TPRandomizer
         public static bool IsOpenFaronWoods =
             SharedSettings.faronWoodsLogic == FaronWoodsLogic.Open;
         public static bool EldingTwilightCleared = SharedSettings.eldinTwilightCleared;
+
+        public static bool HasReachedRoom(string room)
+        {
+            return ERLF.HasReachedRoom(room);
+        }
+
+        public static bool HasReachedCTGoronShop()
+        {
+            return ERLF.HasReachedCTGoronShop();
+        }
+
+        public static bool HasReachedBarnesBombs()
+        {
+            return ERLF.HasReachedBarnesBombs();
+        }
+
+        public static bool HasReachedEFBombfishGrotto()
+        {
+            return ERLF.HasReachedEFBombfishGrotto();
+        }
+
+        public static bool HasReachedKakMaloMart()
+        {
+            return ERLF.HasReachedKakMaloMart();
+        }
+
+        public static bool HasReachedLakeHylia()
+        {
+            return ERLF.HasReachedLakeHylia();
+        }
+
+        public static bool HasReachedLowerKakVillage()
+        {
+            return ERLF.HasReachedLowerKakVillage();
+        }
+
+        public static bool HasReachedNFaronWoods()
+        {
+            return ERLF.HasReachedNFaronWoods();
+        }
+
+        public static bool HasReachedSCastleTown()
+        {
+            return ERLF.HasReachedSCastleTown();
+        }
+
+        public static bool HasReachedSFaronWoods()
+        {
+            return ERLF.HasReachedSFaronWoods();
+        }
+
+        public static bool HasReachedZorasThroneRoom()
+        {
+            return ERLF.HasReachedZorasThroneRoom();
+        }
 
         //Evaluate the tokenized settings to their respective values that are set by the settings string.
 
@@ -140,13 +196,8 @@ namespace TPRandomizer
         public static bool canGetHotSpringWater()
         {
             return (
-                    Randomizer.Rooms.RoomDict["Lower Kakariko Village"].ReachedByPlaythrough
-                    || (
-                        Randomizer
-                            .Rooms
-                            .RoomDict["Death Mountain Elevator Lower"]
-                            .ReachedByPlaythrough && CanDefeatGoron()
-                    )
+                    HasReachedLowerKakVillage()
+                    || (HasReachedRoom("Death Mountain Elevator Lower") && CanDefeatGoron())
                 ) && HasBottle();
         }
 
@@ -1477,26 +1528,20 @@ namespace TPRandomizer
         {
             return (
                 CanUse(Item.Hylian_Shield)
-                || (
-                    Randomizer.Rooms.RoomDict["Kakariko Malo Mart"].ReachedByPlaythrough
-                    && !ShopsanityEnabled
-                )
-                || (
-                    Randomizer.Rooms.RoomDict["Castle Town Goron House"].ReachedByPlaythrough
-                    && !ShopsanityEnabled
-                )
-                || Randomizer.Rooms.RoomDict["Death Mountain Hot Spring"].ReachedByPlaythrough
+                || (HasReachedKakMaloMart() && !ShopsanityEnabled)
+                || (HasReachedCTGoronShop() && !ShopsanityEnabled)
+                || HasReachedRoom("Death Mountain Hot Spring")
             );
         }
 
         public static bool CanUseBottledFairy()
         {
-            return HasBottle() && Randomizer.Rooms.RoomDict["Lake Hylia"].ReachedByPlaythrough;
+            return HasBottle() && HasReachedLakeHylia();
         }
 
         public static bool CanUseBottledFairies()
         {
-            return HasBottles() && Randomizer.Rooms.RoomDict["Lake Hylia"].ReachedByPlaythrough;
+            return HasBottles() && HasReachedLakeHylia();
         }
 
         public static bool CanUseOilBottle()
@@ -1629,17 +1674,9 @@ namespace TPRandomizer
             return (
                 CanUse(Item.Filled_Bomb_Bag)
                 && (
-                    Randomizer
-                        .Rooms
-                        .RoomDict["Kakariko Barnes Bomb Shop Lower"]
-                        .ReachedByPlaythrough
-                    || (
-                        Randomizer
-                            .Rooms
-                            .RoomDict["Eldin Field Water Bomb Fish Grotto"]
-                            .ReachedByPlaythrough && CanUse(Item.Progressive_Fishing_Rod)
-                    )
-                    || Randomizer.Rooms.RoomDict["City in The Sky Entrance"].ReachedByPlaythrough
+                    HasReachedBarnesBombs()
+                    || (HasReachedEFBombfishGrotto() && CanUse(Item.Progressive_Fishing_Rod))
+                    || HasReachedRoom("City in The Sky Entrance")
                 )
             );
         }
@@ -1652,23 +1689,9 @@ namespace TPRandomizer
             return (
                 CanUse(Item.Filled_Bomb_Bag)
                 && (
-                    Randomizer
-                        .Rooms
-                        .RoomDict["Kakariko Barnes Bomb Shop Lower"]
-                        .ReachedByPlaythrough
-                    || (
-                        Randomizer
-                            .Rooms
-                            .RoomDict["Eldin Field Water Bomb Fish Grotto"]
-                            .ReachedByPlaythrough && CanUse(Item.Progressive_Fishing_Rod)
-                    )
-                    || (
-                        Randomizer
-                            .Rooms
-                            .RoomDict["Kakariko Barnes Bomb Shop Lower"]
-                            .ReachedByPlaythrough
-                        && Randomizer.Rooms.RoomDict["Castle Town Malo Mart"].ReachedByPlaythrough
-                    )
+                    HasReachedBarnesBombs()
+                    || (HasReachedEFBombfishGrotto() && CanUse(Item.Progressive_Fishing_Rod))
+                    || (HasReachedBarnesBombs() && HasReachedRoom("Castle Town Malo Mart"))
                 )
             );
         }
@@ -1679,40 +1702,22 @@ namespace TPRandomizer
         public static bool CanGetArrows()
         {
             return (
-                Randomizer.Rooms.RoomDict["Lost Woods"].ReachedByPlaythrough
-                || (
-                    canCompleteGoronMines()
-                    && Randomizer.Rooms.RoomDict["Kakariko Malo Mart"].ReachedByPlaythrough
-                )
-                || (
-                    Randomizer
-                        .Rooms
-                        .RoomDict["Castle Town Goron House Balcony"]
-                        .ReachedByPlaythrough && !ShopsanityEnabled
-                )
+                HasReachedRoom("Lost Woods")
+                || (canCompleteGoronMines() && HasReachedKakMaloMart())
+                || (HasReachedRoom("Castle Town Goron House Balcony") && !ShopsanityEnabled)
             );
         }
 
         public static bool CanRefillOil()
         {
             return (
-                Randomizer.Rooms.RoomDict["North Faron Woods"].ReachedByPlaythrough
-                || Randomizer.Rooms.RoomDict["South Faron Woods"].ReachedByPlaythrough
-                || Randomizer.Rooms.RoomDict["Arbiters Grounds Entrance"].ReachedByPlaythrough
-                || (
-                    Randomizer.Rooms.RoomDict["Lake Hylia Long Cave"].ReachedByPlaythrough
-                    && canSmash()
-                )
-                || Randomizer.Rooms.RoomDict["Ordon Seras Shop"].ReachedByPlaythrough
-                || (
-                    canCompleteGoronMines()
-                    && Randomizer.Rooms.RoomDict["Lower Kakariko Village"].ReachedByPlaythrough
-                    && CanChangeTime()
-                )
-                || (
-                    Randomizer.Rooms.RoomDict["Castle Town Goron House"].ReachedByPlaythrough
-                    && !ShopsanityEnabled
-                )
+                HasReachedNFaronWoods()
+                || HasReachedSFaronWoods()
+                || HasReachedRoom("Arbiters Grounds Entrance")
+                || (HasReachedRoom("Lake Hylia Long Cave") && canSmash())
+                || HasReachedRoom("Ordon Seras Shop")
+                || (canCompleteGoronMines() && HasReachedLowerKakVillage() && CanChangeTime())
+                || (HasReachedCTGoronShop() && !ShopsanityEnabled)
             );
         }
 
@@ -1721,20 +1726,13 @@ namespace TPRandomizer
         /// </summary>
         public static bool canCompletePrologue()
         {
-            return (
-                (
-                    Randomizer.Rooms.RoomDict["North Faron Woods"].ReachedByPlaythrough
-                    && CanDefeatBokoblin()
-                ) || (SharedSettings.skipPrologue == true)
-            );
+            return (HasReachedNFaronWoods() && CanDefeatBokoblin())
+                || (SharedSettings.skipPrologue == true);
         }
 
         public static bool CanCompleteGoats1()
         {
-            return (
-                Randomizer.Rooms.RoomDict["Ordon Ranch"].ReachedByPlaythrough
-                || canCompletePrologue()
-            );
+            return HasReachedRoom("Ordon Ranch") || canCompletePrologue();
         }
 
         /// <summary>
@@ -1744,10 +1742,7 @@ namespace TPRandomizer
         {
             return (
                 (SharedSettings.skipMdh == true)
-                || (
-                    canCompleteLakebedTemple()
-                    && Randomizer.Rooms.RoomDict["Castle Town South"].ReachedByPlaythrough
-                )
+                || (canCompleteLakebedTemple() && HasReachedSCastleTown())
             );
             //return (canCompleteLakebedTemple() || (SharedSettings.skipMdh == true));
         }
@@ -1782,17 +1777,11 @@ namespace TPRandomizer
             return SharedSettings.faronTwilightCleared
                 || (
                     canCompletePrologue()
-                    && Randomizer.Rooms.RoomDict["South Faron Woods"].ReachedByPlaythrough
-                    && Randomizer
-                        .Rooms
-                        .RoomDict["Faron Woods Coros House Lower"]
-                        .ReachedByPlaythrough
-                    && Randomizer
-                        .Rooms
-                        .RoomDict["Mist Area Near Faron Woods Cave"]
-                        .ReachedByPlaythrough
-                    && Randomizer.Rooms.RoomDict["North Faron Woods"].ReachedByPlaythrough
-                    && Randomizer.Rooms.RoomDict["Ordon Spring"].ReachedByPlaythrough
+                    && HasReachedSFaronWoods()
+                    && HasReachedRoom("Faron Woods Coros House Lower")
+                    && HasReachedRoom("Mist Area Near Faron Woods Cave")
+                    && HasReachedNFaronWoods()
+                    && HasReachedRoom("Ordon Spring")
                     && (
                         !BonksDamageEnabled
                         || (BonksDamageEnabled && (!IsOHKO || CanUseBottledFairies()))
@@ -1807,23 +1796,17 @@ namespace TPRandomizer
         {
             return EldingTwilightCleared
                 || (
-                    Randomizer.Rooms.RoomDict["Faron Field"].ReachedByPlaythrough
-                    && Randomizer.Rooms.RoomDict["Lower Kakariko Village"].ReachedByPlaythrough
-                    && Randomizer.Rooms.RoomDict["Kakariko Graveyard"].ReachedByPlaythrough
-                    && Randomizer.Rooms.RoomDict["Kakariko Malo Mart"].ReachedByPlaythrough
-                    && Randomizer
-                        .Rooms
-                        .RoomDict["Kakariko Barnes Bomb Shop Upper"]
-                        .ReachedByPlaythrough
-                    && Randomizer
-                        .Rooms
-                        .RoomDict["Kakariko Renados Sanctuary Basement"]
-                        .ReachedByPlaythrough
-                    && Randomizer.Rooms.RoomDict["Kakariko Elde Inn"].ReachedByPlaythrough
-                    && Randomizer.Rooms.RoomDict["Kakariko Bug House"].ReachedByPlaythrough
-                    && Randomizer.Rooms.RoomDict["Upper Kakariko Village"].ReachedByPlaythrough
-                    && Randomizer.Rooms.RoomDict["Kakariko Watchtower"].ReachedByPlaythrough
-                    && Randomizer.Rooms.RoomDict["Death Mountain Volcano"].ReachedByPlaythrough
+                    HasReachedRoom("Faron Field")
+                    && HasReachedLowerKakVillage()
+                    && HasReachedRoom("Kakariko Graveyard")
+                    && HasReachedKakMaloMart()
+                    && HasReachedRoom("Kakariko Barnes Bomb Shop Upper")
+                    && HasReachedRoom("Kakariko Renados Sanctuary Basement")
+                    && HasReachedRoom("Kakariko Elde Inn")
+                    && HasReachedRoom("Kakariko Bug House")
+                    && HasReachedRoom("Upper Kakariko Village")
+                    && HasReachedRoom("Kakariko Watchtower")
+                    && HasReachedRoom("Death Mountain Volcano")
                     && (
                         !BonksDamageEnabled
                         || (BonksDamageEnabled && (!IsOHKO || CanUseBottledFairies()))
@@ -1835,16 +1818,13 @@ namespace TPRandomizer
         {
             return SharedSettings.lanayruTwilightCleared
                 || (
-                    (
-                        Randomizer.Rooms.RoomDict["North Eldin Field"].ReachedByPlaythrough
-                        || CanUse(Item.Shadow_Crystal)
-                    )
-                    && Randomizer.Rooms.RoomDict["Zoras Domain"].ReachedByPlaythrough
-                    && Randomizer.Rooms.RoomDict["Zoras Domain Throne Room"].ReachedByPlaythrough
-                    && Randomizer.Rooms.RoomDict["Upper Zoras River"].ReachedByPlaythrough
-                    && Randomizer.Rooms.RoomDict["Lake Hylia"].ReachedByPlaythrough
-                    && Randomizer.Rooms.RoomDict["Lake Hylia Lanayru Spring"].ReachedByPlaythrough
-                    && Randomizer.Rooms.RoomDict["Castle Town South"].ReachedByPlaythrough
+                    (HasReachedRoom("North Eldin Field") || CanUse(Item.Shadow_Crystal))
+                    && HasReachedRoom("Zoras Domain")
+                    && HasReachedZorasThroneRoom()
+                    && HasReachedRoom("Upper Zoras River")
+                    && HasReachedLakeHylia()
+                    && HasReachedRoom("Lake Hylia Lanayru Spring")
+                    && HasReachedSCastleTown()
                     && (
                         !BonksDamageEnabled
                         || (BonksDamageEnabled && (!IsOHKO || CanUseBottledFairies()))
@@ -1857,7 +1837,7 @@ namespace TPRandomizer
             return CanCompleteLanayruTwilight()
                 || (
                     CanCompleteEldinTwilight()
-                    && Randomizer.Rooms.RoomDict["Zoras Domain Throne Room"].ReachedByPlaythrough
+                    && HasReachedZorasThroneRoom()
                     && CanUse(Item.Shadow_Crystal)
                 );
         }
@@ -2185,8 +2165,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDoMapGlitch()
         {
-            return CanUse(Item.Shadow_Crystal)
-                && Randomizer.Rooms.RoomDict["Kakariko Gorge"].ReachedByPlaythrough;
+            return CanUse(Item.Shadow_Crystal) && HasReachedRoom("Kakariko Gorge");
         }
 
         /// <summary>
