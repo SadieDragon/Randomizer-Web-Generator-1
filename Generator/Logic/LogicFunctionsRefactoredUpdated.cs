@@ -78,6 +78,16 @@ namespace TPRandomizer
             return ERLF.HasReachedZorasThroneRoom();
         }
 
+        public static bool HasReachedAnyRooms(List<string> ListOfRooms)
+        {
+            return ERLF.HasReachedAnyRooms(ListOfRooms);
+        }
+
+        public static bool CanUnlockRegionalMap(List<string> RoomsOnMap)
+        {
+            return ERLF.CanUnlockRegionalMap(RoomsOnMap);
+        }
+
         //Evaluate the tokenized settings to their respective values that are set by the settings string.
 
         /// <summary>
@@ -157,37 +167,12 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanChangeTime()
         {
-            if (CanUse(Item.Shadow_Crystal))
-            {
-                // Can change time on any stage with shadow crystal
-                return true;
-            }
-            else
-            {
-                foreach (string timeStage in RoomFunctions.timeFlowStages)
-                {
-                    if (Randomizer.Rooms.RoomDict[timeStage].ReachedByPlaythrough)
-                    {
-                        return true;
-                    }
-                }
-            }
-            return false;
+            return CanUse(Item.Shadow_Crystal) || HasReachedAnyRooms(RoomFunctions.timeFlowStages);
         }
 
         public static bool CanWarp()
         {
-            if (CanUse(Item.Shadow_Crystal))
-            {
-                foreach (string warpStage in RoomFunctions.WarpableStages)
-                {
-                    if (Randomizer.Rooms.RoomDict[warpStage].ReachedByPlaythrough)
-                    {
-                        return true;
-                    }
-                }
-            }
-            return false;
+            return CanUse(Item.Shadow_Crystal) && HasReachedAnyRooms(RoomFunctions.WarpableStages);
         }
 
         /// <summary>
@@ -1949,98 +1934,33 @@ namespace TPRandomizer
 
         public static bool CanUnlockOrdonaMap()
         {
-            if (IsOpenMap)
-            {
-                return true;
-            }
-            foreach (string mapRoom in RoomFunctions.OrdonaMapRooms)
-            {
-                if (Randomizer.Rooms.RoomDict[mapRoom].ReachedByPlaythrough)
-                {
-                    return true;
-                }
-            }
-            return false;
+            return CanUnlockRegionalMap(RoomFunctions.OrdonaMapRooms);
         }
 
         public static bool CanUnlockFaronMap()
         {
-            if (IsOpenMap)
-            {
-                return true;
-            }
-            foreach (string mapRoom in RoomFunctions.FaronMapRooms)
-            {
-                if (Randomizer.Rooms.RoomDict[mapRoom].ReachedByPlaythrough)
-                {
-                    return true;
-                }
-            }
-            return false;
+            return CanUnlockRegionalMap(RoomFunctions.FaronMapRooms);
         }
 
         public static bool CanUnlockEldinMap()
         {
-            if (IsOpenMap)
-            {
-                return true;
-            }
-            foreach (string mapRoom in RoomFunctions.EldinMapRooms)
-            {
-                if (Randomizer.Rooms.RoomDict[mapRoom].ReachedByPlaythrough)
-                {
-                    return true;
-                }
-            }
-            return false;
+            return CanUnlockRegionalMap(RoomFunctions.EldinMapRooms);
         }
 
         public static bool CanUnlockLanayruMap()
         {
-            if (IsOpenMap)
-            {
-                return true;
-            }
-            foreach (string mapRoom in RoomFunctions.LanayruMapRooms)
-            {
-                if (Randomizer.Rooms.RoomDict[mapRoom].ReachedByPlaythrough)
-                {
-                    return true;
-                }
-            }
-            return false;
+            return CanUnlockRegionalMap(RoomFunctions.LanayruMapRooms);
         }
 
         public static bool CanUnlockSnowpeakMap()
         {
-            if (IsOpenMap || SharedSettings.skipSnowpeakEntrance)
-            {
-                return true;
-            }
-            foreach (string mapRoom in RoomFunctions.SnowpeakMapRooms)
-            {
-                if (Randomizer.Rooms.RoomDict[mapRoom].ReachedByPlaythrough)
-                {
-                    return true;
-                }
-            }
-            return false;
+            return SharedSettings.skipSnowpeakEntrance
+                || CanUnlockRegionalMap(RoomFunctions.SnowpeakMapRooms);
         }
 
         public static bool CanUnlockGerudoMap()
         {
-            if (IsOpenMap)
-            {
-                return true;
-            }
-            foreach (string mapRoom in RoomFunctions.GerudoMapRooms)
-            {
-                if (Randomizer.Rooms.RoomDict[mapRoom].ReachedByPlaythrough)
-                {
-                    return true;
-                }
-            }
-            return false;
+            return CanUnlockRegionalMap(RoomFunctions.GerudoMapRooms);
         }
 
         /// <summary>
