@@ -8,8 +8,19 @@ namespace TPRandomizer
     /// <summary>
     /// summary text.
     /// </summary>
-    public class LogicFunctionsUpdated
+    public class LogicFunctionsUpdatedRefactored
     {
+        // Placeholder notes for what's on the bridge
+        public static SharedSettings SharedSettings = Randomizer.SSettings;
+        public static bool IsGlitchedLogic = SharedSettings.logicRules == LogicRules.Glitched;
+        public static bool ShopsanityEnabled = SharedSettings.shuffleShopItems;
+        public static bool IsKeysy = SharedSettings.smallKeySettings == SmallKeySettings.Keysy;
+        public static bool BonksDamageEnabled = SharedSettings.bonksDoDamage;
+        public static bool IsOHKO = SharedSettings.damageMagnification == DamageMagnification.OHKO;
+        public static bool IsOpenMap = SharedSettings.openMap;
+        public static bool IsOpenFaronWoods = SharedSettings.faronWoodsLogic == FaronWoodsLogic.Open;
+        public static bool EldingTwilightCleared = SharedSettings.eldinTwilightCleared;
+
         //Evaluate the tokenized settings to their respective values that are set by the settings string.
 
         /// <summary>
@@ -17,12 +28,13 @@ namespace TPRandomizer
         /// </summary>
         public static bool EvaluateSetting(string setting, string value)
         {
-            PropertyInfo[] settingProperties = Randomizer.SSettings.GetType().GetProperties();
+            PropertyInfo[] settingProperties = SharedSettings.GetType().GetProperties();
+
             setting = setting.Replace("Setting.", "");
             bool isEqual = false;
             foreach (PropertyInfo property in settingProperties)
             {
-                var settingValue = property.GetValue(Randomizer.SSettings, null);
+                var settingValue = property.GetValue(SharedSettings, null);
                 if ((property.Name == setting) && (value == settingValue.ToString()))
                 {
                     isEqual = true;
@@ -315,7 +327,7 @@ namespace TPRandomizer
             return (
                 (
                     CanUse(Item.Iron_Boots)
-                    || Randomizer.SSettings.logicRules == LogicRules.Glitched
+                    || IsGlitchedLogic
                         && CanUse(Item.Magic_Armor)
                 )
                 && (
@@ -1418,7 +1430,7 @@ namespace TPRandomizer
                     && (
                         CanUse(Item.Zora_Armor)
                         || (
-                            Randomizer.SSettings.logicRules == LogicRules.Glitched
+                            IsGlitchedLogic
                             && CanDoAirRefill()
                         )
                     )
@@ -1475,11 +1487,11 @@ namespace TPRandomizer
                 CanUse(Item.Hylian_Shield)
                 || (
                     Randomizer.Rooms.RoomDict["Kakariko Malo Mart"].ReachedByPlaythrough
-                    && !Randomizer.SSettings.shuffleShopItems
+                    && !ShopsanityEnabled
                 )
                 || (
                     Randomizer.Rooms.RoomDict["Castle Town Goron House"].ReachedByPlaythrough
-                    && !Randomizer.SSettings.shuffleShopItems
+                    && !ShopsanityEnabled
                 )
                 || Randomizer.Rooms.RoomDict["Death Mountain Hot Spring"].ReachedByPlaythrough
             );
@@ -1546,7 +1558,7 @@ namespace TPRandomizer
                     )
                 )
                 || (
-                    Randomizer.SSettings.logicRules == LogicRules.Glitched
+                    IsGlitchedLogic
                     && ((HasSword() && CanDoMoonBoots()) || CanDoBSMoonBoots())
                 )
             );
@@ -1592,7 +1604,7 @@ namespace TPRandomizer
                 && (
                     CanUse(Item.Lantern)
                     || (
-                        (Randomizer.SSettings.smallKeySettings == SmallKeySettings.Keysy)
+                        IsKeysy
                         && (hasBombs() || CanUse(Item.Iron_Boots))
                     )
                 )
@@ -1601,7 +1613,7 @@ namespace TPRandomizer
                 && CanDefeatBokoblin()
                 && (
                     (getItemCount(Item.Forest_Temple_Small_Key) >= 4)
-                    || (Randomizer.SSettings.smallKeySettings == SmallKeySettings.Keysy)
+                    || IsKeysy
                 )
             );
         }
@@ -1690,7 +1702,7 @@ namespace TPRandomizer
                 || (
                     Randomizer.Rooms.RoomDict[
                         "Castle Town Goron House Balcony"
-                    ].ReachedByPlaythrough && !Randomizer.SSettings.shuffleShopItems
+                    ].ReachedByPlaythrough && !ShopsanityEnabled
                 )
             );
         }
@@ -1713,7 +1725,7 @@ namespace TPRandomizer
                 )
                 || (
                     Randomizer.Rooms.RoomDict["Castle Town Goron House"].ReachedByPlaythrough
-                    && !Randomizer.SSettings.shuffleShopItems
+                    && !ShopsanityEnabled
                 )
             );
         }
@@ -1727,7 +1739,7 @@ namespace TPRandomizer
                 (
                     Randomizer.Rooms.RoomDict["North Faron Woods"].ReachedByPlaythrough
                     && CanDefeatBokoblin()
-                ) || (Randomizer.SSettings.skipPrologue == true)
+                ) || (SharedSettings.skipPrologue == true)
             );
         }
 
@@ -1745,13 +1757,13 @@ namespace TPRandomizer
         public static bool CanCompleteMDH()
         {
             return (
-                (Randomizer.SSettings.skipMdh == true)
+                (SharedSettings.skipMdh == true)
                 || (
                     canCompleteLakebedTemple()
                     && Randomizer.Rooms.RoomDict["Castle Town South"].ReachedByPlaythrough
                 )
             );
-            //return (canCompleteLakebedTemple() || (Randomizer.SSettings.skipMdh == true));
+            //return (canCompleteLakebedTemple() || (SharedSettings.skipMdh == true));
         }
 
         public static bool CanMidnaCharge()
@@ -1761,7 +1773,7 @@ namespace TPRandomizer
 
         public static bool CanStrikePedestal()
         {
-            return getItemCount(Item.Progressive_Sword) >= (int)Randomizer.SSettings.totEntrance;
+            return getItemCount(Item.Progressive_Sword) >= (int)SharedSettings.totEntrance;
         }
 
         /// <summary>
@@ -1770,10 +1782,7 @@ namespace TPRandomizer
         public static bool canClearForest()
         {
             return (
-                (
-                    canCompleteForestTemple()
-                    || (Randomizer.SSettings.faronWoodsLogic == FaronWoodsLogic.Open)
-                )
+                (canCompleteForestTemple() || IsOpenFaronWoods)
                 && canCompletePrologue()
                 && CanCompleteFaronTwilight()
             );
@@ -1784,7 +1793,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanCompleteFaronTwilight()
         {
-            return Randomizer.SSettings.faronTwilightCleared
+            return SharedSettings.faronTwilightCleared
                 || (
                     canCompletePrologue()
                     && Randomizer.Rooms.RoomDict["South Faron Woods"].ReachedByPlaythrough
@@ -1797,15 +1806,10 @@ namespace TPRandomizer
                     && Randomizer.Rooms.RoomDict["North Faron Woods"].ReachedByPlaythrough
                     && Randomizer.Rooms.RoomDict["Ordon Spring"].ReachedByPlaythrough
                     && (
-                        !Randomizer.SSettings.bonksDoDamage
+                        !BonksDamageEnabled
                         || (
-                            Randomizer.SSettings.bonksDoDamage
-                            && (
-                                (
-                                    Randomizer.SSettings.damageMagnification
-                                    != DamageMagnification.OHKO
-                                ) || CanUseBottledFairies()
-                            )
+                            BonksDamageEnabled
+                            && (!IsOHKO || CanUseBottledFairies())
                         )
                     )
                 );
@@ -1816,7 +1820,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanCompleteEldinTwilight()
         {
-            return Randomizer.SSettings.eldinTwilightCleared
+            return EldingTwilightCleared
                 || (
                     Randomizer.Rooms.RoomDict["Faron Field"].ReachedByPlaythrough
                     && Randomizer.Rooms.RoomDict["Lower Kakariko Village"].ReachedByPlaythrough
@@ -1834,15 +1838,10 @@ namespace TPRandomizer
                     && Randomizer.Rooms.RoomDict["Kakariko Watchtower"].ReachedByPlaythrough
                     && Randomizer.Rooms.RoomDict["Death Mountain Volcano"].ReachedByPlaythrough
                     && (
-                        !Randomizer.SSettings.bonksDoDamage
+                        !BonksDamageEnabled
                         || (
-                            Randomizer.SSettings.bonksDoDamage
-                            && (
-                                (
-                                    Randomizer.SSettings.damageMagnification
-                                    != DamageMagnification.OHKO
-                                ) || CanUseBottledFairies()
-                            )
+                            BonksDamageEnabled
+                            && (!IsOHKO || CanUseBottledFairies())
                         )
                     )
                 );
@@ -1850,7 +1849,7 @@ namespace TPRandomizer
 
         public static bool CanCompleteLanayruTwilight()
         {
-            return Randomizer.SSettings.lanayruTwilightCleared
+            return SharedSettings.lanayruTwilightCleared
                 || (
                     (
                         Randomizer.Rooms.RoomDict["North Eldin Field"].ReachedByPlaythrough
@@ -1863,18 +1862,13 @@ namespace TPRandomizer
                     && Randomizer.Rooms.RoomDict["Lake Hylia Lanayru Spring"].ReachedByPlaythrough
                     && Randomizer.Rooms.RoomDict["Castle Town South"].ReachedByPlaythrough
                     && (
-                        !Randomizer.SSettings.bonksDoDamage
+                        !BonksDamageEnabled
                         || (
-                            Randomizer.SSettings.bonksDoDamage
-                            && (
-                                (
-                                    Randomizer.SSettings.damageMagnification
-                                    != DamageMagnification.OHKO
-                                ) || CanUseBottledFairies()
+                            BonksDamageEnabled
+                            && (!IsOHKO || CanUseBottledFairies())
                             )
                         )
-                    )
-                );
+                    );
         }
 
         public static bool CanWarpMeteor()
@@ -1994,7 +1988,7 @@ namespace TPRandomizer
 
         public static bool CanUnlockOrdonaMap()
         {
-            if (Randomizer.SSettings.openMap)
+            if (IsOpenMap)
             {
                 return true;
             }
@@ -2010,7 +2004,7 @@ namespace TPRandomizer
 
         public static bool CanUnlockFaronMap()
         {
-            if (Randomizer.SSettings.openMap)
+            if (IsOpenMap)
             {
                 return true;
             }
@@ -2026,7 +2020,7 @@ namespace TPRandomizer
 
         public static bool CanUnlockEldinMap()
         {
-            if (Randomizer.SSettings.openMap)
+            if (IsOpenMap)
             {
                 return true;
             }
@@ -2042,7 +2036,7 @@ namespace TPRandomizer
 
         public static bool CanUnlockLanayruMap()
         {
-            if (Randomizer.SSettings.openMap)
+            if (IsOpenMap)
             {
                 return true;
             }
@@ -2058,7 +2052,7 @@ namespace TPRandomizer
 
         public static bool CanUnlockSnowpeakMap()
         {
-            if (Randomizer.SSettings.openMap || Randomizer.SSettings.skipSnowpeakEntrance)
+            if (IsOpenMap || SharedSettings.skipSnowpeakEntrance)
             {
                 return true;
             }
@@ -2074,7 +2068,7 @@ namespace TPRandomizer
 
         public static bool CanUnlockGerudoMap()
         {
-            if (Randomizer.SSettings.openMap)
+            if (IsOpenMap)
             {
                 return true;
             }
@@ -2103,7 +2097,7 @@ namespace TPRandomizer
         public static bool CanDoNicheStuff()
         {
             // TODO: Change to use setting once it's made
-            return Randomizer.SSettings.logicRules == LogicRules.Glitched;
+            return IsGlitchedLogic;
         }
 
         public static bool CanUseBacksliceAsSword()
@@ -2338,7 +2332,7 @@ namespace TPRandomizer
             return (
                 canCompletePrologue()
                 && (
-                    (Randomizer.SSettings.faronWoodsLogic == FaronWoodsLogic.Open)
+                    IsOpenFaronWoods
                     || (canCompleteForestTemple() || CanDoLJA() || CanDoMapGlitch())
                 )
             );
@@ -2349,7 +2343,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanCompleteEldinTwilightGlitched()
         {
-            return Randomizer.SSettings.eldinTwilightCleared || canClearForestGlitched();
+            return EldingTwilightCleared || canClearForestGlitched();
         }
 
         /// <summary>
@@ -2357,7 +2351,7 @@ namespace TPRandomizer
         ///
         public static bool CanSkipKeyToDekuToad()
         {
-            return Randomizer.SSettings.smallKeySettings == SmallKeySettings.Keysy
+            return IsKeysy
                 || getItemCount(Item.Progressive_Hidden_Skill) >= 3
                 || CanDoBSMoonBoots()
                 || CanDoJSMoonBoots()
