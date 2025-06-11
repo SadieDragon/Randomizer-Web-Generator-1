@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using TPRandomizer.SSettings.Enums;
 using ERLF = LogicFunctionsNS.ERLogicFunctions;
+using HLF = LogicFunctionsNS.HelperFunctions;
 
 namespace TPRandomizer
 {
@@ -16,7 +17,6 @@ namespace TPRandomizer
         public static bool IsGlitchedLogic = SharedSettings.logicRules == LogicRules.Glitched;
         public static bool ShopsanityEnabled = SharedSettings.shuffleShopItems;
         public static bool IsKeysy = SharedSettings.smallKeySettings == SmallKeySettings.Keysy;
-        public static bool BonksDamageEnabled = SharedSettings.bonksDoDamage;
         public static bool IsOHKO = SharedSettings.damageMagnification == DamageMagnification.OHKO;
         public static bool IsOpenMap = SharedSettings.openMap;
         public static bool IsOpenFaronWoods =
@@ -86,6 +86,11 @@ namespace TPRandomizer
         public static bool CanUnlockRegionalMap(List<string> RoomsOnMap)
         {
             return ERLF.CanUnlockRegionalMap(RoomsOnMap);
+        }
+
+        public static bool CanSurviveBonkDamage()
+        {
+            return HLF.CanSurviveBonkDamage();
         }
 
         //Evaluate the tokenized settings to their respective values that are set by the settings string.
@@ -1767,10 +1772,7 @@ namespace TPRandomizer
                     && HasReachedRoom("Mist Area Near Faron Woods Cave")
                     && HasReachedNFaronWoods()
                     && HasReachedRoom("Ordon Spring")
-                    && (
-                        !BonksDamageEnabled
-                        || (BonksDamageEnabled && (!IsOHKO || CanUseBottledFairies()))
-                    )
+                    && CanSurviveBonkDamage()
                 );
         }
 
@@ -1792,10 +1794,7 @@ namespace TPRandomizer
                     && HasReachedRoom("Upper Kakariko Village")
                     && HasReachedRoom("Kakariko Watchtower")
                     && HasReachedRoom("Death Mountain Volcano")
-                    && (
-                        !BonksDamageEnabled
-                        || (BonksDamageEnabled && (!IsOHKO || CanUseBottledFairies()))
-                    )
+                    && CanSurviveBonkDamage()
                 );
         }
 
@@ -1810,10 +1809,7 @@ namespace TPRandomizer
                     && HasReachedLakeHylia()
                     && HasReachedRoom("Lake Hylia Lanayru Spring")
                     && HasReachedSCastleTown()
-                    && (
-                        !BonksDamageEnabled
-                        || (BonksDamageEnabled && (!IsOHKO || CanUseBottledFairies()))
-                    )
+                    && CanSurviveBonkDamage()
                 );
         }
 
