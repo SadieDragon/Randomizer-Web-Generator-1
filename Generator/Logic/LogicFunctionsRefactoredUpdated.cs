@@ -18,7 +18,8 @@ namespace TPRandomizer
         public static bool BonksDamageEnabled = SharedSettings.bonksDoDamage;
         public static bool IsOHKO = SharedSettings.damageMagnification == DamageMagnification.OHKO;
         public static bool IsOpenMap = SharedSettings.openMap;
-        public static bool IsOpenFaronWoods = SharedSettings.faronWoodsLogic == FaronWoodsLogic.Open;
+        public static bool IsOpenFaronWoods =
+            SharedSettings.faronWoodsLogic == FaronWoodsLogic.Open;
         public static bool EldingTwilightCleared = SharedSettings.eldinTwilightCleared;
 
         //Evaluate the tokenized settings to their respective values that are set by the settings string.
@@ -141,9 +142,10 @@ namespace TPRandomizer
             return (
                     Randomizer.Rooms.RoomDict["Lower Kakariko Village"].ReachedByPlaythrough
                     || (
-                        Randomizer.Rooms.RoomDict[
-                            "Death Mountain Elevator Lower"
-                        ].ReachedByPlaythrough && CanDefeatGoron()
+                        Randomizer
+                            .Rooms
+                            .RoomDict["Death Mountain Elevator Lower"]
+                            .ReachedByPlaythrough && CanDefeatGoron()
                     )
                 ) && HasBottle();
         }
@@ -325,11 +327,7 @@ namespace TPRandomizer
         public static bool CanDefeatBombfish()
         {
             return (
-                (
-                    CanUse(Item.Iron_Boots)
-                    || IsGlitchedLogic
-                        && CanUse(Item.Magic_Armor)
-                )
+                (CanUse(Item.Iron_Boots) || IsGlitchedLogic && CanUse(Item.Magic_Armor))
                 && (
                     HasSword()
                     || CanUse(Item.Progressive_Clawshot)
@@ -1427,13 +1425,7 @@ namespace TPRandomizer
                     && CanUse(Item.Progressive_Clawshot)
                     && CanUse(Item.Ball_and_Chain)
                     && (CanUse(Item.Iron_Boots) || (CanDoNicheStuff() && CanUse(Item.Magic_Armor)))
-                    && (
-                        CanUse(Item.Zora_Armor)
-                        || (
-                            IsGlitchedLogic
-                            && CanDoAirRefill()
-                        )
-                    )
+                    && (CanUse(Item.Zora_Armor) || (IsGlitchedLogic && CanDoAirRefill()))
                 )
             );
         }
@@ -1557,10 +1549,7 @@ namespace TPRandomizer
                         || (HasSword() && getItemCount(Item.Progressive_Hidden_Skill) >= 6)
                     )
                 )
-                || (
-                    IsGlitchedLogic
-                    && ((HasSword() && CanDoMoonBoots()) || CanDoBSMoonBoots())
-                )
+                || (IsGlitchedLogic && ((HasSword() && CanDoMoonBoots()) || CanDoBSMoonBoots()))
             );
         }
 
@@ -1601,20 +1590,11 @@ namespace TPRandomizer
         {
             return (
                 canBreakMonkeyCage()
-                && (
-                    CanUse(Item.Lantern)
-                    || (
-                        IsKeysy
-                        && (hasBombs() || CanUse(Item.Iron_Boots))
-                    )
-                )
+                && (CanUse(Item.Lantern) || (IsKeysy && (hasBombs() || CanUse(Item.Iron_Boots))))
                 && canBurnWebs()
                 && CanUse(Item.Boomerang)
                 && CanDefeatBokoblin()
-                && (
-                    (getItemCount(Item.Forest_Temple_Small_Key) >= 4)
-                    || IsKeysy
-                )
+                && ((getItemCount(Item.Forest_Temple_Small_Key) >= 4) || IsKeysy)
             );
         }
 
@@ -1649,13 +1629,15 @@ namespace TPRandomizer
             return (
                 CanUse(Item.Filled_Bomb_Bag)
                 && (
-                    Randomizer.Rooms.RoomDict[
-                        "Kakariko Barnes Bomb Shop Lower"
-                    ].ReachedByPlaythrough
+                    Randomizer
+                        .Rooms
+                        .RoomDict["Kakariko Barnes Bomb Shop Lower"]
+                        .ReachedByPlaythrough
                     || (
-                        Randomizer.Rooms.RoomDict[
-                            "Eldin Field Water Bomb Fish Grotto"
-                        ].ReachedByPlaythrough && CanUse(Item.Progressive_Fishing_Rod)
+                        Randomizer
+                            .Rooms
+                            .RoomDict["Eldin Field Water Bomb Fish Grotto"]
+                            .ReachedByPlaythrough && CanUse(Item.Progressive_Fishing_Rod)
                     )
                     || Randomizer.Rooms.RoomDict["City in The Sky Entrance"].ReachedByPlaythrough
                 )
@@ -1670,18 +1652,21 @@ namespace TPRandomizer
             return (
                 CanUse(Item.Filled_Bomb_Bag)
                 && (
-                    Randomizer.Rooms.RoomDict[
-                        "Kakariko Barnes Bomb Shop Lower"
-                    ].ReachedByPlaythrough
+                    Randomizer
+                        .Rooms
+                        .RoomDict["Kakariko Barnes Bomb Shop Lower"]
+                        .ReachedByPlaythrough
                     || (
-                        Randomizer.Rooms.RoomDict[
-                            "Eldin Field Water Bomb Fish Grotto"
-                        ].ReachedByPlaythrough && CanUse(Item.Progressive_Fishing_Rod)
+                        Randomizer
+                            .Rooms
+                            .RoomDict["Eldin Field Water Bomb Fish Grotto"]
+                            .ReachedByPlaythrough && CanUse(Item.Progressive_Fishing_Rod)
                     )
                     || (
-                        Randomizer.Rooms.RoomDict[
-                            "Kakariko Barnes Bomb Shop Lower"
-                        ].ReachedByPlaythrough
+                        Randomizer
+                            .Rooms
+                            .RoomDict["Kakariko Barnes Bomb Shop Lower"]
+                            .ReachedByPlaythrough
                         && Randomizer.Rooms.RoomDict["Castle Town Malo Mart"].ReachedByPlaythrough
                     )
                 )
@@ -1700,9 +1685,10 @@ namespace TPRandomizer
                     && Randomizer.Rooms.RoomDict["Kakariko Malo Mart"].ReachedByPlaythrough
                 )
                 || (
-                    Randomizer.Rooms.RoomDict[
-                        "Castle Town Goron House Balcony"
-                    ].ReachedByPlaythrough && !ShopsanityEnabled
+                    Randomizer
+                        .Rooms
+                        .RoomDict["Castle Town Goron House Balcony"]
+                        .ReachedByPlaythrough && !ShopsanityEnabled
                 )
             );
         }
@@ -1797,20 +1783,19 @@ namespace TPRandomizer
                 || (
                     canCompletePrologue()
                     && Randomizer.Rooms.RoomDict["South Faron Woods"].ReachedByPlaythrough
-                    && Randomizer.Rooms.RoomDict[
-                        "Faron Woods Coros House Lower"
-                    ].ReachedByPlaythrough
-                    && Randomizer.Rooms.RoomDict[
-                        "Mist Area Near Faron Woods Cave"
-                    ].ReachedByPlaythrough
+                    && Randomizer
+                        .Rooms
+                        .RoomDict["Faron Woods Coros House Lower"]
+                        .ReachedByPlaythrough
+                    && Randomizer
+                        .Rooms
+                        .RoomDict["Mist Area Near Faron Woods Cave"]
+                        .ReachedByPlaythrough
                     && Randomizer.Rooms.RoomDict["North Faron Woods"].ReachedByPlaythrough
                     && Randomizer.Rooms.RoomDict["Ordon Spring"].ReachedByPlaythrough
                     && (
                         !BonksDamageEnabled
-                        || (
-                            BonksDamageEnabled
-                            && (!IsOHKO || CanUseBottledFairies())
-                        )
+                        || (BonksDamageEnabled && (!IsOHKO || CanUseBottledFairies()))
                     )
                 );
         }
@@ -1826,12 +1811,14 @@ namespace TPRandomizer
                     && Randomizer.Rooms.RoomDict["Lower Kakariko Village"].ReachedByPlaythrough
                     && Randomizer.Rooms.RoomDict["Kakariko Graveyard"].ReachedByPlaythrough
                     && Randomizer.Rooms.RoomDict["Kakariko Malo Mart"].ReachedByPlaythrough
-                    && Randomizer.Rooms.RoomDict[
-                        "Kakariko Barnes Bomb Shop Upper"
-                    ].ReachedByPlaythrough
-                    && Randomizer.Rooms.RoomDict[
-                        "Kakariko Renados Sanctuary Basement"
-                    ].ReachedByPlaythrough
+                    && Randomizer
+                        .Rooms
+                        .RoomDict["Kakariko Barnes Bomb Shop Upper"]
+                        .ReachedByPlaythrough
+                    && Randomizer
+                        .Rooms
+                        .RoomDict["Kakariko Renados Sanctuary Basement"]
+                        .ReachedByPlaythrough
                     && Randomizer.Rooms.RoomDict["Kakariko Elde Inn"].ReachedByPlaythrough
                     && Randomizer.Rooms.RoomDict["Kakariko Bug House"].ReachedByPlaythrough
                     && Randomizer.Rooms.RoomDict["Upper Kakariko Village"].ReachedByPlaythrough
@@ -1839,10 +1826,7 @@ namespace TPRandomizer
                     && Randomizer.Rooms.RoomDict["Death Mountain Volcano"].ReachedByPlaythrough
                     && (
                         !BonksDamageEnabled
-                        || (
-                            BonksDamageEnabled
-                            && (!IsOHKO || CanUseBottledFairies())
-                        )
+                        || (BonksDamageEnabled && (!IsOHKO || CanUseBottledFairies()))
                     )
                 );
         }
@@ -1863,12 +1847,9 @@ namespace TPRandomizer
                     && Randomizer.Rooms.RoomDict["Castle Town South"].ReachedByPlaythrough
                     && (
                         !BonksDamageEnabled
-                        || (
-                            BonksDamageEnabled
-                            && (!IsOHKO || CanUseBottledFairies())
-                            )
-                        )
-                    );
+                        || (BonksDamageEnabled && (!IsOHKO || CanUseBottledFairies()))
+                    )
+                );
         }
 
         public static bool CanWarpMeteor()
