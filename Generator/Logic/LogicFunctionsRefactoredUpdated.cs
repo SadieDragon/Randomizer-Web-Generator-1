@@ -103,6 +103,11 @@ namespace TPRandomizer
             return HLF.CanShieldAttack();
         }
 
+        public static bool HasBackslice()
+        {
+            return HLF.HasBackslice();
+        }
+
         //Evaluate the tokenized settings to their respective values that are set by the settings string.
 
         /// <summary>
@@ -1981,7 +1986,7 @@ namespace TPRandomizer
 
         public static bool CanUseBacksliceAsSword()
         {
-            return CanDoNicheStuff() && getItemCount(Item.Progressive_Hidden_Skill) >= 3;
+            return CanDoNicheStuff() && HasBackslice();
         }
 
         public static bool CanGetBugWithLantern()
@@ -1997,8 +2002,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool HasSwordOrBS()
         {
-            return CanUse(Item.Progressive_Sword)
-                || getItemCount(Item.Progressive_Hidden_Skill) >= 3;
+            return CanUse(Item.Progressive_Sword) || HasBackslice();
         }
 
         /// <summary>
@@ -2134,7 +2138,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDoBSMoonBoots()
         {
-            return getItemCount(Item.Progressive_Hidden_Skill) >= 3 && CanUse(Item.Magic_Armor);
+            return HasBackslice() && CanUse(Item.Magic_Armor);
         }
 
         /// <summary>
@@ -2230,7 +2234,7 @@ namespace TPRandomizer
         public static bool CanSkipKeyToDekuToad()
         {
             return IsKeysy
-                || getItemCount(Item.Progressive_Hidden_Skill) >= 3
+                || HasBackslice()
                 || CanDoBSMoonBoots()
                 || CanDoJSMoonBoots()
                 || CanDoLJA()

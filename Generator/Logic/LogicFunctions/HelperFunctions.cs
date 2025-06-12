@@ -6,6 +6,12 @@ namespace LogicFunctionsNS
 {
     class HelperFunctions
     {
+        // wrappers to later be removed
+        public static int GetItemCount(Item ItemToBeCounted)
+        {
+            return LF.getItemCount(ItemToBeCounted);
+        }
+
         // Shorthand for the SharedSettings
         public static SharedSettings SSettings = Randomizer.SSettings;
 
@@ -27,12 +33,17 @@ namespace LogicFunctionsNS
 
         public static bool HasShieldAttack()
         {
-            return LF.getItemCount(Item.Progressive_Hidden_Skill) >= 2;
+            return GetItemCount(Item.Progressive_Hidden_Skill) >= 2;
         }
 
         public static bool CanShieldAttack()
         {
             return LF.hasShield() && HasShieldAttack();
+        }
+
+        public static bool HasBackslice()
+        {
+            return GetItemCount(Item.Progressive_Hidden_Skill) >= 3;
         }
     }
 }
