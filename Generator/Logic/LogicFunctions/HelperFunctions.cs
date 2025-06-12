@@ -2,6 +2,11 @@ using TPRandomizer;
 using TPRandomizer.SSettings.Enums;
 using LF = TPRandomizer.LogicFunctionsUpdatedRefactored;
 
+// Notes:
+//   - Can I break this down?
+//     - Hidden Skill counting
+//     - General item counting (Sword, claws, active dr)
+
 namespace LogicFunctionsNS
 {
     class HelperFunctions

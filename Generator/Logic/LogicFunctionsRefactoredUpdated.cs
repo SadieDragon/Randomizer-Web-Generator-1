@@ -17,101 +17,9 @@ namespace TPRandomizer
         public static bool IsGlitchedLogic = SharedSettings.logicRules == LogicRules.Glitched;
         public static bool ShopsanityEnabled = SharedSettings.shuffleShopItems;
         public static bool IsKeysy = SharedSettings.smallKeySettings == SmallKeySettings.Keysy;
-        public static bool IsOHKO = SharedSettings.damageMagnification == DamageMagnification.OHKO;
-        public static bool IsOpenMap = SharedSettings.openMap;
         public static bool IsOpenFaronWoods =
             SharedSettings.faronWoodsLogic == FaronWoodsLogic.Open;
         public static bool EldingTwilightCleared = SharedSettings.eldinTwilightCleared;
-
-        public static bool HasReachedRoom(string room)
-        {
-            return ERLF.HasReachedRoom(room);
-        }
-
-        public static bool HasReachedCTGoronShop()
-        {
-            return ERLF.HasReachedCTGoronShop();
-        }
-
-        public static bool HasReachedBarnesBombs()
-        {
-            return ERLF.HasReachedBarnesBombs();
-        }
-
-        public static bool HasReachedEFBombfishGrotto()
-        {
-            return ERLF.HasReachedEFBombfishGrotto();
-        }
-
-        public static bool HasReachedKakMaloMart()
-        {
-            return ERLF.HasReachedKakMaloMart();
-        }
-
-        public static bool HasReachedLakeHylia()
-        {
-            return ERLF.HasReachedLakeHylia();
-        }
-
-        public static bool HasReachedLowerKakVillage()
-        {
-            return ERLF.HasReachedLowerKakVillage();
-        }
-
-        public static bool HasReachedNFaronWoods()
-        {
-            return ERLF.HasReachedNFaronWoods();
-        }
-
-        public static bool HasReachedSCastleTown()
-        {
-            return ERLF.HasReachedSCastleTown();
-        }
-
-        public static bool HasReachedSFaronWoods()
-        {
-            return ERLF.HasReachedSFaronWoods();
-        }
-
-        public static bool HasReachedZorasThroneRoom()
-        {
-            return ERLF.HasReachedZorasThroneRoom();
-        }
-
-        public static bool HasReachedAnyRooms(List<string> ListOfRooms)
-        {
-            return ERLF.HasReachedAnyRooms(ListOfRooms);
-        }
-
-        public static bool CanUnlockRegionalMap(List<string> RoomsOnMap)
-        {
-            return ERLF.CanUnlockRegionalMap(RoomsOnMap);
-        }
-
-        public static bool CanSurviveBonkDamage()
-        {
-            return HLF.CanSurviveBonkDamage();
-        }
-
-        public static bool HasShieldAttack()
-        {
-            return HLF.HasShieldAttack();
-        }
-
-        public static bool CanShieldAttack()
-        {
-            return HLF.CanShieldAttack();
-        }
-
-        public static bool HasBackslice()
-        {
-            return HLF.HasBackslice();
-        }
-
-        public static bool HasJumpStrike()
-        {
-            return HLF.HasJumpStrike();
-        }
 
         //Evaluate the tokenized settings to their respective values that are set by the settings string.
 
@@ -192,12 +100,14 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanChangeTime()
         {
-            return CanUse(Item.Shadow_Crystal) || HasReachedAnyRooms(RoomFunctions.timeFlowStages);
+            return CanUse(Item.Shadow_Crystal)
+                || ERLF.HasReachedAnyRooms(RoomFunctions.timeFlowStages);
         }
 
         public static bool CanWarp()
         {
-            return CanUse(Item.Shadow_Crystal) && HasReachedAnyRooms(RoomFunctions.WarpableStages);
+            return CanUse(Item.Shadow_Crystal)
+                && ERLF.HasReachedAnyRooms(RoomFunctions.WarpableStages);
         }
 
         /// <summary>
@@ -206,8 +116,8 @@ namespace TPRandomizer
         public static bool canGetHotSpringWater()
         {
             return (
-                    HasReachedLowerKakVillage()
-                    || (HasReachedRoom("Death Mountain Elevator Lower") && CanDefeatGoron())
+                    ERLF.HasReachedLowerKakVillage()
+                    || (ERLF.HasReachedRoom("Death Mountain Elevator Lower") && CanDefeatGoron())
                 ) && HasBottle();
         }
 
@@ -389,7 +299,7 @@ namespace TPRandomizer
         {
             return (
                 (CanUse(Item.Iron_Boots) || IsGlitchedLogic && CanUse(Item.Magic_Armor))
-                && (HasSword() || CanUse(Item.Progressive_Clawshot) || CanShieldAttack())
+                && (HasSword() || CanUse(Item.Progressive_Clawshot) || HLF.CanShieldAttack())
             );
         }
 
@@ -513,7 +423,7 @@ namespace TPRandomizer
                 || CanUse(Item.Progressive_Bow)
                 || (CanDoNicheStuff() && CanUse(Item.Iron_Boots))
                 || CanUse(Item.Spinner)
-                || CanShieldAttack()
+                || HLF.CanShieldAttack()
                 || CanUse(Item.Slingshot)
                 || CanUse(Item.Progressive_Clawshot)
                 || hasBombs()
@@ -596,7 +506,7 @@ namespace TPRandomizer
                 HasSword()
                 || CanUse(Item.Ball_and_Chain)
                 || CanUse(Item.Progressive_Bow)
-                || (CanUse(Item.Hylian_Shield) && HasShieldAttack())
+                || (CanUse(Item.Hylian_Shield) && HLF.HasShieldAttack())
                 || (CanDoDifficultCombat() && CanUse(Item.Shadow_Crystal))
             );
         }
@@ -620,7 +530,7 @@ namespace TPRandomizer
                 || CanUse(Item.Progressive_Bow)
                 || (CanDoNicheStuff() && CanUse(Item.Iron_Boots))
                 || CanUse(Item.Spinner)
-                || CanShieldAttack()
+                || HLF.CanShieldAttack()
                 || CanUse(Item.Slingshot)
                 || (CanDoDifficultCombat() && CanUse(Item.Lantern))
                 || CanUse(Item.Progressive_Clawshot)
@@ -928,7 +838,7 @@ namespace TPRandomizer
                 || CanUse(Item.Progressive_Bow)
                 || (CanDoNicheStuff() && CanUse(Item.Iron_Boots))
                 || CanUse(Item.Spinner)
-                || CanShieldAttack()
+                || HLF.CanShieldAttack()
                 || CanUse(Item.Slingshot)
                 || CanUse(Item.Progressive_Clawshot)
                 || hasBombs()
@@ -1142,7 +1052,7 @@ namespace TPRandomizer
                 HasSword()
                 || CanUse(Item.Ball_and_Chain)
                 || CanUse(Item.Progressive_Bow)
-                || CanShieldAttack()
+                || HLF.CanShieldAttack()
                 || CanDoDifficultCombat() && (CanUse(Item.Shadow_Crystal))
             );
         }
@@ -1534,20 +1444,20 @@ namespace TPRandomizer
         {
             return (
                 CanUse(Item.Hylian_Shield)
-                || (HasReachedKakMaloMart() && !ShopsanityEnabled)
-                || (HasReachedCTGoronShop() && !ShopsanityEnabled)
-                || HasReachedRoom("Death Mountain Hot Spring")
+                || (ERLF.HasReachedKakMaloMart() && !ShopsanityEnabled)
+                || (ERLF.HasReachedCTGoronShop() && !ShopsanityEnabled)
+                || ERLF.HasReachedRoom("Death Mountain Hot Spring")
             );
         }
 
         public static bool CanUseBottledFairy()
         {
-            return HasBottle() && HasReachedLakeHylia();
+            return HasBottle() && ERLF.HasReachedLakeHylia();
         }
 
         public static bool CanUseBottledFairies()
         {
-            return HasBottles() && HasReachedLakeHylia();
+            return HasBottles() && ERLF.HasReachedLakeHylia();
         }
 
         public static bool CanUseOilBottle()
@@ -1593,7 +1503,7 @@ namespace TPRandomizer
         {
             return (
                 CanUse(Item.Progressive_Bow)
-                || (CanDoNicheStuff() && (hasBombs() || (HasSword() && HasJumpStrike())))
+                || (CanDoNicheStuff() && (hasBombs() || (HasSword() && HLF.HasJumpStrike())))
                 || (IsGlitchedLogic && ((HasSword() && CanDoMoonBoots()) || CanDoBSMoonBoots()))
             );
         }
@@ -1612,7 +1522,7 @@ namespace TPRandomizer
                 || hasBombs()
                 || CanUse(Item.Progressive_Bow)
                 || CanUse(Item.Progressive_Clawshot)
-                || (CanDoNicheStuff() && CanShieldAttack())
+                || (CanDoNicheStuff() && HLF.CanShieldAttack())
             );
         }
 
@@ -1670,9 +1580,9 @@ namespace TPRandomizer
             return (
                 CanUse(Item.Filled_Bomb_Bag)
                 && (
-                    HasReachedBarnesBombs()
-                    || (HasReachedEFBombfishGrotto() && CanUse(Item.Progressive_Fishing_Rod))
-                    || HasReachedRoom("City in The Sky Entrance")
+                    ERLF.HasReachedBarnesBombs()
+                    || (ERLF.HasReachedEFBombfishGrotto() && CanUse(Item.Progressive_Fishing_Rod))
+                    || ERLF.HasReachedRoom("City in The Sky Entrance")
                 )
             );
         }
@@ -1685,9 +1595,11 @@ namespace TPRandomizer
             return (
                 CanUse(Item.Filled_Bomb_Bag)
                 && (
-                    HasReachedBarnesBombs()
-                    || (HasReachedEFBombfishGrotto() && CanUse(Item.Progressive_Fishing_Rod))
-                    || (HasReachedBarnesBombs() && HasReachedRoom("Castle Town Malo Mart"))
+                    ERLF.HasReachedBarnesBombs()
+                    || (ERLF.HasReachedEFBombfishGrotto() && CanUse(Item.Progressive_Fishing_Rod))
+                    || (
+                        ERLF.HasReachedBarnesBombs() && ERLF.HasReachedRoom("Castle Town Malo Mart")
+                    )
                 )
             );
         }
@@ -1698,22 +1610,22 @@ namespace TPRandomizer
         public static bool CanGetArrows()
         {
             return (
-                HasReachedRoom("Lost Woods")
-                || (canCompleteGoronMines() && HasReachedKakMaloMart())
-                || (HasReachedRoom("Castle Town Goron House Balcony") && !ShopsanityEnabled)
+                ERLF.HasReachedRoom("Lost Woods")
+                || (canCompleteGoronMines() && ERLF.HasReachedKakMaloMart())
+                || (ERLF.HasReachedRoom("Castle Town Goron House Balcony") && !ShopsanityEnabled)
             );
         }
 
         public static bool CanRefillOil()
         {
             return (
-                HasReachedNFaronWoods()
-                || HasReachedSFaronWoods()
-                || HasReachedRoom("Arbiters Grounds Entrance")
-                || (HasReachedRoom("Lake Hylia Long Cave") && canSmash())
-                || HasReachedRoom("Ordon Seras Shop")
-                || (canCompleteGoronMines() && HasReachedLowerKakVillage() && CanChangeTime())
-                || (HasReachedCTGoronShop() && !ShopsanityEnabled)
+                ERLF.HasReachedNFaronWoods()
+                || ERLF.HasReachedSFaronWoods()
+                || ERLF.HasReachedRoom("Arbiters Grounds Entrance")
+                || (ERLF.HasReachedRoom("Lake Hylia Long Cave") && canSmash())
+                || ERLF.HasReachedRoom("Ordon Seras Shop")
+                || (canCompleteGoronMines() && ERLF.HasReachedLowerKakVillage() && CanChangeTime())
+                || (ERLF.HasReachedCTGoronShop() && !ShopsanityEnabled)
             );
         }
 
@@ -1722,13 +1634,13 @@ namespace TPRandomizer
         /// </summary>
         public static bool canCompletePrologue()
         {
-            return (HasReachedNFaronWoods() && CanDefeatBokoblin())
+            return (ERLF.HasReachedNFaronWoods() && CanDefeatBokoblin())
                 || (SharedSettings.skipPrologue == true);
         }
 
         public static bool CanCompleteGoats1()
         {
-            return HasReachedRoom("Ordon Ranch") || canCompletePrologue();
+            return ERLF.HasReachedRoom("Ordon Ranch") || canCompletePrologue();
         }
 
         /// <summary>
@@ -1738,7 +1650,7 @@ namespace TPRandomizer
         {
             return (
                 (SharedSettings.skipMdh == true)
-                || (canCompleteLakebedTemple() && HasReachedSCastleTown())
+                || (canCompleteLakebedTemple() && ERLF.HasReachedSCastleTown())
             );
             //return (canCompleteLakebedTemple() || (SharedSettings.skipMdh == true));
         }
@@ -1773,12 +1685,12 @@ namespace TPRandomizer
             return SharedSettings.faronTwilightCleared
                 || (
                     canCompletePrologue()
-                    && HasReachedSFaronWoods()
-                    && HasReachedRoom("Faron Woods Coros House Lower")
-                    && HasReachedRoom("Mist Area Near Faron Woods Cave")
-                    && HasReachedNFaronWoods()
-                    && HasReachedRoom("Ordon Spring")
-                    && CanSurviveBonkDamage()
+                    && ERLF.HasReachedSFaronWoods()
+                    && ERLF.HasReachedRoom("Faron Woods Coros House Lower")
+                    && ERLF.HasReachedRoom("Mist Area Near Faron Woods Cave")
+                    && ERLF.HasReachedNFaronWoods()
+                    && ERLF.HasReachedRoom("Ordon Spring")
+                    && HLF.CanSurviveBonkDamage()
                 );
         }
 
@@ -1789,18 +1701,18 @@ namespace TPRandomizer
         {
             return EldingTwilightCleared
                 || (
-                    HasReachedRoom("Faron Field")
-                    && HasReachedLowerKakVillage()
-                    && HasReachedRoom("Kakariko Graveyard")
-                    && HasReachedKakMaloMart()
-                    && HasReachedRoom("Kakariko Barnes Bomb Shop Upper")
-                    && HasReachedRoom("Kakariko Renados Sanctuary Basement")
-                    && HasReachedRoom("Kakariko Elde Inn")
-                    && HasReachedRoom("Kakariko Bug House")
-                    && HasReachedRoom("Upper Kakariko Village")
-                    && HasReachedRoom("Kakariko Watchtower")
-                    && HasReachedRoom("Death Mountain Volcano")
-                    && CanSurviveBonkDamage()
+                    ERLF.HasReachedRoom("Faron Field")
+                    && ERLF.HasReachedLowerKakVillage()
+                    && ERLF.HasReachedRoom("Kakariko Graveyard")
+                    && ERLF.HasReachedKakMaloMart()
+                    && ERLF.HasReachedRoom("Kakariko Barnes Bomb Shop Upper")
+                    && ERLF.HasReachedRoom("Kakariko Renados Sanctuary Basement")
+                    && ERLF.HasReachedRoom("Kakariko Elde Inn")
+                    && ERLF.HasReachedRoom("Kakariko Bug House")
+                    && ERLF.HasReachedRoom("Upper Kakariko Village")
+                    && ERLF.HasReachedRoom("Kakariko Watchtower")
+                    && ERLF.HasReachedRoom("Death Mountain Volcano")
+                    && HLF.CanSurviveBonkDamage()
                 );
         }
 
@@ -1808,14 +1720,14 @@ namespace TPRandomizer
         {
             return SharedSettings.lanayruTwilightCleared
                 || (
-                    (HasReachedRoom("North Eldin Field") || CanUse(Item.Shadow_Crystal))
-                    && HasReachedRoom("Zoras Domain")
-                    && HasReachedZorasThroneRoom()
-                    && HasReachedRoom("Upper Zoras River")
-                    && HasReachedLakeHylia()
-                    && HasReachedRoom("Lake Hylia Lanayru Spring")
-                    && HasReachedSCastleTown()
-                    && CanSurviveBonkDamage()
+                    (ERLF.HasReachedRoom("North Eldin Field") || CanUse(Item.Shadow_Crystal))
+                    && ERLF.HasReachedRoom("Zoras Domain")
+                    && ERLF.HasReachedZorasThroneRoom()
+                    && ERLF.HasReachedRoom("Upper Zoras River")
+                    && ERLF.HasReachedLakeHylia()
+                    && ERLF.HasReachedRoom("Lake Hylia Lanayru Spring")
+                    && ERLF.HasReachedSCastleTown()
+                    && HLF.CanSurviveBonkDamage()
                 );
         }
 
@@ -1824,7 +1736,7 @@ namespace TPRandomizer
             return CanCompleteLanayruTwilight()
                 || (
                     CanCompleteEldinTwilight()
-                    && HasReachedZorasThroneRoom()
+                    && ERLF.HasReachedZorasThroneRoom()
                     && CanUse(Item.Shadow_Crystal)
                 );
         }
@@ -1936,33 +1848,33 @@ namespace TPRandomizer
 
         public static bool CanUnlockOrdonaMap()
         {
-            return CanUnlockRegionalMap(RoomFunctions.OrdonaMapRooms);
+            return ERLF.CanUnlockRegionalMap(RoomFunctions.OrdonaMapRooms);
         }
 
         public static bool CanUnlockFaronMap()
         {
-            return CanUnlockRegionalMap(RoomFunctions.FaronMapRooms);
+            return ERLF.CanUnlockRegionalMap(RoomFunctions.FaronMapRooms);
         }
 
         public static bool CanUnlockEldinMap()
         {
-            return CanUnlockRegionalMap(RoomFunctions.EldinMapRooms);
+            return ERLF.CanUnlockRegionalMap(RoomFunctions.EldinMapRooms);
         }
 
         public static bool CanUnlockLanayruMap()
         {
-            return CanUnlockRegionalMap(RoomFunctions.LanayruMapRooms);
+            return ERLF.CanUnlockRegionalMap(RoomFunctions.LanayruMapRooms);
         }
 
         public static bool CanUnlockSnowpeakMap()
         {
             return SharedSettings.skipSnowpeakEntrance
-                || CanUnlockRegionalMap(RoomFunctions.SnowpeakMapRooms);
+                || ERLF.CanUnlockRegionalMap(RoomFunctions.SnowpeakMapRooms);
         }
 
         public static bool CanUnlockGerudoMap()
         {
-            return CanUnlockRegionalMap(RoomFunctions.GerudoMapRooms);
+            return ERLF.CanUnlockRegionalMap(RoomFunctions.GerudoMapRooms);
         }
 
         /// <summary>
@@ -1985,7 +1897,7 @@ namespace TPRandomizer
 
         public static bool CanUseBacksliceAsSword()
         {
-            return CanDoNicheStuff() && HasBackslice();
+            return CanDoNicheStuff() && HLF.HasBackslice();
         }
 
         public static bool CanGetBugWithLantern()
@@ -2001,7 +1913,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool HasSwordOrBS()
         {
-            return CanUse(Item.Progressive_Sword) || HasBackslice();
+            return CanUse(Item.Progressive_Sword) || HLF.HasBackslice();
         }
 
         /// <summary>
@@ -2076,7 +1988,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDoJSLJA()
         {
-            return HasSword() && CanUse(Item.Boomerang) && HasJumpStrike();
+            return HasSword() && CanUse(Item.Boomerang) && HLF.HasJumpStrike();
         }
 
         /// <summary>
@@ -2084,7 +1996,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDoMapGlitch()
         {
-            return CanUse(Item.Shadow_Crystal) && HasReachedRoom("Kakariko Gorge");
+            return CanUse(Item.Shadow_Crystal) && ERLF.HasReachedRoom("Kakariko Gorge");
         }
 
         /// <summary>
@@ -2127,7 +2039,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDoJSMoonBoots()
         {
-            return CanDoMoonBoots() && HasJumpStrike();
+            return CanDoMoonBoots() && HLF.HasJumpStrike();
         }
 
         /// <summary>
@@ -2135,7 +2047,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDoBSMoonBoots()
         {
-            return HasBackslice() && CanUse(Item.Magic_Armor);
+            return HLF.HasBackslice() && CanUse(Item.Magic_Armor);
         }
 
         /// <summary>
@@ -2231,11 +2143,11 @@ namespace TPRandomizer
         public static bool CanSkipKeyToDekuToad()
         {
             return IsKeysy
-                || HasBackslice()
+                || HLF.HasBackslice()
                 || CanDoBSMoonBoots()
                 || CanDoJSMoonBoots()
                 || CanDoLJA()
-                || (hasBombs() && (HasHeavyMod() || HasJumpStrike()));
+                || (hasBombs() && (HasHeavyMod() || HLF.HasJumpStrike()));
         }
 
         // END OF GLITCHED LOGIC
