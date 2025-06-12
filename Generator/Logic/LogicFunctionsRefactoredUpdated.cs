@@ -189,7 +189,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDefeatBari()
         {
-            return CanUseWaterBombs() || CUU.CanUse(Item.Progressive_Clawshot);
+            return BU.CanUseWaterBombs() || CUU.CanUse(Item.Progressive_Clawshot);
         }
 
         /// <summary>
@@ -888,7 +888,7 @@ namespace TPRandomizer
         public static bool CanDefeatShellBlade()
         {
             return (
-                CanUseWaterBombs()
+                BU.CanUseWaterBombs()
                 || (
                     HasSword()
                     && (
@@ -936,7 +936,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDefeatStalfos()
         {
-            return (canSmash());
+            return BU.CanSmash();
         }
 
         /// <summary>
@@ -1276,7 +1276,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDefeatDiababa()
         {
-            return canLaunchBombs()
+            return BU.CanLaunchBombs()
                 || (
                     CUU.CanUse(Item.Boomerang)
                     && (
@@ -1396,7 +1396,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool canSmash()
         {
-            return (CUU.CanUse(Item.Ball_and_Chain) || BU.HasBombs());
+            return BU.CanSmash();
         }
 
         /// <summary>
@@ -1454,8 +1454,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool canLaunchBombs()
         {
-            return (CUU.CanUse(Item.Boomerang) || CUU.CanUse(Item.Progressive_Bow))
-                && BU.HasBombs();
+            return BU.CanLaunchBombs();
         }
 
         /// <summary>
@@ -1559,7 +1558,7 @@ namespace TPRandomizer
             return (
                 CUU.CanUse(Item.Shadow_Crystal)
                 || HasSword()
-                || canSmash()
+                || BU.CanSmash()
                 || CanUseBacksliceAsSword()
             );
         }
@@ -1577,16 +1576,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanUseWaterBombs()
         {
-            return (
-                CUU.CanUse(Item.Filled_Bomb_Bag)
-                && (
-                    ERLF.HasReachedBarnesBombs()
-                    || BU.CanFishForWaterBombs()
-                    || (
-                        ERLF.HasReachedBarnesBombs() && ERLF.HasReachedRoom("Castle Town Malo Mart")
-                    )
-                )
-            );
+            return BU.CanUseWaterBombs();
         }
 
         /// <summary>
@@ -1607,7 +1597,7 @@ namespace TPRandomizer
                 ERLF.HasReachedNFaronWoods()
                 || ERLF.HasReachedSFaronWoods()
                 || ERLF.HasReachedRoom("Arbiters Grounds Entrance")
-                || (ERLF.HasReachedRoom("Lake Hylia Long Cave") && canSmash())
+                || (ERLF.HasReachedRoom("Lake Hylia Long Cave") && BU.CanSmash())
                 || ERLF.HasReachedRoom("Ordon Seras Shop")
                 || (canCompleteGoronMines() && ERLF.HasReachedLowerKakVillage() && CanChangeTime())
                 || ERLF.CanShopFromRoom("Castle Town Goron House")
@@ -2066,7 +2056,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDoAirRefill()
         {
-            return CanUseWaterBombs()
+            return BU.CanUseWaterBombs()
                 && (
                     CUU.CanUse(Item.Magic_Armor)
                     || (CUU.CanUse(Item.Iron_Boots) && (GetItemWheelSlotCount() >= 3))
