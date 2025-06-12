@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata;
 using TPRandomizer;
 using TPRandomizer.SSettings.Enums;
 using ERLF = LogicFunctionsNS.ERLogicFunctions;
@@ -76,6 +77,16 @@ namespace LogicFunctionsNS
         {
             return ERLF.HasReachedRoom("Eldin Field Water Bomb Fish Grotto")
                 && CanUse(Item.Progressive_Fishing_Rod);
+        }
+
+        public static bool HasBombs()
+        {
+            return CanUse(Item.Filled_Bomb_Bag)
+                && (
+                    ERLF.HasReachedBarnesBombs()
+                    || CanFishForWaterBombs()
+                    || ERLF.HasReachedRoom("City in The Sky Entrance")
+                );
         }
 
         public static bool HasShieldAttack()
