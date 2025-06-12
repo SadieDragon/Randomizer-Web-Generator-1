@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using TPRandomizer;
@@ -30,6 +31,11 @@ namespace LogicFunctionsNS
                 return check;
             }
             return true;
+        }
+
+        public static bool CanUse(Item item)
+        {
+            return ItemList.Contains(item) && CanReplenishItem(item);
         }
 
         /// <summary>
