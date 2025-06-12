@@ -47,39 +47,12 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanUse(Item item)
         {
-            return Randomizer.Items.heldItems.Contains(item) && CanReplenishItem(item);
+            return Randomizer.Items.heldItems.Contains(item) && HLF.CanReplenishItem(item);
         }
 
         public static bool CanReplenishItem(Item item)
         {
-            bool replenish = false;
-            switch (item)
-            {
-                case Item.Lantern:
-                {
-                    if (CanRefillOil())
-                    {
-                        replenish = true;
-                    }
-                    break;
-                }
-
-                case Item.Progressive_Bow:
-                {
-                    if (CanGetArrows())
-                    {
-                        replenish = true;
-                    }
-                    break;
-                }
-
-                default:
-                {
-                    replenish = true;
-                    break;
-                }
-            }
-            return replenish;
+            return HLF.CanReplenishItem(item);
         }
 
         /// <summary>

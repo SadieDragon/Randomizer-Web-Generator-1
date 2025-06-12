@@ -17,6 +17,21 @@ namespace LogicFunctionsNS
 
         public static List<Item> ItemList = Randomizer.Items.heldItems;
 
+        public static bool CanReplenishItem(Item item)
+        {
+            Dictionary<Item, bool> itemRefills = new()
+            {
+                { Item.Lantern, LF.CanRefillOil() },
+                { Item.Progressive_Bow, LF.CanGetArrows() },
+            };
+
+            if (itemRefills.TryGetValue(item, out var check))
+            {
+                return check;
+            }
+            return true;
+        }
+
         /// <summary>
         /// Count the number of a given item available, including if the item can
         /// be replenished.
@@ -26,7 +41,7 @@ namespace LogicFunctionsNS
         public static int GetItemCount(Item ItemToBeCounted)
         {
             // Only count how many of the item there are if it can be replenished
-            if (LF.CanReplenishItem(ItemToBeCounted))
+            if (CanReplenishItem(ItemToBeCounted))
             {
                 return ItemList.Count(item_ => item_ == ItemToBeCounted);
             }
