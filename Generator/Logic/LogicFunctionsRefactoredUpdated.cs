@@ -1570,10 +1570,7 @@ namespace TPRandomizer
                 HLF.CanUse(Item.Filled_Bomb_Bag)
                 && (
                     ERLF.HasReachedBarnesBombs()
-                    || (
-                        ERLF.HasReachedEFBombfishGrotto()
-                        && HLF.CanUse(Item.Progressive_Fishing_Rod)
-                    )
+                    || HLF.CanFishForWaterBombs()
                     || ERLF.HasReachedRoom("City in The Sky Entrance")
                 )
             );
@@ -1588,10 +1585,7 @@ namespace TPRandomizer
                 HLF.CanUse(Item.Filled_Bomb_Bag)
                 && (
                     ERLF.HasReachedBarnesBombs()
-                    || (
-                        ERLF.HasReachedEFBombfishGrotto()
-                        && HLF.CanUse(Item.Progressive_Fishing_Rod)
-                    )
+                    || HLF.CanFishForWaterBombs()
                     || (
                         ERLF.HasReachedBarnesBombs() && ERLF.HasReachedRoom("Castle Town Malo Mart")
                     )

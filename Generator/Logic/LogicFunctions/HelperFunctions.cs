@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using TPRandomizer;
 using TPRandomizer.SSettings.Enums;
+using ERLF = LogicFunctionsNS.ERLogicFunctions;
 using LF = TPRandomizer.LogicFunctionsUpdatedRefactored;
 
 // Notes:
@@ -69,6 +70,12 @@ namespace LogicFunctionsNS
 
             return !BonksDamageEnabled
                 || (BonksDamageEnabled && (!IsOHKO || LF.CanUseBottledFairies()));
+        }
+
+        public static bool CanFishForWaterBombs()
+        {
+            return ERLF.HasReachedRoom("Eldin Field Water Bomb Fish Grotto")
+                && CanUse(Item.Progressive_Fishing_Rod);
         }
 
         public static bool HasShieldAttack()

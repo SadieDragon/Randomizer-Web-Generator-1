@@ -78,11 +78,6 @@ namespace LogicFunctionsNS
             return HasReachedRoom("Kakariko Barnes Bomb Shop Lower");
         }
 
-        public static bool HasReachedEFBombfishGrotto()
-        {
-            return HasReachedRoom("Eldin Field Water Bomb Fish Grotto");
-        }
-
         public static bool HasReachedKakMaloMart()
         {
             return HasReachedRoom("Kakariko Malo Mart");
