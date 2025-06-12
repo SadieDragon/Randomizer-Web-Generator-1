@@ -4,6 +4,7 @@ using System.Reflection;
 using TPRandomizer.SSettings.Enums;
 using CUU = LogicFunctionsNS.CanUseUtilities;
 using ERLF = LogicFunctionsNS.ERLogicFunctions;
+using HHSL = LogicFunctionsNS.HasHiddenSkillLevel;
 using HLF = LogicFunctionsNS.HelperFunctions;
 
 namespace TPRandomizer
@@ -480,7 +481,7 @@ namespace TPRandomizer
                 HasSword()
                 || CUU.CanUse(Item.Ball_and_Chain)
                 || CUU.CanUse(Item.Progressive_Bow)
-                || (CUU.CanUse(Item.Hylian_Shield) && HLF.HasShieldAttack())
+                || (CUU.CanUse(Item.Hylian_Shield) && HHSL.HasShieldAttack())
                 || (CanDoDifficultCombat() && CUU.CanUse(Item.Shadow_Crystal))
             );
         }
@@ -1387,7 +1388,7 @@ namespace TPRandomizer
         {
             return CUU.CanUse(Item.Shadow_Crystal)
                 && (CUU.GetItemCount(Item.Progressive_Sword) >= 3)
-                && CUU.CanUse(Item.Progressive_Hidden_Skill);
+                && HHSL.HasEndingBlow();
         }
 
         /// <summary>
@@ -1487,7 +1488,7 @@ namespace TPRandomizer
         {
             return (
                 CUU.CanUse(Item.Progressive_Bow)
-                || (CanDoNicheStuff() && (HLF.HasBombs() || (HasSword() && HLF.HasJumpStrike())))
+                || (CanDoNicheStuff() && (HLF.HasBombs() || (HasSword() && HHSL.HasJumpStrike())))
                 || (IsGlitchedLogic && ((HasSword() && CanDoMoonBoots()) || CanDoBSMoonBoots()))
             );
         }
@@ -1881,7 +1882,7 @@ namespace TPRandomizer
 
         public static bool CanUseBacksliceAsSword()
         {
-            return CanDoNicheStuff() && HLF.HasBackslice();
+            return CanDoNicheStuff() && HHSL.HasBackslice();
         }
 
         public static bool CanGetBugWithLantern()
@@ -1897,7 +1898,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool HasSwordOrBS()
         {
-            return CUU.CanUse(Item.Progressive_Sword) || HLF.HasBackslice();
+            return CUU.CanUse(Item.Progressive_Sword) || HHSL.HasBackslice();
         }
 
         /// <summary>
@@ -1974,7 +1975,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDoJSLJA()
         {
-            return HasSword() && CUU.CanUse(Item.Boomerang) && HLF.HasJumpStrike();
+            return HasSword() && CUU.CanUse(Item.Boomerang) && HHSL.HasJumpStrike();
         }
 
         /// <summary>
@@ -2025,7 +2026,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDoJSMoonBoots()
         {
-            return CanDoMoonBoots() && HLF.HasJumpStrike();
+            return CanDoMoonBoots() && HHSL.HasJumpStrike();
         }
 
         /// <summary>
@@ -2033,7 +2034,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDoBSMoonBoots()
         {
-            return HLF.HasBackslice() && CUU.CanUse(Item.Magic_Armor);
+            return HHSL.HasBackslice() && CUU.CanUse(Item.Magic_Armor);
         }
 
         /// <summary>
@@ -2042,7 +2043,7 @@ namespace TPRandomizer
         public static bool CanDoEBMoonBoots()
         {
             return CanDoMoonBoots()
-                && CUU.CanUse(Item.Progressive_Hidden_Skill)
+                && HHSL.HasEndingBlow()
                 && CUU.GetItemCount(Item.Progressive_Sword) >= 2;
         }
 
@@ -2051,10 +2052,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDoHSMoonBoots()
         {
-            return CanDoMoonBoots()
-                && CUU.GetItemCount(Item.Progressive_Hidden_Skill) >= 4
-                && HasSword()
-                && hasShield();
+            return CanDoMoonBoots() && HHSL.HasHelmSplitter() && HasSword() && hasShield();
         }
 
         /// <summary>
@@ -2129,11 +2127,11 @@ namespace TPRandomizer
         public static bool CanSkipKeyToDekuToad()
         {
             return IsKeysy
-                || HLF.HasBackslice()
+                || HHSL.HasBackslice()
                 || CanDoBSMoonBoots()
                 || CanDoJSMoonBoots()
                 || CanDoLJA()
-                || (HLF.HasBombs() && (HasHeavyMod() || HLF.HasJumpStrike()));
+                || (HLF.HasBombs() && (HasHeavyMod() || HHSL.HasJumpStrike()));
         }
 
         // END OF GLITCHED LOGIC

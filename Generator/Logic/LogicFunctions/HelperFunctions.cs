@@ -2,6 +2,7 @@ using TPRandomizer;
 using TPRandomizer.SSettings.Enums;
 using CUU = LogicFunctionsNS.CanUseUtilities;
 using ERLF = LogicFunctionsNS.ERLogicFunctions;
+using HHSL = LogicFunctionsNS.HasHiddenSkillLevel;
 using LF = TPRandomizer.LogicFunctionsUpdatedRefactored;
 
 // Notes:
@@ -47,24 +48,9 @@ namespace LogicFunctionsNS
                 );
         }
 
-        public static bool HasShieldAttack()
-        {
-            return CUU.GetItemCount(Item.Progressive_Hidden_Skill) >= 2;
-        }
-
         public static bool CanShieldAttack()
         {
-            return LF.hasShield() && HasShieldAttack();
-        }
-
-        public static bool HasBackslice()
-        {
-            return CUU.GetItemCount(Item.Progressive_Hidden_Skill) >= 3;
-        }
-
-        public static bool HasJumpStrike()
-        {
-            return CUU.GetItemCount(Item.Progressive_Hidden_Skill) >= 6;
+            return LF.hasShield() && HHSL.HasShieldAttack();
         }
     }
 }
