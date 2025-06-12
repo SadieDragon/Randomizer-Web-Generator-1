@@ -24,5 +24,15 @@ namespace LogicFunctionsNS
             return !BonksDamageEnabled
                 || (BonksDamageEnabled && (!IsOHKO || LF.CanUseBottledFairies()));
         }
+
+        public static bool HasShieldAttack()
+        {
+            return LF.getItemCount(Item.Progressive_Hidden_Skill) >= 2;
+        }
+
+        public static bool CanShieldAttack()
+        {
+            return LF.hasShield() && HasShieldAttack();
+        }
     }
 }

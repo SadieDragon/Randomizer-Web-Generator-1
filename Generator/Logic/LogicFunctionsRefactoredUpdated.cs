@@ -93,6 +93,16 @@ namespace TPRandomizer
             return HLF.CanSurviveBonkDamage();
         }
 
+        public static bool HasShieldAttack()
+        {
+            return HLF.HasShieldAttack();
+        }
+
+        public static bool CanShieldAttack()
+        {
+            return HLF.CanShieldAttack();
+        }
+
         //Evaluate the tokenized settings to their respective values that are set by the settings string.
 
         /// <summary>
@@ -369,11 +379,7 @@ namespace TPRandomizer
         {
             return (
                 (CanUse(Item.Iron_Boots) || IsGlitchedLogic && CanUse(Item.Magic_Armor))
-                && (
-                    HasSword()
-                    || CanUse(Item.Progressive_Clawshot)
-                    || (hasShield() && getItemCount(Item.Progressive_Hidden_Skill) >= 2)
-                )
+                && (HasSword() || CanUse(Item.Progressive_Clawshot) || CanShieldAttack())
             );
         }
 
@@ -497,7 +503,7 @@ namespace TPRandomizer
                 || CanUse(Item.Progressive_Bow)
                 || (CanDoNicheStuff() && CanUse(Item.Iron_Boots))
                 || CanUse(Item.Spinner)
-                || (hasShield() && getItemCount(Item.Progressive_Hidden_Skill) >= 2)
+                || CanShieldAttack()
                 || CanUse(Item.Slingshot)
                 || CanUse(Item.Progressive_Clawshot)
                 || hasBombs()
@@ -580,7 +586,7 @@ namespace TPRandomizer
                 HasSword()
                 || CanUse(Item.Ball_and_Chain)
                 || CanUse(Item.Progressive_Bow)
-                || (CanUse(Item.Hylian_Shield) && getItemCount(Item.Progressive_Hidden_Skill) >= 2)
+                || (CanUse(Item.Hylian_Shield) && HasShieldAttack())
                 || (CanDoDifficultCombat() && CanUse(Item.Shadow_Crystal))
             );
         }
@@ -604,7 +610,7 @@ namespace TPRandomizer
                 || CanUse(Item.Progressive_Bow)
                 || (CanDoNicheStuff() && CanUse(Item.Iron_Boots))
                 || CanUse(Item.Spinner)
-                || (hasShield() && (getItemCount(Item.Progressive_Hidden_Skill) >= 2))
+                || CanShieldAttack()
                 || CanUse(Item.Slingshot)
                 || (CanDoDifficultCombat() && CanUse(Item.Lantern))
                 || CanUse(Item.Progressive_Clawshot)
@@ -912,7 +918,7 @@ namespace TPRandomizer
                 || CanUse(Item.Progressive_Bow)
                 || (CanDoNicheStuff() && CanUse(Item.Iron_Boots))
                 || CanUse(Item.Spinner)
-                || (hasShield() && getItemCount(Item.Progressive_Hidden_Skill) >= 2)
+                || CanShieldAttack()
                 || CanUse(Item.Slingshot)
                 || CanUse(Item.Progressive_Clawshot)
                 || hasBombs()
@@ -1126,7 +1132,7 @@ namespace TPRandomizer
                 HasSword()
                 || CanUse(Item.Ball_and_Chain)
                 || CanUse(Item.Progressive_Bow)
-                || (hasShield() && getItemCount(Item.Progressive_Hidden_Skill) >= 2)
+                || CanShieldAttack()
                 || CanDoDifficultCombat() && (CanUse(Item.Shadow_Crystal))
             );
         }
@@ -1602,11 +1608,7 @@ namespace TPRandomizer
                 || hasBombs()
                 || CanUse(Item.Progressive_Bow)
                 || CanUse(Item.Progressive_Clawshot)
-                || (
-                    CanDoNicheStuff()
-                    && hasShield()
-                    && getItemCount(Item.Progressive_Hidden_Skill) >= 2
-                )
+                || (CanDoNicheStuff() && CanShieldAttack())
             );
         }
 
