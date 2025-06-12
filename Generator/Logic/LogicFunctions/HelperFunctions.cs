@@ -1,7 +1,5 @@
 using TPRandomizer;
 using TPRandomizer.SSettings.Enums;
-using CUU = LogicFunctionsNS.CanUseUtilities;
-using ERLF = LogicFunctionsNS.ERLogicFunctions;
 using HHSL = LogicFunctionsNS.HasHiddenSkillLevel;
 using LF = TPRandomizer.LogicFunctionsUpdatedRefactored;
 
@@ -30,22 +28,6 @@ namespace LogicFunctionsNS
 
             return !BonksDamageEnabled
                 || (BonksDamageEnabled && (!IsOHKO || LF.CanUseBottledFairies()));
-        }
-
-        public static bool CanFishForWaterBombs()
-        {
-            return ERLF.HasReachedRoom("Eldin Field Water Bomb Fish Grotto")
-                && CUU.CanUse(Item.Progressive_Fishing_Rod);
-        }
-
-        public static bool HasBombs()
-        {
-            return CUU.CanUse(Item.Filled_Bomb_Bag)
-                && (
-                    ERLF.HasReachedBarnesBombs()
-                    || CanFishForWaterBombs()
-                    || ERLF.HasReachedRoom("City in The Sky Entrance")
-                );
         }
 
         public static bool CanShieldAttack()
