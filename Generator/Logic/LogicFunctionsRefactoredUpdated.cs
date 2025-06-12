@@ -98,7 +98,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool HasDamagingItem()
         {
-            return HasSword()
+            return HSL.HasSword()
                 || CUU.CanUse(Item.Ball_and_Chain)
                 || CUU.CanUse(Item.Progressive_Bow)
                 || BU.HasBombs()
@@ -112,7 +112,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool HasSword()
         {
-            return HSL.HasWoodenSword();
+            return HSL.HasSword();
         }
 
         /// <summary>
@@ -123,7 +123,7 @@ namespace TPRandomizer
             return (
                 CUU.CanUse(Item.Progressive_Clawshot)
                 && (
-                    HasSword()
+                    HSL.HasSword()
                     || CUU.CanUse(Item.Ball_and_Chain)
                     || CUU.CanUse(Item.Shadow_Crystal)
                     || (CanDoNicheStuff() && CUU.CanUse(Item.Iron_Boots))
@@ -136,7 +136,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDefeatArmos()
         {
-            return HasSword()
+            return HSL.HasSword()
                 || CUU.CanUse(Item.Ball_and_Chain)
                 || CUU.CanUse(Item.Progressive_Bow)
                 || (CanDoNicheStuff() && CUU.CanUse(Item.Iron_Boots))
@@ -152,7 +152,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDefeatBabaSerpent()
         {
-            return HasSword()
+            return HSL.HasSword()
                 || CUU.CanUse(Item.Ball_and_Chain)
                 || CUU.CanUse(Item.Progressive_Bow)
                 || (CanDoNicheStuff() && CUU.CanUse(Item.Iron_Boots))
@@ -173,7 +173,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDefeatBabyGohma()
         {
-            return HasSword()
+            return HSL.HasSword()
                 || CUU.CanUse(Item.Ball_and_Chain)
                 || CUU.CanUse(Item.Progressive_Bow)
                 || (CanDoNicheStuff() && CUU.CanUse(Item.Iron_Boots))
@@ -207,7 +207,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDefeatBigBaba()
         {
-            return HasSword()
+            return HSL.HasSword()
                 || CUU.CanUse(Item.Ball_and_Chain)
                 || CUU.CanUse(Item.Progressive_Bow)
                 || (CanDoNicheStuff() && CUU.CanUse(Item.Iron_Boots))
@@ -223,7 +223,7 @@ namespace TPRandomizer
         public static bool CanDefeatChu()
         {
             return (
-                HasSword()
+                HSL.HasSword()
                 || CUU.CanUse(Item.Ball_and_Chain)
                 || CUU.CanUse(Item.Progressive_Bow)
                 || (CanDoNicheStuff() && CUU.CanUse(Item.Iron_Boots))
@@ -241,7 +241,7 @@ namespace TPRandomizer
         public static bool CanDefeatBokoblin()
         {
             return (
-                HasSword()
+                HSL.HasSword()
                 || CUU.CanUse(Item.Ball_and_Chain)
                 || CUU.CanUse(Item.Progressive_Bow)
                 || (CanDoNicheStuff() && CUU.CanUse(Item.Iron_Boots))
@@ -256,7 +256,7 @@ namespace TPRandomizer
         public static bool CanDefeatBokoblinRed()
         {
             return (
-                HasSword()
+                HSL.HasSword()
                 || CUU.CanUse(Item.Ball_and_Chain)
                 || ((CUU.GetItemCount(Item.Progressive_Bow) >= 3) && CanGetArrows())
                 || CUU.CanUse(Item.Shadow_Crystal)
@@ -276,7 +276,9 @@ namespace TPRandomizer
         {
             return (
                 (CUU.CanUse(Item.Iron_Boots) || IsGlitchedLogic && CUU.CanUse(Item.Magic_Armor))
-                && (HasSword() || CUU.CanUse(Item.Progressive_Clawshot) || HLF.CanShieldAttack())
+                && (
+                    HSL.HasSword() || CUU.CanUse(Item.Progressive_Clawshot) || HLF.CanShieldAttack()
+                )
             );
         }
 
@@ -286,7 +288,7 @@ namespace TPRandomizer
         public static bool CanDefeatBombling()
         {
             return (
-                HasSword()
+                HSL.HasSword()
                 || CUU.CanUse(Item.Ball_and_Chain)
                 || CUU.CanUse(Item.Progressive_Bow)
                 || (CanDoNicheStuff() && CUU.CanUse(Item.Iron_Boots))
@@ -302,7 +304,7 @@ namespace TPRandomizer
         public static bool CanDefeatBomskit()
         {
             return (
-                HasSword()
+                HSL.HasSword()
                 || CUU.CanUse(Item.Ball_and_Chain)
                 || CUU.CanUse(Item.Progressive_Bow)
                 || CUU.CanUse(Item.Spinner)
@@ -319,7 +321,7 @@ namespace TPRandomizer
         public static bool CanDefeatBubble()
         {
             return (
-                HasSword()
+                HSL.HasSword()
                 || CUU.CanUse(Item.Ball_and_Chain)
                 || CUU.CanUse(Item.Progressive_Bow)
                 || (CanDoNicheStuff() && CUU.CanUse(Item.Iron_Boots))
@@ -335,7 +337,7 @@ namespace TPRandomizer
         public static bool CanDefeatBulblin()
         {
             return (
-                HasSword()
+                HSL.HasSword()
                 || CUU.CanUse(Item.Ball_and_Chain)
                 || CUU.CanUse(Item.Progressive_Bow)
                 || (CanDoNicheStuff() && CUU.CanUse(Item.Iron_Boots))
@@ -352,7 +354,7 @@ namespace TPRandomizer
         public static bool CanDefeatChilfos()
         {
             return (
-                HasSword()
+                HSL.HasSword()
                 || CUU.CanUse(Item.Ball_and_Chain)
                 || (CanDoNicheStuff() && CUU.CanUse(Item.Iron_Boots))
                 || CUU.CanUse(Item.Shadow_Crystal)
@@ -369,7 +371,7 @@ namespace TPRandomizer
         {
             return (
                 (
-                    HasSword()
+                    HSL.HasSword()
                     || CUU.CanUse(Item.Ball_and_Chain)
                     || CUU.CanUse(Item.Progressive_Bow)
                     || (CanDoNicheStuff() && CUU.CanUse(Item.Iron_Boots))
@@ -385,7 +387,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDefeatDarknut()
         {
-            return HasSword()
+            return HSL.HasSword()
                 || (CanDoDifficultCombat() && (BU.HasBombs() || CUU.CanUse(Item.Ball_and_Chain)));
         }
 
@@ -395,7 +397,7 @@ namespace TPRandomizer
         public static bool CanDefeatDekuBaba()
         {
             return (
-                HasSword()
+                HSL.HasSword()
                 || CUU.CanUse(Item.Ball_and_Chain)
                 || CUU.CanUse(Item.Progressive_Bow)
                 || (CanDoNicheStuff() && CUU.CanUse(Item.Iron_Boots))
@@ -422,7 +424,7 @@ namespace TPRandomizer
         public static bool CanDefeatDodongo()
         {
             return (
-                HasSword()
+                HSL.HasSword()
                 || CUU.CanUse(Item.Ball_and_Chain)
                 || CUU.CanUse(Item.Progressive_Bow)
                 || (CanDoNicheStuff() && CUU.CanUse(Item.Iron_Boots))
@@ -438,7 +440,9 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDefeatDinalfos()
         {
-            return HasSword() || CUU.CanUse(Item.Ball_and_Chain) || CUU.CanUse(Item.Shadow_Crystal);
+            return HSL.HasSword()
+                || CUU.CanUse(Item.Ball_and_Chain)
+                || CUU.CanUse(Item.Shadow_Crystal);
         }
 
         /// <summary>
@@ -447,7 +451,7 @@ namespace TPRandomizer
         public static bool CanDefeatFireBubble()
         {
             return (
-                HasSword()
+                HSL.HasSword()
                 || CUU.CanUse(Item.Ball_and_Chain)
                 || CUU.CanUse(Item.Progressive_Bow)
                 || (CanDoNicheStuff() && CUU.CanUse(Item.Iron_Boots))
@@ -463,7 +467,7 @@ namespace TPRandomizer
         public static bool CanDefeatFireKeese()
         {
             return (
-                HasSword()
+                HSL.HasSword()
                 || CUU.CanUse(Item.Ball_and_Chain)
                 || CUU.CanUse(Item.Progressive_Bow)
                 || (CanDoNicheStuff() && CUU.CanUse(Item.Iron_Boots))
@@ -480,7 +484,7 @@ namespace TPRandomizer
         public static bool CanDefeatFireToadpoli()
         {
             return (
-                HasSword()
+                HSL.HasSword()
                 || CUU.CanUse(Item.Ball_and_Chain)
                 || CUU.CanUse(Item.Progressive_Bow)
                 || (CUU.CanUse(Item.Hylian_Shield) && HHSL.HasShieldAttack())
@@ -502,7 +506,7 @@ namespace TPRandomizer
         public static bool CanDefeatGoron()
         {
             return (
-                HasSword()
+                HSL.HasSword()
                 || CUU.CanUse(Item.Ball_and_Chain)
                 || CUU.CanUse(Item.Progressive_Bow)
                 || (CanDoNicheStuff() && CUU.CanUse(Item.Iron_Boots))
@@ -530,7 +534,7 @@ namespace TPRandomizer
         public static bool CanDefeatGuay()
         {
             return (
-                HasSword()
+                HSL.HasSword()
                 || CUU.CanUse(Item.Ball_and_Chain)
                 || CUU.CanUse(Item.Progressive_Bow)
                 || (CanDoNicheStuff() && CUU.CanUse(Item.Iron_Boots))
@@ -546,7 +550,7 @@ namespace TPRandomizer
         public static bool CanDefeatHelmasaur()
         {
             return (
-                HasSword()
+                HSL.HasSword()
                 || CUU.CanUse(Item.Ball_and_Chain)
                 || CUU.CanUse(Item.Progressive_Bow)
                 || (CanDoNicheStuff() && CUU.CanUse(Item.Iron_Boots))
@@ -563,7 +567,7 @@ namespace TPRandomizer
         public static bool CanDefeatHelmasaurus()
         {
             return (
-                HasSword()
+                HSL.HasSword()
                 || CUU.CanUse(Item.Ball_and_Chain)
                 || CUU.CanUse(Item.Progressive_Bow)
                 || (CanDoNicheStuff() && CUU.CanUse(Item.Iron_Boots))
@@ -580,7 +584,7 @@ namespace TPRandomizer
         public static bool CanDefeatIceBubble()
         {
             return (
-                HasSword()
+                HSL.HasSword()
                 || CUU.CanUse(Item.Ball_and_Chain)
                 || CUU.CanUse(Item.Progressive_Bow)
                 || (CanDoNicheStuff() && CUU.CanUse(Item.Iron_Boots))
@@ -596,7 +600,7 @@ namespace TPRandomizer
         public static bool CanDefeatIceKeese()
         {
             return (
-                HasSword()
+                HSL.HasSword()
                 || CUU.CanUse(Item.Ball_and_Chain)
                 || CUU.CanUse(Item.Progressive_Bow)
                 || (CanDoNicheStuff() && CUU.CanUse(Item.Iron_Boots))
@@ -621,7 +625,7 @@ namespace TPRandomizer
         public static bool CanDefeatKargarok()
         {
             return (
-                HasSword()
+                HSL.HasSword()
                 || CUU.CanUse(Item.Ball_and_Chain)
                 || CUU.CanUse(Item.Progressive_Bow)
                 || (CanDoNicheStuff() && CUU.CanUse(Item.Iron_Boots))
@@ -637,7 +641,7 @@ namespace TPRandomizer
         public static bool CanDefeatKeese()
         {
             return (
-                HasSword()
+                HSL.HasSword()
                 || CUU.CanUse(Item.Ball_and_Chain)
                 || CUU.CanUse(Item.Progressive_Bow)
                 || (CanDoNicheStuff() && CUU.CanUse(Item.Iron_Boots))
@@ -654,7 +658,7 @@ namespace TPRandomizer
         public static bool CanDefeatLeever()
         {
             return (
-                HasSword()
+                HSL.HasSword()
                 || CUU.CanUse(Item.Ball_and_Chain)
                 || CUU.CanUse(Item.Progressive_Bow)
                 || (CanDoNicheStuff() && CUU.CanUse(Item.Iron_Boots))
@@ -670,7 +674,7 @@ namespace TPRandomizer
         public static bool CanDefeatLizalfos()
         {
             return (
-                HasSword()
+                HSL.HasSword()
                 || CUU.CanUse(Item.Ball_and_Chain)
                 || CUU.CanUse(Item.Progressive_Bow)
                 || (CanDoNicheStuff() && CUU.CanUse(Item.Iron_Boots))
@@ -686,7 +690,7 @@ namespace TPRandomizer
         public static bool CanDefeatMiniFreezard()
         {
             return (
-                HasSword()
+                HSL.HasSword()
                 || CUU.CanUse(Item.Ball_and_Chain)
                 || CUU.CanUse(Item.Progressive_Bow)
                 || (CanDoNicheStuff() && CUU.CanUse(Item.Iron_Boots))
@@ -703,7 +707,7 @@ namespace TPRandomizer
         public static bool CanDefeatMoldorm()
         {
             return (
-                HasSword()
+                HSL.HasSword()
                 || CUU.CanUse(Item.Ball_and_Chain)
                 || CUU.CanUse(Item.Progressive_Bow)
                 || (CanDoNicheStuff() && CUU.CanUse(Item.Iron_Boots))
@@ -719,7 +723,7 @@ namespace TPRandomizer
         public static bool CanDefeatPoisonMite()
         {
             return (
-                HasSword()
+                HSL.HasSword()
                 || CUU.CanUse(Item.Ball_and_Chain)
                 || CUU.CanUse(Item.Progressive_Bow)
                 || CUU.CanUse(Item.Lantern)
@@ -734,7 +738,7 @@ namespace TPRandomizer
         public static bool CanDefeatPuppet()
         {
             return (
-                HasSword()
+                HSL.HasSword()
                 || CUU.CanUse(Item.Ball_and_Chain)
                 || CUU.CanUse(Item.Progressive_Bow)
                 || (CanDoNicheStuff() && CUU.CanUse(Item.Iron_Boots))
@@ -751,7 +755,7 @@ namespace TPRandomizer
         public static bool CanDefeatRat()
         {
             return (
-                HasSword()
+                HSL.HasSword()
                 || CUU.CanUse(Item.Ball_and_Chain)
                 || CUU.CanUse(Item.Progressive_Bow)
                 || (CanDoNicheStuff() && CUU.CanUse(Item.Iron_Boots))
@@ -769,7 +773,7 @@ namespace TPRandomizer
         public static bool CanDefeatRedeadKnight()
         {
             return (
-                HasSword()
+                HSL.HasSword()
                 || CUU.CanUse(Item.Ball_and_Chain)
                 || CUU.CanUse(Item.Progressive_Bow)
                 || (CanDoNicheStuff() && CUU.CanUse(Item.Iron_Boots))
@@ -784,7 +788,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDefeatShadowBeast()
         {
-            return HasSword() || (CUU.CanUse(Item.Shadow_Crystal) && CanMidnaCharge());
+            return HSL.HasSword() || (CUU.CanUse(Item.Shadow_Crystal) && CanMidnaCharge());
         }
 
         /// <summary>
@@ -793,7 +797,7 @@ namespace TPRandomizer
         public static bool CanDefeatShadowBulblin()
         {
             return (
-                HasSword()
+                HSL.HasSword()
                 || CUU.CanUse(Item.Ball_and_Chain)
                 || CUU.CanUse(Item.Progressive_Bow)
                 || (CanDoNicheStuff() && CUU.CanUse(Item.Iron_Boots))
@@ -810,7 +814,7 @@ namespace TPRandomizer
         public static bool CanDefeatShadowDekuBaba()
         {
             return (
-                HasSword()
+                HSL.HasSword()
                 || CUU.CanUse(Item.Ball_and_Chain)
                 || CUU.CanUse(Item.Progressive_Bow)
                 || (CanDoNicheStuff() && CUU.CanUse(Item.Iron_Boots))
@@ -837,7 +841,7 @@ namespace TPRandomizer
         public static bool CanDefeatShadowKargarok()
         {
             return (
-                HasSword()
+                HSL.HasSword()
                 || CUU.CanUse(Item.Ball_and_Chain)
                 || CUU.CanUse(Item.Progressive_Bow)
                 || (CanDoNicheStuff() && CUU.CanUse(Item.Iron_Boots))
@@ -854,7 +858,7 @@ namespace TPRandomizer
         public static bool CanDefeatShadowKeese()
         {
             return (
-                HasSword()
+                HSL.HasSword()
                 || CUU.CanUse(Item.Ball_and_Chain)
                 || CUU.CanUse(Item.Progressive_Bow)
                 || (CanDoNicheStuff() && CUU.CanUse(Item.Iron_Boots))
@@ -871,7 +875,7 @@ namespace TPRandomizer
         public static bool CanDefeatShadowVermin()
         {
             return (
-                HasSword()
+                HSL.HasSword()
                 || CUU.CanUse(Item.Ball_and_Chain)
                 || CUU.CanUse(Item.Progressive_Bow)
                 || (CanDoNicheStuff() && CUU.CanUse(Item.Iron_Boots))
@@ -890,7 +894,7 @@ namespace TPRandomizer
             return (
                 BU.CanUseWaterBombs()
                 || (
-                    HasSword()
+                    HSL.HasSword()
                     && (
                         CUU.CanUse(Item.Iron_Boots)
                         || (CanDoNicheStuff() && CUU.CanUse(Item.Magic_Armor))
@@ -905,7 +909,7 @@ namespace TPRandomizer
         public static bool CanDefeatSkullfish()
         {
             return (
-                HasSword()
+                HSL.HasSword()
                 || CUU.CanUse(Item.Ball_and_Chain)
                 || CUU.CanUse(Item.Progressive_Bow)
                 || (CanDoNicheStuff() && CUU.CanUse(Item.Iron_Boots))
@@ -920,7 +924,7 @@ namespace TPRandomizer
         public static bool CanDefeatSkulltula()
         {
             return (
-                HasSword()
+                HSL.HasSword()
                 || CUU.CanUse(Item.Ball_and_Chain)
                 || CUU.CanUse(Item.Progressive_Bow)
                 || (CanDoNicheStuff() && CUU.CanUse(Item.Iron_Boots))
@@ -945,7 +949,7 @@ namespace TPRandomizer
         public static bool CanDefeatStalhound()
         {
             return (
-                HasSword()
+                HSL.HasSword()
                 || CUU.CanUse(Item.Ball_and_Chain)
                 || CUU.CanUse(Item.Progressive_Bow)
                 || (CanDoNicheStuff() && CUU.CanUse(Item.Iron_Boots))
@@ -962,7 +966,7 @@ namespace TPRandomizer
         public static bool CanDefeatStalchild()
         {
             return (
-                HasSword()
+                HSL.HasSword()
                 || CUU.CanUse(Item.Ball_and_Chain)
                 || CUU.CanUse(Item.Progressive_Bow)
                 || (CanDoNicheStuff() && CUU.CanUse(Item.Iron_Boots))
@@ -979,7 +983,7 @@ namespace TPRandomizer
         public static bool CanDefeatTektite()
         {
             return (
-                HasSword()
+                HSL.HasSword()
                 || CUU.CanUse(Item.Ball_and_Chain)
                 || CUU.CanUse(Item.Progressive_Bow)
                 || (CanDoNicheStuff() && CUU.CanUse(Item.Iron_Boots))
@@ -997,7 +1001,7 @@ namespace TPRandomizer
         {
             return (
                 (
-                    HasSword()
+                    HSL.HasSword()
                     || CUU.CanUse(Item.Ball_and_Chain)
                     || CUU.CanUse(Item.Progressive_Bow)
                     || CUU.CanUse(Item.Shadow_Crystal)
@@ -1015,7 +1019,7 @@ namespace TPRandomizer
         public static bool CanDefeatToado()
         {
             return (
-                HasSword()
+                HSL.HasSword()
                 || CUU.CanUse(Item.Ball_and_Chain)
                 || CUU.CanUse(Item.Progressive_Bow)
                 || CUU.CanUse(Item.Spinner)
@@ -1029,7 +1033,7 @@ namespace TPRandomizer
         public static bool CanDefeatWaterToadpoli()
         {
             return (
-                HasSword()
+                HSL.HasSword()
                 || CUU.CanUse(Item.Ball_and_Chain)
                 || CUU.CanUse(Item.Progressive_Bow)
                 || HLF.CanShieldAttack()
@@ -1043,7 +1047,7 @@ namespace TPRandomizer
         public static bool CanDefeatTorchSlug()
         {
             return (
-                HasSword()
+                HSL.HasSword()
                 || CUU.CanUse(Item.Ball_and_Chain)
                 || CUU.CanUse(Item.Progressive_Bow)
                 || CUU.CanUse(Item.Shadow_Crystal)
@@ -1071,7 +1075,7 @@ namespace TPRandomizer
         public static bool CanDefeatWhiteWolfos()
         {
             return (
-                HasSword()
+                HSL.HasSword()
                 || CUU.CanUse(Item.Ball_and_Chain)
                 || CUU.CanUse(Item.Progressive_Bow)
                 || (CanDoNicheStuff() && CUU.CanUse(Item.Iron_Boots))
@@ -1087,7 +1091,7 @@ namespace TPRandomizer
         public static bool CanDefeatYoungGohma()
         {
             return (
-                HasSword()
+                HSL.HasSword()
                 || CUU.CanUse(Item.Ball_and_Chain)
                 || CUU.CanUse(Item.Progressive_Bow)
                 || (CanDoNicheStuff() && CUU.CanUse(Item.Iron_Boots))
@@ -1102,7 +1106,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDefeatZantHead()
         {
-            return (CUU.CanUse(Item.Shadow_Crystal) || HasSword()) || CanUseBacksliceAsSword();
+            return (CUU.CanUse(Item.Shadow_Crystal) || HSL.HasSword()) || CanUseBacksliceAsSword();
         }
 
         /// <summary>
@@ -1111,7 +1115,7 @@ namespace TPRandomizer
         public static bool CanDefeatOok()
         {
             return (
-                HasSword()
+                HSL.HasSword()
                 || CUU.CanUse(Item.Ball_and_Chain)
                 || CUU.CanUse(Item.Progressive_Bow)
                 || (CanDoNicheStuff() && CUU.CanUse(Item.Iron_Boots))
@@ -1128,7 +1132,7 @@ namespace TPRandomizer
         {
             return (
                 (
-                    HasSword()
+                    HSL.HasSword()
                     || CUU.CanUse(Item.Shadow_Crystal)
                     || (
                         CanDoNicheStuff() && CUU.CanUse(Item.Ball_and_Chain)
@@ -1160,7 +1164,7 @@ namespace TPRandomizer
         public static bool CanDefeatDekuToad()
         {
             return (
-                HasSword()
+                HSL.HasSword()
                 || CUU.CanUse(Item.Ball_and_Chain)
                 || CUU.CanUse(Item.Progressive_Bow)
                 || (CanDoNicheStuff() && CUU.CanUse(Item.Iron_Boots))
@@ -1192,7 +1196,7 @@ namespace TPRandomizer
         public static bool CanDefeatKingBulblinDesert()
         {
             return (
-                HasSword()
+                HSL.HasSword()
                 || CUU.CanUse(Item.Ball_and_Chain)
                 || CUU.CanUse(Item.Shadow_Crystal)
                 || CUU.GetItemCount(Item.Progressive_Bow) > 2
@@ -1215,7 +1219,7 @@ namespace TPRandomizer
         public static bool CanDefeatKingBulblinCastle()
         {
             return (
-                HasSword()
+                HSL.HasSword()
                 || CUU.CanUse(Item.Ball_and_Chain)
                 || CUU.CanUse(Item.Shadow_Crystal)
                 || CUU.GetItemCount(Item.Progressive_Bow) > 2
@@ -1237,7 +1241,7 @@ namespace TPRandomizer
         public static bool CanDefeatDeathSword()
         {
             return (
-                HasSword()
+                HSL.HasSword()
                 && (
                     CUU.CanUse(Item.Boomerang)
                     || CUU.CanUse(Item.Progressive_Bow)
@@ -1253,7 +1257,7 @@ namespace TPRandomizer
         public static bool CanDefeatDarkhammer()
         {
             return (
-                HasSword()
+                HSL.HasSword()
                 || CUU.CanUse(Item.Ball_and_Chain)
                 || CUU.CanUse(Item.Progressive_Bow)
                 || (CanDoNicheStuff() && CUU.CanUse(Item.Iron_Boots))
@@ -1268,7 +1272,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDefeatPhantomZant()
         {
-            return (CUU.CanUse(Item.Shadow_Crystal) || HasSword());
+            return (CUU.CanUse(Item.Shadow_Crystal) || HSL.HasSword());
         }
 
         /// <summary>
@@ -1280,7 +1284,7 @@ namespace TPRandomizer
                 || (
                     CUU.CanUse(Item.Boomerang)
                     && (
-                        HasSword()
+                        HSL.HasSword()
                         || CUU.CanUse(Item.Ball_and_Chain)
                         || (CanDoNicheStuff() && CUU.CanUse(Item.Iron_Boots))
                         || CUU.CanUse(Item.Shadow_Crystal)
@@ -1298,7 +1302,7 @@ namespace TPRandomizer
             return (
                 CUU.CanUse(Item.Progressive_Bow)
                 && CUU.CanUse(Item.Iron_Boots)
-                && (HasSword() || (CanDoDifficultCombat() && CanUseBacksliceAsSword()))
+                && (HSL.HasSword() || (CanDoDifficultCombat() && CanUseBacksliceAsSword()))
             );
         }
 
@@ -1311,12 +1315,12 @@ namespace TPRandomizer
                 (
                     CUU.CanUse(Item.Zora_Armor)
                     && CUU.CanUse(Item.Iron_Boots)
-                    && HasSword()
+                    && HSL.HasSword()
                     && CUU.CanUse(Item.Progressive_Clawshot)
                 )
                 || (
                     CanDoNicheStuff()
-                    && (CUU.CanUse(Item.Progressive_Clawshot) && CanDoAirRefill() && HasSword())
+                    && (CUU.CanUse(Item.Progressive_Clawshot) && CanDoAirRefill() && HSL.HasSword())
                 )
             );
         }
@@ -1327,7 +1331,7 @@ namespace TPRandomizer
         public static bool CanDefeatStallord()
         {
             return (
-                (CUU.CanUse(Item.Spinner) && HasSword())
+                (CUU.CanUse(Item.Spinner) && HSL.HasSword())
                 || (CanDoDifficultCombat() && CUU.CanUse(Item.Spinner))
             );
         }
@@ -1487,8 +1491,10 @@ namespace TPRandomizer
         {
             return (
                 CUU.CanUse(Item.Progressive_Bow)
-                || (CanDoNicheStuff() && (BU.HasBombs() || (HasSword() && HHSL.HasJumpStrike())))
-                || (IsGlitchedLogic && ((HasSword() && CanDoMoonBoots()) || CanDoBSMoonBoots()))
+                || (
+                    CanDoNicheStuff() && (BU.HasBombs() || (HSL.HasSword() && HHSL.HasJumpStrike()))
+                )
+                || (IsGlitchedLogic && ((HSL.HasSword() && CanDoMoonBoots()) || CanDoBSMoonBoots()))
             );
         }
 
@@ -1498,7 +1504,7 @@ namespace TPRandomizer
         public static bool canBreakMonkeyCage()
         {
             return (
-                HasSword()
+                HSL.HasSword()
                 || CUU.CanUse(Item.Iron_Boots)
                 || CUU.CanUse(Item.Spinner)
                 || CUU.CanUse(Item.Ball_and_Chain)
@@ -1557,7 +1563,7 @@ namespace TPRandomizer
         {
             return (
                 CUU.CanUse(Item.Shadow_Crystal)
-                || HasSword()
+                || HSL.HasSword()
                 || BU.CanSmash()
                 || CanUseBacksliceAsSword()
             );
@@ -1957,7 +1963,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDoLJA()
         {
-            return HasSword() && CUU.CanUse(Item.Boomerang);
+            return HSL.HasSword() && CUU.CanUse(Item.Boomerang);
         }
 
         /// <summary>
@@ -1965,7 +1971,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDoJSLJA()
         {
-            return HasSword() && CUU.CanUse(Item.Boomerang) && HHSL.HasJumpStrike();
+            return HSL.HasSword() && CUU.CanUse(Item.Boomerang) && HHSL.HasJumpStrike();
         }
 
         /// <summary>
@@ -1989,7 +1995,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool HasOneHandedItem()
         {
-            return HasSword()
+            return HSL.HasSword()
                 || HasBottle()
                 || CUU.CanUse(Item.Boomerang)
                 || CUU.CanUse(Item.Progressive_Clawshot)
@@ -2004,7 +2010,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDoMoonBoots()
         {
-            return HasSword()
+            return HSL.HasSword()
                 && (
                     CUU.CanUse(Item.Magic_Armor)
                     || CUU.CanUse(Item.Iron_Boots) && GetItemWheelSlotCount() >= 3
@@ -2040,7 +2046,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDoHSMoonBoots()
         {
-            return CanDoMoonBoots() && HHSL.HasHelmSplitter() && HasSword() && hasShield();
+            return CanDoMoonBoots() && HHSL.HasHelmSplitter() && HSL.HasSword() && hasShield();
         }
 
         /// <summary>
@@ -2074,7 +2080,7 @@ namespace TPRandomizer
                     CUU.CanUse(Item.Slingshot)
                     && (
                         CUU.CanUse(Item.Shadow_Crystal)
-                        || HasSword()
+                        || HSL.HasSword()
                         || BU.HasBombs()
                         || CUU.CanUse(Item.Iron_Boots)
                         || CUU.CanUse(Item.Spinner)

@@ -23,6 +23,11 @@ namespace LogicFunctionsNS
             return CurrentSwordLevel() >= (int)Randomizer.SSettings.totEntrance;
         }
 
+        public static bool HasSword()
+        {
+            return HasWoodenSword();
+        }
+
         public static bool HasWoodenSword()
         {
             return CurrentSwordLevel() >= (int)SwordLevel.Wooden;
