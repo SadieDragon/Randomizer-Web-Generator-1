@@ -279,7 +279,7 @@ namespace TPRandomizer
             return (
                 HasSword()
                 || CanUse(Item.Ball_and_Chain)
-                || ((getItemCount(Item.Progressive_Bow) >= 3) && CanGetArrows())
+                || ((HLF.GetItemCount(Item.Progressive_Bow) >= 3) && CanGetArrows())
                 || CanUse(Item.Shadow_Crystal)
                 || hasBombs()
                 || CanUseBacksliceAsSword()
@@ -1210,7 +1210,7 @@ namespace TPRandomizer
                 HasSword()
                 || CanUse(Item.Ball_and_Chain)
                 || CanUse(Item.Shadow_Crystal)
-                || getItemCount(Item.Progressive_Bow) > 2
+                || HLF.GetItemCount(Item.Progressive_Bow) > 2
                 || CanUseBacksliceAsSword()
                 || (
                     CanDoDifficultCombat()
@@ -1218,7 +1218,7 @@ namespace TPRandomizer
                         CanUse(Item.Spinner)
                         || CanUse(Item.Iron_Boots)
                         || hasBombs()
-                        || getItemCount(Item.Progressive_Bow) >= 2
+                        || HLF.GetItemCount(Item.Progressive_Bow) >= 2
                     )
                 )
             );
@@ -1233,7 +1233,7 @@ namespace TPRandomizer
                 HasSword()
                 || CanUse(Item.Ball_and_Chain)
                 || CanUse(Item.Shadow_Crystal)
-                || getItemCount(Item.Progressive_Bow) > 2
+                || HLF.GetItemCount(Item.Progressive_Bow) > 2
                 || (
                     CanDoDifficultCombat()
                     && (
@@ -1369,8 +1369,8 @@ namespace TPRandomizer
         public static bool CanDefeatArgorok()
         {
             return (
-                getItemCount(Item.Progressive_Clawshot) >= 2
-                && getItemCount(Item.Progressive_Sword) >= 2
+                HLF.GetItemCount(Item.Progressive_Clawshot) >= 2
+                && HLF.GetItemCount(Item.Progressive_Sword) >= 2
                 && (CanUse(Item.Iron_Boots) || (CanDoNicheStuff() && CanUse(Item.Magic_Armor)))
             );
         }
@@ -1381,7 +1381,7 @@ namespace TPRandomizer
         public static bool CanDefeatZant()
         {
             return (
-                (getItemCount(Item.Progressive_Sword) >= 3)
+                (HLF.GetItemCount(Item.Progressive_Sword) >= 3)
                 && (
                     CanUse(Item.Boomerang)
                     && CanUse(Item.Progressive_Clawshot)
@@ -1398,7 +1398,7 @@ namespace TPRandomizer
         public static bool CanDefeatGanondorf()
         {
             return CanUse(Item.Shadow_Crystal)
-                && (getItemCount(Item.Progressive_Sword) >= 3)
+                && (HLF.GetItemCount(Item.Progressive_Sword) >= 3)
                 && CanUse(Item.Progressive_Hidden_Skill);
         }
 
@@ -1485,8 +1485,8 @@ namespace TPRandomizer
         {
             double playerHealth = 3.0; // start at 3 since we have 3 hearts.
 
-            playerHealth = playerHealth + (getItemCount(Item.Piece_of_Heart) * 0.2); //Pieces of heart are 1/5 of a heart.
-            playerHealth = playerHealth + getItemCount(Item.Heart_Container);
+            playerHealth = playerHealth + (HLF.GetItemCount(Item.Piece_of_Heart) * 0.2); //Pieces of heart are 1/5 of a heart.
+            playerHealth = playerHealth + HLF.GetItemCount(Item.Heart_Container);
 
             return (int)playerHealth;
         }
@@ -1540,7 +1540,7 @@ namespace TPRandomizer
                 && canBurnWebs()
                 && CanUse(Item.Boomerang)
                 && CanDefeatBokoblin()
-                && ((getItemCount(Item.Forest_Temple_Small_Key) >= 4) || IsKeysy)
+                && ((HLF.GetItemCount(Item.Forest_Temple_Small_Key) >= 4) || IsKeysy)
             );
         }
 
@@ -1657,7 +1657,7 @@ namespace TPRandomizer
 
         public static bool CanStrikePedestal()
         {
-            return getItemCount(Item.Progressive_Sword) >= (int)SharedSettings.totEntrance;
+            return HLF.GetItemCount(Item.Progressive_Sword) >= (int)SharedSettings.totEntrance;
         }
 
         /// <summary>
@@ -2052,7 +2052,7 @@ namespace TPRandomizer
         {
             return CanDoMoonBoots()
                 && CanUse(Item.Progressive_Hidden_Skill)
-                && getItemCount(Item.Progressive_Sword) >= 2;
+                && HLF.GetItemCount(Item.Progressive_Sword) >= 2;
         }
 
         /// <summary>
@@ -2061,7 +2061,7 @@ namespace TPRandomizer
         public static bool CanDoHSMoonBoots()
         {
             return CanDoMoonBoots()
-                && getItemCount(Item.Progressive_Hidden_Skill) >= 4
+                && HLF.GetItemCount(Item.Progressive_Hidden_Skill) >= 4
                 && HasSword()
                 && hasShield();
         }
@@ -2147,18 +2147,10 @@ namespace TPRandomizer
 
         // END OF GLITCHED LOGIC
 
+        // TODO: Does anything else implement this?
         public static int getItemCount(Item itemToBeCounted)
         {
-            List<Item> itemList = Randomizer.Items.heldItems;
-            int itemQuantity = 0;
-            foreach (var item in itemList)
-            {
-                if ((item == itemToBeCounted) && CanReplenishItem(itemToBeCounted))
-                {
-                    itemQuantity++;
-                }
-            }
-            return itemQuantity;
+            return HLF.GetItemCount(itemToBeCounted);
         }
 
         public static int GetItemWheelSlotCount()

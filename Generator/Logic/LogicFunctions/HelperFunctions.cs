@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Linq;
 using TPRandomizer;
 using TPRandomizer.SSettings.Enums;
 using LF = TPRandomizer.LogicFunctionsUpdatedRefactored;
@@ -13,10 +15,23 @@ namespace LogicFunctionsNS
     {
         public static SharedSettings SharedSettings = Randomizer.SSettings;
 
-        // wrappers to later be removed
+        public static List<Item> ItemList = Randomizer.Items.heldItems;
+
+        /// <summary>
+        /// Count the number of a given item available, including if the item can
+        /// be replenished.
+        /// </summary>
+        /// <param name="ItemToBeCounted">(Item) Item to be counted.</param>
+        /// <returns>Returns the amount available.</returns>
         public static int GetItemCount(Item ItemToBeCounted)
         {
-            return LF.getItemCount(ItemToBeCounted);
+            // Only count how many of the item there are if it can be replenished
+            if (LF.CanReplenishItem(ItemToBeCounted))
+            {
+                return ItemList.Count(item_ => item_ == ItemToBeCounted);
+            }
+            // Fallback of "0"
+            return 0;
         }
 
         /// <summary>
