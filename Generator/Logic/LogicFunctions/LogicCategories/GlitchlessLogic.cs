@@ -1,6 +1,8 @@
+using System.Collections.Generic;
 using TPRandomizer;
 using BU = LogicFunctionsNS.BombUtils;
 using CUU = LogicFunctionsNS.CanUseUtilities;
+using HDI = LogicFunctionsNS.DamagingItems;
 using HHSL = LogicFunctionsNS.HasHiddenSkillLevel;
 using HLF = LogicFunctionsNS.HelperFunctions;
 using HSL = LogicFunctionsNS.HasSwordLevel;
@@ -66,34 +68,17 @@ namespace LogicFunctionsNS
 
         public static bool CanDefeatArmos()
         {
-            return HSL.HasSword()
-                || CanUseBallAndChain()
-                || CanUseBow()
-                || CanUseShadowCrystal()
-                || CanUseClawshot()
-                || BU.HasBombs()
-                || CanUseSpinner();
+            return HDI.HasDamagingItemOrClawshot();
         }
 
         public static bool CanDefeatBabaSerpent()
         {
-            return HSL.HasSword()
-                || CanUseBallAndChain()
-                || CanUseBow()
-                || CanUseSpinner()
-                || CanUseShadowCrystal()
-                || BU.HasBombs();
+            return HDI.HasDamagingItem();
         }
 
         public static bool CanDefeatBabyGohma()
         {
-            return HSL.HasSword()
-                || CanUseBallAndChain()
-                || CanUseBow()
-                || CanUseSpinner()
-                || CanUseSlingshot()
-                || CanUseClawshot()
-                || BU.HasBombs();
+            return HDI.HasDamagingItemOrSlingshot();
         }
 
         public static bool CanDefeatBari()
@@ -108,12 +93,7 @@ namespace LogicFunctionsNS
 
         public static bool CanDefeatBigBaba()
         {
-            return HSL.HasSword()
-                || CanUseBallAndChain()
-                || CanUseBow()
-                || CanUseShadowCrystal()
-                || CanUseSpinner()
-                || BU.HasBombs();
+            return HDI.HasDamagingItem();
         }
 
         public static bool CanDefeatBombfish()
@@ -128,33 +108,17 @@ namespace LogicFunctionsNS
 
         public static bool CanDefeatBombling()
         {
-            return HSL.HasSword()
-                || CanUseBallAndChain()
-                || CanUseBow()
-                || CanUseSpinner()
-                || CanUseShadowCrystal()
-                || CanUseClawshot();
+            return HDI.HasDamagingItemOrClawshot(IncludeBombs: false);
         }
 
         public static bool CanDefeatBomskit()
         {
-            return HSL.HasSword()
-                || CanUseBallAndChain()
-                || CanUseBow()
-                || CanUseSpinner()
-                || CanUseShadowCrystal()
-                || BU.HasBombs();
+            return HDI.HasDamagingItem();
         }
 
         public static bool CanDefeatBokoblin()
         {
-            return HSL.HasSword()
-                || CanUseBallAndChain()
-                || CanUseBow()
-                || CanUseSpinner()
-                || CanUseSlingshot()
-                || CanUseShadowCrystal()
-                || BU.HasBombs();
+            return HDI.HasDamagingItemOrSlingshot();
         }
 
         public static bool CanDefeatBokoblinRed()
@@ -168,21 +132,12 @@ namespace LogicFunctionsNS
 
         public static bool CanDefeatBubble()
         {
-            return HSL.HasSword()
-                || CanUseBallAndChain()
-                || CanUseBow()
-                || CanUseSpinner()
-                || CanUseShadowCrystal();
+            return HDI.HasDamagingItem(IncludeBombs: false);
         }
 
         public static bool CanDefeatBulblin()
         {
-            return HSL.HasSword()
-                || CanUseBallAndChain()
-                || CanUseBow()
-                || CanUseSpinner()
-                || CanUseShadowCrystal()
-                || BU.HasBombs();
+            return HDI.HasDamagingItem();
         }
 
         public static bool CanDefeatChilfos()
@@ -196,22 +151,12 @@ namespace LogicFunctionsNS
 
         public static bool CanDefeatChu()
         {
-            return HSL.HasSword()
-                || CanUseBallAndChain()
-                || CanUseBow()
-                || CanUseSpinner()
-                || CanUseShadowCrystal()
-                || CanUseClawshot()
-                || BU.HasBombs();
+            return HDI.HasDamagingItemOrClawshot();
         }
 
         public static bool CanDefeatChuWorm()
         {
-            return HSL.HasSword()
-                || CanUseBallAndChain()
-                || CanUseBow()
-                || CanUseSpinner()
-                || CanUseShadowCrystal();
+            return HDI.HasDamagingItem(IncludeBombs: false);
         }
 
         public static bool CanDefeatChuWormCoreRequirements()
@@ -226,14 +171,7 @@ namespace LogicFunctionsNS
 
         public static bool CanDefeatDekuBaba()
         {
-            return HSL.HasSword()
-                || CanUseBallAndChain()
-                || CanUseBow()
-                || CanUseSpinner()
-                || HLF.CanShieldAttack()
-                || CanUseSlingshot()
-                || CanUseClawshot()
-                || BU.HasBombs();
+            return HDI.HasDamagingItem(ExtraItems: [Item.Progressive_Clawshot, Item.Slingshot]);
         }
 
         public static bool CanDefeatDekuLike()
@@ -248,12 +186,7 @@ namespace LogicFunctionsNS
 
         public static bool CanDefeatDodongo()
         {
-            return HSL.HasSword()
-                || CanUseBallAndChain()
-                || CanUseBow()
-                || CanUseSpinner()
-                || CanUseShadowCrystal()
-                || BU.HasBombs();
+            return HDI.HasDamagingItem();
         }
 
         public static bool CanDefeatFireToadpoli()
@@ -276,13 +209,18 @@ namespace LogicFunctionsNS
 
         public static bool CanDefeatGoron()
         {
+            List<Item> DamagingItems =
+            [
+                Item.Ball_and_Chain,
+                Item.Progressive_Bow,
+                Item.Spinner,
+                Item.Slingshot,
+                Item.Progressive_Clawshot,
+            ];
+
             return HSL.HasSword()
-                || CanUseBallAndChain()
-                || CanUseBow()
-                || CanUseSpinner()
+                || HDI.HasAnyDamagingItem(DamagingItems)
                 || HLF.CanShieldAttack()
-                || CanUseSlingshot()
-                || CanUseClawshot()
                 || BU.HasBombs();
         }
 
@@ -304,41 +242,22 @@ namespace LogicFunctionsNS
 
         public static bool CanDefeatHelmasaur()
         {
-            return HSL.HasSword()
-                || CanUseBallAndChain()
-                || CanUseBow()
-                || CanUseSpinner()
-                || CanUseShadowCrystal()
-                || BU.HasBombs();
+            return HDI.HasDamagingItem();
         }
 
         public static bool CanDefeatHelmasaurus()
         {
-            return HSL.HasSword()
-                || CanUseBallAndChain()
-                || CanUseBow()
-                || CanUseSpinner()
-                || CanUseShadowCrystal()
-                || BU.HasBombs();
+            return HDI.HasDamagingItem();
         }
 
         public static bool CanDefeatKargarok()
         {
-            return HSL.HasSword()
-                || CanUseBallAndChain()
-                || CanUseBow()
-                || CanUseSpinner()
-                || CanUseShadowCrystal();
+            return HDI.HasDamagingItem(IncludeBombs: false);
         }
 
         public static bool CanDefeatKeese()
         {
-            return HSL.HasSword()
-                || CanUseBallAndChain()
-                || CanUseBow()
-                || CanUseSpinner()
-                || CanUseSlingshot()
-                || CanUseShadowCrystal();
+            return HDI.HasDamagingItemOrSlingshot(IncludeBombs: false);
         }
 
         public static bool CanDefeatPoe()
