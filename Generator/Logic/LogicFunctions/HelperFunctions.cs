@@ -19,13 +19,13 @@ namespace LogicFunctionsNS
 
         public static bool CanReplenishItem(Item item)
         {
-            Dictionary<Item, bool> itemRefills = new()
+            Dictionary<Item, bool> ItemRefills = new()
             {
                 { Item.Lantern, LF.CanRefillOil() },
                 { Item.Progressive_Bow, LF.CanGetArrows() },
             };
 
-            if (itemRefills.TryGetValue(item, out var check))
+            if (ItemRefills.TryGetValue(item, out var check))
             {
                 return check;
             }
