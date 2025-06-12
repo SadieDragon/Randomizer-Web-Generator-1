@@ -11,6 +11,8 @@ namespace LogicFunctionsNS
 {
     class HelperFunctions
     {
+        public static SharedSettings SharedSettings = Randomizer.SSettings;
+
         // wrappers to later be removed
         public static int GetItemCount(Item ItemToBeCounted)
         {
@@ -24,10 +26,10 @@ namespace LogicFunctionsNS
         public static bool CanSurviveBonkDamage()
         {
             // Check the setting "bonksDoDamage"
-            bool BonksDamageEnabled = ISSettings.SSettings.bonksDoDamage;
+            bool BonksDamageEnabled = SharedSettings.bonksDoDamage;
 
             // Check the setting "damageMagnification"
-            bool IsOHKO = ISSettings.SSettings.damageMagnification == DamageMagnification.OHKO;
+            bool IsOHKO = SharedSettings.damageMagnification == DamageMagnification.OHKO;
 
             return !BonksDamageEnabled
                 || (BonksDamageEnabled && (!IsOHKO || LF.CanUseBottledFairies()));

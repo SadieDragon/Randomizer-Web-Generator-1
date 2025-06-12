@@ -6,6 +6,8 @@ namespace LogicFunctionsNS
 {
     class ERLogicFunctions
     {
+        public static SharedSettings SharedSettings = Randomizer.SSettings;
+
         public static bool HasReachedRoom(string room)
         {
             // This ensures that the key (room name) must exist in the dictionary.
@@ -58,7 +60,7 @@ namespace LogicFunctionsNS
         {
             // If openMap is true, then the map is already open.
             // Otherwise, we need to check if any rooms on the map have been accessed.
-            return ISSettings.SSettings.openMap || HasReachedAnyRooms(RoomsOnMap);
+            return SharedSettings.openMap || HasReachedAnyRooms(RoomsOnMap);
         }
 
         public static bool HasReachedCTGoronShop()
