@@ -6,6 +6,7 @@ using CUU = LogicFunctionsNS.CanUseUtilities;
 using ERLF = LogicFunctionsNS.ERLogicFunctions;
 using HHSL = LogicFunctionsNS.HasHiddenSkillLevel;
 using HLF = LogicFunctionsNS.HelperFunctions;
+using HSL = LogicFunctionsNS.HasSwordLevel;
 
 namespace TPRandomizer
 {
@@ -110,7 +111,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool HasSword()
         {
-            return CUU.CanUse(Item.Progressive_Sword);
+            return HSL.HasWoodenSword();
         }
 
         /// <summary>
@@ -1353,7 +1354,7 @@ namespace TPRandomizer
         {
             return (
                 CUU.GetItemCount(Item.Progressive_Clawshot) >= 2
-                && CUU.GetItemCount(Item.Progressive_Sword) >= 2
+                && HSL.HasOrdonSword()
                 && (
                     CUU.CanUse(Item.Iron_Boots)
                     || (CanDoNicheStuff() && CUU.CanUse(Item.Magic_Armor))
@@ -1367,7 +1368,7 @@ namespace TPRandomizer
         public static bool CanDefeatZant()
         {
             return (
-                (CUU.GetItemCount(Item.Progressive_Sword) >= 3)
+                HSL.HasMasterSword()
                 && (
                     CUU.CanUse(Item.Boomerang)
                     && CUU.CanUse(Item.Progressive_Clawshot)
@@ -1386,9 +1387,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDefeatGanondorf()
         {
-            return CUU.CanUse(Item.Shadow_Crystal)
-                && (CUU.GetItemCount(Item.Progressive_Sword) >= 3)
-                && HHSL.HasEndingBlow();
+            return CUU.CanUse(Item.Shadow_Crystal) && HSL.HasMasterSword() && HHSL.HasEndingBlow();
         }
 
         /// <summary>
@@ -1647,7 +1646,7 @@ namespace TPRandomizer
 
         public static bool CanStrikePedestal()
         {
-            return CUU.GetItemCount(Item.Progressive_Sword) >= (int)SharedSettings.totEntrance;
+            return HSL.CanStrikePedestal();
         }
 
         /// <summary>
@@ -1898,7 +1897,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool HasSwordOrBS()
         {
-            return CUU.CanUse(Item.Progressive_Sword) || HHSL.HasBackslice();
+            return HSL.HasWoodenSword() || HHSL.HasBackslice();
         }
 
         /// <summary>
@@ -2042,9 +2041,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDoEBMoonBoots()
         {
-            return CanDoMoonBoots()
-                && HHSL.HasEndingBlow()
-                && CUU.GetItemCount(Item.Progressive_Sword) >= 2;
+            return CanDoMoonBoots() && HHSL.HasEndingBlow() && HSL.HasOrdonSword();
         }
 
         /// <summary>
