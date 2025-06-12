@@ -47,11 +47,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanUse(Item item)
         {
-            if (Randomizer.Items.heldItems.Contains(item) && CanReplenishItem(item))
-            {
-                return true;
-            }
-            return false;
+            return Randomizer.Items.heldItems.Contains(item) && CanReplenishItem(item);
         }
 
         public static bool CanReplenishItem(Item item)
