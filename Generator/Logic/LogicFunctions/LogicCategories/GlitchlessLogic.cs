@@ -1,9 +1,6 @@
-using System.ComponentModel;
-using Newtonsoft.Json.Serialization;
 using TPRandomizer;
 using BU = LogicFunctionsNS.BombUtils;
 using CUU = LogicFunctionsNS.CanUseUtilities;
-using ERLF = LogicFunctionsNS.ERLogicFunctions;
 using HHSL = LogicFunctionsNS.HasHiddenSkillLevel;
 using HLF = LogicFunctionsNS.HelperFunctions;
 using HSL = LogicFunctionsNS.HasSwordLevel;
