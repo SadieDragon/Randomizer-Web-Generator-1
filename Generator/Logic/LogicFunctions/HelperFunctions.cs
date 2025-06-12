@@ -45,5 +45,10 @@ namespace LogicFunctionsNS
         {
             return GetItemCount(Item.Progressive_Hidden_Skill) >= 3;
         }
+
+        public static bool HasJumpStrike()
+        {
+            return GetItemCount(Item.Progressive_Hidden_Skill) >= 6;
+        }
     }
 }

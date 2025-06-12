@@ -108,6 +108,11 @@ namespace TPRandomizer
             return HLF.HasBackslice();
         }
 
+        public static bool HasJumpStrike()
+        {
+            return HLF.HasJumpStrike();
+        }
+
         //Evaluate the tokenized settings to their respective values that are set by the settings string.
 
         /// <summary>
@@ -1588,13 +1593,7 @@ namespace TPRandomizer
         {
             return (
                 CanUse(Item.Progressive_Bow)
-                || (
-                    CanDoNicheStuff()
-                    && (
-                        hasBombs()
-                        || (HasSword() && getItemCount(Item.Progressive_Hidden_Skill) >= 6)
-                    )
-                )
+                || (CanDoNicheStuff() && (hasBombs() || (HasSword() && HasJumpStrike())))
                 || (IsGlitchedLogic && ((HasSword() && CanDoMoonBoots()) || CanDoBSMoonBoots()))
             );
         }
@@ -2077,9 +2076,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDoJSLJA()
         {
-            return HasSword()
-                && CanUse(Item.Boomerang)
-                && getItemCount(Item.Progressive_Hidden_Skill) >= 6;
+            return HasSword() && CanUse(Item.Boomerang) && HasJumpStrike();
         }
 
         /// <summary>
@@ -2130,7 +2127,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDoJSMoonBoots()
         {
-            return CanDoMoonBoots() && getItemCount(Item.Progressive_Hidden_Skill) >= 6;
+            return CanDoMoonBoots() && HasJumpStrike();
         }
 
         /// <summary>
@@ -2238,10 +2235,7 @@ namespace TPRandomizer
                 || CanDoBSMoonBoots()
                 || CanDoJSMoonBoots()
                 || CanDoLJA()
-                || (
-                    hasBombs()
-                    && (HasHeavyMod() || getItemCount(Item.Progressive_Hidden_Skill) >= 6)
-                );
+                || (hasBombs() && (HasHeavyMod() || HasJumpStrike()));
         }
 
         // END OF GLITCHED LOGIC
