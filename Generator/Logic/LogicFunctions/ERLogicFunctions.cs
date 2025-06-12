@@ -58,7 +58,7 @@ namespace LogicFunctionsNS
         {
             // If openMap is true, then the map is already open.
             // Otherwise, we need to check if any rooms on the map have been accessed.
-            return Randomizer.SSettings.openMap || HasReachedAnyRooms(RoomsOnMap);
+            return ISSettings.SSettings.openMap || HasReachedAnyRooms(RoomsOnMap);
         }
 
         public static bool HasReachedCTGoronShop()
