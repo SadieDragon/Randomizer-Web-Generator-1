@@ -15,7 +15,6 @@ namespace TPRandomizer
         // Placeholder notes for what's on the bridge
         public static SharedSettings SharedSettings = Randomizer.SSettings;
         public static bool IsGlitchedLogic = SharedSettings.logicRules == LogicRules.Glitched;
-        public static bool ShopsanityEnabled = SharedSettings.shuffleShopItems;
         public static bool IsKeysy = SharedSettings.smallKeySettings == SmallKeySettings.Keysy;
         public static bool IsOpenFaronWoods =
             SharedSettings.faronWoodsLogic == FaronWoodsLogic.Open;
@@ -1444,8 +1443,8 @@ namespace TPRandomizer
         {
             return (
                 CanUse(Item.Hylian_Shield)
-                || (ERLF.HasReachedKakMaloMart() && !ShopsanityEnabled)
-                || (ERLF.HasReachedCTGoronShop() && !ShopsanityEnabled)
+                || ERLF.CanShopFromRoom("Kakariko Malo Mart")
+                || ERLF.CanShopFromRoom("Castle Town Goron House")
                 || ERLF.HasReachedRoom("Death Mountain Hot Spring")
             );
         }
@@ -1612,7 +1611,7 @@ namespace TPRandomizer
             return (
                 ERLF.HasReachedRoom("Lost Woods")
                 || (canCompleteGoronMines() && ERLF.HasReachedKakMaloMart())
-                || (ERLF.HasReachedRoom("Castle Town Goron House Balcony") && !ShopsanityEnabled)
+                || ERLF.CanShopFromRoom("Castle Town Goron House Balcony")
             );
         }
 
@@ -1625,7 +1624,7 @@ namespace TPRandomizer
                 || (ERLF.HasReachedRoom("Lake Hylia Long Cave") && canSmash())
                 || ERLF.HasReachedRoom("Ordon Seras Shop")
                 || (canCompleteGoronMines() && ERLF.HasReachedLowerKakVillage() && CanChangeTime())
-                || (ERLF.HasReachedCTGoronShop() && !ShopsanityEnabled)
+                || ERLF.CanShopFromRoom("Castle Town Goron House")
             );
         }
 

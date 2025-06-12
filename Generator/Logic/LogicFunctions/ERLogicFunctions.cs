@@ -25,6 +25,16 @@ namespace LogicFunctionsNS
         }
 
         /// <summary>
+        /// Checks for if it is not shop sanity, and if the room can be accessed.
+        /// </summary>
+        /// <param name="Room">Name of the room to check.</param>
+        /// <returns>`true` if the shop room can be accessed and not shopsanity, else `false`.</returns>
+        public static bool CanShopFromRoom(string Room)
+        {
+            return HasReachedRoom(Room) && !SharedSettings.shuffleShopItems;
+        }
+
+        /// <summary>
         /// Checks each room to see if it has been reached.
         /// </summary>
         /// <param name="ListOfRooms">The list of rooms to check.</param>
@@ -61,11 +71,6 @@ namespace LogicFunctionsNS
             // If openMap is true, then the map is already open.
             // Otherwise, we need to check if any rooms on the map have been accessed.
             return SharedSettings.openMap || HasReachedAnyRooms(RoomsOnMap);
-        }
-
-        public static bool HasReachedCTGoronShop()
-        {
-            return HasReachedRoom("Castle Town Goron House");
         }
 
         public static bool HasReachedBarnesBombs()
