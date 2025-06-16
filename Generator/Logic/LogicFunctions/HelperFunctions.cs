@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using TPRandomizer;
 using TPRandomizer.SSettings.Enums;
+using CUU = LogicFunctionsNS.CanUseUtilities;
 using HHSL = LogicFunctionsNS.HasHiddenSkillLevel;
 using LF = TPRandomizer.LogicFunctionsUpdatedRefactored;
 
@@ -40,10 +41,10 @@ namespace LogicFunctionsNS
 
         // TODO: Name better? I just need to get this out
         public static bool CheckRules(
-            List<Func<bool>> glitchlessRules,
-            List<Func<bool>> glitchedRules,
-            List<Func<bool>> nicheRules,
-            List<Func<bool>> difficultCombatRules
+            List<Func<bool>> glitchlessRules = null,
+            List<Func<bool>> glitchedRules = null,
+            List<Func<bool>> nicheRules = null,
+            List<Func<bool>> difficultCombatRules = null
         )
         {
             // This is only temporary; replace niche once its setting is added
@@ -52,10 +53,10 @@ namespace LogicFunctionsNS
             // Create a table of the logic flags and their rulesets
             Dictionary<bool, List<Func<bool>>> ruleGroups = new()
             {
-                { true, glitchlessRules },
-                { isGlitched, glitchedRules },
-                { isGlitched, nicheRules }, // Change once niche is implemented
-                { false, difficultCombatRules }, // Change once difficult combat is implemented
+                { true, CreateBlankRuleList(glitchlessRules) },
+                { isGlitched, CreateBlankRuleList(glitchedRules) },
+                { isGlitched, CreateBlankRuleList(nicheRules) }, // Change once niche is implemented
+                { false, CreateBlankRuleList(difficultCombatRules) }, // Change once difficult combat is implemented
             };
 
             // The key is the flag for "Is this glitched?" for ex,
@@ -71,6 +72,28 @@ namespace LogicFunctionsNS
                 }
             }
             return false; // This check is not in logic.
+        }
+
+        private static List<Func<bool>> CreateBlankRuleList(List<Func<bool>> listOfRules)
+        {
+            // Use a blank list if none provided
+            listOfRules ??= new List<Func<bool>>();
+            return listOfRules;
+        }
+
+        public static Func<bool> WrapExpressionAsLambda(bool expression)
+        {
+            return () => expression;
+        }
+
+        public static Func<bool> CanUseLambda(Item item)
+        {
+            return WrapExpressionAsLambda(CUU.CanUse(item));
+        }
+
+        public static Func<bool> CanUseAnyItemLambda(params Item[] listOfItems)
+        {
+            return WrapExpressionAsLambda(listOfItems.Any(CUU.CanUse));
         }
     }
 }
