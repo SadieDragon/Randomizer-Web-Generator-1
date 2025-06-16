@@ -1,3 +1,4 @@
+using System;
 using TPRandomizer;
 using TPRandomizer.SSettings.Enums;
 using HHSL = LogicFunctionsNS.HasHiddenSkillLevel;
@@ -12,6 +13,16 @@ namespace LogicFunctionsNS
 {
     class HelperFunctions
     {
+        public static bool AnyTrue(params Func<bool>[] conditions)
+        {
+            foreach (var condition in conditions)
+            {
+                if (condition())
+                    return true;
+            }
+            return false;
+        }
+
         public static SharedSettings SharedSettings = Randomizer.SSettings;
 
         /// <summary>
