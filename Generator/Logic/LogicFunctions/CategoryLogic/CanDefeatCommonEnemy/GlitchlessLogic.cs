@@ -6,7 +6,6 @@
 
 // TODO: CTRL+F - RedeadKnight - Place ShadowBeast once `CanMidnaCharge` is updated/moved/whatever
 
-using System.Collections.Generic;
 using TPRandomizer;
 using BU = LogicFunctionsNS.BombUtils;
 using CUU = LogicFunctionsNS.CanUseUtilities;
@@ -37,16 +36,7 @@ namespace LogicFunctionsNS.GlitchlessLogic
 
         public static bool CanDefeatBabyGohma()
         {
-            List<Item> damagingItems =
-            [
-                Item.Ball_and_Chain,
-                Item.Progressive_Bow,
-                Item.Spinner,
-                Item.Slingshot,
-                Item.Progressive_Clawshot,
-            ];
-
-            return HSL.HasSword() || HDI.HasAnyDamagingItem(damagingItems) || BU.HasBombs();
+            return HSL.HasSword() || HDI.HasAltDamagingItem() || BU.HasBombs();
         }
 
         public static bool CanDefeatBari()
@@ -101,17 +91,8 @@ namespace LogicFunctionsNS.GlitchlessLogic
 
         public static bool CanDefeatDekuBaba()
         {
-            List<Item> damagingItems =
-            [
-                Item.Ball_and_Chain,
-                Item.Progressive_Bow,
-                Item.Spinner,
-                Item.Slingshot,
-                Item.Progressive_Clawshot,
-            ];
-
             return HSL.HasSword()
-                || HDI.HasAnyDamagingItem(damagingItems)
+                || HDI.HasAltDamagingItem()
                 || HLF.CanShieldAttack()
                 || BU.HasBombs();
         }
@@ -143,17 +124,8 @@ namespace LogicFunctionsNS.GlitchlessLogic
 
         public static bool CanDefeatGoron()
         {
-            List<Item> damagingItems =
-            [
-                Item.Ball_and_Chain,
-                Item.Progressive_Bow,
-                Item.Spinner,
-                Item.Slingshot,
-                Item.Progressive_Clawshot,
-            ];
-
             return HSL.HasSword()
-                || HDI.HasAnyDamagingItem(damagingItems)
+                || HDI.HasAltDamagingItem()
                 || HLF.CanShieldAttack()
                 || BU.HasBombs();
         }
@@ -162,15 +134,8 @@ namespace LogicFunctionsNS.GlitchlessLogic
 
         public static bool CanDefeatGuay()
         {
-            List<Item> damagingItems =
-            [
-                Item.Ball_and_Chain,
-                Item.Progressive_Bow,
-                Item.Shadow_Crystal,
-                Item.Slingshot,
-            ];
-
-            return HSL.HasSword() || HDI.HasAnyDamagingItem(damagingItems);
+            return HSL.HasSword()
+                || HDI.HasAltDamagingItem(includeClawshot: false, extraItem: Item.Shadow_Crystal);
         }
 
         public static bool CanDefeatHelmasaur() => HDI.HasDamagingItem();
@@ -226,18 +191,8 @@ namespace LogicFunctionsNS.GlitchlessLogic
 
         public static bool CanDefeatShadowDekuBaba()
         {
-            // sword, b&c, bow, spinner, sling, claw, bombs
-            List<Item> damagingItems =
-            [
-                Item.Ball_and_Chain,
-                Item.Progressive_Bow,
-                Item.Spinner,
-                Item.Slingshot,
-                Item.Progressive_Clawshot,
-            ];
-
             return HSL.HasSword()
-                || HDI.HasAnyDamagingItem(damagingItems)
+                || HDI.HasAltDamagingItem()
                 || BU.HasBombs()
                 || HLF.CanShieldAttack();
         }
@@ -290,16 +245,7 @@ namespace LogicFunctionsNS.GlitchlessLogic
 
         public static bool CanDefeatWalltula()
         {
-            List<Item> damagingItems =
-            [
-                Item.Ball_and_Chain,
-                Item.Progressive_Bow,
-                Item.Boomerang,
-                Item.Slingshot,
-                Item.Progressive_Clawshot,
-            ];
-
-            return HDI.HasAnyDamagingItem(damagingItems);
+            return HDI.HasAltDamagingItem(extraItem: Item.Boomerang);
         }
 
         public static bool CanDefeatWhiteWolfos() => HDI.HasDamagingItem();
