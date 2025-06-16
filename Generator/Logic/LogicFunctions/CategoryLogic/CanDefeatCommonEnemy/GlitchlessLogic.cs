@@ -25,9 +25,9 @@ namespace LogicFunctionsNS.GlitchlessLogic
                 || CUU.CanUse(Item.Shadow_Crystal);
         }
 
-        public static bool CanDefeatArmos() => HDI.HasDamagingItemOrClawshot();
+        public static bool CanDefeatArmos() => HDI.HasBaseDamagingItemOrClawshot();
 
-        public static bool CanDefeatBabaSerpent() => HDI.HasDamagingItem();
+        public static bool CanDefeatBabaSerpent() => HDI.HasBaseDamagingItem();
 
         public static bool CanDefeatHangingBabaSerpent()
         {
@@ -51,11 +51,11 @@ namespace LogicFunctionsNS.GlitchlessLogic
                 || BU.HasBombs();
         }
 
-        public static bool CanDefeatBigBaba() => HDI.HasDamagingItem();
+        public static bool CanDefeatBigBaba() => HDI.HasBaseDamagingItem();
 
-        public static bool CanDefeatChu() => HDI.HasDamagingItemOrClawshot();
+        public static bool CanDefeatChu() => HDI.HasBaseDamagingItemOrClawshot();
 
-        public static bool CanDefeatBokoblin() => HDI.HasDamagingItemOrSlingshot();
+        public static bool CanDefeatBokoblin() => HDI.HasBaseDamagingItemOrSlingshot();
 
         public static bool CanDefeatBokoblinRed()
         {
@@ -68,13 +68,13 @@ namespace LogicFunctionsNS.GlitchlessLogic
 
         public static bool CanDefeatBombfish() => CUU.CanUse(Item.Iron_Boots);
 
-        public static bool CanDefeatBombling() => HDI.HasDamagingItemOrClawshot(true);
+        public static bool CanDefeatBombling() => HDI.HasBaseDamagingItemOrClawshot(true);
 
-        public static bool CanDefeatBomskit() => HDI.HasDamagingItem();
+        public static bool CanDefeatBomskit() => HDI.HasBaseDamagingItem();
 
-        public static bool CanDefeatBubble() => HDI.HasDamagingItem(true);
+        public static bool CanDefeatBubble() => HDI.HasBaseDamagingItem(true);
 
-        public static bool CanDefeatBulblin() => HDI.HasDamagingItem();
+        public static bool CanDefeatBulblin() => HDI.HasBaseDamagingItem();
 
         public static bool CanDefeatChilfos()
         {
@@ -85,7 +85,7 @@ namespace LogicFunctionsNS.GlitchlessLogic
                 || BU.HasBombs();
         }
 
-        public static bool CanDefeatChuWorm() => HDI.HasDamagingItem(true);
+        public static bool CanDefeatChuWorm() => HDI.HasBaseDamagingItem(true);
 
         public static bool CanDefeatDarknut() => HSL.HasSword();
 
@@ -99,7 +99,7 @@ namespace LogicFunctionsNS.GlitchlessLogic
 
         public static bool CanDefeatDekuLike() => BU.HasBombs();
 
-        public static bool CanDefeatDodongo() => HDI.HasDamagingItem();
+        public static bool CanDefeatDodongo() => HDI.HasBaseDamagingItem();
 
         public static bool CanDefeatDinalfos()
         {
@@ -108,9 +108,9 @@ namespace LogicFunctionsNS.GlitchlessLogic
                 || CUU.CanUse(Item.Shadow_Crystal);
         }
 
-        public static bool CanDefeatFireBubble() => HDI.HasDamagingItem(true);
+        public static bool CanDefeatFireBubble() => HDI.HasBaseDamagingItem(true);
 
-        public static bool CanDefeatFireKeese() => HDI.HasDamagingItem(true);
+        public static bool CanDefeatFireKeese() => HDI.HasBaseDamagingItem(true);
 
         public static bool CanDefeatFireToadpoli()
         {
@@ -138,21 +138,21 @@ namespace LogicFunctionsNS.GlitchlessLogic
                 || HDI.HasAltDamagingItem(includeClawshot: false, extraItem: Item.Shadow_Crystal);
         }
 
-        public static bool CanDefeatHelmasaur() => HDI.HasDamagingItem();
+        public static bool CanDefeatHelmasaur() => HDI.HasBaseDamagingItem();
 
-        public static bool CanDefeatHelmasaurus() => HDI.HasDamagingItem();
+        public static bool CanDefeatHelmasaurus() => HDI.HasBaseDamagingItem();
 
-        public static bool CanDefeatIceBubble() => HDI.HasDamagingItem(true);
+        public static bool CanDefeatIceBubble() => HDI.HasBaseDamagingItem(true);
 
-        public static bool CanDefeatIceKeese() => HDI.HasDamagingItemOrSlingshot(true);
+        public static bool CanDefeatIceKeese() => HDI.HasBaseDamagingItemOrSlingshot(true);
 
         public static bool CanDefeatPoe() => CUU.CanUse(Item.Shadow_Crystal);
 
-        public static bool CanDefeatKargarok() => HDI.HasDamagingItem(true);
+        public static bool CanDefeatKargarok() => HDI.HasBaseDamagingItem(true);
 
-        public static bool CanDefeatKeese() => HDI.HasDamagingItemOrSlingshot(true);
+        public static bool CanDefeatKeese() => HDI.HasBaseDamagingItemOrSlingshot(true);
 
-        public static bool CanDefeatLeever() => HDI.HasDamagingItem();
+        public static bool CanDefeatLeever() => HDI.HasBaseDamagingItem();
 
         public static bool CanDefeatLizalfos()
         {
@@ -163,18 +163,18 @@ namespace LogicFunctionsNS.GlitchlessLogic
                 || BU.HasBombs();
         }
 
-        public static bool CanDefeatMiniFreezard() => HDI.HasDamagingItem();
+        public static bool CanDefeatMiniFreezard() => HDI.HasBaseDamagingItem();
 
-        public static bool CanDefeatMoldorm() => HDI.HasDamagingItem();
+        public static bool CanDefeatMoldorm() => HDI.HasBaseDamagingItem();
 
         public static bool CanDefeatPoisonMite()
         {
-            return HDI.HasDamagingItem(includeBombs: false, Item.Lantern);
+            return HDI.HasBaseDamagingItem(includeBombs: false, extraItem: Item.Lantern);
         }
 
-        public static bool CanDefeatPuppet() => HDI.HasDamagingItem();
+        public static bool CanDefeatPuppet() => HDI.HasBaseDamagingItem();
 
-        public static bool CanDefeatRat() => HDI.HasDamagingItemOrSlingshot();
+        public static bool CanDefeatRat() => HDI.HasBaseDamagingItemOrSlingshot();
 
         public static bool CanDefeatRedeadKnight()
         {
@@ -187,7 +187,7 @@ namespace LogicFunctionsNS.GlitchlessLogic
 
         // TODO: SB requires MidnaCharge handling
 
-        public static bool CanDefeatShadowBulblin() => HDI.HasDamagingItem();
+        public static bool CanDefeatShadowBulblin() => HDI.HasBaseDamagingItem();
 
         public static bool CanDefeatShadowDekuBaba()
         {
@@ -199,32 +199,32 @@ namespace LogicFunctionsNS.GlitchlessLogic
 
         public static bool CanDefeatShadowInsect() => CUU.CanUse(Item.Shadow_Crystal);
 
-        public static bool CanDefeatShadowKargarok() => HDI.HasDamagingItem();
+        public static bool CanDefeatShadowKargarok() => HDI.HasBaseDamagingItem();
 
         public static bool CanDefeatShadowKeese()
         {
-            return HDI.HasDamagingItemOrSlingshot(includeBombs: false);
+            return HDI.HasBaseDamagingItemOrSlingshot(includeBombs: false);
         }
 
-        public static bool CanDefeatShadowVermin() => HDI.HasDamagingItem();
+        public static bool CanDefeatShadowVermin() => HDI.HasBaseDamagingItem();
 
         public static bool CanDefeatShellBlade() => CUU.CanUse(Item.Iron_Boots);
 
-        public static bool CanDefeatSkullfish() => HDI.HasDamagingItem(false);
+        public static bool CanDefeatSkullfish() => HDI.HasBaseDamagingItem(false);
 
-        public static bool CanDefeatSkulltula() => HDI.HasDamagingItem();
+        public static bool CanDefeatSkulltula() => HDI.HasBaseDamagingItem();
 
         public static bool CanDefeatStalfos() => BU.CanSmash();
 
-        public static bool CanDefeatStalhound() => HDI.HasDamagingItem();
+        public static bool CanDefeatStalhound() => HDI.HasBaseDamagingItem();
 
-        public static bool CanDefeatStalchild() => HDI.HasDamagingItem();
+        public static bool CanDefeatStalchild() => HDI.HasBaseDamagingItem();
 
-        public static bool CanDefeatTektite() => HDI.HasDamagingItem();
+        public static bool CanDefeatTektite() => HDI.HasBaseDamagingItem();
 
-        public static bool CanDefeatTileWorm() => HDI.HasDamagingItem();
+        public static bool CanDefeatTileWorm() => HDI.HasBaseDamagingItem();
 
-        public static bool CanDefeatToado() => HDI.HasDamagingItem(false);
+        public static bool CanDefeatToado() => HDI.HasBaseDamagingItem(false);
 
         public static bool CanDefeatWaterToadpoli()
         {
@@ -248,8 +248,8 @@ namespace LogicFunctionsNS.GlitchlessLogic
             return HDI.HasAltDamagingItem(extraItem: Item.Boomerang);
         }
 
-        public static bool CanDefeatWhiteWolfos() => HDI.HasDamagingItem();
+        public static bool CanDefeatWhiteWolfos() => HDI.HasBaseDamagingItem();
 
-        public static bool CanDefeatYoungGohma() => HDI.HasDamagingItem();
+        public static bool CanDefeatYoungGohma() => HDI.HasBaseDamagingItem();
     }
 }
