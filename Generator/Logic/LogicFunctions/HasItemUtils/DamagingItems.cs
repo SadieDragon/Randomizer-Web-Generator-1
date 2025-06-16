@@ -3,29 +3,21 @@ using System.Linq;
 using TPRandomizer;
 using BU = LogicFunctionsNS.BombUtils;
 using CUU = LogicFunctionsNS.CanUseUtilities;
-using HSL = LogicFunctionsNS.HasSwordLevel;
+
+// using HF = LogicFunctionsNS.HelperFunctions;
 
 namespace LogicFunctionsNS
 {
     public class DamagingItems
     {
-        public DamagingItems()
-        {
-            BaseDIList =
-            [
-                Item.Ball_and_Chain,
-                Item.Progressive_Bow,
-                Item.Shadow_Crystal,
-                Item.Spinner,
-            ];
-        }
-
-        private static List<Item> baseDIList;
-        public static List<Item> BaseDIList
-        {
-            get { return baseDIList; }
-            set { baseDIList = value; }
-        }
+        private static readonly List<Item> BaseDIList =
+        [
+            Item.Progressive_Sword,
+            Item.Ball_and_Chain,
+            Item.Progressive_Bow,
+            Item.Shadow_Crystal,
+            Item.Spinner,
+        ];
 
         public static bool HasAnyDamagingItem(List<Item> listOfItems)
         {
@@ -38,24 +30,30 @@ namespace LogicFunctionsNS
         }
 
         // TODO: better name
-        public static bool HasDamagingItem(bool includeBombs = true, List<Item> extraItems = null)
+        public static bool HasDamagingItem(bool includeBombs = true, params Item[] extraItems)
         {
-            extraItems ??= new List<Item>(); // Use a blank list if none provided
+            // Not sure this is better yet; leaving it in so I can see it - Lupa
+            // return HF.AnyTrue(
+            //     HasBaseDamagingItem,
+            //     () => includeBombs && BU.HasBombs(),
+            //     () => HasAnyDamagingItem(extraItems.ToList())
+            // );
 
             return HasBaseDamagingItem()
-                || HSL.HasSword()
                 || (includeBombs && BU.HasBombs())
-                || HasAnyDamagingItem(extraItems);
+                // [.. extraItems] is suggested; is this valid?? Can't find info - Lupa
+                // Need to convert to a proper list; won't change the other fn's param typing
+                || HasAnyDamagingItem(extraItems.ToList());
         }
 
         public static bool HasDamagingItemOrClawshot(bool includeBombs = true)
         {
-            return HasDamagingItem(includeBombs, [Item.Progressive_Clawshot]);
+            return HasDamagingItem(includeBombs, Item.Progressive_Clawshot);
         }
 
         public static bool HasDamagingItemOrSlingshot(bool includeBombs = true)
         {
-            return HasDamagingItem(includeBombs, [Item.Slingshot]);
+            return HasDamagingItem(includeBombs, Item.Slingshot);
         }
     }
 }
