@@ -27,9 +27,9 @@ namespace LogicFunctionsNS
             set { baseDIList = value; }
         }
 
-        public static bool HasAnyDamagingItem(List<Item> ListOfItems)
+        public static bool HasAnyDamagingItem(List<Item> listOfItems)
         {
-            return ListOfItems.Any(CUU.CanUse);
+            return listOfItems.Any(CUU.CanUse);
         }
 
         public static bool HasBaseDamagingItem()
@@ -38,34 +38,24 @@ namespace LogicFunctionsNS
         }
 
         // TODO: better name
-        public static bool HasDamagingItem(
-            bool IncludeSword = true,
-            bool IncludeBombs = true,
-            List<Item> ExtraItems = null
-        )
+        public static bool HasDamagingItem(bool includeBombs = true, List<Item> extraItems = null)
         {
-            ExtraItems ??= new List<Item>(); // Use a blank list if none provided
+            extraItems ??= new List<Item>(); // Use a blank list if none provided
 
             return HasBaseDamagingItem()
-                || (IncludeSword && HSL.HasSword())
-                || (IncludeBombs && BU.HasBombs())
-                || HasAnyDamagingItem(ExtraItems);
+                || HSL.HasSword()
+                || (includeBombs && BU.HasBombs())
+                || HasAnyDamagingItem(extraItems);
         }
 
-        public static bool HasDamagingItemOrClawshot(
-            bool IncludeSword = true,
-            bool IncludeBombs = true
-        )
+        public static bool HasDamagingItemOrClawshot(bool includeBombs = true)
         {
-            return HasDamagingItem(IncludeSword, IncludeBombs, [Item.Progressive_Clawshot]);
+            return HasDamagingItem(includeBombs, [Item.Progressive_Clawshot]);
         }
 
-        public static bool HasDamagingItemOrSlingshot(
-            bool IncludeSword = true,
-            bool IncludeBombs = true
-        )
+        public static bool HasDamagingItemOrSlingshot(bool includeBombs = true)
         {
-            return HasDamagingItem(IncludeSword, IncludeBombs, [Item.Slingshot]);
+            return HasDamagingItem(includeBombs, [Item.Slingshot]);
         }
     }
 }

@@ -19,13 +19,13 @@ namespace LogicFunctionsNS
 
         public static bool CanReplenishItem(Item item)
         {
-            Dictionary<Item, bool> ItemRefills = new()
+            Dictionary<Item, bool> itemRefills = new()
             {
                 { Item.Lantern, LF.CanRefillOil() },
                 { Item.Progressive_Bow, LF.CanGetArrows() },
             };
 
-            if (ItemRefills.TryGetValue(item, out var check))
+            if (itemRefills.TryGetValue(item, out var check))
             {
                 return check;
             }
@@ -36,14 +36,14 @@ namespace LogicFunctionsNS
         /// Count the number of a given item available, including if the item can
         /// be replenished.
         /// </summary>
-        /// <param name="ItemToBeCounted">(Item) Item to be counted.</param>
+        /// <param name="itemToBeCounted">(Item) Item to be counted.</param>
         /// <returns>Returns the amount available.</returns>
-        public static int GetItemCount(Item ItemToBeCounted)
+        public static int GetItemCount(Item itemToBeCounted)
         {
             // Only count how many of the item there are if it can be replenished
-            if (CanReplenishItem(ItemToBeCounted))
+            if (CanReplenishItem(itemToBeCounted))
             {
-                return ItemList.Count(item_ => item_ == ItemToBeCounted);
+                return ItemList.Count(item => item == itemToBeCounted);
             }
             // Fallback of "0"
             return 0;

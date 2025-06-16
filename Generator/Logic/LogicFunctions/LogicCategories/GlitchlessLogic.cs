@@ -108,7 +108,7 @@ namespace LogicFunctionsNS
 
         public static bool CanDefeatBombling()
         {
-            return HDI.HasDamagingItemOrClawshot(IncludeBombs: false);
+            return HDI.HasDamagingItemOrClawshot(includeBombs: false);
         }
 
         public static bool CanDefeatBomskit()
@@ -132,7 +132,7 @@ namespace LogicFunctionsNS
 
         public static bool CanDefeatBubble()
         {
-            return HDI.HasDamagingItem(IncludeBombs: false);
+            return HDI.HasDamagingItem(includeBombs: false);
         }
 
         public static bool CanDefeatBulblin()
@@ -156,7 +156,7 @@ namespace LogicFunctionsNS
 
         public static bool CanDefeatChuWorm()
         {
-            return HDI.HasDamagingItem(IncludeBombs: false);
+            return HDI.HasDamagingItem(includeBombs: false);
         }
 
         public static bool CanDefeatChuWormCoreRequirements()
@@ -171,7 +171,7 @@ namespace LogicFunctionsNS
 
         public static bool CanDefeatDekuBaba()
         {
-            return HDI.HasDamagingItem(ExtraItems: [Item.Progressive_Clawshot, Item.Slingshot]);
+            return HDI.HasDamagingItem(extraItems: [Item.Progressive_Clawshot, Item.Slingshot]);
         }
 
         public static bool CanDefeatDekuLike()
@@ -209,7 +209,7 @@ namespace LogicFunctionsNS
 
         public static bool CanDefeatGoron()
         {
-            List<Item> DamagingItems =
+            List<Item> damagingItems =
             [
                 Item.Ball_and_Chain,
                 Item.Progressive_Bow,
@@ -219,7 +219,7 @@ namespace LogicFunctionsNS
             ];
 
             return HSL.HasSword()
-                || HDI.HasAnyDamagingItem(DamagingItems)
+                || HDI.HasAnyDamagingItem(damagingItems)
                 || HLF.CanShieldAttack()
                 || BU.HasBombs();
         }
@@ -252,12 +252,12 @@ namespace LogicFunctionsNS
 
         public static bool CanDefeatKargarok()
         {
-            return HDI.HasDamagingItem(IncludeBombs: false);
+            return HDI.HasDamagingItem(includeBombs: false);
         }
 
         public static bool CanDefeatKeese()
         {
-            return HDI.HasDamagingItemOrSlingshot(IncludeBombs: false);
+            return HDI.HasDamagingItemOrSlingshot(includeBombs: false);
         }
 
         public static bool CanDefeatPoe()
