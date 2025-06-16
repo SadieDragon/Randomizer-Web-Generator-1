@@ -27,7 +27,12 @@ namespace LogicFunctionsNS
             return HasAnyDamagingItem(BaseDIList);
         }
 
-        // TODO: better name
+        /// <summary>
+        /// Sword, B&C, Bow, SC, spinner
+        /// </summary>
+        /// <param name="includeBombs">False if no bombs; default true</param>
+        /// <param name="extraItems">Any extra items</param>
+        /// <returns></returns>
         public static bool HasDamagingItem(bool includeBombs = true, params Item[] extraItems)
         {
             return HasBaseDamagingItem()
