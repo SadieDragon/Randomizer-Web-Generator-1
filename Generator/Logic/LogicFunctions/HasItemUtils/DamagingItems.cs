@@ -4,8 +4,6 @@ using TPRandomizer;
 using BU = LogicFunctionsNS.BombUtils;
 using CUU = LogicFunctionsNS.CanUseUtilities;
 
-// using HF = LogicFunctionsNS.HelperFunctions;
-
 namespace LogicFunctionsNS
 {
     public class DamagingItems
@@ -32,13 +30,6 @@ namespace LogicFunctionsNS
         // TODO: better name
         public static bool HasDamagingItem(bool includeBombs = true, params Item[] extraItems)
         {
-            // Not sure this is better yet; leaving it in so I can see it - Lupa
-            // return HF.AnyTrue(
-            //     HasBaseDamagingItem,
-            //     () => includeBombs && BU.HasBombs(),
-            //     () => HasAnyDamagingItem(extraItems.ToList())
-            // );
-
             return HasBaseDamagingItem()
                 || (includeBombs && BU.HasBombs())
                 // [.. extraItems] is suggested; is this valid?? Can't find info - Lupa
