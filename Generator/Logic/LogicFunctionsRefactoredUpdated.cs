@@ -9,6 +9,7 @@ using GLL = LogicFunctionsNS.GlitchlessLogic;
 using HHSL = LogicFunctionsNS.HasHiddenSkillLevel;
 using HLF = LogicFunctionsNS.HelperFunctions;
 using HSL = LogicFunctionsNS.HasSwordLevel;
+using NLU = LogicFunctionsNS.NicheLogicUtils;
 
 namespace TPRandomizer
 {
@@ -121,8 +122,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDefeatAeralfos()
         {
-            // The second part of the statement is niche
-            return GLL.CanDefeatAeralfos() || (CanDoNicheStuff() && CUU.CanUse(Item.Iron_Boots));
+            return GLL.CanDefeatAeralfos() || NLU.CanUseIronBootsAndDoNiche();
         }
 
         /// <summary>
@@ -131,8 +131,8 @@ namespace TPRandomizer
         public static bool CanDefeatArmos()
         {
             return GLL.CanDefeatArmos()
-                || (CanDoNicheStuff() && CUU.CanUse(Item.Iron_Boots)) // Niche
-                || CanUseBacksliceAsSword(); // Niche
+                || NLU.CanUseIronBootsAndDoNiche()
+                || NLU.CanUseBacksliceAsSword();
         }
 
         /// <summary>
@@ -141,8 +141,8 @@ namespace TPRandomizer
         public static bool CanDefeatBabaSerpent()
         {
             return GLL.CanDefeatBabaSerpent()
-                || (CanDoNicheStuff() && CUU.CanUse(Item.Iron_Boots)) // Niche
-                || CanUseBacksliceAsSword(); // Niche
+                || NLU.CanUseIronBootsAndDoNiche()
+                || NLU.CanUseBacksliceAsSword();
         }
 
         public static bool CanDefeatHangingBabaSerpent()
@@ -156,8 +156,8 @@ namespace TPRandomizer
         public static bool CanDefeatBabyGohma()
         {
             return GLL.CanDefeatBabyGohma()
-                || (CanDoNicheStuff() && CUU.CanUse(Item.Iron_Boots)) // Niche
-                || CanUseBacksliceAsSword(); // Niche
+                || NLU.CanUseIronBootsAndDoNiche()
+                || NLU.CanUseBacksliceAsSword();
         }
 
         /// <summary>
@@ -182,8 +182,8 @@ namespace TPRandomizer
         public static bool CanDefeatBigBaba()
         {
             return GLL.CanDefeatBigBaba()
-                || (CanDoNicheStuff() && CUU.CanUse(Item.Iron_Boots)) // Niche
-                || CanUseBacksliceAsSword(); // Niche
+                || NLU.CanUseIronBootsAndDoNiche()
+                || NLU.CanUseBacksliceAsSword();
         }
 
         /// <summary>
@@ -192,8 +192,8 @@ namespace TPRandomizer
         public static bool CanDefeatChu()
         {
             return GLL.CanDefeatChu()
-                || (CanDoNicheStuff() && CUU.CanUse(Item.Iron_Boots)) // Niche
-                || CanUseBacksliceAsSword(); // Niche
+                || NLU.CanUseIronBootsAndDoNiche()
+                || NLU.CanUseBacksliceAsSword();
         }
 
         /// <summary>
@@ -202,14 +202,14 @@ namespace TPRandomizer
         public static bool CanDefeatBokoblin()
         {
             return GLL.CanDefeatBokoblin()
-                || (CanDoNicheStuff() && CUU.CanUse(Item.Iron_Boots)) // Niche
-                || CanUseBacksliceAsSword(); // Niche
+                || NLU.CanUseIronBootsAndDoNiche()
+                || NLU.CanUseBacksliceAsSword();
         }
 
         public static bool CanDefeatBokoblinRed()
         {
             return GLL.CanDefeatBokoblinRed()
-                || CanUseBacksliceAsSword() // Niche
+                || NLU.CanUseBacksliceAsSword()
                 // DifficultCombat
                 || (
                     CanDoDifficultCombat()
@@ -232,8 +232,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDefeatBombling()
         {
-            // second half of or is niche
-            return GLL.CanDefeatBombling() || (CanDoNicheStuff() && CUU.CanUse(Item.Iron_Boots));
+            return GLL.CanDefeatBombling() || NLU.CanUseIronBootsAndDoNiche();
         }
 
         /// <summary>
@@ -242,8 +241,8 @@ namespace TPRandomizer
         public static bool CanDefeatBomskit()
         {
             return GLL.CanDefeatBomskit()
-                || CanUseBacksliceAsSword() // Niche
-                || (CanDoNicheStuff() && CUU.CanUse(Item.Iron_Boots)); // Niche
+                || NLU.CanUseBacksliceAsSword()
+                || NLU.CanUseIronBootsAndDoNiche();
         }
 
         /// <summary>
@@ -252,8 +251,8 @@ namespace TPRandomizer
         public static bool CanDefeatBubble()
         {
             return GLL.CanDefeatBubble()
-                || (CanDoNicheStuff() && CUU.CanUse(Item.Iron_Boots)) // Niche
-                || CanUseBacksliceAsSword(); // Niche
+                || NLU.CanUseIronBootsAndDoNiche()
+                || NLU.CanUseBacksliceAsSword();
         }
 
         /// <summary>
@@ -262,8 +261,8 @@ namespace TPRandomizer
         public static bool CanDefeatBulblin()
         {
             return GLL.CanDefeatBulblin()
-                || (CanDoNicheStuff() && CUU.CanUse(Item.Iron_Boots)) // Niche
-                || CanUseBacksliceAsSword(); // Niche
+                || NLU.CanUseIronBootsAndDoNiche()
+                || NLU.CanUseBacksliceAsSword();
         }
 
         /// <summary>
@@ -272,8 +271,8 @@ namespace TPRandomizer
         public static bool CanDefeatChilfos()
         {
             return GLL.CanDefeatChilfos()
-                || (CanDoNicheStuff() && CUU.CanUse(Item.Iron_Boots)) // Niche
-                || CanUseBacksliceAsSword(); // Niche
+                || NLU.CanUseIronBootsAndDoNiche()
+                || NLU.CanUseBacksliceAsSword();
         }
 
         /// <summary>
@@ -283,8 +282,8 @@ namespace TPRandomizer
         {
             return (
                     GLL.CanDefeatChuWorm()
-                    || (CanDoNicheStuff() && CUU.CanUse(Item.Iron_Boots)) // Niche
-                    || CanUseBacksliceAsSword() // Niche
+                    || NLU.CanUseIronBootsAndDoNiche()
+                    || NLU.CanUseBacksliceAsSword()
                 ) && GLL.CanDefeatChuWormCoreRequirements();
         }
 
@@ -304,8 +303,8 @@ namespace TPRandomizer
         public static bool CanDefeatDekuBaba()
         {
             return GLL.CanDefeatDekuBaba()
-                || (CanDoNicheStuff() && CUU.CanUse(Item.Iron_Boots)) // Niche
-                || CanUseBacksliceAsSword(); // Niche
+                || NLU.CanUseIronBootsAndDoNiche()
+                || NLU.CanUseBacksliceAsSword();
         }
 
         /// <summary>
@@ -322,8 +321,8 @@ namespace TPRandomizer
         public static bool CanDefeatDodongo()
         {
             return GLL.CanDefeatDodongo()
-                || (CanDoNicheStuff() && CUU.CanUse(Item.Iron_Boots)) // Niche
-                || CanUseBacksliceAsSword(); // Niche
+                || NLU.CanUseIronBootsAndDoNiche()
+                || NLU.CanUseBacksliceAsSword();
         }
 
         /// <summary>
@@ -373,9 +372,9 @@ namespace TPRandomizer
         public static bool CanDefeatGoron()
         {
             return GLL.CanDefeatGoron()
-                || (CanDoNicheStuff() && CUU.CanUse(Item.Iron_Boots)) // Niche
+                || NLU.CanUseIronBootsAndDoNiche()
                 || (CanDoDifficultCombat() && CUU.CanUse(Item.Lantern)) // DifficultCombat
-                || CanUseBacksliceAsSword(); // Niche
+                || NLU.CanUseBacksliceAsSword();
         }
 
         /// <summary>
@@ -392,7 +391,7 @@ namespace TPRandomizer
         public static bool CanDefeatGuay()
         {
             return GLL.CanDefeatGuay()
-                || (CanDoNicheStuff() && CUU.CanUse(Item.Iron_Boots)) // Niche
+                || NLU.CanUseIronBootsAndDoNiche()
                 || (CanDoDifficultCombat() && CUU.CanUse(Item.Spinner)); // DifficultCombat
         }
 
@@ -402,8 +401,8 @@ namespace TPRandomizer
         public static bool CanDefeatHelmasaur()
         {
             return GLL.CanDefeatHelmasaur()
-                || (CanDoNicheStuff() && CUU.CanUse(Item.Iron_Boots)) // Niche
-                || CanUseBacksliceAsSword(); // Niche
+                || NLU.CanUseIronBootsAndDoNiche()
+                || NLU.CanUseBacksliceAsSword();
         }
 
         /// <summary>
@@ -412,8 +411,8 @@ namespace TPRandomizer
         public static bool CanDefeatHelmasaurus()
         {
             return GLL.CanDefeatHelmasaurus()
-                || (CanDoNicheStuff() && CUU.CanUse(Item.Iron_Boots)) // Niche
-                || CanUseBacksliceAsSword(); // Niche
+                || NLU.CanUseIronBootsAndDoNiche()
+                || NLU.CanUseBacksliceAsSword();
         }
 
         /// <summary>
@@ -446,8 +445,8 @@ namespace TPRandomizer
         public static bool CanDefeatKargarok()
         {
             return GLL.CanDefeatKargarok()
-                || (CanDoNicheStuff() && CUU.CanUse(Item.Iron_Boots)) // Niche
-                || CanUseBacksliceAsSword(); // Niche
+                || NLU.CanUseIronBootsAndDoNiche()
+                || NLU.CanUseBacksliceAsSword();
         }
 
         /// <summary>
@@ -456,8 +455,8 @@ namespace TPRandomizer
         public static bool CanDefeatKeese()
         {
             return GLL.CanDefeatKeese()
-                || (CanDoNicheStuff() && CUU.CanUse(Item.Iron_Boots)) // Niche
-                || CanUseBacksliceAsSword(); // Niche
+                || NLU.CanUseIronBootsAndDoNiche()
+                || NLU.CanUseBacksliceAsSword();
         }
 
         /// <summary>
@@ -469,7 +468,7 @@ namespace TPRandomizer
                 HSL.HasSword()
                 || CUU.CanUse(Item.Ball_and_Chain)
                 || CUU.CanUse(Item.Progressive_Bow)
-                || (CanDoNicheStuff() && CUU.CanUse(Item.Iron_Boots)) // Niche
+                || NLU.CanUseIronBootsAndDoNiche()
                 || CUU.CanUse(Item.Spinner)
                 || CUU.CanUse(Item.Shadow_Crystal)
                 || BU.HasBombs()
@@ -485,10 +484,10 @@ namespace TPRandomizer
                 HSL.HasSword()
                 || CUU.CanUse(Item.Ball_and_Chain)
                 || CUU.CanUse(Item.Progressive_Bow)
-                || (CanDoNicheStuff() && CUU.CanUse(Item.Iron_Boots))
+                || NLU.CanUseIronBootsAndDoNiche()
                 || CUU.CanUse(Item.Shadow_Crystal)
                 || BU.HasBombs()
-                || CanUseBacksliceAsSword()
+                || NLU.CanUseBacksliceAsSword()
             );
         }
 
@@ -501,11 +500,11 @@ namespace TPRandomizer
                 HSL.HasSword()
                 || CUU.CanUse(Item.Ball_and_Chain)
                 || CUU.CanUse(Item.Progressive_Bow)
-                || (CanDoNicheStuff() && CUU.CanUse(Item.Iron_Boots))
+                || NLU.CanUseIronBootsAndDoNiche()
                 || CUU.CanUse(Item.Spinner)
                 || CUU.CanUse(Item.Shadow_Crystal)
                 || BU.HasBombs()
-                || CanUseBacksliceAsSword()
+                || NLU.CanUseBacksliceAsSword()
             );
         }
 
@@ -518,7 +517,7 @@ namespace TPRandomizer
                 HSL.HasSword()
                 || CUU.CanUse(Item.Ball_and_Chain)
                 || CUU.CanUse(Item.Progressive_Bow)
-                || (CanDoNicheStuff() && CUU.CanUse(Item.Iron_Boots))
+                || NLU.CanUseIronBootsAndDoNiche()
                 || CUU.CanUse(Item.Spinner)
                 || CUU.CanUse(Item.Shadow_Crystal)
                 || BU.HasBombs()
@@ -549,11 +548,11 @@ namespace TPRandomizer
                 HSL.HasSword()
                 || CUU.CanUse(Item.Ball_and_Chain)
                 || CUU.CanUse(Item.Progressive_Bow)
-                || (CanDoNicheStuff() && CUU.CanUse(Item.Iron_Boots))
+                || NLU.CanUseIronBootsAndDoNiche()
                 || CUU.CanUse(Item.Spinner)
                 || CUU.CanUse(Item.Shadow_Crystal)
                 || BU.HasBombs()
-                || CanUseBacksliceAsSword()
+                || NLU.CanUseBacksliceAsSword()
             );
         }
 
@@ -566,12 +565,12 @@ namespace TPRandomizer
                 HSL.HasSword()
                 || CUU.CanUse(Item.Ball_and_Chain)
                 || CUU.CanUse(Item.Progressive_Bow)
-                || (CanDoNicheStuff() && CUU.CanUse(Item.Iron_Boots))
+                || NLU.CanUseIronBootsAndDoNiche()
                 || CUU.CanUse(Item.Spinner)
                 || CUU.CanUse(Item.Slingshot)
                 || CUU.CanUse(Item.Shadow_Crystal)
                 || BU.HasBombs()
-                || CanUseBacksliceAsSword()
+                || NLU.CanUseBacksliceAsSword()
             );
         }
 
@@ -584,10 +583,10 @@ namespace TPRandomizer
                 HSL.HasSword()
                 || CUU.CanUse(Item.Ball_and_Chain)
                 || CUU.CanUse(Item.Progressive_Bow)
-                || (CanDoNicheStuff() && CUU.CanUse(Item.Iron_Boots))
+                || NLU.CanUseIronBootsAndDoNiche()
                 || CUU.CanUse(Item.Shadow_Crystal)
                 || BU.HasBombs()
-                || CanUseBacksliceAsSword()
+                || NLU.CanUseBacksliceAsSword()
             );
         }
 
@@ -608,11 +607,11 @@ namespace TPRandomizer
                 HSL.HasSword()
                 || CUU.CanUse(Item.Ball_and_Chain)
                 || CUU.CanUse(Item.Progressive_Bow)
-                || (CanDoNicheStuff() && CUU.CanUse(Item.Iron_Boots))
+                || NLU.CanUseIronBootsAndDoNiche()
                 || CUU.CanUse(Item.Spinner)
                 || CUU.CanUse(Item.Shadow_Crystal)
                 || BU.HasBombs()
-                || CanUseBacksliceAsSword()
+                || NLU.CanUseBacksliceAsSword()
             );
         }
 
@@ -625,13 +624,13 @@ namespace TPRandomizer
                 HSL.HasSword()
                 || CUU.CanUse(Item.Ball_and_Chain)
                 || CUU.CanUse(Item.Progressive_Bow)
-                || (CanDoNicheStuff() && CUU.CanUse(Item.Iron_Boots))
+                || NLU.CanUseIronBootsAndDoNiche()
                 || CUU.CanUse(Item.Spinner)
                 || HLF.CanShieldAttack()
                 || CUU.CanUse(Item.Slingshot)
                 || CUU.CanUse(Item.Progressive_Clawshot)
                 || BU.HasBombs()
-                || CanUseBacksliceAsSword()
+                || NLU.CanUseBacksliceAsSword()
             );
         }
 
@@ -652,11 +651,11 @@ namespace TPRandomizer
                 HSL.HasSword()
                 || CUU.CanUse(Item.Ball_and_Chain)
                 || CUU.CanUse(Item.Progressive_Bow)
-                || (CanDoNicheStuff() && CUU.CanUse(Item.Iron_Boots))
+                || NLU.CanUseIronBootsAndDoNiche()
                 || CUU.CanUse(Item.Spinner)
                 || CUU.CanUse(Item.Shadow_Crystal)
                 || BU.HasBombs()
-                || CanUseBacksliceAsSword()
+                || NLU.CanUseBacksliceAsSword()
             );
         }
 
@@ -677,11 +676,11 @@ namespace TPRandomizer
                 HSL.HasSword()
                 || CUU.CanUse(Item.Ball_and_Chain)
                 || CUU.CanUse(Item.Progressive_Bow)
-                || (CanDoNicheStuff() && CUU.CanUse(Item.Iron_Boots))
+                || NLU.CanUseIronBootsAndDoNiche()
                 || CUU.CanUse(Item.Spinner)
                 || CUU.CanUse(Item.Shadow_Crystal)
                 || BU.HasBombs()
-                || CanUseBacksliceAsSword()
+                || NLU.CanUseBacksliceAsSword()
             );
         }
 
@@ -711,7 +710,7 @@ namespace TPRandomizer
                 HSL.HasSword()
                 || CUU.CanUse(Item.Ball_and_Chain)
                 || CUU.CanUse(Item.Progressive_Bow)
-                || (CanDoNicheStuff() && CUU.CanUse(Item.Iron_Boots))
+                || NLU.CanUseIronBootsAndDoNiche()
                 || CUU.CanUse(Item.Spinner)
                 || CUU.CanUse(Item.Shadow_Crystal)
             );
@@ -726,11 +725,11 @@ namespace TPRandomizer
                 HSL.HasSword()
                 || CUU.CanUse(Item.Ball_and_Chain)
                 || CUU.CanUse(Item.Progressive_Bow)
-                || (CanDoNicheStuff() && CUU.CanUse(Item.Iron_Boots))
+                || NLU.CanUseIronBootsAndDoNiche()
                 || CUU.CanUse(Item.Spinner)
                 || CUU.CanUse(Item.Shadow_Crystal)
                 || BU.HasBombs()
-                || CanUseBacksliceAsSword()
+                || NLU.CanUseBacksliceAsSword()
             );
         }
 
@@ -751,11 +750,11 @@ namespace TPRandomizer
                 HSL.HasSword()
                 || CUU.CanUse(Item.Ball_and_Chain)
                 || CUU.CanUse(Item.Progressive_Bow)
-                || (CanDoNicheStuff() && CUU.CanUse(Item.Iron_Boots))
+                || NLU.CanUseIronBootsAndDoNiche()
                 || CUU.CanUse(Item.Spinner)
                 || CUU.CanUse(Item.Shadow_Crystal)
                 || BU.HasBombs()
-                || CanUseBacksliceAsSword()
+                || NLU.CanUseBacksliceAsSword()
             );
         }
 
@@ -768,11 +767,11 @@ namespace TPRandomizer
                 HSL.HasSword()
                 || CUU.CanUse(Item.Ball_and_Chain)
                 || CUU.CanUse(Item.Progressive_Bow)
-                || (CanDoNicheStuff() && CUU.CanUse(Item.Iron_Boots))
+                || NLU.CanUseIronBootsAndDoNiche()
                 || CUU.CanUse(Item.Spinner)
                 || CUU.CanUse(Item.Shadow_Crystal)
                 || BU.HasBombs()
-                || CanUseBacksliceAsSword()
+                || NLU.CanUseBacksliceAsSword()
             );
         }
 
@@ -785,11 +784,11 @@ namespace TPRandomizer
                 HSL.HasSword()
                 || CUU.CanUse(Item.Ball_and_Chain)
                 || CUU.CanUse(Item.Progressive_Bow)
-                || (CanDoNicheStuff() && CUU.CanUse(Item.Iron_Boots))
+                || NLU.CanUseIronBootsAndDoNiche()
                 || CUU.CanUse(Item.Spinner)
                 || CUU.CanUse(Item.Shadow_Crystal)
                 || BU.HasBombs()
-                || CanUseBacksliceAsSword()
+                || NLU.CanUseBacksliceAsSword()
             );
         }
 
@@ -805,9 +804,9 @@ namespace TPRandomizer
                     || CUU.CanUse(Item.Progressive_Bow)
                     || CUU.CanUse(Item.Shadow_Crystal)
                     || CUU.CanUse(Item.Spinner)
-                    || (CanDoNicheStuff() && CUU.CanUse(Item.Iron_Boots))
+                    || NLU.CanUseIronBootsAndDoNiche()
                     || BU.HasBombs()
-                    || CanUseBacksliceAsSword()
+                    || NLU.CanUseBacksliceAsSword()
                 ) && CUU.CanUse(Item.Boomerang)
             );
         }
@@ -877,7 +876,7 @@ namespace TPRandomizer
                 HSL.HasSword()
                 || CUU.CanUse(Item.Ball_and_Chain)
                 || CUU.CanUse(Item.Progressive_Bow)
-                || (CanDoNicheStuff() && CUU.CanUse(Item.Iron_Boots))
+                || NLU.CanUseIronBootsAndDoNiche()
                 || CUU.CanUse(Item.Spinner)
                 || CUU.CanUse(Item.Shadow_Crystal)
                 || BU.HasBombs()
@@ -893,7 +892,7 @@ namespace TPRandomizer
                 HSL.HasSword()
                 || CUU.CanUse(Item.Ball_and_Chain)
                 || CUU.CanUse(Item.Progressive_Bow)
-                || (CanDoNicheStuff() && CUU.CanUse(Item.Iron_Boots))
+                || NLU.CanUseIronBootsAndDoNiche()
                 || CUU.CanUse(Item.Spinner)
                 || CUU.CanUse(Item.Shadow_Crystal)
                 || BU.HasBombs()
@@ -905,7 +904,9 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDefeatZantHead()
         {
-            return (CUU.CanUse(Item.Shadow_Crystal) || HSL.HasSword()) || CanUseBacksliceAsSword();
+            return CUU.CanUse(Item.Shadow_Crystal)
+                || HSL.HasSword()
+                || NLU.CanUseBacksliceAsSword();
         }
 
         /// <summary>
@@ -917,10 +918,10 @@ namespace TPRandomizer
                 HSL.HasSword()
                 || CUU.CanUse(Item.Ball_and_Chain)
                 || CUU.CanUse(Item.Progressive_Bow)
-                || (CanDoNicheStuff() && CUU.CanUse(Item.Iron_Boots))
+                || NLU.CanUseIronBootsAndDoNiche()
                 || CUU.CanUse(Item.Shadow_Crystal)
                 || BU.HasBombs()
-                || CanUseBacksliceAsSword()
+                || NLU.CanUseBacksliceAsSword()
             );
         }
 
@@ -966,10 +967,10 @@ namespace TPRandomizer
                 HSL.HasSword()
                 || CUU.CanUse(Item.Ball_and_Chain)
                 || CUU.CanUse(Item.Progressive_Bow)
-                || (CanDoNicheStuff() && CUU.CanUse(Item.Iron_Boots))
+                || NLU.CanUseIronBootsAndDoNiche()
                 || CUU.CanUse(Item.Shadow_Crystal)
                 || BU.HasBombs()
-                || CanUseBacksliceAsSword()
+                || NLU.CanUseBacksliceAsSword()
             );
         }
 
@@ -999,7 +1000,7 @@ namespace TPRandomizer
                 || CUU.CanUse(Item.Ball_and_Chain)
                 || CUU.CanUse(Item.Shadow_Crystal)
                 || CUU.GetItemCount(Item.Progressive_Bow) > 2
-                || CanUseBacksliceAsSword()
+                || NLU.CanUseBacksliceAsSword()
                 || (
                     CanDoDifficultCombat()
                     && (
@@ -1028,7 +1029,7 @@ namespace TPRandomizer
                         CUU.CanUse(Item.Spinner)
                         || CUU.CanUse(Item.Iron_Boots)
                         || BU.HasBombs()
-                        || CanUseBacksliceAsSword()
+                        || NLU.CanUseBacksliceAsSword()
                     )
                 )
             );
@@ -1059,10 +1060,10 @@ namespace TPRandomizer
                 HSL.HasSword()
                 || CUU.CanUse(Item.Ball_and_Chain)
                 || CUU.CanUse(Item.Progressive_Bow)
-                || (CanDoNicheStuff() && CUU.CanUse(Item.Iron_Boots))
+                || NLU.CanUseIronBootsAndDoNiche()
                 || CUU.CanUse(Item.Shadow_Crystal)
                 || BU.HasBombs()
-                || (CanDoDifficultCombat() && CanUseBacksliceAsSword())
+                || (CanDoDifficultCombat() && NLU.CanUseBacksliceAsSword())
             );
         }
 
@@ -1085,10 +1086,10 @@ namespace TPRandomizer
                     && (
                         HSL.HasSword()
                         || CUU.CanUse(Item.Ball_and_Chain)
-                        || (CanDoNicheStuff() && CUU.CanUse(Item.Iron_Boots))
+                        || NLU.CanUseIronBootsAndDoNiche()
                         || CUU.CanUse(Item.Shadow_Crystal)
                         || BU.HasBombs()
-                        || (CanDoDifficultCombat() && CanUseBacksliceAsSword())
+                        || (CanDoDifficultCombat() && NLU.CanUseBacksliceAsSword())
                     )
                 );
         }
@@ -1101,7 +1102,7 @@ namespace TPRandomizer
             return (
                 CUU.CanUse(Item.Progressive_Bow)
                 && CUU.CanUse(Item.Iron_Boots)
-                && (HSL.HasSword() || (CanDoDifficultCombat() && CanUseBacksliceAsSword()))
+                && (HSL.HasSword() || (CanDoDifficultCombat() && NLU.CanUseBacksliceAsSword()))
             );
         }
 
@@ -1364,7 +1365,7 @@ namespace TPRandomizer
                 CUU.CanUse(Item.Shadow_Crystal)
                 || HSL.HasSword()
                 || BU.CanSmash()
-                || CanUseBacksliceAsSword()
+                || NLU.CanUseBacksliceAsSword()
             );
         }
 
@@ -1677,7 +1678,7 @@ namespace TPRandomizer
 
         public static bool CanUseBacksliceAsSword()
         {
-            return CanDoNicheStuff() && HHSL.HasBackslice();
+            return NLU.CanUseBacksliceAsSword();
         }
 
         public static bool CanGetBugWithLantern()
