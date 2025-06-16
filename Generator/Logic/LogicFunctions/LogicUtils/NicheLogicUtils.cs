@@ -7,6 +7,9 @@ namespace LogicFunctionsNS
 {
     public class NicheLogicUtils
     {
+        /// <sumamry>
+        /// Checks the setting for niche stuff. Niche stuff includes things that may not be obvious to most players, such as damaging enemies with boots, lantern on Gorons, drained Magic Armor for heavy mod, etc.
+        /// </summary>
         public static bool CanDoNicheStuff()
         {
             // TODO: Change to use setting once it is made

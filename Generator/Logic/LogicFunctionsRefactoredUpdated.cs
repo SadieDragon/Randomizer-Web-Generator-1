@@ -4,6 +4,7 @@ using System.Reflection;
 using TPRandomizer.SSettings.Enums;
 using BU = LogicFunctionsNS.BombUtils;
 using CUU = LogicFunctionsNS.CanUseUtilities;
+using DCLU = LogicFunctionsNS.DifficultCombatLogicUtils;
 using ERLF = LogicFunctionsNS.ERLogicFunctions;
 using GLL = LogicFunctionsNS.GlitchlessLogic;
 using HHSL = LogicFunctionsNS.HasHiddenSkillLevel;
@@ -198,11 +199,7 @@ namespace TPRandomizer
         {
             return GLL.CanDefeatBokoblinRed()
                 || NLU.CanUseBacksliceAsSword()
-                // DifficultCombat
-                || (
-                    CanDoDifficultCombat()
-                    && (CUU.CanUse(Item.Iron_Boots) || CUU.CanUse(Item.Spinner))
-                );
+                || DCLU.CanUseSpinnerOrIronBootsInDC();
         }
 
         /// <summary>
@@ -271,7 +268,8 @@ namespace TPRandomizer
         {
             return GLL.CanDefeatDarknut()
                 // DifficultCombat
-                || (CanDoDifficultCombat() && (BU.HasBombs() || CUU.CanUse(Item.Ball_and_Chain)));
+                || (CanDoDifficultCombat() && BU.HasBombs())
+                || DCLU.CanUseItemInDC(Item.Ball_and_Chain);
         }
 
         /// <summary>
@@ -327,8 +325,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDefeatFireToadpoli()
         {
-            return GLL.CanDefeatFireToadpoli()
-                || (CanDoDifficultCombat() && CUU.CanUse(Item.Shadow_Crystal));
+            return GLL.CanDefeatFireToadpoli() || DCLU.CanUseShadowCrystalInDC();
         }
 
         /// <summary>
@@ -346,7 +343,7 @@ namespace TPRandomizer
         {
             return GLL.CanDefeatGoron()
                 || NLU.CanUseIronBootsOrBackslice()
-                || (CanDoDifficultCombat() && CUU.CanUse(Item.Lantern)); // DifficultCombat
+                || DCLU.CanUseItemInDC(Item.Lantern);
         }
 
         /// <summary>
@@ -364,7 +361,7 @@ namespace TPRandomizer
         {
             return GLL.CanDefeatGuay()
                 || NLU.CanUseIronBootsAndDoNiche()
-                || (CanDoDifficultCombat() && CUU.CanUse(Item.Spinner)); // DifficultCombat
+                || DCLU.CanUseSpinnerInDC();
         }
 
         /// <summary>
@@ -785,7 +782,7 @@ namespace TPRandomizer
                 || CUU.CanUse(Item.Ball_and_Chain)
                 || CUU.CanUse(Item.Progressive_Bow)
                 || HLF.CanShieldAttack()
-                || CanDoDifficultCombat() && (CUU.CanUse(Item.Shadow_Crystal))
+                || DCLU.CanUseShadowCrystalInDC()
             );
         }
 
@@ -949,15 +946,9 @@ namespace TPRandomizer
                 || CUU.CanUse(Item.Shadow_Crystal)
                 || CUU.GetItemCount(Item.Progressive_Bow) > 2
                 || NLU.CanUseBacksliceAsSword()
-                || (
-                    CanDoDifficultCombat()
-                    && (
-                        CUU.CanUse(Item.Spinner)
-                        || CUU.CanUse(Item.Iron_Boots)
-                        || BU.HasBombs()
-                        || CUU.GetItemCount(Item.Progressive_Bow) >= 2
-                    )
-                )
+                || DCLU.CanUseSpinnerOrIronBootsInDC()
+                || DCLU.CanUseBombsInDC()
+                || (DCLU.CanDoDifficultCombat() && (CUU.GetItemCount(Item.Progressive_Bow) >= 2))
             );
         }
 
@@ -971,15 +962,9 @@ namespace TPRandomizer
                 || CUU.CanUse(Item.Ball_and_Chain)
                 || CUU.CanUse(Item.Shadow_Crystal)
                 || CUU.GetItemCount(Item.Progressive_Bow) > 2
-                || (
-                    CanDoDifficultCombat()
-                    && (
-                        CUU.CanUse(Item.Spinner)
-                        || CUU.CanUse(Item.Iron_Boots)
-                        || BU.HasBombs()
-                        || NLU.CanUseBacksliceAsSword()
-                    )
-                )
+                || DCLU.CanUseSpinnerOrIronBootsInDC()
+                || DCLU.CanUseBombsInDC()
+                || DCLU.CanUseBacksliceInDC()
             );
         }
 
@@ -1011,7 +996,7 @@ namespace TPRandomizer
                 || NLU.CanUseIronBootsAndDoNiche()
                 || CUU.CanUse(Item.Shadow_Crystal)
                 || BU.HasBombs()
-                || (CanDoDifficultCombat() && NLU.CanUseBacksliceAsSword())
+                || DCLU.CanUseBacksliceInDC()
             );
         }
 
@@ -1037,7 +1022,7 @@ namespace TPRandomizer
                         || NLU.CanUseIronBootsAndDoNiche()
                         || CUU.CanUse(Item.Shadow_Crystal)
                         || BU.HasBombs()
-                        || (CanDoDifficultCombat() && NLU.CanUseBacksliceAsSword())
+                        || DCLU.CanUseBacksliceInDC()
                     )
                 );
         }
@@ -1050,7 +1035,7 @@ namespace TPRandomizer
             return (
                 CUU.CanUse(Item.Progressive_Bow)
                 && CUU.CanUse(Item.Iron_Boots)
-                && (HSL.HasSword() || (CanDoDifficultCombat() && NLU.CanUseBacksliceAsSword()))
+                && (HSL.HasSword() || DCLU.CanUseBacksliceInDC())
             );
         }
 
@@ -1078,10 +1063,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDefeatStallord()
         {
-            return (
-                (CUU.CanUse(Item.Spinner) && HSL.HasSword())
-                || (CanDoDifficultCombat() && CUU.CanUse(Item.Spinner))
-            );
+            return (CUU.CanUse(Item.Spinner) && HSL.HasSword()) || DCLU.CanUseSpinnerInDC();
         }
 
         /// <summary>
@@ -1612,7 +1594,7 @@ namespace TPRandomizer
         public static bool CanDoDifficultCombat()
         {
             // TODO: Change to use setting once it's made
-            return false;
+            return DCLU.CanDoDifficultCombat();
         }
 
         /// <sumamry>
@@ -1621,7 +1603,7 @@ namespace TPRandomizer
         public static bool CanDoNicheStuff()
         {
             // TODO: Change to use setting once it's made
-            return IsGlitchedLogic;
+            return NLU.CanDoNicheStuff();
         }
 
         public static bool CanUseBacksliceAsSword()
