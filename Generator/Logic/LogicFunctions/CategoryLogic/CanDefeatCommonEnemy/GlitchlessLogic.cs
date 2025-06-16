@@ -169,7 +169,7 @@ namespace LogicFunctionsNS.GlitchlessLogic
 
         public static bool CanDefeatPoisonMite()
         {
-            return HDI.HasBaseDamagingItem(includeBombs: false, extraItem: Item.Lantern);
+            return HDI.HasBaseDamagingItem(includeBombs: false, extraItems: Item.Lantern);
         }
 
         public static bool CanDefeatPuppet() => HDI.HasBaseDamagingItem();
