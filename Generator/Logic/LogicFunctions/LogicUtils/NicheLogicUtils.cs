@@ -22,5 +22,10 @@ namespace LogicFunctionsNS
         {
             return CanDoNicheStuff() && HHSL.HasBackslice();
         }
+
+        public static bool CanUseIronBootsOrBackslice()
+        {
+            return CanUseIronBootsAndDoNiche() || CanUseBacksliceAsSword();
+        }
     }
 }
