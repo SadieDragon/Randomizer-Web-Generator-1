@@ -2,6 +2,7 @@
 
 # Refactoring stuff
 LogicFunctionsRefactored.cs
+template_rule_list.py
 
 # dependencies
 **/node_modules

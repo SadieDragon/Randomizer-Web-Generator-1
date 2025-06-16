@@ -16,19 +16,18 @@ namespace LogicFunctionsNS
             return Randomizer.SSettings.logicRules == LogicRules.Glitched;
         }
 
-        public static bool CanUseIronBootsAndDoNiche()
+        public static bool CanDoNicheCombat(bool includeBackslice = true, bool includeBoots = true)
         {
-            return CanDoNicheStuff() && CUU.CanUse(Item.Iron_Boots);
+            return CanDoNicheCombat()
+                && (
+                    (includeBackslice && HHSL.HasBackslice())
+                    || (includeBoots && CUU.CanUse(Item.Iron_Boots))
+                );
         }
 
         public static bool CanUseBacksliceAsSword()
         {
             return CanDoNicheStuff() && HHSL.HasBackslice();
-        }
-
-        public static bool CanUseIronBootsOrBackslice()
-        {
-            return CanUseIronBootsAndDoNiche() || CanUseBacksliceAsSword();
         }
     }
 }
