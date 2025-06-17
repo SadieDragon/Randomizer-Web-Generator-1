@@ -25,6 +25,7 @@ namespace TPRandomizer
     /// </summary>
     public class LogicFunctionsUpdatedRefactored
     {
+        # region GlitchlessUtils
         //Evaluate the tokenized settings to their respective values that are set by the settings string.
 
         /// <summary>
@@ -166,6 +167,9 @@ namespace TPRandomizer
 
         public static int GetItemWheelSlotCount() => GLU.GetItemWheelSlotCount();
 
+        # endregion
+
+        # region CanDefeatCommonEnemy
         /// <summary>
         /// summary text.
         /// </summary>
@@ -698,6 +702,7 @@ namespace TPRandomizer
         {
             return GLLCE.CanDefeatYoungGohma() || NLCE.CanDefeatYoungGohma();
         }
+        # endregion
 
         /// <summary>
         /// summary text.
@@ -1441,7 +1446,7 @@ namespace TPRandomizer
         }
 
         // START OF GLITCHED LOGIC
-
+        # region GlitchedUtils
         public static bool HasSwordOrBS() => GLU.HasSwordOrBS();
 
         public static bool HasHeavyMod() => GLU.HasHeavyMod();
@@ -1471,6 +1476,7 @@ namespace TPRandomizer
         public static bool CanDoFlyGlitch() => GLU.CanDoFlyGlitch();
 
         public static bool CanDoAirRefill() => GLU.CanDoAirRefill();
+        #endregion
 
         /// <summary>
         /// Check for if you can do Hidden Village (glitched)
