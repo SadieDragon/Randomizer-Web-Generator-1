@@ -3,11 +3,14 @@ using TPRandomizer.SSettings.Enums;
 using BOU = LogicFunctionsNS.BottleUtils;
 using BU = LogicFunctionsNS.BombUtils;
 using CUU = LogicFunctionsNS.CanUseUtilities;
+using DCLB = LogicFunctionsNS.DifficultCombatLogic.CanDefeatBoss;
 using DCLCE = LogicFunctionsNS.DifficultCombatLogic.CanDefeatCommonEnemy;
 using DCLM = LogicFunctionsNS.DifficultCombatLogic.CanDefeatMiniBoss;
 using DCLU = LogicFunctionsNS.DifficultCombatLogicUtils;
 using ERLF = LogicFunctionsNS.ERLogicFunctions;
+using GLB = LogicFunctionsNS.GlitchedLogic.CanDefeatBoss;
 using GLCE = LogicFunctionsNS.GlitchedLogic.CanDefeatCommonEnemy;
+using GLLB = LogicFunctionsNS.GlitchlessLogic.CanDefeatBoss;
 using GLLCE = LogicFunctionsNS.GlitchlessLogic.CanDefeatCommonEnemy;
 using GLLM = LogicFunctionsNS.GlitchlessLogic.CanDefeatMiniBoss;
 using GLU = LogicFunctionsNS.GlitchedLogicUtils;
@@ -15,6 +18,7 @@ using HDI = LogicFunctionsNS.DamagingItems;
 using HLF = LogicFunctionsNS.HelperFunctions;
 using HSL = LogicFunctionsNS.HasSwordLevel;
 using MIU = LogicFunctionsNS.MiscItemUtils;
+using NLB = LogicFunctionsNS.NicheLogic.CanDefeatBoss;
 using NLCE = LogicFunctionsNS.NicheLogic.CanDefeatCommonEnemy;
 using NLM = LogicFunctionsNS.NicheLogic.CanDefeatMiniBoss;
 using NLU = LogicFunctionsNS.NicheLogicUtils;
@@ -800,21 +804,17 @@ namespace TPRandomizer
         public static bool CanDefeatPhantomZant() => GLLM.CanDefeatPhantomZant();
         # endregion
 
+        # region CanDefeatBoss
         /// <summary>
         /// summary text.
         /// </summary>
         public static bool CanDefeatDiababa()
         {
-            return canLaunchBombs()
+            return BU.CanLaunchBombs()
                 || (
-                    CanUse(Item.Boomerang)
+                    CUU.CanUse(Item.Boomerang)
                     && (
-                        HasSword()
-                        || CanUse(Item.Ball_and_Chain)
-                        || (CanDoNicheStuff() && CanUse(Item.Iron_Boots))
-                        || CanUse(Item.Shadow_Crystal)
-                        || hasBombs()
-                        || (CanDoDifficultCombat() && CanUseBacksliceAsSword())
+                        GLLB.CanDefeatDiababa() || NLB.CanDefeatDiababa() || DCLB.CanDefeatDiababa()
                     )
                 );
         }
@@ -824,11 +824,9 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDefeatFyrus()
         {
-            return (
-                CanUse(Item.Progressive_Bow)
+            return CanUse(Item.Progressive_Bow)
                 && CanUse(Item.Iron_Boots)
-                && (HasSword() || (CanDoDifficultCombat() && CanUseBacksliceAsSword()))
-            );
+                && (GLLB.CanDefeatFyrus() || DCLB.CanDefeatFyrus());
         }
 
         /// <summary>
@@ -836,18 +834,9 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDefeatMorpheel()
         {
-            return (
-                (
-                    CanUse(Item.Zora_Armor)
-                    && CanUse(Item.Iron_Boots)
-                    && HasSword()
-                    && CanUse(Item.Progressive_Clawshot)
-                )
-                || (
-                    CanDoNicheStuff()
-                    && (CanUse(Item.Progressive_Clawshot) && CanDoAirRefill() && HasSword())
-                )
-            );
+            return CUU.CanUse(Item.Progressive_Clawshot)
+                && HSL.HasSword()
+                && (GLLB.CanDefeatMorpheel() || NLB.CanDefeatMorpheel());
         }
 
         /// <summary>
@@ -855,38 +844,27 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDefeatStallord()
         {
-            return (
-                (CanUse(Item.Spinner) && HasSword())
-                || (CanDoDifficultCombat() && CanUse(Item.Spinner))
-            );
+            return GLLB.CanDefeatStallord() || DCLB.CanDefeatStallord();
         }
 
         /// <summary>
         /// summary text.
         /// </summary>
-        public static bool CanDefeatBlizzeta()
-        {
-            return CanUse(Item.Ball_and_Chain);
-        }
+        public static bool CanDefeatBlizzeta() => GLLB.CanDefeatBlizzeta();
 
         /// <summary>
         /// summary text.
         /// </summary>
-        public static bool CanDefeatArmogohma()
-        {
-            return (CanUse(Item.Progressive_Bow) && CanUse(Item.Progressive_Dominion_Rod));
-        }
+        public static bool CanDefeatArmogohma() => GLLB.CanDefeatArmogohma();
 
         /// <summary>
         /// summary text.
         /// </summary>
         public static bool CanDefeatArgorok()
         {
-            return (
-                getItemCount(Item.Progressive_Clawshot) >= 2
-                && getItemCount(Item.Progressive_Sword) >= 2
-                && (CanUse(Item.Iron_Boots) || (CanDoNicheStuff() && CanUse(Item.Magic_Armor)))
-            );
+            // TODO; current GLLB is more like the core, while IB is unique to GLL. NLB pretty correct tho
+            return GLLB.CanDefeatArgorok()
+                && (CUU.CanUse(Item.Iron_Boots) || NLB.CanDefeatArgorok());
         }
 
         /// <summary>
@@ -894,33 +872,17 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDefeatZant()
         {
-            return (
-                (getItemCount(Item.Progressive_Sword) >= 3)
-                && (
-                    CanUse(Item.Boomerang)
-                    && CanUse(Item.Progressive_Clawshot)
-                    && CanUse(Item.Ball_and_Chain)
-                    && (CanUse(Item.Iron_Boots) || (CanDoNicheStuff() && CanUse(Item.Magic_Armor)))
-                    && (
-                        CanUse(Item.Zora_Armor)
-                        || (
-                            Randomizer.SSettings.logicRules == LogicRules.Glitched
-                            && CanDoAirRefill()
-                        )
-                    )
-                )
-            );
+            // TODO: Again, current GLLB is more like the core.
+            return GLLB.CanDefeatZant()
+                && (CanUse(Item.Iron_Boots) || NLB.CanDefeatZant())
+                && (CanUse(Item.Zora_Armor) || GLB.CanDefeatZant());
         }
 
         /// <summary>
         /// summary text.
         /// </summary>
-        public static bool CanDefeatGanondorf()
-        {
-            return CanUse(Item.Shadow_Crystal)
-                && (getItemCount(Item.Progressive_Sword) >= 3)
-                && CanUse(Item.Progressive_Hidden_Skill);
-        }
+        public static bool CanDefeatGanondorf() => GLLB.CanDefeatGanondorf();
+        # endregion
 
         /// <summary>
         /// summary text.

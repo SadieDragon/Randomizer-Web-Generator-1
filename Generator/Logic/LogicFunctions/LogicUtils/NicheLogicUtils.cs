@@ -29,5 +29,10 @@ namespace LogicFunctionsNS
         {
             return CanDoNicheStuff() && HHSL.HasBackslice();
         }
+
+        public static bool CanUseMagicArmorNiche()
+        {
+            return CanDoNicheStuff() && CUU.CanUse(Item.Magic_Armor);
+        }
     }
 }

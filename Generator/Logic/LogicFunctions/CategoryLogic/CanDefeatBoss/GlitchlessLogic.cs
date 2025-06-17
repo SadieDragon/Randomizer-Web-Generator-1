@@ -1,0 +1,52 @@
+using TPRandomizer;
+using CUU = LogicFunctionsNS.CanUseUtilities;
+using HBL = LogicFunctionsNS.HasBowLevel;
+using HDI = LogicFunctionsNS.DamagingItems;
+using HSL = LogicFunctionsNS.HasSwordLevel;
+
+namespace LogicFunctionsNS.GlitchlessLogic
+{
+    public class CanDefeatBoss
+    {
+        public static bool CanDefeatDiababa() => HDI.HasMeleeAltDamagingItem(includeBow: false);
+
+        public static bool CanDefeatFyrus() => HSL.HasSword();
+
+        public static bool CanDefeatMorpheel()
+        {
+            return CUU.CanUse(Item.Zora_Armor) && CUU.CanUse(Item.Iron_Boots);
+        }
+
+        public static bool CanDefeatStallord()
+        {
+            return CUU.CanUse(Item.Spinner) && HSL.HasSword();
+        }
+
+        public static bool CanDefeatBlizzeta() => CUU.CanUse(Item.Ball_and_Chain);
+
+        public static bool CanDefeatArmogohma()
+        {
+            return HBL.HasBow() && CUU.CanUse(Item.Progressive_Dominion_Rod);
+        }
+
+        public static bool CanDefeatArgorok()
+        {
+            return (CUU.GetItemCount(Item.Progressive_Clawshot) >= 2) || HSL.HasOrdonSword();
+        }
+
+        public static bool CanDefeatZant()
+        {
+            return HSL.HasMasterSword()
+                && CUU.CanUse(Item.Boomerang)
+                && CUU.CanUse(Item.Progressive_Clawshot)
+                && CUU.CanUse(Item.Ball_and_Chain);
+        }
+
+        public static bool CanDefeatGanondorf()
+        {
+            return CUU.CanUse(Item.Shadow_Crystal)
+                && HSL.HasMasterSword()
+                && CUU.CanUse(Item.Progressive_Hidden_Skill);
+        }
+    }
+}

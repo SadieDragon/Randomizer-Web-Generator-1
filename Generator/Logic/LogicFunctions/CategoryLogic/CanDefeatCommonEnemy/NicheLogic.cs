@@ -2,8 +2,6 @@
 //  just update the functions within this file, or add new ones as needed. Do not try to
 //  simplify this, unless you are going to simplify the `CanX` system altogether. - Lupa
 
-using TPRandomizer;
-using CUU = LogicFunctionsNS.CanUseUtilities;
 using NLU = LogicFunctionsNS.NicheLogicUtils;
 
 namespace LogicFunctionsNS.NicheLogic
@@ -86,10 +84,7 @@ namespace LogicFunctionsNS.NicheLogic
 
         public static bool CanDefeatShadowVermin() => NLU.CanDoNicheCombat();
 
-        public static bool CanDefeatShellBlade()
-        {
-            return NLU.CanDoNicheStuff() && CUU.CanUse(Item.Magic_Armor);
-        }
+        public static bool CanDefeatShellBlade() => NLU.CanUseMagicArmorNiche();
 
         public static bool CanDefeatSkullfish() => NLU.CanDoNicheCombat();
 

@@ -1,5 +1,6 @@
 using System.Linq;
 using TPRandomizer;
+using TPRandomizer.SSettings.Enums;
 using BOU = LogicFunctionsNS.BottleUtils;
 using BU = LogicFunctionsNS.BombUtils;
 using CUU = LogicFunctionsNS.CanUseUtilities;
@@ -12,6 +13,12 @@ namespace LogicFunctionsNS
 {
     public class GlitchedLogicUtils
     {
+        // TODO: Chase down all of the calls to this and replace
+        public static bool IsGlitchedLogic()
+        {
+            return Randomizer.SSettings.logicRules == LogicRules.Glitched;
+        }
+
         /// <summary>
         /// Check for sword or Back Slice (aka fake sword)
         /// </summary>
