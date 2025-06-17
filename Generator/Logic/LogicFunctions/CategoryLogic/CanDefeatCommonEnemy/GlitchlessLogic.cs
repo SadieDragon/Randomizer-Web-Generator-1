@@ -9,6 +9,7 @@
 using TPRandomizer;
 using BU = LogicFunctionsNS.BombUtils;
 using CUU = LogicFunctionsNS.CanUseUtilities;
+using HBL = LogicFunctionsNS.HasBowLevel;
 using HDI = LogicFunctionsNS.DamagingItems;
 using HHSL = LogicFunctionsNS.HasHiddenSkillLevel;
 using HSL = LogicFunctionsNS.HasSwordLevel;
@@ -28,7 +29,7 @@ namespace LogicFunctionsNS.GlitchlessLogic
 
         public static bool CanDefeatHangingBabaSerpent()
         {
-            return CUU.CanUse(Item.Boomerang) || CUU.CanUse(Item.Progressive_Bow);
+            return CUU.CanUse(Item.Boomerang) || HBL.HasBow();
         }
 
         public static bool CanDefeatBabyGohma()
@@ -54,8 +55,7 @@ namespace LogicFunctionsNS.GlitchlessLogic
 
         public static bool CanDefeatBokoblinRed()
         {
-            return HDI.HasMeleeAltDamagingItem(includeBow: false)
-                || (CUU.GetItemCount(Item.Progressive_Bow) >= 3);
+            return HDI.HasMeleeAltDamagingItem(includeBow: false) || HBL.HasLargeQuiver();
         }
 
         public static bool CanDefeatBombfish() => CUU.CanUse(Item.Iron_Boots);
