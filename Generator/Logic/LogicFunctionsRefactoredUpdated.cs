@@ -4,16 +4,19 @@ using BOU = LogicFunctionsNS.BottleUtils;
 using BU = LogicFunctionsNS.BombUtils;
 using CUU = LogicFunctionsNS.CanUseUtilities;
 using DCLCE = LogicFunctionsNS.DifficultCombatLogic.CanDefeatCommonEnemy;
+using DCLM = LogicFunctionsNS.DifficultCombatLogic.CanDefeatMiniBoss;
 using DCLU = LogicFunctionsNS.DifficultCombatLogicUtils;
 using ERLF = LogicFunctionsNS.ERLogicFunctions;
 using GLCE = LogicFunctionsNS.GlitchedLogic.CanDefeatCommonEnemy;
 using GLLCE = LogicFunctionsNS.GlitchlessLogic.CanDefeatCommonEnemy;
+using GLLM = LogicFunctionsNS.GlitchlessLogic.CanDefeatMiniBoss;
 using GLU = LogicFunctionsNS.GlitchedLogicUtils;
 using HDI = LogicFunctionsNS.DamagingItems;
 using HLF = LogicFunctionsNS.HelperFunctions;
 using HSL = LogicFunctionsNS.HasSwordLevel;
 using MIU = LogicFunctionsNS.MiscItemUtils;
 using NLCE = LogicFunctionsNS.NicheLogic.CanDefeatCommonEnemy;
+using NLM = LogicFunctionsNS.NicheLogic.CanDefeatMiniBoss;
 using NLU = LogicFunctionsNS.NicheLogicUtils;
 
 // TODO: aggregate class
@@ -704,12 +707,13 @@ namespace TPRandomizer
         }
         # endregion
 
+        # region CanDefeatMiniboss
         /// <summary>
         /// summary text.
         /// </summary>
         public static bool CanDefeatZantHead()
         {
-            return (CanUse(Item.Shadow_Crystal) || HasSword()) || CanUseBacksliceAsSword();
+            return GLLM.CanDefeatZantHead() || NLM.CanDefeatZantHead();
         }
 
         /// <summary>
@@ -717,15 +721,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDefeatOok()
         {
-            return (
-                HasSword()
-                || CanUse(Item.Ball_and_Chain)
-                || CanUse(Item.Progressive_Bow)
-                || (CanDoNicheStuff() && CanUse(Item.Iron_Boots))
-                || CanUse(Item.Shadow_Crystal)
-                || hasBombs()
-                || CanUseBacksliceAsSword()
-            );
+            return GLLM.CanDefeatOok() || NLM.CanDefeatOok();
         }
 
         /// <summary>
@@ -733,87 +729,46 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDefeatDangoro()
         {
-            return (
-                (
-                    HasSword()
-                    || CanUse(Item.Shadow_Crystal)
-                    || (
-                        CanDoNicheStuff() && CanUse(Item.Ball_and_Chain)
-                        || (CanUse(Item.Progressive_Bow) && hasBombs())
-                    )
-                ) && CanUse(Item.Iron_Boots)
-            );
+            return CUU.CanUse(Item.Iron_Boots)
+                && (GLLM.CanDefeatDangoro() || NLM.CanDefeatDangoro());
         }
 
         /// <summary>
         /// summary text.
         /// </summary>
-        public static bool CanDefeatCarrierKargarok()
-        {
-            return CanUse(Item.Shadow_Crystal);
-        }
+        public static bool CanDefeatCarrierKargarok() => GLLM.CanDefeatCarrierKargarok();
 
         /// <summary>
         /// summary text.
         /// </summary>
-        public static bool CanDefeatTwilitBloat()
-        {
-            return CanUse(Item.Shadow_Crystal);
-        }
+        public static bool CanDefeatTwilitBloat() => GLLM.CanDefeatTwilitBloat();
 
         /// <summary>
         /// summary text.
         /// </summary>
         public static bool CanDefeatDekuToad()
         {
-            return (
-                HasSword()
-                || CanUse(Item.Ball_and_Chain)
-                || CanUse(Item.Progressive_Bow)
-                || (CanDoNicheStuff() && CanUse(Item.Iron_Boots))
-                || CanUse(Item.Shadow_Crystal)
-                || hasBombs()
-                || CanUseBacksliceAsSword()
-            );
+            return GLLM.CanDefeatDekuToad() || NLM.CanDefeatDekuToad();
         }
 
         /// <summary>
         /// summary text.
         /// </summary>
-        public static bool CanDefeatSkullKid()
-        {
-            return CanUse(Item.Progressive_Bow);
-        }
+        public static bool CanDefeatSkullKid() => GLLM.CanDefeatSkullKid();
 
         /// <summary>
         /// summary text.
         /// </summary>
-        public static bool CanDefeatKingBulblinBridge()
-        {
-            return CanUse(Item.Progressive_Bow);
-        }
+        public static bool CanDefeatKingBulblinBridge() => GLLM.CanDefeatKingBulblinBridge();
 
         /// <summary>
         /// summary text.
         /// </summary>
         public static bool CanDefeatKingBulblinDesert()
         {
-            return (
-                HasSword()
-                || CanUse(Item.Ball_and_Chain)
-                || CanUse(Item.Shadow_Crystal)
-                || getItemCount(Item.Progressive_Bow) > 2
-                || CanUseBacksliceAsSword()
-                || (
-                    CanDoDifficultCombat()
-                    && (
-                        CanUse(Item.Spinner)
-                        || CanUse(Item.Iron_Boots)
-                        || hasBombs()
-                        || getItemCount(Item.Progressive_Bow) >= 2
-                    )
-                )
-            );
+            return GLLM.CanDefeatKingBulblinBridge()
+                || NLM.CanDefeatKingBulblinDesert()
+                || DCLM.CanDefeatKingBulblinDesert();
         }
 
         /// <summary>
@@ -821,62 +776,29 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDefeatKingBulblinCastle()
         {
-            return (
-                HasSword()
-                || CanUse(Item.Ball_and_Chain)
-                || CanUse(Item.Shadow_Crystal)
-                || getItemCount(Item.Progressive_Bow) > 2
-                || (
-                    CanDoDifficultCombat()
-                    && (
-                        CanUse(Item.Spinner)
-                        || CanUse(Item.Iron_Boots)
-                        || hasBombs()
-                        || CanUseBacksliceAsSword()
-                    )
-                )
-            );
+            return GLLM.CanDefeatKingBulblinCastle() || DCLM.CanDefeatKingBulblinCastle();
         }
 
         /// <summary>
         /// summary text.
         /// </summary>
-        public static bool CanDefeatDeathSword()
-        {
-            return (
-                HasSword()
-                && (
-                    CanUse(Item.Boomerang)
-                    || CanUse(Item.Progressive_Bow)
-                    || CanUse(Item.Progressive_Clawshot)
-                )
-                && CanUse(Item.Shadow_Crystal)
-            );
-        }
+        public static bool CanDefeatDeathSword() => GLLM.CanDefeatDeathSword();
 
         /// <summary>
         /// summary text.
         /// </summary>
         public static bool CanDefeatDarkhammer()
         {
-            return (
-                HasSword()
-                || CanUse(Item.Ball_and_Chain)
-                || CanUse(Item.Progressive_Bow)
-                || (CanDoNicheStuff() && CanUse(Item.Iron_Boots))
-                || CanUse(Item.Shadow_Crystal)
-                || hasBombs()
-                || (CanDoDifficultCombat() && CanUseBacksliceAsSword())
-            );
+            return GLLM.CanDefeatDarkhammer()
+                || NLM.CanDefeatDarkhammer()
+                || DCLM.CanDefeatDarkhammer();
         }
 
         /// <summary>
         /// summary text.
         /// </summary>
-        public static bool CanDefeatPhantomZant()
-        {
-            return (CanUse(Item.Shadow_Crystal) || HasSword());
-        }
+        public static bool CanDefeatPhantomZant() => GLLM.CanDefeatPhantomZant();
+        # endregion
 
         /// <summary>
         /// summary text.
