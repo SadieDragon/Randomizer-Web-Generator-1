@@ -4,6 +4,7 @@ using System.Linq;
 using TPRandomizer;
 using BU = LogicFunctionsNS.BombUtils;
 using CUU = LogicFunctionsNS.CanUseUtilities;
+using HLF = LogicFunctionsNS.HelperFunctions;
 using HSL = LogicFunctionsNS.HasSwordLevel;
 
 // TODO: Clean up the summary blocks.
@@ -91,6 +92,15 @@ namespace LogicFunctionsNS
                 || (includeBow && CUU.CanUse(Item.Progressive_Bow))
                 || (includeCrystal && CUU.CanUse(Item.Shadow_Crystal))
                 || (includeBombs && BU.HasBombs());
+        }
+
+        // TOOD: better name. seriously.
+        public static bool HasAltDamagingItemExtended(bool includeShieldAttack = true)
+        {
+            return HSL.HasSword()
+                || HasAltDamagingItem()
+                || (includeShieldAttack && HLF.CanShieldAttack())
+                || BU.HasBombs();
         }
     }
 }

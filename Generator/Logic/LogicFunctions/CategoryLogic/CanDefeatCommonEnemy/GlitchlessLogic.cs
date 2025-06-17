@@ -11,7 +11,6 @@ using BU = LogicFunctionsNS.BombUtils;
 using CUU = LogicFunctionsNS.CanUseUtilities;
 using HDI = LogicFunctionsNS.DamagingItems;
 using HHSL = LogicFunctionsNS.HasHiddenSkillLevel;
-using HLF = LogicFunctionsNS.HelperFunctions;
 using HSL = LogicFunctionsNS.HasSwordLevel;
 
 namespace LogicFunctionsNS.GlitchlessLogic
@@ -34,7 +33,7 @@ namespace LogicFunctionsNS.GlitchlessLogic
 
         public static bool CanDefeatBabyGohma()
         {
-            return HSL.HasSword() || HDI.HasAltDamagingItem() || BU.HasBombs();
+            return HDI.HasAltDamagingItemExtended(includeShieldAttack: false);
         }
 
         public static bool CanDefeatBari()
@@ -78,13 +77,7 @@ namespace LogicFunctionsNS.GlitchlessLogic
 
         public static bool CanDefeatDarknut() => HSL.HasSword();
 
-        public static bool CanDefeatDekuBaba()
-        {
-            return HSL.HasSword()
-                || HDI.HasAltDamagingItem()
-                || HLF.CanShieldAttack()
-                || BU.HasBombs();
-        }
+        public static bool CanDefeatDekuBaba() => HDI.HasAltDamagingItemExtended();
 
         public static bool CanDefeatDekuLike() => BU.HasBombs();
 
@@ -107,13 +100,7 @@ namespace LogicFunctionsNS.GlitchlessLogic
 
         public static bool CanDefeatFreezard() => CUU.CanUse(Item.Ball_and_Chain);
 
-        public static bool CanDefeatGoron()
-        {
-            return HSL.HasSword()
-                || HDI.HasAltDamagingItem()
-                || HLF.CanShieldAttack()
-                || BU.HasBombs();
-        }
+        public static bool CanDefeatGoron() => HDI.HasAltDamagingItemExtended();
 
         public static bool CanDefeatGhoulRat() => CUU.CanUse(Item.Shadow_Crystal);
 
@@ -160,13 +147,7 @@ namespace LogicFunctionsNS.GlitchlessLogic
 
         public static bool CanDefeatShadowBulblin() => HDI.HasBaseDamagingItem();
 
-        public static bool CanDefeatShadowDekuBaba()
-        {
-            return HSL.HasSword()
-                || HDI.HasAltDamagingItem()
-                || BU.HasBombs()
-                || HLF.CanShieldAttack();
-        }
+        public static bool CanDefeatShadowDekuBaba() => HDI.HasAltDamagingItemExtended();
 
         public static bool CanDefeatShadowInsect() => CUU.CanUse(Item.Shadow_Crystal);
 
