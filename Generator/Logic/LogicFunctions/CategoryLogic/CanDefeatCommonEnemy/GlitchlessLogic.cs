@@ -20,9 +20,7 @@ namespace LogicFunctionsNS.GlitchlessLogic
     {
         public static bool CanDefeatAeralfos()
         {
-            return HSL.HasSword()
-                || CUU.CanUse(Item.Ball_and_Chain)
-                || CUU.CanUse(Item.Shadow_Crystal);
+            return HDI.HasMeleeAltDamagingItem(includeBow: false, includeBombs: false);
         }
 
         public static bool CanDefeatArmos() => HDI.HasBaseDamagingItemOrClawshot();
@@ -46,9 +44,7 @@ namespace LogicFunctionsNS.GlitchlessLogic
 
         public static bool CanDefeatBeamos()
         {
-            return CUU.CanUse(Item.Ball_and_Chain)
-                || CUU.CanUse(Item.Progressive_Bow)
-                || BU.HasBombs();
+            return HDI.HasMeleeAltDamagingItem(includeSword: false, includeCrystal: false);
         }
 
         public static bool CanDefeatBigBaba() => HDI.HasBaseDamagingItem();
@@ -59,11 +55,8 @@ namespace LogicFunctionsNS.GlitchlessLogic
 
         public static bool CanDefeatBokoblinRed()
         {
-            return HSL.HasSword()
-                || CUU.CanUse(Item.Ball_and_Chain)
-                || (CUU.GetItemCount(Item.Progressive_Bow) >= 3)
-                || CUU.CanUse(Item.Shadow_Crystal)
-                || BU.HasBombs();
+            return HDI.HasMeleeAltDamagingItem(includeBow: false)
+                || (CUU.GetItemCount(Item.Progressive_Bow) >= 3);
         }
 
         public static bool CanDefeatBombfish() => CUU.CanUse(Item.Iron_Boots);
@@ -78,11 +71,7 @@ namespace LogicFunctionsNS.GlitchlessLogic
 
         public static bool CanDefeatChilfos()
         {
-            return HSL.HasSword()
-                || CUU.CanUse(Item.Ball_and_Chain)
-                || CUU.CanUse(Item.Shadow_Crystal)
-                || CUU.CanUse(Item.Spinner)
-                || BU.HasBombs();
+            return HDI.HasMeleeAltDamagingItem(includeBow: false) || CUU.CanUse(Item.Spinner);
         }
 
         public static bool CanDefeatChuWorm() => HDI.HasBaseDamagingItem(true);
@@ -103,9 +92,7 @@ namespace LogicFunctionsNS.GlitchlessLogic
 
         public static bool CanDefeatDinalfos()
         {
-            return HSL.HasSword()
-                || CUU.CanUse(Item.Ball_and_Chain)
-                || CUU.CanUse(Item.Shadow_Crystal);
+            return HDI.HasMeleeAltDamagingItem(includeBow: false, includeBombs: false);
         }
 
         public static bool CanDefeatFireBubble() => HDI.HasBaseDamagingItem(true);
@@ -114,9 +101,7 @@ namespace LogicFunctionsNS.GlitchlessLogic
 
         public static bool CanDefeatFireToadpoli()
         {
-            return HSL.HasSword()
-                || CUU.CanUse(Item.Ball_and_Chain)
-                || CUU.CanUse(Item.Progressive_Bow)
+            return HDI.HasMeleeAltDamagingItem(includeCrystal: false, includeBombs: false)
                 || (CUU.CanUse(Item.Hylian_Shield) && HHSL.HasShieldAttack());
         }
 
@@ -154,14 +139,7 @@ namespace LogicFunctionsNS.GlitchlessLogic
 
         public static bool CanDefeatLeever() => HDI.HasBaseDamagingItem();
 
-        public static bool CanDefeatLizalfos()
-        {
-            return HSL.HasSword()
-                || CUU.CanUse(Item.Ball_and_Chain)
-                || CUU.CanUse(Item.Progressive_Bow)
-                || CUU.CanUse(Item.Shadow_Crystal)
-                || BU.HasBombs();
-        }
+        public static bool CanDefeatLizalfos() => HDI.HasMeleeAltDamagingItem();
 
         public static bool CanDefeatMiniFreezard() => HDI.HasBaseDamagingItem();
 
@@ -176,14 +154,7 @@ namespace LogicFunctionsNS.GlitchlessLogic
 
         public static bool CanDefeatRat() => HDI.HasBaseDamagingItemOrSlingshot();
 
-        public static bool CanDefeatRedeadKnight()
-        {
-            return HSL.HasSword()
-                || CUU.CanUse(Item.Ball_and_Chain)
-                || CUU.CanUse(Item.Progressive_Bow)
-                || CUU.CanUse(Item.Shadow_Crystal)
-                || BU.HasBombs();
-        }
+        public static bool CanDefeatRedeadKnight() => HDI.HasMeleeAltDamagingItem();
 
         // TODO: SB requires MidnaCharge handling
 
@@ -228,20 +199,10 @@ namespace LogicFunctionsNS.GlitchlessLogic
 
         public static bool CanDefeatWaterToadpoli()
         {
-            return HSL.HasSword()
-                || CUU.CanUse(Item.Ball_and_Chain)
-                || CUU.CanUse(Item.Progressive_Bow)
-                || HLF.CanShieldAttack();
+            return HDI.HasMeleeAltDamagingItem(includeCrystal: false);
         }
 
-        public static bool CanDefeatTorchSlug()
-        {
-            return HSL.HasSword()
-                || CUU.CanUse(Item.Ball_and_Chain)
-                || CUU.CanUse(Item.Progressive_Bow)
-                || CUU.CanUse(Item.Shadow_Crystal)
-                || BU.HasBombs();
-        }
+        public static bool CanDefeatTorchSlug() => HDI.HasMeleeAltDamagingItem();
 
         public static bool CanDefeatWalltula()
         {

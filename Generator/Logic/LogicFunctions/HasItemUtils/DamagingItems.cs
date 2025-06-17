@@ -76,5 +76,21 @@ namespace LogicFunctionsNS
             static bool testForClaw() => CUU.CanUse(Item.Progressive_Clawshot);
             return HasDamagingItemInList([Item.Slingshot, extraItem], includeClawshot, testForClaw);
         }
+
+        // TODO: better name
+        // a collection of remaining extra repeated checks?
+        public static bool HasMeleeAltDamagingItem(
+            bool includeSword = true,
+            bool includeBow = true,
+            bool includeCrystal = true,
+            bool includeBombs = true
+        )
+        {
+            return (includeSword && HSL.HasSword())
+                || CUU.CanUse(Item.Ball_and_Chain)
+                || (includeBow && CUU.CanUse(Item.Progressive_Bow))
+                || (includeCrystal && CUU.CanUse(Item.Shadow_Crystal))
+                || (includeBombs && BU.HasBombs());
+        }
     }
 }
