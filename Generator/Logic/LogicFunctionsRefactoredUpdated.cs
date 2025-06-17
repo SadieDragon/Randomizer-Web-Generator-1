@@ -8,6 +8,7 @@ using DCLU = LogicFunctionsNS.DifficultCombatLogicUtils;
 using ERLF = LogicFunctionsNS.ERLogicFunctions;
 using GLCE = LogicFunctionsNS.GlitchedLogic.CanDefeatCommonEnemy;
 using GLLCE = LogicFunctionsNS.GlitchlessLogic.CanDefeatCommonEnemy;
+using GLU = LogicFunctionsNS.GlitchedLogicUtils;
 using HDI = LogicFunctionsNS.DamagingItems;
 using HLF = LogicFunctionsNS.HelperFunctions;
 using HSL = LogicFunctionsNS.HasSwordLevel;
@@ -162,6 +163,8 @@ namespace TPRandomizer
         {
             return CUU.VerifyItemQuantity(itemToBeCounted, quantity);
         }
+
+        public static int GetItemWheelSlotCount() => GLU.GetItemWheelSlotCount();
 
         /// <summary>
         /// summary text.
@@ -1439,149 +1442,35 @@ namespace TPRandomizer
 
         // START OF GLITCHED LOGIC
 
-        /// <summary>
-        /// Check for sword or Back Slice (aka fake sword)
-        /// </summary>
-        public static bool HasSwordOrBS()
-        {
-            return CanUse(Item.Progressive_Sword)
-                || getItemCount(Item.Progressive_Hidden_Skill) >= 3;
-        }
+        public static bool HasSwordOrBS() => GLU.HasSwordOrBS();
 
-        /// <summary>
-        /// Check for heavy mod (boots or MA)
-        /// </summary>
-        public static bool HasHeavyMod()
-        {
-            return CanUse(Item.Iron_Boots) || CanUse(Item.Magic_Armor);
-        }
+        public static bool HasHeavyMod() => GLU.HasHeavyMod();
 
-        /// <summary>
-        /// Check for cutscene item (useful for cutscene dropping a bomb in specific spot)
-        /// </summary>
-        public static bool HasCutsceneItem()
-        {
-            return CanUse(Item.Progressive_Sky_Book) || HasBottle() || CanUse(Item.Horse_Call);
-        }
+        public static bool HasCutsceneItem() => GLU.HasCutsceneItem();
 
-        /// <summary>
-        /// Check for if you can do LJAs
-        /// </summary>
-        public static bool CanDoLJA()
-        {
-            return HasSword() && CanUse(Item.Boomerang);
-        }
+        public static bool CanDoLJA() => GLU.CanDoLJA();
 
-        /// <summary>
-        /// Check for if you can do Jump Strike LJAs
-        /// </summary>
-        public static bool CanDoJSLJA()
-        {
-            return HasSword()
-                && CanUse(Item.Boomerang)
-                && getItemCount(Item.Progressive_Hidden_Skill) >= 6;
-        }
+        public static bool CanDoJSLJA() => GLU.CanDoJSLJA();
 
-        /// <summary>
-        /// Check for if you can do Map Glitch
-        /// </summary>
-        public static bool CanDoMapGlitch()
-        {
-            return CanUse(Item.Shadow_Crystal)
-                && Randomizer.Rooms.RoomDict["Kakariko Gorge"].ReachedByPlaythrough;
-        }
+        public static bool CanDoMapGlitch() => GLU.CanDoMapGlitch();
 
-        /// <summary>
-        /// Check for if you can do storage (aka Reverse Door Adventure (RDA)). Note: Needs a one-handed item
-        /// </summary>
-        public static bool CanDoStorage()
-        {
-            return CanDoMapGlitch() && HasOneHandedItem();
-        }
+        public static bool CanDoStorage() => GLU.CanDoStorage();
 
-        /// <summary>
-        /// Check for if you have any one-handed item
-        /// </summary>
-        public static bool HasOneHandedItem()
-        {
-            return HasSword()
-                || HasBottle()
-                || CanUse(Item.Boomerang)
-                || CanUse(Item.Progressive_Clawshot)
-                || CanUse(Item.Lantern)
-                || CanUse(Item.Progressive_Bow)
-                || CanUse(Item.Slingshot)
-                || CanUse(Item.Progressive_Dominion_Rod);
-        }
+        public static bool HasOneHandedItem() => GLU.HasOneHandedItem();
 
-        /// <summary>
-        /// Check for if you can do Moon Boots
-        /// </summary>
-        public static bool CanDoMoonBoots()
-        {
-            return HasSword()
-                && (
-                    CanUse(Item.Magic_Armor)
-                    || CanUse(Item.Iron_Boots) && GetItemWheelSlotCount() >= 3
-                ); // Ensure you can equip something over boots
-        }
+        public static bool CanDoMoonBoots() => GLU.CanDoMoonBoots();
 
-        /// <summary>
-        /// Check for if you can do Jump Strike Moon Boots
-        /// </summary>
-        public static bool CanDoJSMoonBoots()
-        {
-            return CanDoMoonBoots() && getItemCount(Item.Progressive_Hidden_Skill) >= 6;
-        }
+        public static bool CanDoJSMoonBoots() => GLU.CanDoJSMoonBoots();
 
-        /// <summary>
-        /// Check for if you can do Back Slice Moon Boots
-        /// </summary>
-        public static bool CanDoBSMoonBoots()
-        {
-            return getItemCount(Item.Progressive_Hidden_Skill) >= 3 && CanUse(Item.Magic_Armor);
-        }
+        public static bool CanDoBSMoonBoots() => GLU.CanDoBSMoonBoots();
 
-        /// <summary>
-        /// Check for if you can do Ending Blow Moon Boots
-        /// </summary>
-        public static bool CanDoEBMoonBoots()
-        {
-            return CanDoMoonBoots()
-                && CanUse(Item.Progressive_Hidden_Skill)
-                && getItemCount(Item.Progressive_Sword) >= 2;
-        }
+        public static bool CanDoEBMoonBoots() => GLU.CanDoEBMoonBoots();
 
-        /// <summary>
-        /// Check for if you can do Helm Splitter Moon Boots
-        /// </summary>
-        public static bool CanDoHSMoonBoots()
-        {
-            return CanDoMoonBoots()
-                && getItemCount(Item.Progressive_Hidden_Skill) >= 4
-                && HasSword()
-                && hasShield();
-        }
+        public static bool CanDoHSMoonBoots() => GLU.CanDoHSMoonBoots();
 
-        /// <summary>
-        /// Check for if you can do The Amazing Fly Glitch™
-        /// </summary>
-        public static bool CanDoFlyGlitch()
-        {
-            return CanUse(Item.Progressive_Fishing_Rod) && HasHeavyMod();
-        }
+        public static bool CanDoFlyGlitch() => GLU.CanDoFlyGlitch();
 
-        /// <summary>
-        /// Check for if you can swim with Water Bombs
-        /// </summary>
-        public static bool CanDoAirRefill()
-        {
-            return CanUseWaterBombs()
-                && (
-                    CanUse(Item.Magic_Armor)
-                    || (CanUse(Item.Iron_Boots) && (GetItemWheelSlotCount() >= 3))
-                ); // Ensure you can equip something over boots
-        }
+        public static bool CanDoAirRefill() => GLU.CanDoAirRefill();
 
         /// <summary>
         /// Check for if you can do Hidden Village (glitched)
@@ -1646,19 +1535,5 @@ namespace TPRandomizer
         }
 
         // END OF GLITCHED LOGIC
-        public static int GetItemWheelSlotCount()
-        {
-            int count = 0;
-
-            foreach (Item item in Randomizer.Items.ItemWheelItems)
-            {
-                if (CanUse(item))
-                {
-                    count++;
-                }
-            }
-
-            return count;
-        }
     }
 }
