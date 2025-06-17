@@ -1,13 +1,19 @@
 using System;
-using System.Collections.Generic;
-using System.Reflection;
 using TPRandomizer.SSettings.Enums;
+using BOU = LogicFunctionsNS.BottleUtils;
+using BU = LogicFunctionsNS.BombUtils;
 using CUU = LogicFunctionsNS.CanUseUtilities;
 using DCLCE = LogicFunctionsNS.DifficultCombatLogic.CanDefeatCommonEnemy;
+using DCLU = LogicFunctionsNS.DifficultCombatLogicUtils;
 using ERLF = LogicFunctionsNS.ERLogicFunctions;
 using GLCE = LogicFunctionsNS.GlitchedLogic.CanDefeatCommonEnemy;
 using GLLCE = LogicFunctionsNS.GlitchlessLogic.CanDefeatCommonEnemy;
+using HDI = LogicFunctionsNS.DamagingItems;
+using HLF = LogicFunctionsNS.HelperFunctions;
+using HSL = LogicFunctionsNS.HasSwordLevel;
+using MIU = LogicFunctionsNS.MiscItemUtils;
 using NLCE = LogicFunctionsNS.NicheLogic.CanDefeatCommonEnemy;
+using NLU = LogicFunctionsNS.NicheLogicUtils;
 
 // TODO: aggregate class
 
@@ -25,19 +31,20 @@ namespace TPRandomizer
         /// </summary>
         public static bool EvaluateSetting(string setting, string value)
         {
-            PropertyInfo[] settingProperties = Randomizer.SSettings.GetType().GetProperties();
-            setting = setting.Replace("Setting.", "");
-            bool isEqual = false;
-            foreach (PropertyInfo property in settingProperties)
-            {
-                var settingValue = property.GetValue(Randomizer.SSettings, null);
-                if ((property.Name == setting) && (value == settingValue.ToString()))
-                {
-                    isEqual = true;
-                }
-            }
-            return isEqual;
+            return HLF.EvaluateSetting(setting, value);
         }
+
+        /// <summary>
+        /// Checks the setting for difficult combat. Difficult combat includes: difficult, annoying, or time consuming combat
+        /// </summary>
+        public static bool CanDoDifficultCombat() => DCLU.CanDoDifficultCombat();
+
+        /// <sumamry>
+        /// Checks the setting for niche stuff. Niche stuff includes things that may not be obvious to most players, such as damaging enemies with boots, lantern on Gorons, drained Magic Armor for heavy mod, etc.
+        /// </summary>
+        public static bool CanDoNicheStuff() => NLU.CanDoNicheStuff();
+
+        public static bool CanUseBacksliceAsSword() => NLU.CanUseBacksliceAsSword();
 
         /// <summary>
         /// summary text.
@@ -54,72 +61,106 @@ namespace TPRandomizer
         /// <summary>
         /// summary text.
         /// </summary>
-        public static bool CanChangeTime()
-        {
-            if (CanUse(Item.Shadow_Crystal))
-            {
-                // Can change time on any stage with shadow crystal
-                return true;
-            }
-            else
-            {
-                foreach (string timeStage in RoomFunctions.timeFlowStages)
-                {
-                    if (Randomizer.Rooms.RoomDict[timeStage].ReachedByPlaythrough)
-                    {
-                        return true;
-                    }
-                }
-            }
-            return false;
-        }
+        public static bool CanChangeTime() => HLF.CanChangeTime();
 
-        public static bool CanWarp()
-        {
-            if (CanUse(Item.Shadow_Crystal))
-            {
-                foreach (string warpStage in RoomFunctions.WarpableStages)
-                {
-                    if (Randomizer.Rooms.RoomDict[warpStage].ReachedByPlaythrough)
-                    {
-                        return true;
-                    }
-                }
-            }
-            return false;
-        }
+        public static bool CanWarp() => HLF.CanWarp();
 
         /// <summary>
         /// summary text.
         /// </summary>
-        public static bool canGetHotSpringWater()
-        {
-            return (
-                    ERLF.HasReachedRoom("Lower Kakariko Village")
-                    || (ERLF.HasReachedRoom("Death Mountain Elevator Lower") && CanDefeatGoron())
-                ) && HasBottle();
-        }
+        public static bool canGetHotSpringWater() => BOU.CanGetHotSpringWater();
 
         /// <summary>
         /// summary text.
         /// </summary>
         public static bool HasDamagingItem()
         {
-            return HasSword()
-                || CanUse(Item.Ball_and_Chain)
-                || CanUse(Item.Progressive_Bow)
-                || hasBombs()
-                || CanUse(Item.Iron_Boots)
-                || CanUse(Item.Shadow_Crystal)
-                || CanUse(Item.Spinner);
+            return HDI.HasBaseDamagingItem(extraItems: Item.Iron_Boots);
         }
 
         /// <summary>
         /// summary text.
         /// </summary>
-        public static bool HasSword()
+        public static bool HasSword() => HSL.HasSword();
+
+        /// <summary>
+        /// summary text.
+        /// </summary>
+        public static bool canSmash() => BU.CanSmash();
+
+        /// <summary>
+        /// summary text.
+        /// </summary>
+        public static bool canBurnWebs() => MIU.CanBurnWebs();
+
+        /// <summary>
+        /// summary text.
+        /// </summary>
+        public static bool hasRangedItem() => MIU.HasRangedItem();
+
+        /// <summary>
+        /// summary text.
+        /// </summary>
+        public static bool hasShield() => MIU.HasShield();
+
+        public static bool CanUseBottledFairy() => BOU.CanUseBottledFairy();
+
+        public static bool CanUseBottledFairies() => BOU.CanUseBottledFairies();
+
+        public static bool CanUseOilBottle() => BOU.CanUseOilBottle();
+
+        /// <summary>
+        /// summary text.
+        /// </summary>
+        public static bool canLaunchBombs() => BU.CanLaunchBombs();
+
+        /// <summary>
+        /// summary text.
+        /// </summary>
+        public static bool canCutHangingWeb() => MIU.CanCutHangingWeb();
+
+        public static int GetPlayerHealth() => HLF.GetPlayerHealth();
+
+        /// <summary>
+        /// summary text.
+        /// </summary>
+        public static bool hasBombs() => BU.HasBombs();
+
+        /// <summary>
+        /// summary text.
+        /// </summary>
+        public static bool CanUseWaterBombs() => BU.CanUseWaterBombs();
+
+        /// <summary>
+        /// This is a temporary function that ensures arrows can be refilled for bow usage in Faron Woods/FT.
+        /// </summary>
+        public static bool CanGetArrows() => CUU.CanGetArrows();
+
+        public static bool CanRefillOil() => CUU.CanRefillOil();
+
+        /// <summary>
+        /// summary text.
+        /// </summary>
+        public static bool HasBug() => MIU.HasBug();
+
+        // TODO: If option to not have bug models replaced becomes a thing, this function can be useful
+        public static bool CanGetBugWithLantern() => false;
+
+        /// <summary>
+        /// Check for a usable bottle (requires lantern to avoid issues with lantern oil in all bottles)
+        /// </summary>
+        public static bool HasBottle() => BOU.HasBottle();
+
+        public static bool HasBottles() => BOU.HasBottles();
+
+        public static int getItemCount(Item itemToBeCounted) => CUU.GetItemCount(itemToBeCounted);
+
+        /// <summary>
+        /// summary text.
+        /// </summary>
+        public static bool verifyItemQuantity(string itemToBeCounted, int quantity)
         {
-            return CanUse(Item.Progressive_Sword);
+            return CUU.VerifyItemQuantity(itemToBeCounted, quantity);
         }
 
         /// <summary>
@@ -954,95 +995,6 @@ namespace TPRandomizer
         /// <summary>
         /// summary text.
         /// </summary>
-        public static bool canSmash()
-        {
-            return (CanUse(Item.Ball_and_Chain) || hasBombs());
-        }
-
-        /// <summary>
-        /// summary text.
-        /// </summary>
-        public static bool canBurnWebs()
-        {
-            return CanUse(Item.Lantern) || hasBombs() || CanUse(Item.Ball_and_Chain);
-        }
-
-        /// <summary>
-        /// summary text.
-        /// </summary>
-        public static bool hasRangedItem()
-        {
-            return (
-                CanUse(Item.Ball_and_Chain)
-                || CanUse(Item.Slingshot)
-                || CanUse(Item.Progressive_Bow)
-                || CanUse(Item.Progressive_Clawshot)
-                || CanUse(Item.Boomerang)
-            );
-        }
-
-        /// <summary>
-        /// summary text.
-        /// </summary>
-        public static bool hasShield()
-        {
-            return (
-                CanUse(Item.Hylian_Shield)
-                || ERLF.CanShopFromRoom("Kakariko Malo Mart")
-                || ERLF.CanShopFromRoom("Castle Town Goron House")
-                || ERLF.HasReachedRoom("Death Mountain Hot Spring")
-            );
-        }
-
-        public static bool CanUseBottledFairy()
-        {
-            return HasBottle() && Randomizer.Rooms.RoomDict["Lake Hylia"].ReachedByPlaythrough;
-        }
-
-        public static bool CanUseBottledFairies()
-        {
-            return HasBottles() && Randomizer.Rooms.RoomDict["Lake Hylia"].ReachedByPlaythrough;
-        }
-
-        public static bool CanUseOilBottle()
-        {
-            return CanUse(Item.Lantern) && CanUse(Item.Coro_Bottle);
-        }
-
-        /// <summary>
-        /// summary text.
-        /// </summary>
-        public static bool canLaunchBombs()
-        {
-            return ((CanUse(Item.Boomerang) || CanUse(Item.Progressive_Bow)) && hasBombs());
-        }
-
-        /// <summary>
-        /// summary text.
-        /// </summary>
-        public static bool canCutHangingWeb()
-        {
-            return (
-                CanUse(Item.Progressive_Clawshot)
-                || CanUse(Item.Progressive_Bow)
-                || CanUse(Item.Boomerang)
-                || CanUse(Item.Ball_and_Chain)
-            );
-        }
-
-        public static int GetPlayerHealth()
-        {
-            double playerHealth = 3.0; // start at 3 since we have 3 hearts.
-
-            playerHealth = playerHealth + (getItemCount(Item.Piece_of_Heart) * 0.2); //Pieces of heart are 1/5 of a heart.
-            playerHealth = playerHealth + getItemCount(Item.Heart_Container);
-
-            return (int)playerHealth;
-        }
-
-        /// <summary>
-        /// summary text.
-        /// </summary>
         public static bool canKnockDownHCPainting()
         {
             return (
@@ -1135,83 +1087,6 @@ namespace TPRandomizer
         {
             return (
                 CanUse(Item.Shadow_Crystal) || HasSword() || canSmash() || CanUseBacksliceAsSword()
-            );
-        }
-
-        /// <summary>
-        /// summary text.
-        /// </summary>
-        public static bool hasBombs()
-        {
-            return (
-                CanUse(Item.Filled_Bomb_Bag)
-                && (
-                    ERLF.HasReachedRoom("Kakariko Barnes Bomb Shop Lower")
-                    || (
-                        ERLF.HasReachedRoom("Eldin Field Water Bomb Fish Grotto")
-                        && CanUse(Item.Progressive_Fishing_Rod)
-                    )
-                    || Randomizer.Rooms.RoomDict["City in The Sky Entrance"].ReachedByPlaythrough
-                )
-            );
-        }
-
-        /// <summary>
-        /// summary text.
-        /// </summary>
-        public static bool CanUseWaterBombs()
-        {
-            return (
-                CanUse(Item.Filled_Bomb_Bag)
-                && (
-                    ERLF.HasReachedRoom("Kakariko Barnes Bomb Shop Lower")
-                    || (
-                        ERLF.HasReachedRoom("Eldin Field Water Bomb Fish Grotto")
-                        && CanUse(Item.Progressive_Fishing_Rod)
-                    )
-                    || (
-                        ERLF.HasReachedRoom("Kakariko Barnes Bomb Shop Lower")
-                        && Randomizer.Rooms.RoomDict["Castle Town Malo Mart"].ReachedByPlaythrough
-                    )
-                )
-            );
-        }
-
-        /// <summary>
-        /// This is a temporary function that ensures arrows can be refilled for bow usage in Faron Woods/FT.
-        /// </summary>
-        public static bool CanGetArrows()
-        {
-            return (
-                Randomizer.Rooms.RoomDict["Lost Woods"].ReachedByPlaythrough
-                || (
-                    canCompleteGoronMines()
-                    && Randomizer.Rooms.RoomDict["Kakariko Malo Mart"].ReachedByPlaythrough
-                )
-                || ERLF.CanShopFromRoom("Castle Town Goron House Balcony")
-            );
-        }
-
-        public static bool CanRefillOil()
-        {
-            return (
-                Randomizer.Rooms.RoomDict["North Faron Woods"].ReachedByPlaythrough
-                || Randomizer.Rooms.RoomDict["South Faron Woods"].ReachedByPlaythrough
-                || Randomizer.Rooms.RoomDict["Arbiters Grounds Entrance"].ReachedByPlaythrough
-                || (
-                    Randomizer.Rooms.RoomDict["Lake Hylia Long Cave"].ReachedByPlaythrough
-                    && canSmash()
-                )
-                || Randomizer.Rooms.RoomDict["Ordon Seras Shop"].ReachedByPlaythrough
-                || (
-                    canCompleteGoronMines()
-                    && Randomizer.Rooms.RoomDict["Lower Kakariko Village"].ReachedByPlaythrough
-                    && CanChangeTime()
-                )
-                || (
-                    Randomizer.Rooms.RoomDict["Castle Town Goron House"].ReachedByPlaythrough
-                    && !Randomizer.SSettings.shuffleShopItems
-                )
             );
         }
 
@@ -1466,21 +1341,6 @@ namespace TPRandomizer
             );
         }
 
-        /// <summary>
-        /// summary text.
-        /// </summary>
-        public static bool HasBug()
-        {
-            foreach (Item bug in Randomizer.Items.goldenBugs)
-            {
-                if (CanUse(bug))
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
-
         public static bool CanUnlockOrdonaMap()
         {
             if (Randomizer.SSettings.openMap)
@@ -1577,35 +1437,6 @@ namespace TPRandomizer
             return false;
         }
 
-        /// <summary>
-        /// Checks the setting for difficult combat. Difficult combat includes: difficult, annoying, or time consuming combat
-        /// </summary>
-        public static bool CanDoDifficultCombat()
-        {
-            // TODO: Change to use setting once it's made
-            return false;
-        }
-
-        /// <sumamry>
-        /// Checks the setting for niche stuff. Niche stuff includes things that may not be obvious to most players, such as damaging enemies with boots, lantern on Gorons, drained Magic Armor for heavy mod, etc.
-        /// </summary>
-        public static bool CanDoNicheStuff()
-        {
-            // TODO: Change to use setting once it's made
-            return Randomizer.SSettings.logicRules == LogicRules.Glitched;
-        }
-
-        public static bool CanUseBacksliceAsSword()
-        {
-            return CanDoNicheStuff() && getItemCount(Item.Progressive_Hidden_Skill) >= 3;
-        }
-
-        public static bool CanGetBugWithLantern()
-        {
-            // TODO: If option to not have bug models replaced becomes a thing, this function can be useful
-            return false;
-        }
-
         // START OF GLITCHED LOGIC
 
         /// <summary>
@@ -1615,49 +1446,6 @@ namespace TPRandomizer
         {
             return CanUse(Item.Progressive_Sword)
                 || getItemCount(Item.Progressive_Hidden_Skill) >= 3;
-        }
-
-        /// <summary>
-        /// Check for a usable bottle (requires lantern to avoid issues with lantern oil in all bottles)
-        /// </summary>
-        public static bool HasBottle()
-        {
-            return (
-                    CanUse(Item.Empty_Bottle)
-                    || CanUse(Item.Sera_Bottle)
-                    || CanUse(Item.Jovani_Bottle)
-                    || CanUse(Item.Coro_Bottle)
-                ) && CanUse(Item.Lantern);
-        }
-
-        public static bool HasBottles()
-        {
-            int n = 0;
-            if (CanUse(Item.Lantern))
-            {
-                if (CanUse(Item.Empty_Bottle))
-                {
-                    n++;
-                }
-                if (CanUse(Item.Sera_Bottle))
-                {
-                    n++;
-                }
-                if (CanUse(Item.Jovani_Bottle))
-                {
-                    n++;
-                }
-                if (CanUse(Item.Coro_Bottle))
-                {
-                    n++;
-                }
-
-                if (n > 1)
-                {
-                    return true;
-                }
-            }
-            return false;
         }
 
         /// <summary>
@@ -1858,21 +1646,6 @@ namespace TPRandomizer
         }
 
         // END OF GLITCHED LOGIC
-
-        public static int getItemCount(Item itemToBeCounted)
-        {
-            List<Item> itemList = Randomizer.Items.heldItems;
-            int itemQuantity = 0;
-            foreach (var item in itemList)
-            {
-                if ((item == itemToBeCounted) && CanReplenishItem(itemToBeCounted))
-                {
-                    itemQuantity++;
-                }
-            }
-            return itemQuantity;
-        }
-
         public static int GetItemWheelSlotCount()
         {
             int count = 0;
@@ -1886,29 +1659,6 @@ namespace TPRandomizer
             }
 
             return count;
-        }
-
-        /// <summary>
-        /// summary text.
-        /// </summary>
-        public static bool verifyItemQuantity(string itemToBeCounted, int quantity)
-        {
-            List<Item> itemList = Randomizer.Items.heldItems;
-            int itemQuantity = 0;
-            bool isQuantity = false;
-
-            foreach (var item in itemList)
-            {
-                if (item.ToString() == itemToBeCounted)
-                {
-                    itemQuantity++;
-                }
-            }
-            if (itemQuantity >= quantity)
-            {
-                isQuantity = true;
-            }
-            return isQuantity;
         }
     }
 }

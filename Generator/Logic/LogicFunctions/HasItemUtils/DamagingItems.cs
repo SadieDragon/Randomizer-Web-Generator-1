@@ -4,8 +4,8 @@ using System.Linq;
 using TPRandomizer;
 using BU = LogicFunctionsNS.BombUtils;
 using CUU = LogicFunctionsNS.CanUseUtilities;
-using HLF = LogicFunctionsNS.HelperFunctions;
 using HSL = LogicFunctionsNS.HasSwordLevel;
+using MIU = LogicFunctionsNS.MiscItemUtils;
 
 // TODO: Clean up the summary blocks.
 
@@ -99,7 +99,7 @@ namespace LogicFunctionsNS
         {
             return HSL.HasSword()
                 || HasAltDamagingItem()
-                || (includeShieldAttack && HLF.CanShieldAttack())
+                || (includeShieldAttack && MIU.CanShieldAttack())
                 || BU.HasBombs();
         }
     }

@@ -1,17 +1,33 @@
+using System.Reflection;
 using TPRandomizer;
 using TPRandomizer.SSettings.Enums;
-using HHSL = LogicFunctionsNS.HasHiddenSkillLevel;
-using LF = TPRandomizer.LogicFunctionsUpdatedRefactored;
-
-// Notes:
-//   - Can I break this down?
-//     - Hidden Skill counting
-//     - General item counting (Sword, claws, active dr)
+using BOU = LogicFunctionsNS.BottleUtils;
+using CUU = LogicFunctionsNS.CanUseUtilities;
+using ERLF = LogicFunctionsNS.ERLogicFunctions;
 
 namespace LogicFunctionsNS
 {
     class HelperFunctions
     {
+        /// <summary>
+        /// summary text.
+        /// </summary>
+        public static bool EvaluateSetting(string setting, string value)
+        {
+            PropertyInfo[] settingProperties = Randomizer.SSettings.GetType().GetProperties();
+            setting = setting.Replace("Setting.", "");
+
+            foreach (PropertyInfo property in settingProperties)
+            {
+                var settingValue = property.GetValue(Randomizer.SSettings, null);
+                if ((property.Name == setting) && (value == settingValue.ToString()))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
         public static SharedSettings SharedSettings = Randomizer.SSettings;
 
         /// <summary>
@@ -27,12 +43,33 @@ namespace LogicFunctionsNS
             bool IsOHKO = SharedSettings.damageMagnification == DamageMagnification.OHKO;
 
             return !BonksDamageEnabled
-                || (BonksDamageEnabled && (!IsOHKO || LF.CanUseBottledFairies()));
+                || (BonksDamageEnabled && (!IsOHKO || BOU.CanUseBottledFairies()));
         }
 
-        public static bool CanShieldAttack()
+        public static int GetPlayerHealth()
         {
-            return LF.hasShield() && HHSL.HasShieldAttack();
+            double playerHealth = 3.0; // start at 3 since we have 3 hearts.
+
+            //Pieces of heart are 1/5 of a heart.
+            playerHealth += CUU.GetItemCount(Item.Piece_of_Heart) * 0.2;
+            playerHealth += CUU.GetItemCount(Item.Heart_Container);
+
+            return (int)playerHealth;
+        }
+
+        /// <summary>
+        /// summary text.
+        /// </summary>
+        public static bool CanChangeTime()
+        {
+            return CUU.CanUse(Item.Shadow_Crystal)
+                || ERLF.HasReachedAnyRooms(RoomFunctions.timeFlowStages);
+        }
+
+        public static bool CanWarp()
+        {
+            return CUU.CanUse(Item.Shadow_Crystal)
+                && ERLF.HasReachedAnyRooms(RoomFunctions.WarpableStages);
         }
     }
 }
