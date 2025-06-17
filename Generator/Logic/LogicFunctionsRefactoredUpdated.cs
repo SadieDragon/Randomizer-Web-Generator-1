@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Reflection;
 using TPRandomizer.SSettings.Enums;
+using CUU = LogicFunctionsNS.CanUseUtilities;
 using DCLCE = LogicFunctionsNS.DifficultCombatLogic.CanDefeatCommonEnemy;
 using ERLF = LogicFunctionsNS.ERLogicFunctions;
 using GLCE = LogicFunctionsNS.GlitchedLogic.CanDefeatCommonEnemy;
@@ -41,54 +42,14 @@ namespace TPRandomizer
         /// <summary>
         /// summary text.
         /// </summary>
-        public static bool CanUse(Item item)
-        {
-            if (Randomizer.Items.heldItems.Contains(item) && CanReplenishItem(item))
-            {
-                return true;
-            }
-            return false;
-        }
-
-        public static bool CanReplenishItem(Item item)
-        {
-            bool replenish = false;
-            switch (item)
-            {
-                case Item.Lantern:
-                {
-                    if (CanRefillOil())
-                    {
-                        replenish = true;
-                    }
-                    break;
-                }
-
-                case Item.Progressive_Bow:
-                {
-                    if (CanGetArrows())
-                    {
-                        replenish = true;
-                    }
-                    break;
-                }
-
-                default:
-                {
-                    replenish = true;
-                    break;
-                }
-            }
-            return replenish;
-        }
+        public static bool CanUse(Item item) => CUU.CanUse(item);
 
         /// <summary>
         /// summary text.
         /// </summary>
-        public static bool CanUse(string item)
-        {
-            return CanUse(Enum.Parse<Item>(item));
-        }
+        public static bool CanUse(string item) => CanUse(Enum.Parse<Item>(item));
+
+        public static bool CanReplenishItem(Item item) => CUU.CanReplenishItem(item);
 
         /// <summary>
         /// summary text.
