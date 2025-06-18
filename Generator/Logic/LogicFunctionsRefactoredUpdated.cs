@@ -9,8 +9,10 @@ using DCLM = LogicFunctionsNS.DifficultCombatLogic.CanDefeatMiniBoss;
 using DCLU = LogicFunctionsNS.DifficultCombatLogicUtils;
 using ERLF = LogicFunctionsNS.ERLogicFunctions;
 using GLB = LogicFunctionsNS.GlitchedLogic.CanDefeatBoss;
+using GLCDS = LogicFunctionsNS.GlitchedLogic.CanDoStuff;
 using GLCE = LogicFunctionsNS.GlitchedLogic.CanDefeatCommonEnemy;
 using GLLB = LogicFunctionsNS.GlitchlessLogic.CanDefeatBoss;
+using GLLCDS = LogicFunctionsNS.GlitchlessLogic.CanDoStuff;
 using GLLCE = LogicFunctionsNS.GlitchlessLogic.CanDefeatCommonEnemy;
 using GLLM = LogicFunctionsNS.GlitchlessLogic.CanDefeatMiniBoss;
 using GLU = LogicFunctionsNS.GlitchedLogicUtils;
@@ -19,6 +21,7 @@ using HLF = LogicFunctionsNS.HelperFunctions;
 using HSL = LogicFunctionsNS.HasSwordLevel;
 using MIU = LogicFunctionsNS.MiscItemUtils;
 using NLB = LogicFunctionsNS.NicheLogic.CanDefeatBoss;
+using NLCDS = LogicFunctionsNS.NicheLogic.CanDoStuff;
 using NLCE = LogicFunctionsNS.NicheLogic.CanDefeatCommonEnemy;
 using NLM = LogicFunctionsNS.NicheLogic.CanDefeatMiniBoss;
 using NLU = LogicFunctionsNS.NicheLogicUtils;
@@ -884,25 +887,15 @@ namespace TPRandomizer
         public static bool CanDefeatGanondorf() => GLLB.CanDefeatGanondorf();
         # endregion
 
+        # region CanDoStuff
         /// <summary>
         /// summary text.
         /// </summary>
         public static bool canKnockDownHCPainting()
         {
-            return (
-                CanUse(Item.Progressive_Bow)
-                || (
-                    CanDoNicheStuff()
-                    && (
-                        hasBombs()
-                        || (HasSword() && getItemCount(Item.Progressive_Hidden_Skill) >= 6)
-                    )
-                )
-                || (
-                    Randomizer.SSettings.logicRules == LogicRules.Glitched
-                    && ((HasSword() && CanDoMoonBoots()) || CanDoBSMoonBoots())
-                )
-            );
+            return GLLCDS.CanKnockDownHCPainting()
+                || NLCDS.CanKnockDownHCPainting()
+                || GLCDS.CanKnockDownHCPainting();
         }
 
         /// <summary>
@@ -910,21 +903,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool canBreakMonkeyCage()
         {
-            return (
-                HasSword()
-                || CanUse(Item.Iron_Boots)
-                || CanUse(Item.Spinner)
-                || CanUse(Item.Ball_and_Chain)
-                || CanUse(Item.Shadow_Crystal)
-                || hasBombs()
-                || CanUse(Item.Progressive_Bow)
-                || CanUse(Item.Progressive_Clawshot)
-                || (
-                    CanDoNicheStuff()
-                    && hasShield()
-                    && getItemCount(Item.Progressive_Hidden_Skill) >= 2
-                )
-            );
+            return GLLCDS.CanBreakMonkeyCage() || NLCDS.CanBreakMonkeyCage();
         }
 
         /// <summary>
@@ -932,7 +911,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool canPressMinesSwitch()
         {
-            return CanUse(Item.Iron_Boots) || (CanDoNicheStuff() && CanUse(Item.Ball_and_Chain));
+            return GLLCDS.CanPressMinesSwitch() || NLCDS.CanPressMinesSwitch();
         }
 
         /// <summary>
@@ -940,47 +919,32 @@ namespace TPRandomizer
         /// </summary>
         public static bool canFreeAllMonkeys()
         {
-            return (
-                canBreakMonkeyCage()
-                && (
-                    CanUse(Item.Lantern)
-                    || (
-                        (Randomizer.SSettings.smallKeySettings == SmallKeySettings.Keysy)
-                        && (hasBombs() || CanUse(Item.Iron_Boots))
-                    )
-                )
-                && canBurnWebs()
-                && CanUse(Item.Boomerang)
-                && CanDefeatBokoblin()
-                && (
-                    (getItemCount(Item.Forest_Temple_Small_Key) >= 4)
-                    || (Randomizer.SSettings.smallKeySettings == SmallKeySettings.Keysy)
-                )
-            );
+            return canBreakMonkeyCage() && CanDefeatBokoblin() && GLLCDS.CanFreeAllMonkeys();
         }
 
         /// <summary>
         /// summary text.
         /// </summary>
-        public static bool canKnockDownHangingBaba()
-        {
-            return (
-                CanUse(Item.Progressive_Bow)
-                || CanUse(Item.Progressive_Clawshot)
-                || CanUse(Item.Boomerang)
-                || CanUse(Item.Slingshot)
-            );
-        }
+        public static bool canKnockDownHangingBaba() => GLLCDS.CanKnockDownHangingBaba();
 
         /// <summary>
         /// summary text.
         /// </summary>
         public static bool canBreakWoodenDoor()
         {
-            return (
-                CanUse(Item.Shadow_Crystal) || HasSword() || canSmash() || CanUseBacksliceAsSword()
-            );
+            return GLLCDS.CanBreakWoodenDoor() || NLCDS.CanBreakWoodenDoor();
         }
+
+        public static bool CanMidnaCharge()
+        {
+            return CanCompleteMDH() && CanCompleteAllTwilight();
+        }
+
+        public static bool CanStrikePedestal()
+        {
+            return getItemCount(Item.Progressive_Sword) >= (int)Randomizer.SSettings.totEntrance;
+        }
+        # endregion
 
         /// <summary>
         /// summary text.
@@ -1016,16 +980,6 @@ namespace TPRandomizer
                 )
             );
             //return (canCompleteLakebedTemple() || (Randomizer.SSettings.skipMdh == true));
-        }
-
-        public static bool CanMidnaCharge()
-        {
-            return CanCompleteMDH() && CanCompleteAllTwilight();
-        }
-
-        public static bool CanStrikePedestal()
-        {
-            return getItemCount(Item.Progressive_Sword) >= (int)Randomizer.SSettings.totEntrance;
         }
 
         /// <summary>
