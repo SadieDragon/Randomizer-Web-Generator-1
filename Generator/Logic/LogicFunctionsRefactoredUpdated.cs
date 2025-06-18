@@ -946,25 +946,19 @@ namespace TPRandomizer
         }
         # endregion
 
+        # region CanDoStoryStuff
         /// <summary>
         /// summary text.
         /// </summary>
         public static bool canCompletePrologue()
         {
-            return (
-                (
-                    Randomizer.Rooms.RoomDict["North Faron Woods"].ReachedByPlaythrough
-                    && CanDefeatBokoblin()
-                ) || (Randomizer.SSettings.skipPrologue == true)
-            );
+            return (Randomizer.SSettings.skipPrologue == true)
+                || (ERLF.HasReachedNFaronWoods() && CanDefeatBokoblin());
         }
 
         public static bool CanCompleteGoats1()
         {
-            return (
-                Randomizer.Rooms.RoomDict["Ordon Ranch"].ReachedByPlaythrough
-                || canCompletePrologue()
-            );
+            return canCompletePrologue() || ERLF.HasReachedRoom("Ordon Ranch");
         }
 
         /// <summary>
@@ -972,13 +966,8 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanCompleteMDH()
         {
-            return (
-                (Randomizer.SSettings.skipMdh == true)
-                || (
-                    canCompleteLakebedTemple()
-                    && Randomizer.Rooms.RoomDict["Castle Town South"].ReachedByPlaythrough
-                )
-            );
+            return (Randomizer.SSettings.skipMdh == true)
+                || (canCompleteLakebedTemple() && ERLF.HasReachedSCastleTown());
             //return (canCompleteLakebedTemple() || (Randomizer.SSettings.skipMdh == true));
         }
 
@@ -988,14 +977,13 @@ namespace TPRandomizer
         public static bool canClearForest()
         {
             return (
-                (
                     canCompleteForestTemple()
                     || (Randomizer.SSettings.faronWoodsLogic == FaronWoodsLogic.Open)
                 )
                 && canCompletePrologue()
-                && CanCompleteFaronTwilight()
-            );
+                && CanCompleteFaronTwilight();
         }
+        #endregion
 
         /// <summary>
         /// Can complete Faron twilight
