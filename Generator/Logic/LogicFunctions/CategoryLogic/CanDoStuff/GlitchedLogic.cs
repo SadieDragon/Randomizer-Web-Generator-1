@@ -1,4 +1,9 @@
+using TPRandomizer;
+using TPRandomizer.SSettings.Enums;
+using BU = LogicFunctionsNS.BombUtils;
+using CUU = LogicFunctionsNS.CanUseUtilities;
 using GLU = LogicFunctionsNS.GlitchedLogicUtils;
+using HHSL = LogicFunctionsNS.HasHiddenSkillLevel;
 using HSL = LogicFunctionsNS.HasSwordLevel;
 
 namespace LogicFunctionsNS.GlitchedLogic
@@ -9,6 +14,38 @@ namespace LogicFunctionsNS.GlitchedLogic
         {
             return GLU.IsGlitchedLogic()
                 && ((HSL.HasSword() && GLU.CanDoMoonBoots()) || GLU.CanDoBSMoonBoots());
+        }
+
+        /// <summary>
+        /// Check for if you need the key for getting to Lakebed Deku Toad
+        ///
+        public static bool CanSkipKeyToDekuToad()
+        {
+            return (Randomizer.SSettings.smallKeySettings == SmallKeySettings.Keysy)
+                || HHSL.HasBackslice()
+                || GLU.CanDoBSMoonBoots()
+                || GLU.CanDoJSMoonBoots()
+                || GLU.CanDoLJA()
+                || (BU.HasBombs() && (GLU.HasHeavyMod() || HHSL.HasJumpStrike()));
+        }
+
+        /// <summary>
+        /// Check for if you can do Hidden Village (glitched)
+        /// </summary>
+        public static bool CanDoHiddenVillageGlitched()
+        {
+            return CUU.CanUse(Item.Progressive_Bow)
+                || CUU.CanUse(Item.Ball_and_Chain)
+                || (
+                    CUU.CanUse(Item.Slingshot)
+                    && (
+                        CUU.CanUse(Item.Shadow_Crystal)
+                        || HSL.HasSword()
+                        || BU.HasBombs()
+                        || CUU.CanUse(Item.Iron_Boots)
+                        || CUU.CanUse(Item.Spinner)
+                    )
+                );
         }
     }
 }

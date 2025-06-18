@@ -1319,21 +1319,7 @@ namespace TPRandomizer
         /// <summary>
         /// Check for if you can do Hidden Village (glitched)
         /// </summary>
-        public static bool CanDoHiddenVillageGlitched()
-        {
-            return CanUse(Item.Progressive_Bow)
-                || CanUse(Item.Ball_and_Chain)
-                || (
-                    CanUse(Item.Slingshot)
-                    && (
-                        CanUse(Item.Shadow_Crystal)
-                        || HasSword()
-                        || hasBombs()
-                        || CanUse(Item.Iron_Boots)
-                        || CanUse(Item.Spinner)
-                    )
-                );
-        }
+        public static bool CanDoHiddenVillageGlitched() => GLCDS.CanDoHiddenVillageGlitched();
 
         /// <summary>
         /// Check for if you can get passed FT windless bridge room (glitched)
@@ -1365,18 +1351,7 @@ namespace TPRandomizer
         /// <summary>
         /// Check for if you need the key for getting to Lakebed Deku Toad
         ///
-        public static bool CanSkipKeyToDekuToad()
-        {
-            return Randomizer.SSettings.smallKeySettings == SmallKeySettings.Keysy
-                || getItemCount(Item.Progressive_Hidden_Skill) >= 3
-                || CanDoBSMoonBoots()
-                || CanDoJSMoonBoots()
-                || CanDoLJA()
-                || (
-                    hasBombs()
-                    && (HasHeavyMod() || getItemCount(Item.Progressive_Hidden_Skill) >= 6)
-                );
-        }
+        public static bool CanSkipKeyToDekuToad() => GLCDS.CanSkipKeyToDekuToad();
 
         // END OF GLITCHED LOGIC
     }
