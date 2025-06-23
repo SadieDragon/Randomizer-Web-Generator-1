@@ -1600,6 +1600,34 @@ namespace TPRandomizer.Assets
                     (int)StageIDs.Faron_Woods,
                     6
                 ),
+
+                // Freestanding Rupee Archive patches
+
+                // Rupees in rock near Coro
+                new ARCReplacement(
+                    "697",
+                    "00F30481",
+                    (byte)FileDirectory.Room,
+                    (byte)ReplacementType.Instruction,
+                    (int)StageIDs.Faron_Woods,
+                    4
+                ),
+                new ARCReplacement(
+                    "6B7",
+                    "00F30482",
+                    (byte)FileDirectory.Room,
+                    (byte)ReplacementType.Instruction,
+                    (int)StageIDs.Faron_Woods,
+                    4
+                ),
+                new ARCReplacement(
+                    "6D7",
+                    "00F30483",
+                    (byte)FileDirectory.Room,
+                    (byte)ReplacementType.Instruction,
+                    (int)StageIDs.Faron_Woods,
+                    4
+                ),
                 /*
                 // Note: I don't know how to modify the event system to get these items to work properly, but I already did the work on finding the replacement values, so just keeping them here.
                 new ARCReplacement(

@@ -814,6 +814,7 @@
       Shop: true,
       'Sky Book': true,
       Poe: true,
+      'Rupee - Hidden': true,
     };
 
     const importantItems = {

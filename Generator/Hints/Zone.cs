@@ -240,7 +240,11 @@ namespace TPRandomizer.Hints
                         "Faron Woods Owl Statue Chest",
                         "Faron Woods Owl Statue Sky Character",
                         "North Faron Woods Deku Baba Chest",
-                        "South Faron Cave Chest"
+                        "South Faron Cave Chest",
+                        "Faron Woods Coro Boulder Rupee 1",
+                        "Faron Woods Coro Boulder Rupee 2",
+                        "Faron Woods Coro Boulder Rupee 3",
+                        "Faron Woods Coro Boulder Rupee 4"
                     }
                 },
                 {

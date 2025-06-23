@@ -601,6 +601,22 @@ window.tpr.checkData = {
     category: ['Overworld', 'Chest', 'Faron Woods', 'DZX'],
     itemId: 'Red_Rupee',
   },
+  'Faron Woods Coro Boulder Rupee 1': {
+    category: ['Overworld', 'Rupee - Hidden', 'Faron Woods', 'ARC'],
+    itemId: 'Green_Rupee',
+  },
+  'Faron Woods Coro Boulder Rupee 2': {
+    category: ['Overworld', 'Rupee - Hidden', 'Faron Woods', 'ARC'],
+    itemId: 'Green_Rupee',
+  },
+  'Faron Woods Coro Boulder Rupee 3': {
+    category: ['Overworld', 'Rupee - Hidden', 'Faron Woods', 'ARC'],
+    itemId: 'Blue_Rupee',
+  },
+  'Faron Woods Coro Boulder Rupee 4': {
+    category: ['Overworld', 'Rupee - Hidden', 'Faron Woods', 'ARC'],
+    itemId: 'Yellow_Rupee',
+  },
   'Faron Woods Golden Wolf': {
     category: ['Overworld', 'Hidden Skill', 'Faron Woods', 'ARC'],
     itemId: 'Progressive_Hidden_Skill',
@@ -1209,7 +1225,7 @@ window.tpr.checkData = {
     itemId: 'Red_Rupee',
   },
   'Kakariko Village Bell Rupee': {
-    category: ['Overworld','Kakariko Village', 'ARC'],
+    category: ['Overworld','Kakariko Village', 'Rupee - Hidden', 'ARC'],
     itemId: 'Silver_Rupee',
   },
   'Kakariko Village Bomb Rock Spire Heart Piece': {
@@ -2135,7 +2151,7 @@ window.tpr.checkData = {
     itemId: 'Red_Rupee',
   },
   'Uli Cradle Delivery': {
-    category: ['Overworld', 'Ordona Province', 'ARC'],
+    category: ['Overworld', 'Ordona Province', 'Npc', 'ARC'],
     itemId: 'Progressive_Fishing_Rod',
   },
   'Upper Zoras River Female Dragonfly': {

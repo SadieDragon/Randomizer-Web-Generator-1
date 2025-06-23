@@ -565,6 +565,10 @@ namespace TPRandomizer
                 "Coro Lantern",
                 "Coro Gate Key",
                 "Shad Dominion Rod",
+                "Faron Woods Coro Boulder Rupee 1",
+                "Faron Woods Coro Boulder Rupee 2",
+                "Faron Woods Coro Boulder Rupee 3",
+                "Faron Woods Coro Boulder Rupee 4"
                 // Add new check names right above this line. The name should
                 // match exactly with the json filename in the "Checks"
                 // directory.
