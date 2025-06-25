@@ -3,7 +3,7 @@
     "RoomName": "Outside Links House",
     "Exits":
     [
-      { // TODO: auto set the flag to remove Fado from outside link's house.
+      { 
         "ConnectedArea": "Ordon Village",
         "Requirements": "true",
         "GlitchedRequirements": "true"
@@ -55,28 +55,28 @@
       },
       {
         "ConnectedArea": "Ordon Seras Shop",
-        "Requirements": "CanChangeTime and CanCompleteGoats1",
-        "GlitchedRequirements": "CanChangeTime and CanCompleteGoats1"
+        "Requirements": "CanChangeTime",
+        "GlitchedRequirements": "CanChangeTime"
       },
       {
         "ConnectedArea": "Ordon Shield House",
-        "Requirements": "CanChangeTime and CanCompleteGoats1",
-        "GlitchedRequirements": "CanChangeTime and CanCompleteGoats1"
+        "Requirements": "CanChangeTime",
+        "GlitchedRequirements": "CanChangeTime"
       },
       {
         "ConnectedArea": "Ordon Sword House",
-        "Requirements": "CanChangeTime and CanCompleteGoats1",
-        "GlitchedRequirements": "CanChangeTime and CanCompleteGoats1"
+        "Requirements": "CanChangeTime",
+        "GlitchedRequirements": "CanChangeTime"
       },
       {
         "ConnectedArea": "Ordon Bos House Left Door",
-        "Requirements": "CanChangeTime and CanCompleteGoats1",
-        "GlitchedRequirements": "CanChangeTime and CanCompleteGoats1"
+        "Requirements": "CanChangeTime",
+        "GlitchedRequirements": "CanChangeTime"
       },
       {
         "ConnectedArea": "Ordon Bos House Right Door",
-        "Requirements": "CanChangeTime and CanCompleteGoats1",
-        "GlitchedRequirements": "CanChangeTime and CanCompleteGoats1"
+        "Requirements": "CanChangeTime",
+        "GlitchedRequirements": "CanChangeTime"
       }
     ],
     "Checks":

@@ -122,7 +122,8 @@ function onDomContentLoaded() {
 
   // Set default settings string in UI.
   setSettingsString();
-  setEntranceRandoSettings()
+  setDungeonERSettings();
+  setOverworldERSettings();
   // If returning back from the seed page, the browser will fill in the state.
   // This updates the string after the browser updates all of the fields to
   // their previous values.
@@ -399,12 +400,12 @@ document
   .addEventListener('click', setSettingsString);
 document
   .getElementById('randomizeStartingPointCheckbox')
-  .addEventListener('click', setSettingsString);
+  .addEventListener('click', setOverworldERSettings);
   document.getElementById('iliaQuestFieldset').onchange = setSettingsString;
 document.getElementById('mirrorChamberFieldset').onchange =
   setSettingsString;
 document.getElementById('dungeonERFieldset').onchange =
-setEntranceRandoSettings;
+setDungeonERSettings;
 document
   .getElementById('unpairedEntrancesCheckbox')
   .addEventListener('click', setSettingsString);
@@ -422,7 +423,15 @@ function importSettingsString() {
   parseSettingsString(document.getElementById('settingsStringTextbox').value);
 }
 
-function setEntranceRandoSettings()
+function setOverworldERSettings()
+{
+  var overworldEREnabled = document.getElementById('randomizeStartingPointCheckbox').checked;
+  document.getElementById('introCheckbox').checked = overworldEREnabled;
+  document.getElementById('introCheckbox').disabled = overworldEREnabled;
+  setSettingsString();
+}
+
+function setDungeonERSettings()
 {
   if (document.getElementById('dungeonERFieldset').value !=0)
   {

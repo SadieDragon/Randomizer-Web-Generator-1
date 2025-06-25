@@ -1646,19 +1646,31 @@ namespace TPRandomizer.Assets
                     (int)StageIDs.Ordon_Village,
                     0
                 ),
+
+                // Rupee Above Hanch's house
                 new ARCReplacement(
-                    "96D3",
-                    "00F3FF84",
+                    "3B4F",
+                    "00F3FF85",
                     (byte)FileDirectory.Room,
                     (byte)ReplacementType.Instruction,
                     (int)StageIDs.Ordon_Village,
                     0
                 ),
 
-                // Rupee Above Hanch's house
+                // Rupee by Bo's Window
                 new ARCReplacement(
-                    "3B4F",
-                    "00F3FF85",
+                    "3C0F",
+                    "00F3FF8A",
+                    (byte)FileDirectory.Room,
+                    (byte)ReplacementType.Instruction,
+                    (int)StageIDs.Ordon_Village,
+                    0
+                ),
+
+                // Rupee in River
+                new ARCReplacement(
+                    "3D4F",
+                    "0013FF91",
                     (byte)FileDirectory.Room,
                     (byte)ReplacementType.Instruction,
                     (int)StageIDs.Ordon_Village,
