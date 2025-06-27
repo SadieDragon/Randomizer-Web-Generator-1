@@ -1036,86 +1036,62 @@ namespace TPRandomizer
         }
         # endregion
 
+        # region Dungeons
         /// <summary>
         /// summary text.
         /// </summary>
-        public static bool canCompleteForestTemple()
-        {
-            return CanUse(Item.Diababa_Defeated);
-        }
+        public static bool canCompleteForestTemple() => CanUse(Item.Diababa_Defeated);
 
         /// <summary>
         /// summary text.
         /// </summary>
-        public static bool canCompleteGoronMines()
-        {
-            return CanUse(Item.Fyrus_Defeated);
-        }
+        public static bool canCompleteGoronMines() => CanUse(Item.Fyrus_Defeated);
 
         /// <summary>
         /// summary text.
         /// </summary>
-        public static bool canCompleteLakebedTemple()
-        {
-            return CanUse(Item.Morpheel_Defeated);
-        }
+        public static bool canCompleteLakebedTemple() => CanUse(Item.Morpheel_Defeated);
 
         /// <summary>
         /// summary text.
         /// </summary>
-        public static bool canCompleteArbitersGrounds()
-        {
-            return CanUse(Item.Stallord_Defeated);
-        }
+        public static bool canCompleteArbitersGrounds() => CanUse(Item.Stallord_Defeated);
 
         /// <summary>
         /// summary text.
         /// </summary>
-        public static bool canCompleteSnowpeakRuins()
-        {
-            return CanUse(Item.Blizzeta_Defeated);
-        }
+        public static bool canCompleteSnowpeakRuins() => CanUse(Item.Blizzeta_Defeated);
 
         /// <summary>
         /// summary text.
         /// </summary>
-        public static bool canCompleteTempleofTime()
-        {
-            return CanUse(Item.Armogohma_Defeated);
-        }
+        public static bool canCompleteTempleofTime() => CanUse(Item.Armogohma_Defeated);
 
         /// <summary>
         /// summary text.
         /// </summary>
-        public static bool canCompleteCityinTheSky()
-        {
-            return CanUse(Item.Argorok_Defeated);
-        }
+        public static bool canCompleteCityinTheSky() => CanUse(Item.Argorok_Defeated);
 
         /// <summary>
         /// summary text.
         /// </summary>
-        public static bool canCompletePalaceofTwilight()
-        {
-            return CanUse(Item.Zant_Defeated);
-        }
+        public static bool canCompletePalaceofTwilight() => CanUse(Item.Zant_Defeated);
 
         /// <summary>
         /// summary text.
         /// </summary>
         public static bool canCompleteAllDungeons()
         {
-            return (
-                canCompleteForestTemple()
+            return canCompleteForestTemple()
                 && canCompleteGoronMines()
                 && canCompleteLakebedTemple()
                 && canCompleteArbitersGrounds()
                 && canCompleteSnowpeakRuins()
                 && canCompleteTempleofTime()
                 && canCompleteCityinTheSky()
-                && canCompletePalaceofTwilight()
-            );
+                && canCompletePalaceofTwilight();
         }
+        # endregion
 
         public static bool CanUnlockOrdonaMap()
         {
