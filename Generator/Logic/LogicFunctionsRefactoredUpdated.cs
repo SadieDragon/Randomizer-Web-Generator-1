@@ -1015,7 +1015,16 @@ namespace TPRandomizer
                     && HLF.CanCompleteTwilight(RoomFunctions.lanayruTwilightRooms)
                 );
         }
-        # endregion
+
+        public static bool CanCompleteAllTwilight()
+        {
+            return (
+                CanCompleteFaronTwilight()
+                && CanCompleteEldinTwilight()
+                && CanCompleteLanayruTwilight()
+            );
+        }
+        #endregion
 
         public static bool CanWarpMeteor()
         {
@@ -1025,15 +1034,6 @@ namespace TPRandomizer
                     && Randomizer.Rooms.RoomDict["Zoras Domain Throne Room"].ReachedByPlaythrough
                     && CanUse(Item.Shadow_Crystal)
                 );
-        }
-
-        public static bool CanCompleteAllTwilight()
-        {
-            return (
-                CanCompleteFaronTwilight()
-                && CanCompleteEldinTwilight()
-                && CanCompleteLanayruTwilight()
-            );
         }
 
         /// <summary>
