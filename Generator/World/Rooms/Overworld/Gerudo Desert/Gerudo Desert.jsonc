@@ -188,7 +188,8 @@
     [
       {
         "ConnectedArea": "Gerudo Desert Outside Bulblin Camp",
-        "Requirements": "true"
+        "Requirements": "true",
+        "GlitchedRequirements": "true"
       },
       {
         "ConnectedArea": "Outside Arbiters Grounds",
