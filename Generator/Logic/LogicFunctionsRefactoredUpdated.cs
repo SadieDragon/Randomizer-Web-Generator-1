@@ -1093,101 +1093,23 @@ namespace TPRandomizer
         }
         #endregion
 
-        public static bool CanUnlockOrdonaMap()
-        {
-            if (Randomizer.SSettings.openMap)
-            {
-                return true;
-            }
-            foreach (string mapRoom in RoomFunctions.OrdonaMapRooms)
-            {
-                if (Randomizer.Rooms.RoomDict[mapRoom].ReachedByPlaythrough)
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
+        #region Maps
+        public static bool CanUnlockOrdonaMap() => HLF.CanUnlockMap(RoomFunctions.OrdonaMapRooms);
 
-        public static bool CanUnlockFaronMap()
-        {
-            if (Randomizer.SSettings.openMap)
-            {
-                return true;
-            }
-            foreach (string mapRoom in RoomFunctions.FaronMapRooms)
-            {
-                if (Randomizer.Rooms.RoomDict[mapRoom].ReachedByPlaythrough)
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
+        public static bool CanUnlockFaronMap() => HLF.CanUnlockMap(RoomFunctions.FaronMapRooms);
 
-        public static bool CanUnlockEldinMap()
-        {
-            if (Randomizer.SSettings.openMap)
-            {
-                return true;
-            }
-            foreach (string mapRoom in RoomFunctions.EldinMapRooms)
-            {
-                if (Randomizer.Rooms.RoomDict[mapRoom].ReachedByPlaythrough)
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
+        public static bool CanUnlockEldinMap() => HLF.CanUnlockMap(RoomFunctions.EldinMapRooms);
 
-        public static bool CanUnlockLanayruMap()
-        {
-            if (Randomizer.SSettings.openMap)
-            {
-                return true;
-            }
-            foreach (string mapRoom in RoomFunctions.LanayruMapRooms)
-            {
-                if (Randomizer.Rooms.RoomDict[mapRoom].ReachedByPlaythrough)
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
+        public static bool CanUnlockLanayruMap() => HLF.CanUnlockMap(RoomFunctions.LanayruMapRooms);
 
         public static bool CanUnlockSnowpeakMap()
         {
-            if (Randomizer.SSettings.openMap || Randomizer.SSettings.skipSnowpeakEntrance)
-            {
-                return true;
-            }
-            foreach (string mapRoom in RoomFunctions.SnowpeakMapRooms)
-            {
-                if (Randomizer.Rooms.RoomDict[mapRoom].ReachedByPlaythrough)
-                {
-                    return true;
-                }
-            }
-            return false;
+            return Randomizer.SSettings.skipSnowpeakEntrance
+                || HLF.CanUnlockMap(RoomFunctions.SnowpeakMapRooms);
         }
 
-        public static bool CanUnlockGerudoMap()
-        {
-            if (Randomizer.SSettings.openMap)
-            {
-                return true;
-            }
-            foreach (string mapRoom in RoomFunctions.GerudoMapRooms)
-            {
-                if (Randomizer.Rooms.RoomDict[mapRoom].ReachedByPlaythrough)
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
+        public static bool CanUnlockGerudoMap() => HLF.CanUnlockMap(RoomFunctions.GerudoMapRooms);
+        #endregion
 
         // START OF GLITCHED LOGIC
         #region GlitchedUtils

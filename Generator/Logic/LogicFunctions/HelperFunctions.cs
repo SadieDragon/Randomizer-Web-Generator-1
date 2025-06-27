@@ -74,9 +74,15 @@ namespace LogicFunctionsNS
         }
 
         // TODO: Do i even need CSBD? can it be defined in here?
+        // TODO: Room funcs dir/helper util file?
         public static bool CanCompleteTwilight(List<string> roomsInTwilight)
         {
             return CanSurviveBonkDamage() && ERLF.HasReachedAllRooms(roomsInTwilight);
+        }
+
+        public static bool CanUnlockMap(List<string> roomsInMap)
+        {
+            return Randomizer.SSettings.openMap || ERLF.HasReachedAnyRooms(roomsInMap);
         }
     }
 }
