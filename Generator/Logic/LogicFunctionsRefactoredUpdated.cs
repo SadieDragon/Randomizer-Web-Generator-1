@@ -1,3 +1,5 @@
+// Untested; not hooked to anything; scratchpad ish file.
+
 using System;
 using TPRandomizer.SSettings.Enums;
 using BOU = LogicFunctionsNS.BottleUtils;
@@ -995,6 +997,8 @@ namespace TPRandomizer
         }
         #endregion
 
+        // Twilights, Dungeons, and Maps should probably be their own files in a RF dir
+
         #region Twilights
         /// <summary>
         /// Can complete Faron twilight
@@ -1144,6 +1148,7 @@ namespace TPRandomizer
         public static bool CanDoAirRefill() => GLU.CanDoAirRefill();
         #endregion
 
+        #region GlitchedCanDoStuff
         /// <summary>
         /// Check for if you can do Hidden Village (glitched)
         /// </summary>
@@ -1152,25 +1157,20 @@ namespace TPRandomizer
         /// <summary>
         /// Check for if you can get passed FT windless bridge room (glitched)
         /// </summary>
-        public static bool CanDoFTWindlessBridgeRoom()
-        {
-            return hasBombs() || CanDoBSMoonBoots() || CanDoJSMoonBoots();
-        }
+        public static bool CanDoFTWindlessBridgeRoom() => GLCDS.CanDoFTWindlessBridgeRoom();
 
+        // TODO: Combine this into the overall CanClearForest.
+        // This requires the changes noted about TDM.
         public static bool canClearForestGlitched()
         {
-            return (
-                canCompletePrologue()
-                && (
-                    (Randomizer.SSettings.faronWoodsLogic == FaronWoodsLogic.Open)
-                    || (canCompleteForestTemple() || CanDoLJA() || CanDoMapGlitch())
-                )
-            );
+            return canCompletePrologue()
+                && (canCompleteForestTemple() || GLCDS.CanClearForestGlitched());
         }
 
         /// <summary>
         /// Check for if Eldin twilight can be completed (glitched). Check this for if map warp can be obtained
         /// </summary>
+        // TODO: This can probably be removed once CanClearForest is simplified.
         public static bool CanCompleteEldinTwilightGlitched()
         {
             return Randomizer.SSettings.eldinTwilightCleared || canClearForestGlitched();
@@ -1180,7 +1180,7 @@ namespace TPRandomizer
         /// Check for if you need the key for getting to Lakebed Deku Toad
         ///
         public static bool CanSkipKeyToDekuToad() => GLCDS.CanSkipKeyToDekuToad();
-
+        #endregion
         // END OF GLITCHED LOGIC
     }
 }

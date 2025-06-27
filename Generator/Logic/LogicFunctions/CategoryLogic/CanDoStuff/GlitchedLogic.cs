@@ -47,5 +47,20 @@ namespace LogicFunctionsNS.GlitchedLogic
                     )
                 );
         }
+
+        /// <summary>
+        /// Check for if you can get passed FT windless bridge room (glitched)
+        /// </summary>
+        public static bool CanDoFTWindlessBridgeRoom()
+        {
+            return BU.HasBombs() || GLU.CanDoBSMoonBoots() || GLU.CanDoJSMoonBoots();
+        }
+
+        public static bool CanClearForestGlitched()
+        {
+            return (Randomizer.SSettings.faronWoodsLogic == FaronWoodsLogic.Open)
+                || GLU.CanDoLJA()
+                || GLU.CanDoMapGlitch();
+        }
     }
 }
