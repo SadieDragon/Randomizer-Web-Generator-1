@@ -30,6 +30,25 @@ using NLU = LogicFunctionsNS.NicheLogicUtils;
 
 // TODO: aggregate class
 
+// Where is used notes:
+// - `Randomizer.cs` > `GeneratePortalRooms`
+//    - `CanWarp`
+//    - `CanUse`
+//    - `CanUnlockOrdonaMap`
+//    - `CanUnlockEldinMap`
+//    - `CanUnlockLanayruMap`
+//    - `CanUnlockSnowpeakMap`
+//    - `CanUnlockGerudoMap`
+// - `BackendFunctions.cs` > `CalculateOptimalPlaythrough`
+//    - `CanUse`
+// - `LogicTokenizer.cs` > `Function`'s override of `Evaluate`
+//    - `typeof(LogicFunctions).GetMethod(FunctionName)` - ???
+// - `LogicTokenizer.cs` > `Item`'s override of `Evaluate`
+//    - `getItemCount`
+// `LogicTokenizer.cs` > `Setting`'s override of `Evaluate`
+//    - LogicFunctions.EvaluateSetting(SettingName, SettingValue) == Sense
+//       - if this is the only use of that, can I not move that there? it doesn't feel a LF.
+
 namespace TPRandomizer
 {
     /// <summary>
