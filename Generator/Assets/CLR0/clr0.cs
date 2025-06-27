@@ -271,6 +271,16 @@ namespace TPRandomizer.Assets.CLR0
                 )
             );
 
+            cmprFileModifications.Add(
+                new(
+                    fcSettings.eponaColor,
+                    "hs.bmd",
+                    "hs_body",
+                    (byte)ArchiveIndex.Horse,
+                    BMDDirectory.BMDR
+                )
+            );
+
             entries.Add(fcSettings.hTunicHatColor);
             entries.Add(fcSettings.hTunicBodyColor);
             entries.Add(fcSettings.hTunicSkirtColor);
@@ -285,6 +295,7 @@ namespace TPRandomizer.Assets.CLR0
             entries.Add(fcSettings.ironsColor);
             entries.Add(fcSettings.spinnerColor);
             entries.Add(fcSettings.woodSwordColor);
+            entries.Add(fcSettings.eponaColor);
             entries.Add(fcSettings.lanternGlowColor);
             entries.Add(fcSettings.heartColor);
             entries.Add(fcSettings.aBtnColor);

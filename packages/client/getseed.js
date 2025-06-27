@@ -586,6 +586,7 @@
       'ironsColorFieldsetColorPicker',
       'spinnerColorFieldsetColorPicker',
       'woodSwordColorFieldsetColorPicker',
+      'eponaColorFieldsetColorPicker',
       { id: 'lanternColorFieldsetColorPicker', useSoftColors: false },
       'heartColorFieldset',
       'aButtonColorFieldset',
@@ -814,6 +815,8 @@
       Shop: true,
       'Sky Book': true,
       Poe: true,
+      'Rupee - Hidden': true,
+      'Rupee - Freestanding': true,
     };
 
     const importantItems = {
@@ -1762,6 +1765,7 @@
       'ironsColorFieldset',
       'spinnerColorFieldset',
       'woodSwordColorFieldset',
+      'eponaColorFieldset',
       'lanternColorFieldset',
       'midnaHairBaseColorFieldset',
       'midnaHairTipColorFieldset',
