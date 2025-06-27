@@ -35,7 +35,7 @@ namespace TPRandomizer
     /// </summary>
     public class LogicFunctionsUpdatedRefactored
     {
-        # region GlitchlessUtils
+        #region GlitchlessUtils
         //Evaluate the tokenized settings to their respective values that are set by the settings string.
 
         /// <summary>
@@ -177,9 +177,9 @@ namespace TPRandomizer
 
         public static int GetItemWheelSlotCount() => GLU.GetItemWheelSlotCount();
 
-        # endregion
+        #endregion
 
-        # region CanDefeatCommonEnemy
+        #region CanDefeatCommonEnemy
         /// <summary>
         /// summary text.
         /// </summary>
@@ -712,9 +712,9 @@ namespace TPRandomizer
         {
             return GLLCE.CanDefeatYoungGohma() || NLCE.CanDefeatYoungGohma();
         }
-        # endregion
+        #endregion
 
-        # region CanDefeatMiniboss
+        #region CanDefeatMiniboss
         /// <summary>
         /// summary text.
         /// </summary>
@@ -805,9 +805,9 @@ namespace TPRandomizer
         /// summary text.
         /// </summary>
         public static bool CanDefeatPhantomZant() => GLLM.CanDefeatPhantomZant();
-        # endregion
+        #endregion
 
-        # region CanDefeatBoss
+        #region CanDefeatBoss
         /// <summary>
         /// summary text.
         /// </summary>
@@ -885,9 +885,9 @@ namespace TPRandomizer
         /// summary text.
         /// </summary>
         public static bool CanDefeatGanondorf() => GLLB.CanDefeatGanondorf();
-        # endregion
+        #endregion
 
-        # region CanDoStuff
+        #region CanDoStuff
         /// <summary>
         /// summary text.
         /// </summary>
@@ -954,9 +954,9 @@ namespace TPRandomizer
                     && CanUse(Item.Shadow_Crystal)
                 );
         }
-        # endregion
+        #endregion
 
-        # region CanDoStoryStuff
+        #region CanDoStoryStuff
         /// <summary>
         /// summary text.
         /// </summary>
@@ -995,7 +995,7 @@ namespace TPRandomizer
         }
         #endregion
 
-        # region Twilights
+        #region Twilights
         /// <summary>
         /// Can complete Faron twilight
         /// </summary>
@@ -1034,9 +1034,9 @@ namespace TPRandomizer
                 && CanCompleteLanayruTwilight()
             );
         }
-        # endregion
+        #endregion
 
-        # region Dungeons
+        #region Dungeons
         /// <summary>
         /// summary text.
         /// </summary>
@@ -1091,7 +1091,7 @@ namespace TPRandomizer
                 && canCompleteCityinTheSky()
                 && canCompletePalaceofTwilight();
         }
-        # endregion
+        #endregion
 
         public static bool CanUnlockOrdonaMap()
         {
@@ -1190,7 +1190,7 @@ namespace TPRandomizer
         }
 
         // START OF GLITCHED LOGIC
-        # region GlitchedUtils
+        #region GlitchedUtils
         public static bool HasSwordOrBS() => GLU.HasSwordOrBS();
 
         public static bool HasHeavyMod() => GLU.HasHeavyMod();
