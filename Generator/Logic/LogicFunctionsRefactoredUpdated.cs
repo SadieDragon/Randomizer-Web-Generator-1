@@ -985,6 +985,7 @@ namespace TPRandomizer
         }
         #endregion
 
+        # region Twilights
         /// <summary>
         /// Can complete Faron twilight
         /// </summary>
@@ -993,23 +994,7 @@ namespace TPRandomizer
             return Randomizer.SSettings.faronTwilightCleared
                 || (
                     canCompletePrologue()
-                    && Randomizer.Rooms.RoomDict["South Faron Woods"].ReachedByPlaythrough
-                    && ERLF.HasReachedRoom("Faron Woods Coros House Lower")
-                    && ERLF.HasReachedRoom("Mist Area Near Faron Woods Cave")
-                    && Randomizer.Rooms.RoomDict["North Faron Woods"].ReachedByPlaythrough
-                    && Randomizer.Rooms.RoomDict["Ordon Spring"].ReachedByPlaythrough
-                    && (
-                        !Randomizer.SSettings.bonksDoDamage
-                        || (
-                            Randomizer.SSettings.bonksDoDamage
-                            && (
-                                (
-                                    Randomizer.SSettings.damageMagnification
-                                    != DamageMagnification.OHKO
-                                ) || CanUseBottledFairies()
-                            )
-                        )
-                    )
+                    && HLF.CanCompleteTwilight(RoomFunctions.faronTwilightRooms)
                 );
         }
 
@@ -1019,61 +1004,18 @@ namespace TPRandomizer
         public static bool CanCompleteEldinTwilight()
         {
             return Randomizer.SSettings.eldinTwilightCleared
-                || (
-                    Randomizer.Rooms.RoomDict["Faron Field"].ReachedByPlaythrough
-                    && Randomizer.Rooms.RoomDict["Lower Kakariko Village"].ReachedByPlaythrough
-                    && Randomizer.Rooms.RoomDict["Kakariko Graveyard"].ReachedByPlaythrough
-                    && Randomizer.Rooms.RoomDict["Kakariko Malo Mart"].ReachedByPlaythrough
-                    && ERLF.HasReachedRoom("Kakariko Barnes Bomb Shop Upper")
-                    && ERLF.HasReachedRoom("Kakariko Renados Sanctuary Basement")
-                    && Randomizer.Rooms.RoomDict["Kakariko Elde Inn"].ReachedByPlaythrough
-                    && Randomizer.Rooms.RoomDict["Kakariko Bug House"].ReachedByPlaythrough
-                    && Randomizer.Rooms.RoomDict["Upper Kakariko Village"].ReachedByPlaythrough
-                    && Randomizer.Rooms.RoomDict["Kakariko Watchtower"].ReachedByPlaythrough
-                    && Randomizer.Rooms.RoomDict["Death Mountain Volcano"].ReachedByPlaythrough
-                    && (
-                        !Randomizer.SSettings.bonksDoDamage
-                        || (
-                            Randomizer.SSettings.bonksDoDamage
-                            && (
-                                (
-                                    Randomizer.SSettings.damageMagnification
-                                    != DamageMagnification.OHKO
-                                ) || CanUseBottledFairies()
-                            )
-                        )
-                    )
-                );
+                || HLF.CanCompleteTwilight(RoomFunctions.eldinTwilightRooms);
         }
 
         public static bool CanCompleteLanayruTwilight()
         {
             return Randomizer.SSettings.lanayruTwilightCleared
                 || (
-                    (
-                        Randomizer.Rooms.RoomDict["North Eldin Field"].ReachedByPlaythrough
-                        || CanUse(Item.Shadow_Crystal)
-                    )
-                    && Randomizer.Rooms.RoomDict["Zoras Domain"].ReachedByPlaythrough
-                    && Randomizer.Rooms.RoomDict["Zoras Domain Throne Room"].ReachedByPlaythrough
-                    && Randomizer.Rooms.RoomDict["Upper Zoras River"].ReachedByPlaythrough
-                    && Randomizer.Rooms.RoomDict["Lake Hylia"].ReachedByPlaythrough
-                    && Randomizer.Rooms.RoomDict["Lake Hylia Lanayru Spring"].ReachedByPlaythrough
-                    && Randomizer.Rooms.RoomDict["Castle Town South"].ReachedByPlaythrough
-                    && (
-                        !Randomizer.SSettings.bonksDoDamage
-                        || (
-                            Randomizer.SSettings.bonksDoDamage
-                            && (
-                                (
-                                    Randomizer.SSettings.damageMagnification
-                                    != DamageMagnification.OHKO
-                                ) || CanUseBottledFairies()
-                            )
-                        )
-                    )
+                    (ERLF.HasReachedRoom("North Eldin Field") || CUU.CanUse(Item.Shadow_Crystal))
+                    && HLF.CanCompleteTwilight(RoomFunctions.lanayruTwilightRooms)
                 );
         }
+        # endregion
 
         public static bool CanWarpMeteor()
         {

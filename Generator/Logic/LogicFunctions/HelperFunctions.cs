@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Reflection;
 using TPRandomizer;
 using TPRandomizer.SSettings.Enums;
@@ -70,6 +71,12 @@ namespace LogicFunctionsNS
         {
             return CUU.CanUse(Item.Shadow_Crystal)
                 && ERLF.HasReachedAnyRooms(RoomFunctions.WarpableStages);
+        }
+
+        // TODO: Do i even need CSBD? can it be defined in here?
+        public static bool CanCompleteTwilight(List<string> roomsInTwilight)
+        {
+            return CanSurviveBonkDamage() && ERLF.HasReachedAllRooms(roomsInTwilight);
         }
     }
 }

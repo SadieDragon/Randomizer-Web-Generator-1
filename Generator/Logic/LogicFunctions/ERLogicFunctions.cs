@@ -52,6 +52,16 @@ namespace LogicFunctionsNS
         }
 
         /// <summary>
+        /// Checks if all of the maps within a given list of rooms have been reached.
+        /// </summary>
+        /// <param name="ListOfRooms">The list of rooms to check.</param>
+        /// <returns> `true` if all rooms have been reached, else `false`. </returns>
+        public static bool HasReachedAllRooms(List<string> ListOfRooms)
+        {
+            return CheckReachedRooms(ListOfRooms).All(reached => true);
+        }
+
+        /// <summary>
         /// Checks if any of the maps within a given list of rooms have been reached.
         /// </summary>
         /// <param name="ListOfRooms">The list of rooms to check.</param>
