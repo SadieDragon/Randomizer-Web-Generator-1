@@ -333,11 +333,6 @@ namespace TPRandomizer
     /// </summary>
     public class EntranceRando
     {
-        // If disabled, a randomized double door can lead to a different location, depending on which door you use.
-        bool pairEntrances = true;
-
-        // If enabled, all entrances are "one way" so if you go through Faron Woods -> FT Entrance and end up in GM, going back the way you came may not lead you to Faron Woods.
-        bool decoupleEntrances = false;
         public List<SpawnTableEntry> SpawnTable = new();
         public EntranceInfo vanillaSpawn = new("Outside Links House", "", 43, 1, "1", "FF", "");
         public List<Entrance> spawnList = new();
@@ -394,7 +389,7 @@ namespace TPRandomizer
 
             Randomizer.Rooms.RoomDict["Root"].Exits.Add(rootExit);
 
-            if (pairEntrances)
+            if (!Randomizer.SSettings.unpairEntrances)
             {
                 PairEntrances();
             }
@@ -473,7 +468,7 @@ namespace TPRandomizer
                     GetShufflableEntrances(EntranceType.Dungeon, true)
                 );
 
-                if (decoupleEntrances)
+                if (Randomizer.SSettings.decoupleEntrances)
                 {
                     newEntrancePools.Add(
                         EntranceType.Dungeon_Reverse,
@@ -1203,7 +1198,7 @@ namespace TPRandomizer
                         GetReverseConnectionEntrance(bossRoomName)[0]
                     );
 
-                    if (pairEntrances)
+                    if (!Randomizer.SSettings.decoupleEntrances)
                     {
                         newEntrance = newEntrance
                             .GetReplacedEntrance()
@@ -1230,7 +1225,7 @@ namespace TPRandomizer
                     GetReverseConnectionEntrance(bossRoomName)[0]
                 );
 
-                if (pairEntrances)
+                if (!Randomizer.SSettings.decoupleEntrances)
                 {
                     newEntrance = newEntrance.GetReplacedEntrance().GetReverse();
                 }
