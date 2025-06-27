@@ -944,6 +944,16 @@ namespace TPRandomizer
         {
             return getItemCount(Item.Progressive_Sword) >= (int)Randomizer.SSettings.totEntrance;
         }
+
+        public static bool CanWarpMeteor()
+        {
+            return CanCompleteLanayruTwilight()
+                || (
+                    CanCompleteEldinTwilight()
+                    && ERLF.HasReachedZorasThroneRoom()
+                    && CanUse(Item.Shadow_Crystal)
+                );
+        }
         # endregion
 
         # region CanDoStoryStuff
@@ -1024,17 +1034,7 @@ namespace TPRandomizer
                 && CanCompleteLanayruTwilight()
             );
         }
-        #endregion
-
-        public static bool CanWarpMeteor()
-        {
-            return CanCompleteLanayruTwilight()
-                || (
-                    CanCompleteEldinTwilight()
-                    && Randomizer.Rooms.RoomDict["Zoras Domain Throne Room"].ReachedByPlaythrough
-                    && CanUse(Item.Shadow_Crystal)
-                );
-        }
+        # endregion
 
         /// <summary>
         /// summary text.
