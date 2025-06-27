@@ -1654,6 +1654,70 @@ window.tpr.checkData = {
     category: ['Overworld', 'Ordona Province'],
     itemId: 'Progressive_Sword',
   },
+  'Ordon Bo Cliff Rupee': {
+    category: ['Overworld', 'Rupee - Freestanding', 'Ordona Province', 'ARC'],
+    itemId: 'Green_Rupee',
+  },
+  'Ordon Bo Roof Rupee': {
+    category: ['Overworld', 'Rupee - Freestanding', 'Ordona Province', 'ARC'],
+    itemId: 'Green_Rupee',
+  },
+  'Ordon Bo Window Rupee 1': {
+    category: ['Overworld', 'Rupee - Freestanding', 'Ordona Province', 'ARC'],
+    itemId: 'Green_Rupee',
+  },
+  'Ordon Bo Window Rupee 2': {
+    category: ['Overworld', 'Rupee - Freestanding', 'Ordona Province', 'ARC'],
+    itemId: 'Green_Rupee',
+  },
+  'Ordon Hidden Rusl House Rupee': {
+    category: ['Overworld', 'Rupee - Freestanding', 'Ordona Province', 'ARC'],
+    itemId: 'Green_Rupee',
+  },
+  'Ordon Rupee In Grass By Bo': {
+    category: ['Overworld', 'Rupee - Freestanding', 'Ordona Province', 'ARC'],
+    itemId: 'Green_Rupee',
+  },
+  'Ordon Rupee In River 1': {
+    category: ['Overworld', 'Rupee - Freestanding', 'Ordona Province', 'ARC'],
+    itemId: 'Green_Rupee',
+  },
+  'Ordon Rupee In River 2': {
+    category: ['Overworld', 'Rupee - Freestanding', 'Ordona Province', 'ARC'],
+    itemId: 'Green_Rupee',
+  },
+  'Ordon Rupee Under Bridge': {
+    category: ['Overworld', 'Rupee - Freestanding', 'Ordona Province', 'ARC'],
+    itemId: 'Green_Rupee',
+  },
+  'Ordon Rupee Under Tall Tree 1': {
+    category: ['Overworld', 'Rupee - Freestanding', 'Ordona Province', 'ARC'],
+    itemId: 'Green_Rupee',
+  },
+  'Ordon Rupee Under Tall Tree 2': {
+    category: ['Overworld', 'Rupee - Freestanding', 'Ordona Province', 'ARC'],
+    itemId: 'Green_Rupee',
+  },
+  'Ordon Rusl House Roof Rupee 1': {
+    category: ['Overworld', 'Rupee - Freestanding', 'Ordona Province', 'ARC'],
+    itemId: 'Green_Rupee',
+  },
+  'Ordon Rusl House Roof Rupee 2': {
+    category: ['Overworld', 'Rupee - Freestanding', 'Ordona Province', 'ARC'],
+    itemId: 'Green_Rupee',
+  },
+  'Ordon Shield House Ledge Grass Rupee': {
+    category: ['Overworld', 'Rupee - Freestanding', 'Ordona Province', 'ARC'],
+    itemId: 'Green_Rupee',
+  },
+  'Ordon Tree Long Branch Rupee': {
+    category: ['Overworld', 'Rupee - Freestanding', 'Ordona Province', 'ARC'],
+    itemId: 'Green_Rupee',
+  },
+  'Ordon Tree Short Branch Rupee': {
+    category: ['Overworld', 'Rupee - Freestanding', 'Ordona Province', 'ARC'],
+    itemId: 'Green_Rupee',
+  },
   'Outside Arbiters Grounds Lantern Chest': {
     category: ['Overworld', 'Chest', 'Bulblin Camp', 'ARC'],
     itemId: 'Purple_Rupee',
