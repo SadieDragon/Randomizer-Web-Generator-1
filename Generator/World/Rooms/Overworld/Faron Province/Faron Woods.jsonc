@@ -416,7 +416,7 @@
       {
         "ConnectedArea": "North Faron Lost Woods Entrance",
         "Requirements": "Shadow_Crystal and CanCompleteFaronTwilight",
-        "GlitchedRequirements": "(Shadow_Crystal and CanCompleteFaronTwilight) or (hasBombs and CanDoLJA)"
+        "GlitchedRequirements": "(Shadow_Crystal and CanCompleteFaronTwilight) or (HasBombs and CanDoLJA)"
       },
       {
         "ConnectedArea": "Forest Temple Entrance",

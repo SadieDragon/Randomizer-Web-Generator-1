@@ -129,7 +129,7 @@
           {
             "ConnectedArea": "Ook",
             "Requirements": "Boomerang",
-            "GlitchedRequirements": "Boomerang or Shadow_Crystal or HasSword or hasBombs"
+            "GlitchedRequirements": "Boomerang or Shadow_Crystal or HasSword or HasBombs"
           }
         ],
         "Checks": 

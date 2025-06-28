@@ -554,7 +554,7 @@
       {
         "ConnectedArea": "Lake Hylia",
         "Requirements": "Gate_Keys and (Iron_Boots or Zora_Armor) and CanUseWaterBombs and CanCompleteEldinTwilight",
-        "GlitchedRequirements": "(HasHeavyMod and CanUseWaterBombs and Gate_Keys and CanCompleteEldinTwilight) or ((HasHeavyMod or Zora_Armor) and ((hasBombs and (HasSword or Spinner)) or CanDoLJA or CanDoMoonBoots))"
+        "GlitchedRequirements": "(HasHeavyMod and CanUseWaterBombs and Gate_Keys and CanCompleteEldinTwilight) or ((HasHeavyMod or Zora_Armor) and ((HasBombs and (HasSword or Spinner)) or CanDoLJA or CanDoMoonBoots))"
       }
     ],
     "Checks":
