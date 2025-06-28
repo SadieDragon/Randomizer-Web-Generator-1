@@ -133,7 +133,7 @@
             "ConnectedArea": "Snowpeak Ruins Boss Room",
             "Requirements": "Snowpeak_Ruins_Bedroom_Key",
             "GlitchedRequirements": "Snowpeak_Ruins_Bedroom_Key"
-          },
+          }
         ],
         "Checks": 
         [
@@ -313,8 +313,8 @@
           },
           {
             "ConnectedArea": "Snowpeak Ruins Wooden Beam Room",
-            "Requirements": "canSmash",
-            "GlitchedRequirements": "canSmash"
+            "Requirements": "CanSmash",
+            "GlitchedRequirements": "CanSmash"
           }
         ], 
         "Checks": 
