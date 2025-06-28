@@ -30,6 +30,8 @@ using NLU = LogicFunctionsNS.NicheLogicUtils;
 
 // TODO: aggregate class
 
+// maybe add a helper for llc - GLL `CanSmash & Lantern` GL `CanSmash`?
+
 // Where is used notes:
 // - `Randomizer.cs` > `GeneratePortalRooms`
 //    - `CanWarp`
@@ -101,7 +103,7 @@ namespace TPRandomizer
         /// <summary>
         /// summary text.
         /// </summary>
-        public static bool canGetHotSpringWater() => BOU.CanGetHotSpringWater();
+        public static bool CanGetHotSpringWater() => BOU.CanGetHotSpringWater();
 
         /// <summary>
         /// summary text.
@@ -119,12 +121,12 @@ namespace TPRandomizer
         /// <summary>
         /// summary text.
         /// </summary>
-        public static bool canSmash() => BU.CanSmash();
+        public static bool CanSmash() => BU.CanSmash();
 
         /// <summary>
         /// summary text.
         /// </summary>
-        public static bool canBurnWebs() => MIU.CanBurnWebs();
+        public static bool CanBurnWebs() => MIU.CanBurnWebs();
 
         /// <summary>
         /// summary text.
@@ -145,12 +147,12 @@ namespace TPRandomizer
         /// <summary>
         /// summary text.
         /// </summary>
-        public static bool canLaunchBombs() => BU.CanLaunchBombs();
+        public static bool CanLaunchBombs() => BU.CanLaunchBombs();
 
         /// <summary>
         /// summary text.
         /// </summary>
-        public static bool canCutHangingWeb() => MIU.CanCutHangingWeb();
+        public static bool CanCutHangingWeb() => MIU.CanCutHangingWeb();
 
         public static int GetPlayerHealth() => HLF.GetPlayerHealth();
 
@@ -912,7 +914,7 @@ namespace TPRandomizer
         /// <summary>
         /// summary text.
         /// </summary>
-        public static bool canKnockDownHCPainting()
+        public static bool CanKnockDownHCPainting()
         {
             return GLLCDS.CanKnockDownHCPainting()
                 || NLCDS.CanKnockDownHCPainting()
@@ -922,7 +924,7 @@ namespace TPRandomizer
         /// <summary>
         /// summary text.
         /// </summary>
-        public static bool canBreakMonkeyCage()
+        public static bool CanBreakMonkeyCage()
         {
             return GLLCDS.CanBreakMonkeyCage() || NLCDS.CanBreakMonkeyCage();
         }
@@ -930,7 +932,7 @@ namespace TPRandomizer
         /// <summary>
         /// summary text.
         /// </summary>
-        public static bool canPressMinesSwitch()
+        public static bool CanPressMinesSwitch()
         {
             return GLLCDS.CanPressMinesSwitch() || NLCDS.CanPressMinesSwitch();
         }
@@ -938,20 +940,20 @@ namespace TPRandomizer
         /// <summary>
         /// summary text.
         /// </summary>
-        public static bool canFreeAllMonkeys()
+        public static bool CanFreeAllMonkeys()
         {
-            return canBreakMonkeyCage() && CanDefeatBokoblin() && GLLCDS.CanFreeAllMonkeys();
+            return CanBreakMonkeyCage() && CanDefeatBokoblin() && GLLCDS.CanFreeAllMonkeys();
         }
 
         /// <summary>
         /// summary text.
         /// </summary>
-        public static bool canKnockDownHangingBaba() => GLLCDS.CanKnockDownHangingBaba();
+        public static bool CanKnockDownHangingBaba() => GLLCDS.CanKnockDownHangingBaba();
 
         /// <summary>
         /// summary text.
         /// </summary>
-        public static bool canBreakWoodenDoor()
+        public static bool CanBreakWoodenDoor()
         {
             return GLLCDS.CanBreakWoodenDoor() || NLCDS.CanBreakWoodenDoor();
         }
@@ -981,7 +983,7 @@ namespace TPRandomizer
         /// <summary>
         /// summary text.
         /// </summary>
-        public static bool canCompletePrologue()
+        public static bool CanCompletePrologue()
         {
             return (Randomizer.SSettings.skipPrologue == true)
                 || (ERLF.HasReachedNFaronWoods() && CanDefeatBokoblin());
@@ -989,7 +991,7 @@ namespace TPRandomizer
 
         public static bool CanCompleteGoats1()
         {
-            return canCompletePrologue() || ERLF.HasReachedRoom("Ordon Ranch");
+            return CanCompletePrologue() || ERLF.HasReachedRoom("Ordon Ranch");
         }
 
         /// <summary>
@@ -998,20 +1000,20 @@ namespace TPRandomizer
         public static bool CanCompleteMDH()
         {
             return (Randomizer.SSettings.skipMdh == true)
-                || (canCompleteLakebedTemple() && ERLF.HasReachedSCastleTown());
-            //return (canCompleteLakebedTemple() || (Randomizer.SSettings.skipMdh == true));
+                || (CanCompleteLakebedTemple() && ERLF.HasReachedSCastleTown());
+            //return (CanCompleteLakebedTemple() || (Randomizer.SSettings.skipMdh == true));
         }
 
         /// <summary>
         /// summary text.
         /// </summary>
-        public static bool canClearForest()
+        public static bool CanClearForest()
         {
             return (
-                    canCompleteForestTemple()
+                    CanCompleteForestTemple()
                     || (Randomizer.SSettings.faronWoodsLogic == FaronWoodsLogic.Open)
                 )
-                && canCompletePrologue()
+                && CanCompletePrologue()
                 && CanCompleteFaronTwilight();
         }
         #endregion
@@ -1026,7 +1028,7 @@ namespace TPRandomizer
         {
             return Randomizer.SSettings.faronTwilightCleared
                 || (
-                    canCompletePrologue()
+                    CanCompletePrologue()
                     && HLF.CanCompleteTwilight(RoomFunctions.faronTwilightRooms)
                 );
         }
@@ -1063,56 +1065,56 @@ namespace TPRandomizer
         /// <summary>
         /// summary text.
         /// </summary>
-        public static bool canCompleteForestTemple() => CanUse(Item.Diababa_Defeated);
+        public static bool CanCompleteForestTemple() => CanUse(Item.Diababa_Defeated);
 
         /// <summary>
         /// summary text.
         /// </summary>
-        public static bool canCompleteGoronMines() => CanUse(Item.Fyrus_Defeated);
+        public static bool CanCompleteGoronMines() => CanUse(Item.Fyrus_Defeated);
 
         /// <summary>
         /// summary text.
         /// </summary>
-        public static bool canCompleteLakebedTemple() => CanUse(Item.Morpheel_Defeated);
+        public static bool CanCompleteLakebedTemple() => CanUse(Item.Morpheel_Defeated);
 
         /// <summary>
         /// summary text.
         /// </summary>
-        public static bool canCompleteArbitersGrounds() => CanUse(Item.Stallord_Defeated);
+        public static bool CanCompleteArbitersGrounds() => CanUse(Item.Stallord_Defeated);
 
         /// <summary>
         /// summary text.
         /// </summary>
-        public static bool canCompleteSnowpeakRuins() => CanUse(Item.Blizzeta_Defeated);
+        public static bool CanCompleteSnowpeakRuins() => CanUse(Item.Blizzeta_Defeated);
 
         /// <summary>
         /// summary text.
         /// </summary>
-        public static bool canCompleteTempleofTime() => CanUse(Item.Armogohma_Defeated);
+        public static bool CanCompleteTempleofTime() => CanUse(Item.Armogohma_Defeated);
 
         /// <summary>
         /// summary text.
         /// </summary>
-        public static bool canCompleteCityinTheSky() => CanUse(Item.Argorok_Defeated);
+        public static bool CanCompleteCityinTheSky() => CanUse(Item.Argorok_Defeated);
 
         /// <summary>
         /// summary text.
         /// </summary>
-        public static bool canCompletePalaceofTwilight() => CanUse(Item.Zant_Defeated);
+        public static bool CanCompletePalaceofTwilight() => CanUse(Item.Zant_Defeated);
 
         /// <summary>
         /// summary text.
         /// </summary>
-        public static bool canCompleteAllDungeons()
+        public static bool CanCompleteAllDungeons()
         {
-            return canCompleteForestTemple()
-                && canCompleteGoronMines()
-                && canCompleteLakebedTemple()
-                && canCompleteArbitersGrounds()
-                && canCompleteSnowpeakRuins()
-                && canCompleteTempleofTime()
-                && canCompleteCityinTheSky()
-                && canCompletePalaceofTwilight();
+            return CanCompleteForestTemple()
+                && CanCompleteGoronMines()
+                && CanCompleteLakebedTemple()
+                && CanCompleteArbitersGrounds()
+                && CanCompleteSnowpeakRuins()
+                && CanCompleteTempleofTime()
+                && CanCompleteCityinTheSky()
+                && CanCompletePalaceofTwilight();
         }
         #endregion
 
@@ -1169,30 +1171,30 @@ namespace TPRandomizer
 
         #region GlitchedCanDoStuff
         /// <summary>
-        /// Check for if you can do Hidden Village (glitched)
+        /// Check for if you Can do Hidden Village (glitched)
         /// </summary>
         public static bool CanDoHiddenVillageGlitched() => GLCDS.CanDoHiddenVillageGlitched();
 
         /// <summary>
-        /// Check for if you can get passed FT windless bridge room (glitched)
+        /// Check for if you Can get passed FT windless bridge room (glitched)
         /// </summary>
         public static bool CanDoFTWindlessBridgeRoom() => GLCDS.CanDoFTWindlessBridgeRoom();
 
         // TODO: Combine this into the overall CanClearForest.
         // This requires the changes noted about TDM.
-        public static bool canClearForestGlitched()
+        public static bool CanClearForestGlitched()
         {
-            return canCompletePrologue()
-                && (canCompleteForestTemple() || GLCDS.CanClearForestGlitched());
+            return CanCompletePrologue()
+                && (CanCompleteForestTemple() || GLCDS.CanClearForestGlitched());
         }
 
         /// <summary>
-        /// Check for if Eldin twilight can be completed (glitched). Check this for if map warp can be obtained
+        /// Check for if Eldin twilight Can be completed (glitched). Check this for if map warp Can be obtained
         /// </summary>
-        // TODO: This can probably be removed once CanClearForest is simplified.
+        // TODO: This Can probably be removed once CanClearForest is simplified.
         public static bool CanCompleteEldinTwilightGlitched()
         {
-            return Randomizer.SSettings.eldinTwilightCleared || canClearForestGlitched();
+            return Randomizer.SSettings.eldinTwilightCleared || CanClearForestGlitched();
         }
 
         /// <summary>

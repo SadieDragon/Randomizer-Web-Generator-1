@@ -51,8 +51,8 @@
             },
             {
                 "ConnectedArea": "Goron Mines Magnet Room",
-                "Requirements": "Iron_Boots and canBreakWoodenDoor",
-                "GlitchedRequirements": "(Iron_Boots or Shadow_Crystal) and (canBreakWoodenDoor or CanDoBSMoonBoots)"
+                "Requirements": "Iron_Boots and CanBreakWoodenDoor",
+                "GlitchedRequirements": "(Iron_Boots or Shadow_Crystal) and (CanBreakWoodenDoor or CanDoBSMoonBoots)"
             }
         ],
         "Checks":

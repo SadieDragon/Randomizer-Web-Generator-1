@@ -6,6 +6,8 @@ using GLU = LogicFunctionsNS.GlitchedLogicUtils;
 using HHSL = LogicFunctionsNS.HasHiddenSkillLevel;
 using HSL = LogicFunctionsNS.HasSwordLevel;
 
+// CanDefeatBombling or CanSmash repeated often in FT
+
 namespace LogicFunctionsNS.GlitchedLogic
 {
     public class CanDoStuff

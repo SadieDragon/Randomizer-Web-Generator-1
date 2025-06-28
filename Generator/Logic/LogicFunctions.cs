@@ -124,7 +124,7 @@ namespace TPRandomizer
         /// <summary>
         /// summary text.
         /// </summary>
-        public static bool canGetHotSpringWater()
+        public static bool CanGetHotSpringWater()
         {
             return (
                     Randomizer.Rooms.RoomDict["Lower Kakariko Village"].ReachedByPlaythrough
@@ -979,7 +979,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDefeatStalfos()
         {
-            return (canSmash());
+            return (CanSmash());
         }
 
         /// <summary>
@@ -1319,7 +1319,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDefeatDiababa()
         {
-            return canLaunchBombs()
+            return CanLaunchBombs()
                 || (
                     CanUse(Item.Boomerang)
                     && (
@@ -1439,7 +1439,7 @@ namespace TPRandomizer
         /// <summary>
         /// summary text.
         /// </summary>
-        public static bool canSmash()
+        public static bool CanSmash()
         {
             return (CanUse(Item.Ball_and_Chain) || hasBombs());
         }
@@ -1447,7 +1447,7 @@ namespace TPRandomizer
         /// <summary>
         /// summary text.
         /// </summary>
-        public static bool canBurnWebs()
+        public static bool CanBurnWebs()
         {
             return CanUse(Item.Lantern) || hasBombs() || CanUse(Item.Ball_and_Chain);
         }
@@ -1503,7 +1503,7 @@ namespace TPRandomizer
         /// <summary>
         /// summary text.
         /// </summary>
-        public static bool canLaunchBombs()
+        public static bool CanLaunchBombs()
         {
             return ((CanUse(Item.Boomerang) || CanUse(Item.Progressive_Bow)) && hasBombs());
         }
@@ -1511,7 +1511,7 @@ namespace TPRandomizer
         /// <summary>
         /// summary text.
         /// </summary>
-        public static bool canCutHangingWeb()
+        public static bool CanCutHangingWeb()
         {
             return (
                 CanUse(Item.Progressive_Clawshot)
@@ -1596,7 +1596,7 @@ namespace TPRandomizer
                         && (hasBombs() || CanUse(Item.Iron_Boots))
                     )
                 )
-                && canBurnWebs()
+                && CanBurnWebs()
                 && CanUse(Item.Boomerang)
                 && CanDefeatBokoblin()
                 && (
@@ -1625,7 +1625,7 @@ namespace TPRandomizer
         public static bool canBreakWoodenDoor()
         {
             return (
-                CanUse(Item.Shadow_Crystal) || HasSword() || canSmash() || CanUseBacksliceAsSword()
+                CanUse(Item.Shadow_Crystal) || HasSword() || CanSmash() || CanUseBacksliceAsSword()
             );
         }
 
@@ -1703,7 +1703,7 @@ namespace TPRandomizer
                 || Randomizer.Rooms.RoomDict["Arbiters Grounds Entrance"].ReachedByPlaythrough
                 || (
                     Randomizer.Rooms.RoomDict["Lake Hylia Long Cave"].ReachedByPlaythrough
-                    && canSmash()
+                    && CanSmash()
                 )
                 || Randomizer.Rooms.RoomDict["Ordon Seras Shop"].ReachedByPlaythrough
                 || (
