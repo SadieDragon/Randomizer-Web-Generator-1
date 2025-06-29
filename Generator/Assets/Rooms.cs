@@ -127,6 +127,43 @@ namespace TPRandomizer
     /// </summary>
     public class RoomFunctions
     {
+        // TODO: Maybe move these?
+        // Twilight rooms added by Lupa for refactoring in LF
+        public static readonly List<string> faronTwilightRooms =
+        [
+            "South Faron Woods",
+            "Faron Woods Coros House Lower",
+            "Mist Area Near Faron Woods Cave",
+            "North Faron Woods",
+            "Ordon Spring",
+        ];
+
+        public static readonly List<string> eldinTwilightRooms =
+        [
+            "Faron Field",
+            "Lower Kakariko Village",
+            "Kakariko Graveyard",
+            "Kakariko Malo Mart",
+            "Kakariko Barnes Bomb Shop Upper",
+            "Kakariko Renados Sanctuary Basement",
+            "Kakariko Elde Inn",
+            "Kakariko Bug House",
+            "Upper Kakariko Village",
+            "Kakariko Watchtower",
+            "Death Mountain Volcano",
+        ];
+
+        public static readonly List<string> lanayruTwilightRooms =
+        [
+            // "North Eldin Field" - currently used in an or statement
+            "Zoras Domain",
+            "Zoras Domain Throne Room",
+            "Upper Zoras River",
+            "Lake Hylia",
+            "Lake Hylia Lanayru Spring",
+            "Castle Town South",
+        ];
+
         public static List<string> WarpableStages =
             new()
             {

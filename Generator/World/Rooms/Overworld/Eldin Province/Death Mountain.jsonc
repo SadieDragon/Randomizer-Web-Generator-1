@@ -27,7 +27,7 @@
         "GlitchedRequirements": "true"
       },
       {
-        "ConnectedArea": "Death Mountain Volcano",
+        "ConnectedArea": "Death Mountain VolCano",
         "Requirements": "true",
         "GlitchedRequirements": "true"
       }
@@ -40,7 +40,7 @@
     "Region": "Death Mountain"
   },
   {
-    "RoomName": "Death Mountain Volcano",
+    "RoomName": "Death Mountain VolCano",
     "Exits":
     [
       {
@@ -76,7 +76,7 @@
     "Exits":
     [
       {
-        "ConnectedArea": "Death Mountain Volcano",
+        "ConnectedArea": "Death Mountain VolCano",
         "Requirements": "true",
         "GlitchedRequirements": "true"
       },
@@ -94,7 +94,7 @@
     "Exits":
     [
       {
-        "ConnectedArea": "Death Mountain Volcano",
+        "ConnectedArea": "Death Mountain VolCano",
         "Requirements": "true",
         "GlitchedRequirements": "true"
       },
@@ -112,7 +112,7 @@
     "Exits":
     [
       {
-        "ConnectedArea": "Death Mountain Volcano",
+        "ConnectedArea": "Death Mountain VolCano",
         "Requirements": "true",
         "GlitchedRequirements": "true"
       },
