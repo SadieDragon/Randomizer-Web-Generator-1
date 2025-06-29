@@ -125,15 +125,33 @@ namespace TPRandomizer
 
     public class Parser
     {
+        // (Sword, 3) or (Progressive_Item, 10); returns Groups[1] "Sword" Groups[2] 3
         static Regex progressiveItemRegex = new(@"^\((\w+\s*),\s*(\d+)\)");
+
+        // (Setting.Difficulty equals Hard); returns Groups[1] "Difficulty" Groups[2] "Hard"
         static Regex settingRegex = new(@"^\(Setting.(\w+)\s+equals\s+(\w+)\)");
+
+        // same as above but for "not_equals"
         static Regex settingInverseRegex = new(@"^\(Setting.(\w+)\s+not_equal\s+(\w+)\)");
+
+        // Room.Kak; returns Groups[1] "Kak"
         static Regex roomRegex = new(@"^Room.(\w+)");
+
+        // "true" at the beginning
         static Regex trueRegex = new(@"^true");
+
+        // "false" at the beginning
         static Regex falseRegex = new(@"^false");
+
+        // CanFly; Groups[1] "CanFly"
         static Regex itemOrFunctionRegex = new(@"^(\w+)");
+
+        // and ___; see the if branch for exs
         static Regex conjunctionRegex = new(@"^and\s+");
+
+        // or ___; see the if branch for exs
         static Regex disjunctionRegex = new(@"^or\s+");
+
         static Dictionary<string, LogicAST> parseCache = [];
 
         /// <summary>
@@ -177,27 +195,42 @@ namespace TPRandomizer
             while (expression.Length > 0)
             {
                 expression = expression.Trim();
-                Match? m;
+                var notRefExpression = expression; // So local fn's can use this
+                Match? matchedExpression = null;
                 LogicAST thisNode;
 
-                if ((m = Re(progressiveItemRegex, ref expression)) != null)
+                // Helper fns for checking if a regex is matched
+                bool TryMatch(Regex regexExpression, bool updateMatchedExpression = false)
+                {
+                    Match? matchedExpression = Re(regexExpression, ref notRefExpression);
+
+                    return matchedExpression != null;
+                }
+
+                // Helper fns for getting the values off of index 1 and 2
+                string GetIndexValue(int index)
+                {
+                    return matchedExpression?.Groups[index].Value ?? "";
+                }
+
+                if (TryMatch(progressiveItemRegex, true))
                 {
                     thisNode = new AST.Item(
-                        Enum.Parse<Item>(m.Groups[1].Value),
-                        int.Parse(m.Groups[2].Value)
+                        Enum.Parse<Item>(GetIndexValue(1)),
+                        int.Parse(GetIndexValue(2))
                     );
                 }
-                else if ((m = Re(settingRegex, ref expression)) != null)
+                else if (TryMatch(settingRegex, true))
                 {
-                    thisNode = new AST.Setting(m.Groups[1].Value, m.Groups[2].Value, true);
+                    thisNode = new AST.Setting(GetIndexValue(1), GetIndexValue(2), true);
                 }
-                else if ((m = Re(settingInverseRegex, ref expression)) != null)
+                else if (TryMatch(settingInverseRegex, true))
                 {
-                    thisNode = new AST.Setting(m.Groups[1].Value, m.Groups[2].Value, false);
+                    thisNode = new AST.Setting(GetIndexValue(1), GetIndexValue(2), false);
                 }
-                else if ((m = Re(roomRegex, ref expression)) != null)
+                else if (TryMatch(roomRegex, true))
                 {
-                    thisNode = new AST.Room(m.Groups[1].Value.Replace('_', ' '));
+                    thisNode = new AST.Room(GetIndexValue(1).Replace('_', ' '));
                 }
                 else if (expression.StartsWith('('))
                 {
@@ -212,44 +245,43 @@ namespace TPRandomizer
                     }
                     expression = expression[1..];
                 }
-                else if (Re(trueRegex, ref expression) != null)
+                else if (TryMatch(trueRegex))
                 {
                     thisNode = new AST.True();
                 }
-                else if (Re(falseRegex, ref expression) != null)
+                else if (TryMatch(falseRegex))
                 {
                     thisNode = new AST.False();
                 }
-                else if (Re(conjunctionRegex, ref expression) != null)
+                else if (TryMatch(conjunctionRegex))
                 {
                     thisNode = new AST.Conjunction(tree!, ParseInner(ref expression, depth));
                 }
-                else if (Re(disjunctionRegex, ref expression) != null)
+                else if (TryMatch(disjunctionRegex))
                 {
                     thisNode = new AST.Disjunction(tree!, ParseInner(ref expression, depth));
                 }
-                else if ((m = Re(itemOrFunctionRegex, ref expression)) != null)
+                else if (TryMatch(itemOrFunctionRegex, true))
                 {
-                    if (Enum.TryParse(m.Groups[1].Value, out Item item))
+                    if (Enum.TryParse(GetIndexValue(1), out Item item))
                     {
                         thisNode = new AST.Item(item, 1);
                     }
                     else
                     {
-                        thisNode = new AST.Function(m.Groups[1].Value);
+                        thisNode = new AST.Function(GetIndexValue(1));
                     }
                 }
                 else if (expression.StartsWith(')'))
                 {
-                    if (depth > 0)
-                    {
-                        // end of a subexpression. let the caller handle advancing the read pointer
-                        break;
-                    }
-                    else
+                    // If not already in a subexpression, then something has gone wrong
+                    if (depth == 0)
                     {
                         throw new Exception("Unexpected closing parenthesis");
                     }
+
+                    // Assuming within a subexpression, let the caller handle advancing the read pointer
+                    break;
                 }
                 else
                 {
