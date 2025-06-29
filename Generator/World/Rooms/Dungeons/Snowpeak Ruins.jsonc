@@ -88,8 +88,8 @@
         {
           "ConnectedArea": "Snowpeak Ruins Caged Freezard Room Lower",
           // Breaking the floor
-          "Requirements": "canSmash",
-          "GlitchedRequirements": "canSmash"
+          "Requirements": "CanSmash",
+          "GlitchedRequirements": "CanSmash"
         }
         ],
         "Checks": 
