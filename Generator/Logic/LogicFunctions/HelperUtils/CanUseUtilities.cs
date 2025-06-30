@@ -20,22 +20,22 @@ namespace LogicFunctionsNS
             return ItemList.Contains(item) && CanReplenishItem(item);
         }
 
-        public static bool CanReplenishItem(Item item) => LogicFunctions.CanReplenishItem(item);
+        // public static bool CanReplenishItem(Item item) => LogicFunctions.CanReplenishItem(item);
 
-        // public static bool CanReplenishItem(Item item)
-        // {
-        //     Dictionary<Item, bool> itemRefills = new()
-        //     {
-        //         { Item.Lantern, CanRefillOil() },
-        //         { Item.Progressive_Bow, CanGetArrows() },
-        //     };
+        public static bool CanReplenishItem(Item item)
+        {
+            Dictionary<Item, bool> itemRefills = new()
+            {
+                { Item.Lantern, CanRefillOil() },
+                { Item.Progressive_Bow, CanGetArrows() },
+            };
 
-        //     if (itemRefills.TryGetValue(item, out var check))
-        //     {
-        //         return check;
-        //     }
-        //     return true;
-        // }
+            if (itemRefills.TryGetValue(item, out var check))
+            {
+                return check;
+            }
+            return true;
+        }
 
         /// <summary>
         /// Count the number of a given item available, including if the item can
@@ -69,7 +69,7 @@ namespace LogicFunctionsNS
         public static bool CanGetArrows()
         {
             return ERLF.HasReachedRoom("Lost Woods")
-                || (LF.CanCompleteGoronMines() && ERLF.HasReachedKakMaloMart())
+                || (LogicFunctions.CanCompleteGoronMines() && ERLF.HasReachedKakMaloMart())
                 || ERLF.CanShopFromRoom("Castle Town Goron House Balcony");
         }
 
@@ -81,7 +81,7 @@ namespace LogicFunctionsNS
                 || (ERLF.HasReachedRoom("Lake Hylia Long Cave") && BU.CanSmash())
                 || ERLF.HasReachedRoom("Ordon Seras Shop")
                 || (
-                    LF.CanCompleteGoronMines()
+                    LogicFunctions.CanCompleteGoronMines()
                     && ERLF.HasReachedLowerKakVillage()
                     && HLF.CanChangeTime()
                 )
