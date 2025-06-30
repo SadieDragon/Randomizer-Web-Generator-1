@@ -40,7 +40,7 @@ namespace LogicFunctionsNS
 
                 foreach (var (portal, room) in entries)
                 {
-                    Console.WriteLine($"{portal} being checked, which maps to {room}");
+                    // Console.WriteLine($"{portal} being checked, which maps to {room}");
                     if (CanUseUtilities.CanUse(portal))
                     {
                         // Console.WriteLine($"Added {room} to the entry.");
@@ -95,6 +95,7 @@ namespace LogicFunctionsNS
                 (Item.Mirror_Chamber_Portal, "Mirror Chamber Upper")
             );
 
+            Console.WriteLine($"{portalRooms}");
             return portalRooms;
         }
     }
