@@ -1,10 +1,17 @@
+/// POTENTIAL BUG: `StackOverflow` bug- found on `CanDefeatGoronMines`.
+/// SOLUTION: `HasDefeatedBoss`- which repeats `CanUse`
+/// Explanation: For some reason, calling `CanUse` in this file leads to a `StackOverflow` bug,
+///   which I have narrowed down to when `CanUse` calls `CanReplenish`, which in both functions
+///   calls `CanDefeatGoronMines`. I have 2 solutions for that, both adding back repeated code,
+///   but making the wrapper here is the easiest solution of the 2.
+/// TODO: Squish this stupid bug.
 using TPRandomizer;
 
 namespace LogicFunctionsNS
 {
     public static class CanCompleteDungeon
     {
-        private static bool HasDefeatedBoss(Item boss) => CanUseUtilities.CanUse(boss);
+        private static bool HasDefeatedBoss(Item boss) => Randomizer.Items.heldItems.Contains(boss);
 
         public static bool CanCompleteForestTemple()
         {

@@ -4,7 +4,7 @@ using System;
 using TPRandomizer.SSettings.Enums;
 using BOU = LogicFunctionsNS.BottleUtils;
 using BU = LogicFunctionsNS.BombUtils;
-// using CCD = LogicFunctionsNS.CanCompleteDungeon;
+using CCD = LogicFunctionsNS.CanCompleteDungeon;
 using CUU = LogicFunctionsNS.CanUseUtilities;
 using DCLB = LogicFunctionsNS.DifficultCombatLogic.CanDefeatBoss;
 using DCLCE = LogicFunctionsNS.DifficultCombatLogic.CanDefeatCommonEnemy;
@@ -1001,7 +1001,7 @@ namespace TPRandomizer
         public static bool CanCompleteMDH()
         {
             return (Randomizer.SSettings.skipMdh == true)
-                || (LogicFunctions.CanCompleteLakebedTemple() && ERLF.HasReachedSCastleTown());
+                || (CCD.CanCompleteLakebedTemple() && ERLF.HasReachedSCastleTown());
             //return (CanCompleteLakebedTemple() || (Randomizer.SSettings.skipMdh == true));
         }
 
@@ -1011,7 +1011,7 @@ namespace TPRandomizer
         public static bool CanClearForest()
         {
             return (
-                    LogicFunctions.CanCompleteForestTemple()
+                    CCD.CanCompleteForestTemple()
                     || (Randomizer.SSettings.faronWoodsLogic == FaronWoodsLogic.Open)
                 )
                 && CanCompletePrologue()
@@ -1111,7 +1111,7 @@ namespace TPRandomizer
         public static bool CanClearForestGlitched()
         {
             return CanCompletePrologue()
-                && (LogicFunctions.CanCompleteForestTemple() || GLCDS.CanClearForestGlitched());
+                && (CCD.CanCompleteForestTemple() || GLCDS.CanClearForestGlitched());
         }
 
         /// <summary>

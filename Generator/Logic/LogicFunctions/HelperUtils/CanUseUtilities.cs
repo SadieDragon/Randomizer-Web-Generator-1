@@ -5,11 +5,8 @@ using System.Collections.Generic;
 using System.Linq;
 using TPRandomizer;
 using BU = LogicFunctionsNS.BombUtils;
-// using CCD = LogicFunctionsNS.CanCompleteDungeon;
 using ERLF = LogicFunctionsNS.ERLogicFunctions;
 using HLF = LogicFunctionsNS.HelperFunctions;
-
-// TODO: "Why is GM StackOverflowing?" and then actually use the new one
 
 namespace LogicFunctionsNS
 {
