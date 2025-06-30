@@ -16,6 +16,7 @@ namespace TPRandomizer
     using TPRandomizer.FcSettings.Enums;
     using TPRandomizer.SSettings.Enums;
     using TPRandomizer.Util;
+    using CanUnlockMap = LogicFunctionsNS.CanUnlockMap;
 
     /// <summary>
     /// Generates a randomizer seed given a settings string.
@@ -1797,27 +1798,27 @@ namespace TPRandomizer
                 case GameRegion.GC_EUR:
                 case GameRegion.GC_JAP:
                 case GameRegion.All:
-                {
-                    files = System.IO.Directory.GetFiles(
-                        Global.CombineRootPath("./Assets/CheckMetadata/Gamecube/"),
-                        "*",
-                        SearchOption.AllDirectories
-                    );
-                    break;
-                }
+                    {
+                        files = System.IO.Directory.GetFiles(
+                            Global.CombineRootPath("./Assets/CheckMetadata/Gamecube/"),
+                            "*",
+                            SearchOption.AllDirectories
+                        );
+                        break;
+                    }
 
                 case GameRegion.WII_10_USA:
                 case GameRegion.WII_10_EU:
                 case GameRegion.WII_10_JP:
                 case GameRegion.WII_12_USA:
-                {
-                    files = System.IO.Directory.GetFiles(
-                        Global.CombineRootPath("./Assets/CheckMetadata/Wii1.0/"),
-                        "*",
-                        SearchOption.AllDirectories
-                    );
-                    break;
-                }
+                    {
+                        files = System.IO.Directory.GetFiles(
+                            Global.CombineRootPath("./Assets/CheckMetadata/Wii1.0/"),
+                            "*",
+                            SearchOption.AllDirectories
+                        );
+                        break;
+                    }
             }
 
             // Sort so that the item placement algorithm produces the exact same
@@ -2154,14 +2155,14 @@ namespace TPRandomizer
 
             // With sewers no longer a thing, the player starts with Ordon Portal (until we find a way to randomize it)
             // AddToPortalRooms(LogicFunctions.CanUnlockOrdonaMap(), (Item.Ordon_Portal, "Ordon Spring"));
-            if (LogicFunctions.CanUnlockOrdonaMap())
+            if (CanUnlockMap.CanUnlockOrdonaMap())
             {
                 portalRooms.Add(Rooms.RoomDict["Ordon Spring"]);
             }
 
             // Faron
             AddToPortalRooms(
-                LogicFunctions.CanUnlockFaronMap,
+                CanUnlockMap.CanUnlockFaronMap,
                 (Item.South_Faron_Portal, "South Faron Woods"),
                 (Item.North_Faron_Portal, "North Faron Woods"),
                 (Item.Sacred_Grove_Portal, "Sacred Grove Lower")
@@ -2169,7 +2170,7 @@ namespace TPRandomizer
 
             // Eldin
             AddToPortalRooms(
-                LogicFunctions.CanUnlockEldinMap,
+                CanUnlockMap.CanUnlockEldinMap,
                 (Item.Kakariko_Village_Portal, "Lower Kakariko Village"),
                 (Item.Kakariko_Gorge_Portal, "Kakariko Gorge"),
                 (Item.Death_Mountain_Portal, "Death Mountain Volcano"),
@@ -2178,7 +2179,7 @@ namespace TPRandomizer
 
             // Lanayru
             AddToPortalRooms(
-                LogicFunctions.CanUnlockLanayruMap,
+                CanUnlockMap.CanUnlockLanayruMap,
                 (Item.Lake_Hylia_Portal, "Lake Hylia"),
                 (Item.Castle_Town_Portal, "Outside Castle Town West"),
                 (Item.Zoras_Domain_Portal, "Zoras Domain Throne Room"),
@@ -2187,13 +2188,13 @@ namespace TPRandomizer
 
             // Snowpeak
             AddToPortalRooms(
-                LogicFunctions.CanUnlockSnowpeakMap,
+                CanUnlockMap.CanUnlockSnowpeakMap,
                 (Item.Snowpeak_Portal, "Snowpeak Summit Upper")
             );
 
             // Desert
             AddToPortalRooms(
-                LogicFunctions.CanUnlockGerudoMap,
+                CanUnlockMap.CanUnlockGerudoMap,
                 (Item.Gerudo_Desert_Portal, "Gerudo Desert Cave of Ordeals Plateau"),
                 (Item.Mirror_Chamber_Portal, "Mirror Chamber Upper")
             );
