@@ -2289,6 +2289,7 @@ namespace TPRandomizer
                     }
                 }
             }
+            Console.WriteLine("Cannot warp; did not generate any portal rooms.");
             return portalRooms;
         }
     }
