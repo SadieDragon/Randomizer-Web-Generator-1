@@ -2204,92 +2204,96 @@ namespace TPRandomizer
         private static List<Room> GeneratePortalRooms()
         {
             List<Room> portalRooms = new();
-            // With sewers no longer a thing, the player starts with Ordon Portal (until we find a way to randomize it)
-            if (LogicFunctions.CanWarp())
+
+            // Exit early if cannot warp
+            if (!LogicFunctions.CanWarp())
             {
-                if (LogicFunctions.CanUnlockOrdonaMap())
+                return portalRooms;
+            }
+
+            // With sewers no longer a thing, the player starts with Ordon Portal (until we find a way to randomize it)
+            if (LogicFunctions.CanUnlockOrdonaMap())
+            {
+                portalRooms.Add(Rooms.RoomDict["Ordon Spring"]);
+            }
+
+            if (LogicFunctions.CanUnlockFaronMap())
+            {
+                if (LogicFunctions.CanUse(Item.South_Faron_Portal))
                 {
-                    portalRooms.Add(Rooms.RoomDict["Ordon Spring"]);
+                    portalRooms.Add(Rooms.RoomDict["South Faron Woods"]);
                 }
-
-                if (LogicFunctions.CanUnlockFaronMap())
+                if (LogicFunctions.CanUse(Item.North_Faron_Portal))
                 {
-                    if (LogicFunctions.CanUse(Item.South_Faron_Portal))
-                    {
-                        portalRooms.Add(Rooms.RoomDict["South Faron Woods"]);
-                    }
-                    if (LogicFunctions.CanUse(Item.North_Faron_Portal))
-                    {
-                        portalRooms.Add(Rooms.RoomDict["North Faron Woods"]);
-                    }
-                    if (LogicFunctions.CanUse(Item.Sacred_Grove_Portal))
-                    {
-                        portalRooms.Add(Rooms.RoomDict["Sacred Grove Lower"]);
-                    }
+                    portalRooms.Add(Rooms.RoomDict["North Faron Woods"]);
                 }
-
-                if (LogicFunctions.CanUnlockEldinMap())
+                if (LogicFunctions.CanUse(Item.Sacred_Grove_Portal))
                 {
-                    if (LogicFunctions.CanUse(Item.Kakariko_Village_Portal))
-                    {
-                        portalRooms.Add(Rooms.RoomDict["Lower Kakariko Village"]);
-                    }
-                    if (LogicFunctions.CanUse(Item.Kakariko_Gorge_Portal))
-                    {
-                        portalRooms.Add(Rooms.RoomDict["Kakariko Gorge"]);
-                    }
-                    if (LogicFunctions.CanUse(Item.Death_Mountain_Portal))
-                    {
-                        portalRooms.Add(Rooms.RoomDict["Death Mountain Volcano"]);
-                    }
-                    if (LogicFunctions.CanUse(Item.Bridge_of_Eldin_Portal))
-                    {
-                        portalRooms.Add(Rooms.RoomDict["Eldin Field"]);
-                    }
-                }
-
-                if (LogicFunctions.CanUnlockLanayruMap())
-                {
-                    if (LogicFunctions.CanUse(Item.Lake_Hylia_Portal))
-                    {
-                        portalRooms.Add(Rooms.RoomDict["Lake Hylia"]);
-                    }
-                    if (LogicFunctions.CanUse(Item.Castle_Town_Portal))
-                    {
-                        portalRooms.Add(Rooms.RoomDict["Outside Castle Town West"]);
-                    }
-                    if (LogicFunctions.CanUse(Item.Zoras_Domain_Portal))
-                    {
-                        portalRooms.Add(Rooms.RoomDict["Zoras Domain Throne Room"]);
-                    }
-                    if (LogicFunctions.CanUse(Item.Upper_Zoras_River_Portal))
-                    {
-                        portalRooms.Add(Rooms.RoomDict["Upper Zoras River"]);
-                    }
-                }
-
-                if (LogicFunctions.CanUnlockSnowpeakMap())
-                {
-                    if (LogicFunctions.CanUse(Item.Snowpeak_Portal))
-                    {
-                        portalRooms.Add(Rooms.RoomDict["Snowpeak Summit Upper"]);
-                    }
-                }
-
-                if (LogicFunctions.CanUnlockGerudoMap())
-                {
-                    if (LogicFunctions.CanUse(Item.Gerudo_Desert_Portal))
-                    {
-                        portalRooms.Add(Rooms.RoomDict["Gerudo Desert Cave of Ordeals Plateau"]);
-                    }
-
-                    if (LogicFunctions.CanUse(Item.Mirror_Chamber_Portal))
-                    {
-                        portalRooms.Add(Rooms.RoomDict["Mirror Chamber Upper"]);
-                    }
+                    portalRooms.Add(Rooms.RoomDict["Sacred Grove Lower"]);
                 }
             }
-            Console.WriteLine("Cannot warp; did not generate any portal rooms.");
+
+            if (LogicFunctions.CanUnlockEldinMap())
+            {
+                if (LogicFunctions.CanUse(Item.Kakariko_Village_Portal))
+                {
+                    portalRooms.Add(Rooms.RoomDict["Lower Kakariko Village"]);
+                }
+                if (LogicFunctions.CanUse(Item.Kakariko_Gorge_Portal))
+                {
+                    portalRooms.Add(Rooms.RoomDict["Kakariko Gorge"]);
+                }
+                if (LogicFunctions.CanUse(Item.Death_Mountain_Portal))
+                {
+                    portalRooms.Add(Rooms.RoomDict["Death Mountain Volcano"]);
+                }
+                if (LogicFunctions.CanUse(Item.Bridge_of_Eldin_Portal))
+                {
+                    portalRooms.Add(Rooms.RoomDict["Eldin Field"]);
+                }
+            }
+
+            if (LogicFunctions.CanUnlockLanayruMap())
+            {
+                if (LogicFunctions.CanUse(Item.Lake_Hylia_Portal))
+                {
+                    portalRooms.Add(Rooms.RoomDict["Lake Hylia"]);
+                }
+                if (LogicFunctions.CanUse(Item.Castle_Town_Portal))
+                {
+                    portalRooms.Add(Rooms.RoomDict["Outside Castle Town West"]);
+                }
+                if (LogicFunctions.CanUse(Item.Zoras_Domain_Portal))
+                {
+                    portalRooms.Add(Rooms.RoomDict["Zoras Domain Throne Room"]);
+                }
+                if (LogicFunctions.CanUse(Item.Upper_Zoras_River_Portal))
+                {
+                    portalRooms.Add(Rooms.RoomDict["Upper Zoras River"]);
+                }
+            }
+
+            if (LogicFunctions.CanUnlockSnowpeakMap())
+            {
+                if (LogicFunctions.CanUse(Item.Snowpeak_Portal))
+                {
+                    portalRooms.Add(Rooms.RoomDict["Snowpeak Summit Upper"]);
+                }
+            }
+
+            if (LogicFunctions.CanUnlockGerudoMap())
+            {
+                if (LogicFunctions.CanUse(Item.Gerudo_Desert_Portal))
+                {
+                    portalRooms.Add(Rooms.RoomDict["Gerudo Desert Cave of Ordeals Plateau"]);
+                }
+
+                if (LogicFunctions.CanUse(Item.Mirror_Chamber_Portal))
+                {
+                    portalRooms.Add(Rooms.RoomDict["Mirror Chamber Upper"]);
+                }
+            }
+
             return portalRooms;
         }
     }
