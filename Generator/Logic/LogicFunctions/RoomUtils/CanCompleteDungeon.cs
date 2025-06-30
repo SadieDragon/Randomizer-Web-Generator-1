@@ -4,7 +4,7 @@ namespace LogicFunctionsNS
 {
     public static class CanCompleteDungeon
     {
-        private static bool HasDefeatedBoss(Item boss) => Randomizer.Items.heldItems.Contains(boss);
+        private static bool HasDefeatedBoss(Item boss) => CanUseUtilities.CanUse(boss);
 
         public static bool CanCompleteForestTemple()
         {
