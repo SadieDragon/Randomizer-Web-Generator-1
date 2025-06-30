@@ -1118,24 +1118,6 @@ namespace TPRandomizer
         }
         #endregion
 
-        #region Maps
-        public static bool CanUnlockOrdonaMap() => HLF.CanUnlockMap(RoomFunctions.OrdonaMapRooms);
-
-        public static bool CanUnlockFaronMap() => HLF.CanUnlockMap(RoomFunctions.FaronMapRooms);
-
-        public static bool CanUnlockEldinMap() => HLF.CanUnlockMap(RoomFunctions.EldinMapRooms);
-
-        public static bool CanUnlockLanayruMap() => HLF.CanUnlockMap(RoomFunctions.LanayruMapRooms);
-
-        public static bool CanUnlockSnowpeakMap()
-        {
-            return Randomizer.SSettings.skipSnowpeakEntrance
-                || HLF.CanUnlockMap(RoomFunctions.SnowpeakMapRooms);
-        }
-
-        public static bool CanUnlockGerudoMap() => HLF.CanUnlockMap(RoomFunctions.GerudoMapRooms);
-        #endregion
-
         // START OF GLITCHED LOGIC
         #region GlitchedUtils
         public static bool HasSwordOrBS() => GLU.HasSwordOrBS();

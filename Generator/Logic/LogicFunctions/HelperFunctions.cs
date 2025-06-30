@@ -79,10 +79,5 @@ namespace LogicFunctionsNS
         {
             return CanSurviveBonkDamage() && ERLF.HasReachedAllRooms(roomsInTwilight);
         }
-
-        public static bool CanUnlockMap(List<string> roomsInMap)
-        {
-            return Randomizer.SSettings.openMap || ERLF.HasReachedAnyRooms(roomsInMap);
-        }
     }
 }
