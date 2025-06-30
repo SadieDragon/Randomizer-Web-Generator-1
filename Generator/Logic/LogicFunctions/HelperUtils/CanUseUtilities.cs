@@ -20,20 +20,22 @@ namespace LogicFunctionsNS
             return ItemList.Contains(item) && CanReplenishItem(item);
         }
 
-        public static bool CanReplenishItem(Item item)
-        {
-            Dictionary<Item, bool> itemRefills = new()
-            {
-                { Item.Lantern, CanRefillOil() },
-                { Item.Progressive_Bow, CanGetArrows() },
-            };
+        public static bool CanReplenishItem(Item item) => LogicFunctions.CanReplenishItem(item);
 
-            if (itemRefills.TryGetValue(item, out var check))
-            {
-                return check;
-            }
-            return true;
-        }
+        // public static bool CanReplenishItem(Item item)
+        // {
+        //     Dictionary<Item, bool> itemRefills = new()
+        //     {
+        //         { Item.Lantern, CanRefillOil() },
+        //         { Item.Progressive_Bow, CanGetArrows() },
+        //     };
+
+        //     if (itemRefills.TryGetValue(item, out var check))
+        //     {
+        //         return check;
+        //     }
+        //     return true;
+        // }
 
         /// <summary>
         /// Count the number of a given item available, including if the item can
