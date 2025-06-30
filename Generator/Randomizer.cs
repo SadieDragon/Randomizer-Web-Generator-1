@@ -11,12 +11,13 @@ namespace TPRandomizer
     using System.Text.RegularExpressions;
     using Assets;
     using Hints;
-    using LogicFunctionsNS;
+    // using LogicFunctionsNS;
     using Newtonsoft.Json;
     using Newtonsoft.Json.Linq;
     using TPRandomizer.FcSettings.Enums;
     using TPRandomizer.SSettings.Enums;
     using TPRandomizer.Util;
+    using GPR = LogicFunctionsNS.PortalRooms;
 
     /// <summary>
     /// Generates a randomizer seed given a settings string.
@@ -943,7 +944,7 @@ namespace TPRandomizer
             {
                 availableRooms = 0;
                 roomsToExplore.AddRange(availableBaseRooms);
-                roomsToExplore.AddRange(PortalRooms.GeneratePortalRooms());
+                roomsToExplore.AddRange(GPR.GeneratePortalRooms());
                 playthroughGraph.AddRange(availableBaseRooms);
                 foreach (KeyValuePair<string, Room> roomList in Randomizer.Rooms.RoomDict.ToList())
                 {
