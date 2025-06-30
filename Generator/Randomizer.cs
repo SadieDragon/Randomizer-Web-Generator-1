@@ -2111,11 +2111,14 @@ namespace TPRandomizer
 
         private static List<Room> GeneratePortalRooms()
         {
+            Console.WriteLine("Generating the portal rooms.");
+
             List<Room> portalRooms = [];
 
             // If we cannot warp, then we cannot use portals anyway.
             if (!LogicFunctions.CanWarp())
             {
+                Console.WriteLine("Cannot warp; did not generate any portal rooms.");
                 return portalRooms;
             }
 
@@ -2132,6 +2135,9 @@ namespace TPRandomizer
                 // TODO: Can I move the `canUnlockMap` function in here? Is it needed anywhere else? - Lupa
                 if (!canUnlockMap())
                 {
+                    Console.WriteLine(
+                        $"Cannot access this map, not adding rooms for it. {canUnlockMap}"
+                    );
                     return;
                 }
 
@@ -2139,6 +2145,7 @@ namespace TPRandomizer
                 {
                     if (LogicFunctions.CanUse(portal))
                     {
+                        Console.WriteLine($"Added {room} to the entry.");
                         portalRooms.Add(Rooms.RoomDict[room]);
                     }
                 }
