@@ -13,7 +13,7 @@ namespace LogicFunctionsNS
             List<Room> portalRooms = [];
 
             // If we cannot warp, then we cannot use portals anyway.
-            if (!HelperFunctions.CanWarp())
+            if (!LogicFunctions.CanWarp())
             {
                 // Console.WriteLine("Cannot warp; did not generate any portal rooms.");
                 return portalRooms;
@@ -41,7 +41,7 @@ namespace LogicFunctionsNS
                 foreach (var (portal, room) in entries)
                 {
                     // Console.WriteLine($"{portal} being checked, which maps to {room}");
-                    if (CanUseUtilities.CanUse(portal))
+                    if (LogicFunctions.CanUse(portal))
                     {
                         // Console.WriteLine($"Added {room} to the entry.");
                         portalRooms.Add(Randomizer.Rooms.RoomDict[room]);
@@ -95,7 +95,7 @@ namespace LogicFunctionsNS
                 (Item.Mirror_Chamber_Portal, "Mirror Chamber Upper")
             );
 
-            Console.WriteLine($"{portalRooms}");
+            // Console.WriteLine($"{portalRooms}");
             return portalRooms;
         }
     }
