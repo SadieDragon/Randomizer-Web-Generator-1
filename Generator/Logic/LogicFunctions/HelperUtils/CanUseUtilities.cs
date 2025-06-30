@@ -5,9 +5,11 @@ using System.Collections.Generic;
 using System.Linq;
 using TPRandomizer;
 using BU = LogicFunctionsNS.BombUtils;
-using CCD = LogicFunctionsNS.CanCompleteDungeon;
+// using CCD = LogicFunctionsNS.CanCompleteDungeon;
 using ERLF = LogicFunctionsNS.ERLogicFunctions;
 using HLF = LogicFunctionsNS.HelperFunctions;
+
+// TODO: "Why is GM StackOverflowing?" and then actually use the new one
 
 namespace LogicFunctionsNS
 {
@@ -19,8 +21,6 @@ namespace LogicFunctionsNS
         {
             return ItemList.Contains(item) && CanReplenishItem(item);
         }
-
-        // public static bool CanReplenishItem(Item item) => LogicFunctions.CanReplenishItem(item);
 
         public static bool CanReplenishItem(Item item)
         {
@@ -69,7 +69,7 @@ namespace LogicFunctionsNS
         public static bool CanGetArrows()
         {
             return ERLF.HasReachedRoom("Lost Woods")
-                || (CCD.CanCompleteGoronMines() && ERLF.HasReachedKakMaloMart())
+                || (LogicFunctions.CanCompleteGoronMines() && ERLF.HasReachedKakMaloMart())
                 || ERLF.CanShopFromRoom("Castle Town Goron House Balcony");
         }
 
@@ -81,7 +81,7 @@ namespace LogicFunctionsNS
                 || (ERLF.HasReachedRoom("Lake Hylia Long Cave") && BU.CanSmash())
                 || ERLF.HasReachedRoom("Ordon Seras Shop")
                 || (
-                    CCD.CanCompleteGoronMines()
+                    LogicFunctions.CanCompleteGoronMines()
                     && ERLF.HasReachedLowerKakVillage()
                     && HLF.CanChangeTime()
                 )
