@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using TPRandomizer;
 using BU = LogicFunctionsNS.BombUtils;
+using CCD = LogicFunctionsNS.CanCompleteDungeon;
 using ERLF = LogicFunctionsNS.ERLogicFunctions;
 using HLF = LogicFunctionsNS.HelperFunctions;
 
@@ -68,7 +69,7 @@ namespace LogicFunctionsNS
         public static bool CanGetArrows()
         {
             return ERLF.HasReachedRoom("Lost Woods")
-                || (CanCompleteDungeon.CanCompleteGoronMines() && ERLF.HasReachedKakMaloMart())
+                || (CCD.CanCompleteGoronMines() && ERLF.HasReachedKakMaloMart())
                 || ERLF.CanShopFromRoom("Castle Town Goron House Balcony");
         }
 
@@ -80,7 +81,7 @@ namespace LogicFunctionsNS
                 || (ERLF.HasReachedRoom("Lake Hylia Long Cave") && BU.CanSmash())
                 || ERLF.HasReachedRoom("Ordon Seras Shop")
                 || (
-                    CanCompleteDungeon.CanCompleteGoronMines()
+                    CCD.CanCompleteGoronMines()
                     && ERLF.HasReachedLowerKakVillage()
                     && HLF.CanChangeTime()
                 )
