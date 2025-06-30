@@ -4,6 +4,7 @@ using System;
 using TPRandomizer.SSettings.Enums;
 using BOU = LogicFunctionsNS.BottleUtils;
 using BU = LogicFunctionsNS.BombUtils;
+using CCD = LogicFunctionsNS.CanCompleteDungeon;
 using CUU = LogicFunctionsNS.CanUseUtilities;
 using DCLB = LogicFunctionsNS.DifficultCombatLogic.CanDefeatBoss;
 using DCLCE = LogicFunctionsNS.DifficultCombatLogic.CanDefeatCommonEnemy;
@@ -1000,7 +1001,7 @@ namespace TPRandomizer
         public static bool CanCompleteMDH()
         {
             return (Randomizer.SSettings.skipMdh == true)
-                || (CanCompleteLakebedTemple() && ERLF.HasReachedSCastleTown());
+                || (CCD.CanCompleteLakebedTemple() && ERLF.HasReachedSCastleTown());
             //return (CanCompleteLakebedTemple() || (Randomizer.SSettings.skipMdh == true));
         }
 
@@ -1010,7 +1011,7 @@ namespace TPRandomizer
         public static bool CanClearForest()
         {
             return (
-                    CanCompleteForestTemple()
+                    CCD.CanCompleteForestTemple()
                     || (Randomizer.SSettings.faronWoodsLogic == FaronWoodsLogic.Open)
                 )
                 && CanCompletePrologue()
@@ -1058,63 +1059,6 @@ namespace TPRandomizer
                 && CanCompleteEldinTwilight()
                 && CanCompleteLanayruTwilight()
             );
-        }
-        #endregion
-
-        #region Dungeons
-        /// <summary>
-        /// summary text.
-        /// </summary>
-        public static bool CanCompleteForestTemple() => CanUse(Item.Diababa_Defeated);
-
-        /// <summary>
-        /// summary text.
-        /// </summary>
-        public static bool CanCompleteGoronMines() => CanUse(Item.Fyrus_Defeated);
-
-        /// <summary>
-        /// summary text.
-        /// </summary>
-        public static bool CanCompleteLakebedTemple() => CanUse(Item.Morpheel_Defeated);
-
-        /// <summary>
-        /// summary text.
-        /// </summary>
-        public static bool CanCompleteArbitersGrounds() => CanUse(Item.Stallord_Defeated);
-
-        /// <summary>
-        /// summary text.
-        /// </summary>
-        public static bool CanCompleteSnowpeakRuins() => CanUse(Item.Blizzeta_Defeated);
-
-        /// <summary>
-        /// summary text.
-        /// </summary>
-        public static bool CanCompleteTempleofTime() => CanUse(Item.Armogohma_Defeated);
-
-        /// <summary>
-        /// summary text.
-        /// </summary>
-        public static bool CanCompleteCityinTheSky() => CanUse(Item.Argorok_Defeated);
-
-        /// <summary>
-        /// summary text.
-        /// </summary>
-        public static bool CanCompletePalaceofTwilight() => CanUse(Item.Zant_Defeated);
-
-        /// <summary>
-        /// summary text.
-        /// </summary>
-        public static bool CanCompleteAllDungeons()
-        {
-            return CanCompleteForestTemple()
-                && CanCompleteGoronMines()
-                && CanCompleteLakebedTemple()
-                && CanCompleteArbitersGrounds()
-                && CanCompleteSnowpeakRuins()
-                && CanCompleteTempleofTime()
-                && CanCompleteCityinTheSky()
-                && CanCompletePalaceofTwilight();
         }
         #endregion
 
@@ -1167,7 +1111,7 @@ namespace TPRandomizer
         public static bool CanClearForestGlitched()
         {
             return CanCompletePrologue()
-                && (CanCompleteForestTemple() || GLCDS.CanClearForestGlitched());
+                && (CCD.CanCompleteForestTemple() || GLCDS.CanClearForestGlitched());
         }
 
         /// <summary>
