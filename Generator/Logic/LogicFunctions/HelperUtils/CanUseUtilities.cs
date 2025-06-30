@@ -69,7 +69,7 @@ namespace LogicFunctionsNS
         public static bool CanGetArrows()
         {
             return ERLF.HasReachedRoom("Lost Woods")
-                || (LogicFunctions.CanCompleteGoronMines() && ERLF.HasReachedKakMaloMart())
+                || (CanCompleteDungeon.CanCompleteGoronMines() && ERLF.HasReachedKakMaloMart())
                 || ERLF.CanShopFromRoom("Castle Town Goron House Balcony");
         }
 
@@ -81,7 +81,7 @@ namespace LogicFunctionsNS
                 || (ERLF.HasReachedRoom("Lake Hylia Long Cave") && BU.CanSmash())
                 || ERLF.HasReachedRoom("Ordon Seras Shop")
                 || (
-                    LogicFunctions.CanCompleteGoronMines()
+                    CanCompleteDungeon.CanCompleteGoronMines()
                     && ERLF.HasReachedLowerKakVillage()
                     && HLF.CanChangeTime()
                 )
