@@ -1,3 +1,5 @@
+// NOTE: DO NOT TOUCH THIS FILE. IT LIKES TO BE BROKEN. - lupa for future lupa
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
