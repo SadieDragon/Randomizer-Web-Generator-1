@@ -1195,15 +1195,13 @@ namespace TPRandomizer
                 {
                     Entrance bossEntrance = Randomizer.Rooms.RoomDict[bossRoomName].Exits[0];
                     Entrance newEntrance = GetDungeonEntrance(
-                        GetReverseConnectionEntrance(bossRoomName)[0]
-                    );
+                            GetReverseConnectionEntrance(bossRoomName)[0]
+                        )
+                        .GetReplacedEntrance();
 
                     if (!Randomizer.SSettings.decoupleEntrances)
                     {
-                        newEntrance = newEntrance
-                            .GetReplacedEntrance()
-                            .GetReverse()
-                            .GetReplacedEntrance();
+                        newEntrance = newEntrance.GetReverse().GetReplacedEntrance();
                     }
 
                     bossEntrance.Disconnect();
@@ -1222,8 +1220,9 @@ namespace TPRandomizer
                 string bossRoomName = "Arbiters Grounds Boss Room";
                 Entrance bossEntrance = Randomizer.Rooms.RoomDict[bossRoomName].Exits[0];
                 Entrance newEntrance = GetDungeonEntrance(
-                    GetReverseConnectionEntrance(bossRoomName)[0]
-                );
+                        GetReverseConnectionEntrance(bossRoomName)[0]
+                    )
+                    .GetReplacedEntrance();
 
                 if (!Randomizer.SSettings.decoupleEntrances)
                 {
