@@ -1331,6 +1331,7 @@
         { id: 'spinnerColorFieldset', rgb: true },
         { id: 'woodSwordColorFieldset', rgb: true },
         { id: 'eponaColorFieldset', rgb: true },
+        { id: 'wolfColorFieldset', rgb: true },
         { id: 'lanternColorFieldset', rgb: true },
         // { id: 'midnaHairColorFieldset', bitLength: 1 },
         { id: 'heartColorFieldset', rgb: true },

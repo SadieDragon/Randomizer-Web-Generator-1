@@ -35,6 +35,8 @@ namespace TPRandomizer
         public Clr0Entry woodSwordColor { get; }
         public Clr0Entry eponaColor { get; }
 
+        public Clr0Entry wolfColor { get; }
+
         // public int midnaHairColor { get; }
         public Clr0Entry heartColor { get; }
 
@@ -90,6 +92,7 @@ namespace TPRandomizer
             spinnerColor = processor.NextClr0Entry(RecolorId.CMPR);
             woodSwordColor = processor.NextClr0Entry(RecolorId.CMPR);
             eponaColor = processor.NextClr0Entry(RecolorId.CMPR);
+            wolfColor = processor.NextClr0Entry(RecolorId.CMPR);
             lanternGlowColor = processor.NextClr0Entry(RecolorId.None);
             // midnaHairColor = processor.NextInt(1);
             heartColor = processor.NextClr0Entry(RecolorId.None);

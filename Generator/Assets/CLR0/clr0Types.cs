@@ -152,6 +152,7 @@ namespace TPRandomizer.Assets.CLR0
         MagicArmor = 4,
         AlAnm = 5,
         Horse = 6,
+        Wolf = 7,
     }
 
     public class ColorArrays
