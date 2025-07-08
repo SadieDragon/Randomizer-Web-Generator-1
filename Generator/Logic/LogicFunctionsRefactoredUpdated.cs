@@ -76,6 +76,8 @@ namespace TPRandomizer
         {
             return HDI.HasBaseDamagingItem(extraItems: Item.Iron_Boots);
         }
+
+        public static bool CanUseWaterBombs() => BU.CanUseWaterBombs();
         #endregion
 
         #region GlitchlessUtils
@@ -119,11 +121,6 @@ namespace TPRandomizer
         // public static bool CanUseOilBottle() => BOU.CanUseOilBottle();
 
         // public static int GetPlayerHealth() => HLF.GetPlayerHealth();
-
-        // /// <summary>
-        // /// summary text.
-        // /// </summary>
-        // public static bool CanUseWaterBombs() => BU.CanUseWaterBombs();
 
         // /// <summary>
         // /// This is a temporary function that ensures arrows can be refilled for bow usage in Faron Woods/FT.
