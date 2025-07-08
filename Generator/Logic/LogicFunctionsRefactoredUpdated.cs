@@ -59,6 +59,8 @@ namespace TPRandomizer
         public static bool HasBombs() => BU.HasBombs();
 
         public static bool HasSword() => HSL.HasSword();
+
+        public static bool CanSmash() => BU.CanSmash();
         #endregion
 
         #region GlitchlessUtils
@@ -107,11 +109,6 @@ namespace TPRandomizer
         // {
         //     return HDI.HasBaseDamagingItem(extraItems: Item.Iron_Boots);
         // }
-
-        // /// <summary>
-        // /// summary text.
-        // /// </summary>
-        // public static bool CanSmash() => BU.CanSmash();
 
         // /// <summary>
         // /// summary text.
