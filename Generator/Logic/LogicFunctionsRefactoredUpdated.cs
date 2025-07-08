@@ -67,6 +67,8 @@ namespace TPRandomizer
         public static bool CanLaunchBombs() => BU.CanLaunchBombs();
 
         public static bool CanGetHotSpringWater() => BOU.CanGetHotSpringWater();
+
+        public static bool CanBurnWebs() => MIU.CanBurnWebs();
         #endregion
 
         #region GlitchlessUtils
@@ -105,11 +107,6 @@ namespace TPRandomizer
         // {
         //     return HDI.HasBaseDamagingItem(extraItems: Item.Iron_Boots);
         // }
-
-        // /// <summary>
-        // /// summary text.
-        // /// </summary>
-        // public static bool CanBurnWebs() => MIU.CanBurnWebs();
 
         // /// <summary>
         // /// summary text.
