@@ -65,6 +65,8 @@ namespace TPRandomizer
         public static bool CanChangeTime() => HLF.CanChangeTime();
 
         public static bool CanLaunchBombs() => BU.CanLaunchBombs();
+
+        public static bool CanGetHotSpringWater() => BOU.CanGetHotSpringWater();
         #endregion
 
         #region GlitchlessUtils
@@ -95,11 +97,6 @@ namespace TPRandomizer
         // public static bool CanReplenishItem(Item item) => CUU.CanReplenishItem(item);
 
         // public static bool CanWarp() => HLF.CanWarp();
-
-        // /// <summary>
-        // /// summary text.
-        // /// </summary>
-        // public static bool CanGetHotSpringWater() => BOU.CanGetHotSpringWater();
 
         // /// <summary>
         // /// summary text.
