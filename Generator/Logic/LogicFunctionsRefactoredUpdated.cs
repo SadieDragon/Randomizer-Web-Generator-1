@@ -83,7 +83,7 @@ namespace TPRandomizer
         /// <summary>
         /// summary text.
         /// </summary>
-        public static bool CanUse(string item) => CanUse(Enum.Parse<Item>(item));
+        public static bool CanUse(string item) => CUU.CanUse(Enum.Parse<Item>(item));
 
         public static bool CanReplenishItem(Item item) => CUU.CanReplenishItem(item);
 
@@ -200,7 +200,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDefeatAeralfos()
         {
-            return CanUse(Item.Progressive_Clawshot)
+            return CUU.CanUse(Item.Progressive_Clawshot)
                 && (GLLCE.CanDefeatAeralfos() || NLCE.CanDefeatAeralfos());
         }
 
@@ -287,9 +287,9 @@ namespace TPRandomizer
         {
             return (GLLCE.CanDefeatBombfish() || GLCE.CanDefeatBombfish())
                 && (
-                    HasSword()
-                    || CanUse(Item.Progressive_Clawshot)
-                    || (hasShield() && CUU.GetItemCount(Item.Progressive_Hidden_Skill) >= 2)
+                    HSL.HasSword()
+                    || CUU.CanUse(Item.Progressive_Clawshot)
+                    || (MIU.HasShield() && CUU.GetItemCount(Item.Progressive_Hidden_Skill) >= 2)
                 );
         }
 
@@ -339,7 +339,7 @@ namespace TPRandomizer
         public static bool CanDefeatChuWorm()
         {
             return (GLLCE.CanDefeatChuWorm() || NLCE.CanDefeatChuWorm())
-                && (hasBombs() || CanUse(Item.Progressive_Clawshot));
+                && (BU.HasBombs() || CUU.CanUse(Item.Progressive_Clawshot));
         }
 
         /// <summary>
@@ -563,7 +563,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDefeatShadowBeast()
         {
-            return HasSword() || (CanUse(Item.Shadow_Crystal) && CanMidnaCharge());
+            return HSL.HasSword() || (CUU.CanUse(Item.Shadow_Crystal) && CanMidnaCharge());
         }
 
         /// <summary>
@@ -619,8 +619,8 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDefeatShellBlade()
         {
-            return CanUseWaterBombs()
-                || (HasSword() && (GLLCE.CanDefeatShellBlade() || NLCE.CanDefeatShellBlade()));
+            return BU.CanUseWaterBombs()
+                || (HSL.HasSword() && (GLLCE.CanDefeatShellBlade() || NLCE.CanDefeatShellBlade()));
         }
 
         /// <summary>
@@ -676,7 +676,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDefeatTileWorm()
         {
-            return CanUse(Item.Boomerang)
+            return CUU.CanUse(Item.Boomerang)
                 && (GLLCE.CanDefeatTileWorm() || NLCE.CanDefeatTileWorm());
         }
 
@@ -842,8 +842,8 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDefeatFyrus()
         {
-            return CanUse(Item.Progressive_Bow)
-                && CanUse(Item.Iron_Boots)
+            return CUU.CanUse(Item.Progressive_Bow)
+                && CUU.CanUse(Item.Iron_Boots)
                 && (GLLB.CanDefeatFyrus() || DCLB.CanDefeatFyrus());
         }
 
@@ -892,8 +892,8 @@ namespace TPRandomizer
         {
             // TODO: Again, current GLLB is more like the core.
             return GLLB.CanDefeatZant()
-                && (CanUse(Item.Iron_Boots) || NLB.CanDefeatZant())
-                && (CanUse(Item.Zora_Armor) || GLB.CanDefeatZant());
+                && (CUU.CanUse(Item.Iron_Boots) || NLB.CanDefeatZant())
+                && (CUU.CanUse(Item.Zora_Armor) || GLB.CanDefeatZant());
         }
 
         /// <summary>
@@ -966,7 +966,7 @@ namespace TPRandomizer
                 || (
                     CanCompleteEldinTwilight()
                     && ERLF.HasReachedZorasThroneRoom()
-                    && CanUse(Item.Shadow_Crystal)
+                    && CUU.CanUse(Item.Shadow_Crystal)
                 );
         }
         #endregion
