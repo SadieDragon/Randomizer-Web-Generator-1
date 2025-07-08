@@ -73,7 +73,7 @@ namespace LogicFunctionsNS
             // Wrapper for evaluating the function.
             bool Evaluate(string nsName)
             {
-                return EvaluateFunction($"{nsName}.{className}", functionName);
+                return EvaluateFunction($"{nsName}Logic.{className}", functionName);
             }
 
             // Try to evaluate the core. If false, then the action cannot be done anyway. Return early.
