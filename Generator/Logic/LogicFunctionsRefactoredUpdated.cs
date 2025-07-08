@@ -35,23 +35,12 @@ using NLU = LogicFunctionsNS.NicheLogicUtils;
 // maybe add a helper for llc - GLL `CanSmash & Lantern` GL `CanSmash`?
 
 // Where is used notes:
-// - `Randomizer.cs` > `GeneratePortalRooms`
-//    - `CanWarp`
-//    - `CanUse`
-//    - `CanUnlockOrdonaMap`
-//    - `CanUnlockEldinMap`
-//    - `CanUnlockLanayruMap`
-//    - `CanUnlockSnowpeakMap`
-//    - `CanUnlockGerudoMap`
 // - `BackendFunctions.cs` > `CalculateOptimalPlaythrough`
 //    - `CanUse`
 // - `LogicTokenizer.cs` > `Function`'s override of `Evaluate`
 //    - `typeof(LogicFunctions).GetMethod(FunctionName)` - ???
-// - `LogicTokenizer.cs` > `Item`'s override of `Evaluate`
-//    - `getItemCount`
-// `LogicTokenizer.cs` > `Setting`'s override of `Evaluate`
-//    - LogicFunctions.EvaluateSetting(SettingName, SettingValue) == Sense
-//       - if this is the only use of that, can I not move that there? it doesn't feel a LF.
+//       - seems to check if the method even exists, and if it returns a boolean. so any fns that
+//         don't return a boolean, but have wrappers, should probably be taken note of.
 
 namespace TPRandomizer
 {
