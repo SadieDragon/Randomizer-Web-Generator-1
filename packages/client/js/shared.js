@@ -450,6 +450,9 @@
       { id: 'unpairedEntrancesCheckbox' },
       { id: 'decoupleEntrancesCheckbox' },
       { id: 'freestandingRupeeCheckbox' },
+      { id: 'castleRequirementsSlider', bitLength: 6 },
+      { id: 'castleBKRequirementsFieldset', bitLength: 3 },
+      { id: 'castleBKRequirementsSlider', bitLength: 6 },
     ].map(({ id, bitLength }) => {
       const val = getVal(id);
       if (bitLength) {
@@ -936,6 +939,9 @@
       processBasic({ id: 'unpairEntrances' });
       processBasic({ id: 'decoupleEntrances' });
       processBasic({ id: 'freestandingRupees' });
+      processBasic({ id: 'castleRequirementCount', bitLength: 6 });
+      processBasic({ id: 'castleBKRequirements', bitLength: 3 });
+      processBasic({ id: 'castleBKRequirementCount', bitLength: 6 });
     } else {
       res.randomizeStartingPoint = false; // Vanilla
       res.hiddenRupees = false; // Vanilla
@@ -946,6 +952,31 @@
       res.unpairEntrances = false; // Vanilla
       res.decoupleEntrances = false; // Vanilla
       res.freestandingRupees = false; // Vanilla
+      switch(res.castleRequirements)
+      {
+        case 1:
+          {
+            res.castleRequirementCount = 3;
+            break;
+          }
+        case 2:
+            {
+              res.castleRequirementCount = 4;
+              break;
+            }
+        case 3:
+          {
+            res.castleRequirementCount = 8;
+            break;
+          }
+        default:
+          {
+            res.castleRequirementCount = 1;
+            break;
+          }
+      }
+      res.castleBKRequirements = 0;
+      res.castleBKRequirementCount = 1;
     }
 
     res.startingItems = processor.nextEolList(9);
@@ -1039,6 +1070,8 @@
       result.s = decodeSSettings(byType.s);
     }
 
+    setHiddenUIValues(result.s);
+
     // Don't do this until we sort out pSettings better.
     // if (byType.p) {
     //   result.p = decodePSettings(byType.p);
@@ -1046,6 +1079,119 @@
 
     return result;
   }
+
+  function setHiddenUIValues(s)
+{
+  let val = s.castleRequirementCount;
+  document.getElementById('castleRequirementsSliderOutput').innerHTML = s.castleRequirementCount;
+
+  // Hide the slider info if we are not using an option that uses it
+  if ((s.castleRequirements == 0) || (s.castleRequirements == 4))
+  {
+    
+    document.getElementById('castleRequirementsSlider').hidden = true;
+    document.getElementById('castleRequirementsSliderLabel').hidden = true;
+    document.getElementById('castleRequirementsSliderOutput').hidden = true;
+  }
+  else
+  {
+    document.getElementById('castleRequirementsSlider').hidden = false;
+    document.getElementById('castleRequirementsSliderLabel').hidden = false;
+    document.getElementById('castleRequirementsSliderOutput').hidden = false;
+  }
+
+  switch (s.castleRequirements)
+  {
+    case 1: // Fused Shadows
+      {
+        
+        document.getElementById('castleRequirementsSlider').max = 3;
+        document.getElementById('castleRequirementsSliderLabel').innerHTML = "Fused Shadows Required:"
+        
+        break;
+      }
+      case 2: // Mirror Shards
+      {
+        document.getElementById('castleRequirementsSlider').max = 4;
+        document.getElementById('castleRequirementsSliderLabel').innerHTML = "Mirror Shards Required:"
+        
+        break;
+      }
+      case 3: // Dungeons
+      {
+        document.getElementById('castleRequirementsSlider').max = 8;
+        document.getElementById('castleRequirementsSliderLabel').innerHTML = "Number of Dungeons Required:"
+        
+        break;
+      }
+      case 5: // Poe Souls
+      {
+        document.getElementById('castleRequirementsSlider').max = 60;
+        document.getElementById('castleRequirementsSliderLabel').innerHTML = "Poe Souls Required:"
+        
+        break;
+      }
+      default:
+        {
+          break;
+        }
+  }
+
+  val = s.castleBKRequirementCount;
+  document.getElementById('castleBKRequirementsSliderOutput').innerHTML = s.castleBKRequirementCount;
+
+  // Hide the slider info if we are not using an option that uses it
+  if (s.castleBKRequirements == 0)
+  {
+    
+    document.getElementById('castleBKRequirementsSlider').hidden = true;
+    document.getElementById('castleBKRequirementsSliderLabel').hidden = true;
+    document.getElementById('castleBKRequirementsSliderOutput').hidden = true;
+  }
+  else
+  {
+    document.getElementById('castleBKRequirementsSlider').hidden = false;
+    document.getElementById('castleBKRequirementsSliderLabel').hidden = false;
+    document.getElementById('castleBKRequirementsSliderOutput').hidden = false;
+  }
+
+  switch (s.castleBKRequirements)
+  {
+    case 1: // Fused Shadows
+      {
+        
+        document.getElementById('castleBKRequirementsSlider').max = 3;
+        document.getElementById('castleBKRequirementsSliderLabel').innerHTML = "Fused Shadows Required:"
+        
+        break;
+      }
+      case 2: // Mirror Shards
+      {
+        document.getElementById('castleBKRequirementsSlider').max = 4;
+        document.getElementById('castleBKRequirementsSliderLabel').innerHTML = "Mirror Shards Required:"
+        
+        break;
+      }
+      case 3: // Dungeons
+      {
+        document.getElementById('castleBKRequirementsSlider').max = 8;
+        document.getElementById('castleBKRequirementsSliderLabel').innerHTML = "Number of Dungeons Required:"
+        
+        break;
+      }
+      case 4: // Poe Souls
+      {
+        document.getElementById('castleBKRequirementsSlider').max = 60;
+        document.getElementById('castleBKRequirementsSliderLabel').innerHTML = "Poe Souls Required:"
+        
+        break;
+      }
+      default:
+        {
+          break;
+        }
+  }
+}
 
   function populateUiFromPSettings(p) {
     // Don't do anything for now until we sort out pSettings.

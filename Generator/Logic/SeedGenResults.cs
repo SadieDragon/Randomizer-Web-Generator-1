@@ -522,6 +522,7 @@ namespace TPRandomizer
 
             result.Add("logicRules", sSettings.logicRules.ToString());
             result.Add("castleRequirements", sSettings.castleRequirements.ToString());
+            result.Add("castleRequirementCount", sSettings.castleRequirementCount);
             result.Add("palaceRequirements", sSettings.palaceRequirements.ToString());
             result.Add("faronWoodsLogic", sSettings.faronWoodsLogic.ToString());
             result.Add("shuffleGoldenBugs", sSettings.shuffleGoldenBugs);
@@ -574,6 +575,8 @@ namespace TPRandomizer
             result.Add("shuffleFreestandingRupees", sSettings.shuffleFreestandingRupees);
             result.Add("decoupleEntrances", sSettings.decoupleEntrances);
             result.Add("unpairEntrances", sSettings.unpairEntrances);
+            result.Add("castleBKRequirements", sSettings.castleBKRequirements.ToString());
+            result.Add("castleBKRequirementCount", sSettings.castleBKRequirementCount);
 
             result.Add("startingItems", sSettings.startingItems);
             result.Add("excludedChecks", sSettings.excludedChecks);

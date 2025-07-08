@@ -284,7 +284,7 @@ document.getElementById('logicRulesFieldset').onchange = setSettingsString;
 document.getElementById('gameRegionFieldset').onchange = setSettingsString;
 document.getElementById('seedNumberFieldset').onchange = setSettingsString;
 document.getElementById('castleRequirementsFieldset').onchange =
-  setSettingsString;
+setCastleRequirementsSettings;
 document.getElementById('palaceRequirementsFieldset').onchange =
   setSettingsString;
 document.getElementById('faronLogicFieldset').onchange = setSettingsString;
@@ -419,9 +419,153 @@ document
   .getElementById('importSettingsStringButton')
   .addEventListener('click', importSettingsString);
 
+  document
+  .getElementById('castleRequirementsSlider').oninput = setCastleRequirementsValue;
+  document.getElementById('castleBKRequirementsFieldset').onchange =
+  setCastleBKRequirementsSettings;
+  document
+  .getElementById('castleBKRequirementsSlider').oninput = setCastleBKRequirementsValue;
+
 function importSettingsString() {
   parseSettingsString(document.getElementById('settingsStringTextbox').value);
 }
+
+function setCastleRequirementsSettings()
+{
+  var reqs = document.getElementById('castleRequirementsFieldset').value;
+  let sliderName = 'castleRequirementsSlider';
+  document.getElementById(sliderName).value = 1;
+  document.getElementById(sliderName + 'Output').innerHTML = document.getElementById(sliderName).value;
+
+  // Hide the slider info if we are not using an option that uses it
+  if ((reqs == "0") || (reqs == "4"))
+  {
+    
+    document.getElementById(sliderName).hidden = true;
+    document.getElementById(sliderName + 'Label').hidden = true;
+    document.getElementById(sliderName + 'Output').hidden = true;
+  }
+  else
+  {
+    document.getElementById(sliderName).hidden = false;
+    document.getElementById(sliderName + 'Label').hidden = false;
+    document.getElementById(sliderName + 'Output').hidden = false;
+  }
+
+  switch (reqs)
+  {
+    case "1": // Fused Shadows
+      {
+        
+        document.getElementById(sliderName).max = 3;
+        document.getElementById(sliderName + 'Label').innerHTML = "Fused Shadows Required:"
+        
+        break;
+      }
+      case "2": // Mirror Shards
+      {
+        document.getElementById(sliderName).max = 4;
+        document.getElementById(sliderName + 'Label').innerHTML = "Mirror Shards Required:"
+        
+        break;
+      }
+      case "3": // Dungeons
+      {
+        document.getElementById(sliderName).max = 8;
+        document.getElementById(sliderName + 'Label').innerHTML = "Number of Dungeons Required:"
+        
+        break;
+      }
+      case "5": // Poe Souls
+      {
+        document.getElementById(sliderName).max = 60;
+        document.getElementById(sliderName + 'Label').innerHTML = "Poe Souls Required:"
+        
+        break;
+      }
+      default:
+        {
+          break;
+        }
+  }
+  
+  setSettingsString();
+}
+
+function setCastleRequirementsValue()
+{
+  document.getElementById('castleRequirementsSliderOutput').innerHTML = document.getElementById('castleRequirementsSlider').value;
+  setSettingsString();
+}
+
+function setCastleBKRequirementsSettings()
+{
+  var reqs = document.getElementById('castleBKRequirementsFieldset').value;
+  let sliderName = 'castleBKRequirementsSlider';
+  document.getElementById(sliderName).value = 1;
+  document.getElementById(sliderName + 'Output').innerHTML = document.getElementById(sliderName).value;
+
+  // Hide the slider info if we are not using an option that uses it
+  if (reqs == "0")
+  {
+    
+    document.getElementById(sliderName).hidden = true;
+    document.getElementById(sliderName + 'Label').hidden = true;
+    document.getElementById(sliderName + 'Output').hidden = true;
+  }
+  else
+  {
+    document.getElementById(sliderName).hidden = false;
+    document.getElementById(sliderName + 'Label').hidden = false;
+    document.getElementById(sliderName + 'Output').hidden = false;
+  }
+
+  switch (reqs)
+  {
+    case "1": // Fused Shadows
+      {
+        
+        document.getElementById(sliderName).max = 3;
+        document.getElementById(sliderName + 'Label').innerHTML = "Fused Shadows Required:"
+        
+        break;
+      }
+      case "2": // Mirror Shards
+      {
+        document.getElementById(sliderName).max = 4;
+        document.getElementById(sliderName + 'Label').innerHTML = "Mirror Shards Required:"
+        
+        break;
+      }
+      case "3": // Dungeons
+      {
+        document.getElementById(sliderName).max = 8;
+        document.getElementById(sliderName + 'Label').innerHTML = "Number of Dungeons Required:"
+        
+        break;
+      }
+      case "4": // Poe Souls
+      {
+        document.getElementById(sliderName).max = 60;
+        document.getElementById(sliderName + 'Label').innerHTML = "Poe Souls Required:"
+        
+        break;
+      }
+      default:
+        {
+          break;
+        }
+  }
+  
+  setSettingsString();
+}
+
+function setCastleBKRequirementsValue()
+{
+  document.getElementById('castleBKRequirementsSliderOutput').innerHTML = document.getElementById('castleBKRequirementsSlider').value;
+  setSettingsString();
+}
+
 
 function setOverworldERSettings()
 {
@@ -1304,6 +1448,9 @@ function populateSSettings(s) {
   $('#unpairedEntrancesCheckbox').prop('checked', s.upairEntrances);
   $('#decoupleEntrancesCheckbox').prop('checked', s.decoupleEntrances);
   $('#freestandingRupeeCheckbox').prop('checked', s.freestandingRupees);
+  $('#castleRequirementsSlider').val(s.castleRequirementCount);
+  $('#castleBKRequirementsFieldset').val(s.castleBKRequirements);
+  $('#castleBKRequirementsSlider').val(s.castleBKRequirementCount);
 
   const $excludedChecksParent = $('#baseExcludedChecksListbox');
   s.excludedChecks.forEach((checkNumId) => {

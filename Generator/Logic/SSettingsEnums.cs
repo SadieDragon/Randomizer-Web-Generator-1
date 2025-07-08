@@ -16,8 +16,18 @@ namespace TPRandomizer.SSettings.Enums
         Open = 0,
         Fused_Shadows = 1,
         Mirror_Shards = 2,
-        All_Dungeons = 3,
+        Dungeons = 3,
         Vanilla = 4,
+        Poe_Souls,
+    }
+
+    public enum CastleBKRequirements
+    {
+        None = 0,
+        Fused_Shadows = 1,
+        Mirror_Shards = 2,
+        Dungeons = 3,
+        Poe_Souls = 4,
     }
 
     public enum PalaceRequirements

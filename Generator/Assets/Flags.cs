@@ -510,6 +510,11 @@ namespace TPRandomizer.Assets
             { 0x16, 0xE9 },
         };
 
+        public static readonly byte[,] HCBKRegionFlags = new byte[,]
+        {
+            { 0x18, 0x94 }, // Open HC BK gate
+        };
+
         /// <summary>
         /// summary text.
         /// </summary>
@@ -536,6 +541,7 @@ namespace TPRandomizer.Assets
                 { 26, StatueRegionFlags },
                 { 27, CharmRegionFlags },
                 { 28, DungeonERRegionFlags },
+                { 29, HCBKRegionFlags },
             };
 
         /// <summary>
@@ -784,6 +790,7 @@ namespace TPRandomizer.Assets
             /* 26 */RandomizerSettings.iliaQuest >= IliaQuest.Statue,
             /* 27 */RandomizerSettings.iliaQuest >= IliaQuest.Charm,
             /* 28 */RandomizerSettings.shuffleDungeonEntrances != DungeonER.Off,
+            /* 29 */RandomizerSettings.castleBKRequirements == CastleBKRequirements.None,
         };
     }
 }

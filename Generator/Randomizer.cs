@@ -1578,13 +1578,6 @@ namespace TPRandomizer
                     listOfRequiredDungeons[city].isRequired = true;
                 }
             }
-            else if (Randomizer.SSettings.castleRequirements == CastleRequirements.All_Dungeons)
-            {
-                for (int i = 0; i < listOfRequiredDungeons.GetLength(0); i++)
-                {
-                    listOfRequiredDungeons[i].isRequired = true;
-                }
-            }
 
             if (listOfRequiredDungeons[palace].isRequired)
             {

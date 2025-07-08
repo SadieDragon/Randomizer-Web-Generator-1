@@ -2117,6 +2117,90 @@ namespace TPRandomizer
             return false;
         }
 
+        public static bool CanBreakHCBarrier()
+        {
+            switch (Randomizer.SSettings.castleRequirements)
+            {
+                case CastleRequirements.Open:
+                {
+                    return true;
+                }
+                case CastleRequirements.Fused_Shadows:
+                {
+                    return getItemCount(Item.Progressive_Fused_Shadow)
+                        >= Randomizer.SSettings.castleRequirementCount;
+                }
+                case CastleRequirements.Mirror_Shards:
+                {
+                    return getItemCount(Item.Progressive_Mirror_Shard)
+                        >= Randomizer.SSettings.castleRequirementCount;
+                }
+                case CastleRequirements.Dungeons:
+                {
+                    int dugneonCount = 0;
+                    foreach (Item boss in Randomizer.Items.BossItems)
+                    {
+                        if (CanUse(boss))
+                        {
+                            dugneonCount++;
+                        }
+                    }
+                    return dugneonCount >= Randomizer.SSettings.castleRequirementCount;
+                }
+                case CastleRequirements.Vanilla:
+                {
+                    return CanCompletePalaceofTwilight();
+                }
+                case CastleRequirements.Poe_Souls:
+                {
+                    return getItemCount(Item.Poe_Soul)
+                        >= Randomizer.SSettings.castleRequirementCount;
+                }
+            }
+
+            return false;
+        }
+
+        public static bool CanOpenHCBKGate()
+        {
+            switch (Randomizer.SSettings.castleBKRequirements)
+            {
+                case CastleBKRequirements.None:
+                {
+                    return true;
+                }
+                case CastleBKRequirements.Fused_Shadows:
+                {
+                    return getItemCount(Item.Progressive_Fused_Shadow)
+                        >= Randomizer.SSettings.castleBKRequirementCount;
+                }
+                case CastleBKRequirements.Mirror_Shards:
+                {
+                    return getItemCount(Item.Progressive_Mirror_Shard)
+                        >= Randomizer.SSettings.castleBKRequirementCount;
+                }
+                case CastleBKRequirements.Dungeons:
+                {
+                    int dugneonCount = 0;
+                    foreach (Item boss in Randomizer.Items.BossItems)
+                    {
+                        if (CanUse(boss))
+                        {
+                            dugneonCount++;
+                        }
+                    }
+                    return dugneonCount >= Randomizer.SSettings.castleBKRequirementCount;
+                }
+                case CastleBKRequirements.Poe_Souls:
+                {
+                    return getItemCount(Item.Poe_Soul)
+                        >= Randomizer.SSettings.castleBKRequirementCount;
+                }
+            }
+
+            return false;
+        }
+
         // START OF GLITCHED LOGIC
 
         /// <summary>

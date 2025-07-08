@@ -299,6 +299,9 @@ namespace TPRandomizer.Assets
             );
 
             seedHeader.Add(Converter.GcByte((int)randomizerSettings.mirrorChamberEntrance));
+            seedHeader.Add(Converter.GcByte((int)randomizerSettings.castleRequirementCount));
+            seedHeader.Add(Converter.GcByte((int)randomizerSettings.castleBKRequirements));
+            seedHeader.Add(Converter.GcByte((int)randomizerSettings.castleBKRequirementCount));
 
             while (seedHeader.Count < SeedHeaderSize)
             {

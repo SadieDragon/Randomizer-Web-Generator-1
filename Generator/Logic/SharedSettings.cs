@@ -69,6 +69,9 @@ namespace TPRandomizer
         public bool unpairEntrances { get; set; }
         public bool decoupleEntrances { get; set; }
         public bool shuffleFreestandingRupees { get; set; }
+        public int castleRequirementCount { get; set; }
+        public CastleBKRequirements castleBKRequirements { get; set; }
+        public int castleBKRequirementCount { get; set; }
         public List<Item> startingItems { get; set; }
         public List<string> excludedChecks { get; set; }
         public List<(string, Item)> plandoChecks { get; set; }
@@ -133,6 +136,9 @@ namespace TPRandomizer
             unpairEntrances = processor.NextBool();
             decoupleEntrances = processor.NextBool();
             shuffleFreestandingRupees = processor.NextBool();
+            castleRequirementCount = processor.NextInt(6);
+            castleBKRequirements = (CastleBKRequirements)processor.NextInt(3);
+            castleBKRequirementCount = processor.NextInt(6);
             // We sort these lists so that the order which the UI happens to
             // pass the data up does not affect anything.
             startingItems = processor.NextItemList();

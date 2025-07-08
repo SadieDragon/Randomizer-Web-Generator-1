@@ -584,6 +584,11 @@ namespace TPRandomizer
             // set up the vanilla checks
 
             vanillaChecks.AddRange(questChecks);
+            if (Randomizer.SSettings.castleBKRequirements != CastleBKRequirements.None)
+            {
+                vanillaChecks.Add("Hyrule Castle Big Key Chest");
+            }
+
             foreach (string vanillaCheck in vanillaChecks)
             {
                 Randomizer.Checks.CheckDict[vanillaCheck].checkStatus = "Vanilla";
