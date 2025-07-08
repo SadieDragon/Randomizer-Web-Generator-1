@@ -1,4 +1,5 @@
 using TPRandomizer;
+using Core = LogicFunctionsNS.CoreLogic.CanDefeatBoss;
 using DifficultCombat = LogicFunctionsNS.DifficultCombatLogic.CanDefeatBoss;
 using Glitched = LogicFunctionsNS.GlitchedLogic.CanDefeatBoss;
 using Glitchless = LogicFunctionsNS.GlitchlessLogic.CanDefeatBoss;
@@ -29,8 +30,7 @@ namespace LogicFunctionsNS.AggregateLogic
         /// </summary>
         public static bool CanDefeatFyrus()
         {
-            return CanUseUtilities.CanUse(Item.Progressive_Bow)
-                && CanUseUtilities.CanUse(Item.Iron_Boots)
+            return Core.CanDefeatFyrus()
                 && (Glitchless.CanDefeatFyrus() || DifficultCombat.CanDefeatFyrus());
         }
 
@@ -39,8 +39,7 @@ namespace LogicFunctionsNS.AggregateLogic
         /// </summary>
         public static bool CanDefeatMorpheel()
         {
-            return CanUseUtilities.CanUse(Item.Progressive_Clawshot)
-                && HasSwordLevel.HasSword()
+            return Core.CanDefeatMorpheel()
                 && (Glitchless.CanDefeatMorpheel() || Niche.CanDefeatMorpheel());
         }
 
@@ -67,9 +66,8 @@ namespace LogicFunctionsNS.AggregateLogic
         /// </summary>
         public static bool CanDefeatArgorok()
         {
-            // TODO; current Glitchless is more like the core, while IB is unique to Glitchless. Niche pretty correct tho
-            return Glitchless.CanDefeatArgorok()
-                && (CanUseUtilities.CanUse(Item.Iron_Boots) || Niche.CanDefeatArgorok());
+            return Core.CanDefeatArgorok()
+                && (Glitchless.CanDefeatArgorok() || Niche.CanDefeatArgorok());
         }
 
         /// <summary>
@@ -77,8 +75,8 @@ namespace LogicFunctionsNS.AggregateLogic
         /// </summary>
         public static bool CanDefeatZant()
         {
-            // TODO: Again, current Glitchless is more like the core.
-            return Glitchless.CanDefeatZant()
+            // Core && (Glitchless || Niche) && (Glitchless || Glitched)
+            return Core.CanDefeatZant()
                 && (CanUseUtilities.CanUse(Item.Iron_Boots) || Niche.CanDefeatZant())
                 && (CanUseUtilities.CanUse(Item.Zora_Armor) || Glitched.CanDefeatZant());
         }

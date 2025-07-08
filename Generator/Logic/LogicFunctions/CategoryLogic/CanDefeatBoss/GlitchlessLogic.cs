@@ -29,18 +29,9 @@ namespace LogicFunctionsNS.GlitchlessLogic
             return HBL.HasBow() && CUU.CanUse(Item.Progressive_Dominion_Rod);
         }
 
-        public static bool CanDefeatArgorok()
-        {
-            return (CUU.GetItemCount(Item.Progressive_Clawshot) >= 2) || HSL.HasOrdonSword();
-        }
+        public static bool CanDefeatArgorok() => CUU.CanUse(Item.Iron_Boots);
 
-        public static bool CanDefeatZant()
-        {
-            return HSL.HasMasterSword()
-                && CUU.CanUse(Item.Boomerang)
-                && CUU.CanUse(Item.Progressive_Clawshot)
-                && CUU.CanUse(Item.Ball_and_Chain);
-        }
+        // Zant's glitchless is currently not able to be extracted into a fn. See the AL for the reason.
 
         public static bool CanDefeatGanondorf()
         {
