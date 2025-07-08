@@ -182,8 +182,6 @@ namespace TPRandomizer
 
         public static bool HasBottles() => BOU.HasBottles();
 
-        public static int getItemCount(Item itemToBeCounted) => CUU.GetItemCount(itemToBeCounted);
-
         /// <summary>
         /// summary text.
         /// </summary>
@@ -291,7 +289,7 @@ namespace TPRandomizer
                 && (
                     HasSword()
                     || CanUse(Item.Progressive_Clawshot)
-                    || (hasShield() && getItemCount(Item.Progressive_Hidden_Skill) >= 2)
+                    || (hasShield() && CUU.GetItemCount(Item.Progressive_Hidden_Skill) >= 2)
                 );
         }
 
@@ -959,7 +957,7 @@ namespace TPRandomizer
 
         public static bool CanStrikePedestal()
         {
-            return getItemCount(Item.Progressive_Sword) >= (int)Randomizer.SSettings.totEntrance;
+            return CUU.GetItemCount(Item.Progressive_Sword) >= (int)Randomizer.SSettings.totEntrance;
         }
 
         public static bool CanWarpMeteor()
