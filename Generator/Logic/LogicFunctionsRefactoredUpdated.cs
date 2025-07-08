@@ -63,6 +63,8 @@ namespace TPRandomizer
         public static bool CanSmash() => BU.CanSmash();
 
         public static bool CanChangeTime() => HLF.CanChangeTime();
+
+        public static bool CanLaunchBombs() => BU.CanLaunchBombs();
         #endregion
 
         #region GlitchlessUtils
@@ -122,11 +124,6 @@ namespace TPRandomizer
         // public static bool CanUseBottledFairies() => BOU.CanUseBottledFairies();
 
         // public static bool CanUseOilBottle() => BOU.CanUseOilBottle();
-
-        // /// <summary>
-        // /// summary text.
-        // /// </summary>
-        // public static bool CanLaunchBombs() => BU.CanLaunchBombs();
 
         // /// <summary>
         // /// summary text.
