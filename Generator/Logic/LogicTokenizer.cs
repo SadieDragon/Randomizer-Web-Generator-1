@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Text.RegularExpressions;
+using LogicFunctionsNS;
 
 #nullable enable
 namespace TPRandomizer
@@ -75,7 +76,7 @@ namespace TPRandomizer
 
             public override bool Evaluate()
             {
-                int heldCount = LogicFunctions.getItemCount(ItemId);
+                int heldCount = CanUseUtilities.GetItemCount(ItemId);
                 // Console.WriteLine($"Item.Evaluate {heldCount} {Count} {ItemId}");
                 return heldCount >= Count;
             }
