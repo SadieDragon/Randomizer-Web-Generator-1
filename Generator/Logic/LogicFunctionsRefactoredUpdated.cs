@@ -57,6 +57,8 @@ namespace TPRandomizer
         public static bool HasRangedItem() => MIU.HasRangedItem();
 
         public static bool HasBombs() => BU.HasBombs();
+
+        public static bool HasSword() => HSL.HasSword();
         #endregion
 
         #region GlitchlessUtils
@@ -105,11 +107,6 @@ namespace TPRandomizer
         // {
         //     return HDI.HasBaseDamagingItem(extraItems: Item.Iron_Boots);
         // }
-
-        // /// <summary>
-        // /// summary text.
-        // /// </summary>
-        // public static bool HasSword() => HSL.HasSword();
 
         // /// <summary>
         // /// summary text.
