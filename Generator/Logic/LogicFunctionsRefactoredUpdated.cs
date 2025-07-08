@@ -4,16 +4,14 @@
 using TPRandomizer.SSettings.Enums;
 using BOU = LogicFunctionsNS.BottleUtils;
 using BU = LogicFunctionsNS.BombUtils;
+using CanDefeatBoss = LogicFunctionsNS.AggregateLogic.CanDefeatBoss;
 using CCD = LogicFunctionsNS.CanCompleteDungeon;
 using CUU = LogicFunctionsNS.CanUseUtilities;
-using DCLB = LogicFunctionsNS.DifficultCombatLogic.CanDefeatBoss;
 using DCLCE = LogicFunctionsNS.DifficultCombatLogic.CanDefeatCommonEnemy;
 using DCLM = LogicFunctionsNS.DifficultCombatLogic.CanDefeatMiniBoss;
 using ERLF = LogicFunctionsNS.ERLogicFunctions;
-using GLB = LogicFunctionsNS.GlitchedLogic.CanDefeatBoss;
 using GLCDS = LogicFunctionsNS.GlitchedLogic.CanDoStuff;
 using GLCE = LogicFunctionsNS.GlitchedLogic.CanDefeatCommonEnemy;
-using GLLB = LogicFunctionsNS.GlitchlessLogic.CanDefeatBoss;
 using GLLCDS = LogicFunctionsNS.GlitchlessLogic.CanDoStuff;
 using GLLCE = LogicFunctionsNS.GlitchlessLogic.CanDefeatCommonEnemy;
 using GLLM = LogicFunctionsNS.GlitchlessLogic.CanDefeatMiniBoss;
@@ -22,7 +20,6 @@ using HDI = LogicFunctionsNS.DamagingItems;
 using HLF = LogicFunctionsNS.HelperFunctions;
 using HSL = LogicFunctionsNS.HasSwordLevel;
 using MIU = LogicFunctionsNS.MiscItemUtils;
-using NLB = LogicFunctionsNS.NicheLogic.CanDefeatBoss;
 using NLCDS = LogicFunctionsNS.NicheLogic.CanDoStuff;
 using NLCE = LogicFunctionsNS.NicheLogic.CanDefeatCommonEnemy;
 using NLM = LogicFunctionsNS.NicheLogic.CanDefeatMiniBoss;
@@ -711,83 +708,23 @@ namespace TPRandomizer
         #endregion
 
         #region CanDefeatBoss
-        /// <summary>
-        /// summary text.
-        /// </summary>
-        public static bool CanDefeatDiababa()
-        {
-            return BU.CanLaunchBombs()
-                || (
-                    CUU.CanUse(Item.Boomerang)
-                    && (
-                        GLLB.CanDefeatDiababa() || NLB.CanDefeatDiababa() || DCLB.CanDefeatDiababa()
-                    )
-                );
-        }
+        public static bool CanDefeatDiababa() => CanDefeatBoss.CanDefeatDiababa();
 
-        /// <summary>
-        /// summary text.
-        /// </summary>
-        public static bool CanDefeatFyrus()
-        {
-            return CUU.CanUse(Item.Progressive_Bow)
-                && CUU.CanUse(Item.Iron_Boots)
-                && (GLLB.CanDefeatFyrus() || DCLB.CanDefeatFyrus());
-        }
+        public static bool CanDefeatFyrus() => CanDefeatBoss.CanDefeatFyrus();
 
-        /// <summary>
-        /// summary text.
-        /// </summary>
-        public static bool CanDefeatMorpheel()
-        {
-            return CUU.CanUse(Item.Progressive_Clawshot)
-                && HSL.HasSword()
-                && (GLLB.CanDefeatMorpheel() || NLB.CanDefeatMorpheel());
-        }
+        public static bool CanDefeatMorpheel() => CanDefeatBoss.CanDefeatMorpheel();
 
-        /// <summary>
-        /// summary text.
-        /// </summary>
-        public static bool CanDefeatStallord()
-        {
-            return GLLB.CanDefeatStallord() || DCLB.CanDefeatStallord();
-        }
+        public static bool CanDefeatStallord() => CanDefeatBoss.CanDefeatStallord();
 
-        /// <summary>
-        /// summary text.
-        /// </summary>
-        public static bool CanDefeatBlizzeta() => GLLB.CanDefeatBlizzeta();
+        public static bool CanDefeatBlizzeta() => CanDefeatBoss.CanDefeatBlizzeta();
 
-        /// <summary>
-        /// summary text.
-        /// </summary>
-        public static bool CanDefeatArmogohma() => GLLB.CanDefeatArmogohma();
+        public static bool CanDefeatArmogohma() => CanDefeatBoss.CanDefeatArmogohma();
 
-        /// <summary>
-        /// summary text.
-        /// </summary>
-        public static bool CanDefeatArgorok()
-        {
-            // TODO; current GLLB is more like the core, while IB is unique to GLL. NLB pretty correct tho
-            return GLLB.CanDefeatArgorok()
-                && (CUU.CanUse(Item.Iron_Boots) || NLB.CanDefeatArgorok());
-        }
+        public static bool CanDefeatArgorok() => CanDefeatBoss.CanDefeatArgorok();
 
-        /// <summary>
-        /// summary text.
-        /// </summary>
-        public static bool CanDefeatZant()
-        {
-            // TODO: Again, current GLLB is more like the core.
-            return GLLB.CanDefeatZant()
-                && (CUU.CanUse(Item.Iron_Boots) || NLB.CanDefeatZant())
-                && (CUU.CanUse(Item.Zora_Armor) || GLB.CanDefeatZant());
-        }
+        public static bool CanDefeatZant() => CanDefeatBoss.CanDefeatZant();
 
-        /// <summary>
-        /// summary text.
-        /// </summary>
-        public static bool CanDefeatGanondorf() => GLLB.CanDefeatGanondorf();
+        public static bool CanDefeatGanondorf() => CanDefeatBoss.CanDefeatGanondorf();
         #endregion
 
         #region CanDoStuff
