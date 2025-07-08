@@ -48,7 +48,8 @@ namespace LogicFunctionsNS.AggregateLogic
         /// </summary>
         public static bool CanDefeatStallord()
         {
-            return Glitchless.CanDefeatStallord() || DifficultCombat.CanDefeatStallord();
+            return LogicAggregator.AggregateFunction("CanDefeatBoss", "CanDefeatStallord");
+            // return Glitchless.CanDefeatStallord() || DifficultCombat.CanDefeatStallord();
         }
 
         /// <summary>
