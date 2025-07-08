@@ -60,128 +60,124 @@ namespace TPRandomizer
         #endregion
 
         #region GlitchlessUtils
-        //Evaluate the tokenized settings to their respective values that are set by the settings string.
+        // //Evaluate the tokenized settings to their respective values that are set by the settings string.
 
-        /// <summary>
-        /// Checks the setting for difficult combat. Difficult combat includes: difficult, annoying, or time consuming combat
-        /// </summary>
-        public static bool CanDoDifficultCombat() => DCLU.CanDoDifficultCombat();
+        // /// <summary>
+        // /// Checks the setting for difficult combat. Difficult combat includes: difficult, annoying, or time consuming combat
+        // /// </summary>
+        // public static bool CanDoDifficultCombat() => DCLU.CanDoDifficultCombat();
 
-        /// <sumamry>
-        /// Checks the setting for niche stuff. Niche stuff includes things that may not be obvious to most players, such as damaging enemies with boots, lantern on Gorons, drained Magic Armor for heavy mod, etc.
-        /// </summary>
-        public static bool CanDoNicheStuff() => NLU.CanDoNicheStuff();
+        // /// <sumamry>
+        // /// Checks the setting for niche stuff. Niche stuff includes things that may not be obvious to most players, such as damaging enemies with boots, lantern on Gorons, drained Magic Armor for heavy mod, etc.
+        // /// </summary>
+        // public static bool CanDoNicheStuff() => NLU.CanDoNicheStuff();
 
-        public static bool CanUseBacksliceAsSword() => NLU.CanUseBacksliceAsSword();
+        // public static bool CanUseBacksliceAsSword() => NLU.CanUseBacksliceAsSword();
 
-        /// <summary>
-        /// summary text.
-        /// </summary>
-        public static bool CanUse(Item item) => CUU.CanUse(item);
+        // /// <summary>
+        // /// summary text.
+        // /// </summary>
+        // public static bool CanUse(Item item) => CUU.CanUse(item);
 
-        /// <summary>
-        /// summary text.
-        /// </summary>
-        public static bool CanUse(string item) => CUU.CanUse(Enum.Parse<Item>(item));
+        // /// <summary>
+        // /// summary text.
+        // /// </summary>
+        // public static bool CanUse(string item) => CUU.CanUse(Enum.Parse<Item>(item));
 
-        public static bool CanReplenishItem(Item item) => CUU.CanReplenishItem(item);
+        // public static bool CanReplenishItem(Item item) => CUU.CanReplenishItem(item);
 
-        /// <summary>
-        /// summary text.
-        /// </summary>
-        public static bool CanChangeTime() => HLF.CanChangeTime();
+        // /// <summary>
+        // /// summary text.
+        // /// </summary>
+        // public static bool CanChangeTime() => HLF.CanChangeTime();
 
-        public static bool CanWarp() => HLF.CanWarp();
+        // public static bool CanWarp() => HLF.CanWarp();
 
-        /// <summary>
-        /// summary text.
-        /// </summary>
-        public static bool CanGetHotSpringWater() => BOU.CanGetHotSpringWater();
+        // /// <summary>
+        // /// summary text.
+        // /// </summary>
+        // public static bool CanGetHotSpringWater() => BOU.CanGetHotSpringWater();
 
-        /// <summary>
-        /// summary text.
-        /// </summary>
-        public static bool HasDamagingItem()
-        {
-            return HDI.HasBaseDamagingItem(extraItems: Item.Iron_Boots);
-        }
+        // /// <summary>
+        // /// summary text.
+        // /// </summary>
+        // public static bool HasDamagingItem()
+        // {
+        //     return HDI.HasBaseDamagingItem(extraItems: Item.Iron_Boots);
+        // }
 
-        /// <summary>
-        /// summary text.
-        /// </summary>
-        public static bool HasSword() => HSL.HasSword();
+        // /// <summary>
+        // /// summary text.
+        // /// </summary>
+        // public static bool HasSword() => HSL.HasSword();
 
-        /// <summary>
-        /// summary text.
-        /// </summary>
-        public static bool CanSmash() => BU.CanSmash();
+        // /// <summary>
+        // /// summary text.
+        // /// </summary>
+        // public static bool CanSmash() => BU.CanSmash();
 
-        /// <summary>
-        /// summary text.
-        /// </summary>
-        public static bool CanBurnWebs() => MIU.CanBurnWebs();
+        // /// <summary>
+        // /// summary text.
+        // /// </summary>
+        // public static bool CanBurnWebs() => MIU.CanBurnWebs();
 
-        /// <summary>
-        /// summary text.
-        /// </summary>
+        // /// <summary>
+        // /// summary text.
+        // /// </summary>
+        // public static bool hasShield() => MIU.HasShield();
 
-        /// <summary>
-        /// summary text.
-        /// </summary>
-        public static bool hasShield() => MIU.HasShield();
+        // public static bool CanUseBottledFairy() => BOU.CanUseBottledFairy();
 
-        public static bool CanUseBottledFairy() => BOU.CanUseBottledFairy();
+        // public static bool CanUseBottledFairies() => BOU.CanUseBottledFairies();
 
-        public static bool CanUseBottledFairies() => BOU.CanUseBottledFairies();
+        // public static bool CanUseOilBottle() => BOU.CanUseOilBottle();
 
-        public static bool CanUseOilBottle() => BOU.CanUseOilBottle();
+        // /// <summary>
+        // /// summary text.
+        // /// </summary>
+        // public static bool CanLaunchBombs() => BU.CanLaunchBombs();
 
-        /// <summary>
-        /// summary text.
-        /// </summary>
-        public static bool CanLaunchBombs() => BU.CanLaunchBombs();
+        // /// <summary>
+        // /// summary text.
+        // /// </summary>
+        // public static bool CanCutHangingWeb() => MIU.CanCutHangingWeb();
 
-        /// <summary>
-        /// summary text.
-        /// </summary>
-        public static bool CanCutHangingWeb() => MIU.CanCutHangingWeb();
+        // public static int GetPlayerHealth() => HLF.GetPlayerHealth();
 
-        public static int GetPlayerHealth() => HLF.GetPlayerHealth();
+        // /// <summary>
+        // /// summary text.
+        // /// </summary>
+        // public static bool CanUseWaterBombs() => BU.CanUseWaterBombs();
 
-        /// <summary>
-        /// summary text.
-        /// </summary>
-        public static bool CanUseWaterBombs() => BU.CanUseWaterBombs();
+        // /// <summary>
+        // /// This is a temporary function that ensures arrows can be refilled for bow usage in Faron Woods/FT.
+        // /// </summary>
+        // public static bool CanGetArrows() => CUU.CanGetArrows();
 
-        /// <summary>
-        /// This is a temporary function that ensures arrows can be refilled for bow usage in Faron Woods/FT.
-        /// </summary>
-        public static bool CanGetArrows() => CUU.CanGetArrows();
+        // public static bool CanRefillOil() => CUU.CanRefillOil();
 
-        public static bool CanRefillOil() => CUU.CanRefillOil();
+        // /// <summary>
+        // /// summary text.
+        // /// </summary>
+        // public static bool HasBug() => MIU.HasBug();
 
-        /// <summary>
-        /// summary text.
-        /// </summary>
-        public static bool HasBug() => MIU.HasBug();
+        // // TODO: If option to not have bug models replaced becomes a thing, this function can be useful
+        // public static bool CanGetBugWithLantern() => false;
 
-        // TODO: If option to not have bug models replaced becomes a thing, this function can be useful
-        public static bool CanGetBugWithLantern() => false;
+        // /// <summary>
+        // /// Check for a usable bottle (requires lantern to avoid issues with lantern oil in all bottles)
+        // /// </summary>
+        // public static bool HasBottle() => BOU.HasBottle();
 
-        /// <summary>
-        /// Check for a usable bottle (requires lantern to avoid issues with lantern oil in all bottles)
-        /// </summary>
-        public static bool HasBottle() => BOU.HasBottle();
+        // public static bool HasBottles() => BOU.HasBottles();
 
-        public static bool HasBottles() => BOU.HasBottles();
-
-        /// <summary>
-        /// summary text.
-        /// </summary>
-        public static bool verifyItemQuantity(string itemToBeCounted, int quantity)
-        {
-            return CUU.VerifyItemQuantity(itemToBeCounted, quantity);
-        }
+        // /// <summary>
+        // /// summary text.
+        // /// </summary>
+        // public static bool verifyItemQuantity(string itemToBeCounted, int quantity)
+        // {
+        //     return CUU.VerifyItemQuantity(itemToBeCounted, quantity);
+        // }
         #endregion
 
         #region CanDefeatCommonEnemy
