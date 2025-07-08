@@ -178,9 +178,6 @@ namespace TPRandomizer
         {
             return CUU.VerifyItemQuantity(itemToBeCounted, quantity);
         }
-
-        public static int GetItemWheelSlotCount() => GLU.GetItemWheelSlotCount();
-
         #endregion
 
         #region CanDefeatCommonEnemy
