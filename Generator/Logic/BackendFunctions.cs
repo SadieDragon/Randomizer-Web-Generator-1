@@ -8,6 +8,7 @@ namespace TPRandomizer
     using System.Reflection;
     using System.Text;
     using Assets;
+    using LogicFunctionsNS;
     using Newtonsoft.Json;
 
     /// <summary>
@@ -243,6 +244,15 @@ namespace TPRandomizer
         }
 
         /// <summary>
+        /// A temp helper fn for checking if ganon has been defeated. - Lupa
+        /// </summary>
+        /// <returns></returns>
+        private static bool HasDefeatedGanondorf()
+        {
+            return CanUseUtilities.CanUse(Item.Ganondorf_Defeated);
+        }
+
+        /// <summary>
         /// summary text.
         /// </summary>
         public static List<string> CalculateOptimalPlaythrough(Room startingRoom)
@@ -279,7 +289,7 @@ namespace TPRandomizer
                 playthroughDictionary.Add("Starting Item: " + startingItem.ToString(), null);
             }
 
-            while (!LogicFunctions.CanUse(Item.Ganondorf_Defeated))
+            while (!HasDefeatedGanondorf())
             {
                 hasCompletedSphere = false;
                 hasConcludedPlaythrough = false;
@@ -440,7 +450,7 @@ namespace TPRandomizer
                 startingItemCount++;
             }
 
-            while (!LogicFunctions.CanUse(Item.Ganondorf_Defeated))
+            while (!HasDefeatedGanondorf())
             {
                 hasCompletedSphere = false;
                 hasConcludedPlaythrough = false;
@@ -640,7 +650,7 @@ namespace TPRandomizer
                 Randomizer.Items.heldItems.Add(startingItem);
             }
 
-            while (!LogicFunctions.CanUse(Item.Ganondorf_Defeated))
+            while (!HasDefeatedGanondorf())
             {
                 hasCompletedSphere = false;
                 hasConcludedPlaythrough = false;
@@ -947,7 +957,7 @@ namespace TPRandomizer
                 Randomizer.Items.heldItems.Add(startingItem);
             }
 
-            while (!LogicFunctions.CanUse(Item.Ganondorf_Defeated))
+            while (!HasDefeatedGanondorf())
             {
                 hasCompletedSphere = false;
                 hasConcludedPlaythrough = false;
