@@ -102,7 +102,7 @@ namespace TPRandomizer
                 (SettingName, SettingValue, Sense) = (setting, value, sense);
 
             public override bool Evaluate() =>
-                LogicFunctions.EvaluateSetting(SettingName, SettingValue) == Sense;
+                HelperFunctions.EvaluateSetting(SettingName, SettingValue) == Sense;
         }
 
         public class Conjunction : LogicAST

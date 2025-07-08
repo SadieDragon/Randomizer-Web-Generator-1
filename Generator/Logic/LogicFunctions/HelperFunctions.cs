@@ -10,6 +10,9 @@ namespace LogicFunctionsNS
 {
     class HelperFunctions
     {
+        // TODO: this seems to only be used in tokenizer. I do not want to shove it into said
+        //   tokenizer, as the file is long enough as it is, but I do want to extract this.
+        // - Lupa
         /// <summary>
         /// summary text.
         /// </summary>
