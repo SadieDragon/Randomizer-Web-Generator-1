@@ -1,7 +1,7 @@
 // Untested; not hooked to anything; scratchpad ish file.
 
 using System;
-using LogicFunctionsNS;
+// using LogicFunctionsNS;
 using TPRandomizer.SSettings.Enums;
 using BOU = LogicFunctionsNS.BottleUtils;
 using BU = LogicFunctionsNS.BombUtils;

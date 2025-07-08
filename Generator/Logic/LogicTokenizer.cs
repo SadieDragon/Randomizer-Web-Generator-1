@@ -47,7 +47,9 @@ namespace TPRandomizer
 
             public override bool Evaluate()
             {
-                MethodInfo? method = typeof(LogicFunctions).GetMethod(FunctionName);
+                MethodInfo? method = typeof(LogicFunctionsUpdatedRefactored).GetMethod(
+                    FunctionName
+                );
                 if (method == null)
                 {
                     Console.WriteLine($"unknown logic function {FunctionName}");
