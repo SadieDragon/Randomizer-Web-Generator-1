@@ -114,7 +114,7 @@ namespace TPRandomizer
         /// <summary>
         /// summary text.
         /// </summary>
-        public static bool hasRangedItem() => MIU.HasRangedItem();
+        public static bool HasRangedItem() => MIU.HasRangedItem();
 
         /// <summary>
         /// summary text.
@@ -142,7 +142,7 @@ namespace TPRandomizer
         /// <summary>
         /// summary text.
         /// </summary>
-        public static bool hasBombs() => BU.HasBombs();
+        public static bool HasBombs() => BU.HasBombs();
 
         /// <summary>
         /// summary text.
@@ -998,6 +998,14 @@ namespace TPRandomizer
         #endregion
 
         // Twilights, Dungeons, and Maps should probably be their own files in a RF dir
+
+        #region NecessaryDungeons
+        public static bool CanCompleteGoronMines() => CCD.CanCompleteGoronMines();
+
+        public static bool CanCompleteSnowpeakRuins() => CCD.CanCompleteSnowpeakRuins();
+
+        public static bool CanCompleteTempleofTime() => CCD.CanCompleteTempleofTime();
+        #endregion
 
         #region Twilights
         /// <summary>
