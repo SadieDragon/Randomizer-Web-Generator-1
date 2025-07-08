@@ -1,6 +1,7 @@
 // Untested; not hooked to anything; scratchpad ish file.
 
 using System;
+using LogicFunctionsNS;
 using TPRandomizer.SSettings.Enums;
 using BOU = LogicFunctionsNS.BottleUtils;
 using BU = LogicFunctionsNS.BombUtils;
@@ -61,14 +62,6 @@ namespace TPRandomizer
     {
         #region GlitchlessUtils
         //Evaluate the tokenized settings to their respective values that are set by the settings string.
-
-        /// <summary>
-        /// summary text.
-        /// </summary>
-        public static bool EvaluateSetting(string setting, string value)
-        {
-            return HLF.EvaluateSetting(setting, value);
-        }
 
         /// <summary>
         /// Checks the setting for difficult combat. Difficult combat includes: difficult, annoying, or time consuming combat

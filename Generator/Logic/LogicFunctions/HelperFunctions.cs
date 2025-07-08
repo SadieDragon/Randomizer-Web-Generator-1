@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Reflection;
 using TPRandomizer;
 using TPRandomizer.SSettings.Enums;
 using BOU = LogicFunctionsNS.BottleUtils;
@@ -8,30 +7,8 @@ using ERLF = LogicFunctionsNS.ERLogicFunctions;
 
 namespace LogicFunctionsNS
 {
-    class HelperFunctions
+    public class HelperFunctions
     {
-        // TODO: this seems to only be used in tokenizer. I do not want to shove it into said
-        //   tokenizer, as the file is long enough as it is, but I do want to extract this.
-        // - Lupa
-        /// <summary>
-        /// summary text.
-        /// </summary>
-        public static bool EvaluateSetting(string setting, string value)
-        {
-            PropertyInfo[] settingProperties = Randomizer.SSettings.GetType().GetProperties();
-            setting = setting.Replace("Setting.", "");
-
-            foreach (PropertyInfo property in settingProperties)
-            {
-                var settingValue = property.GetValue(Randomizer.SSettings, null);
-                if ((property.Name == setting) && (value == settingValue.ToString()))
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
-
         public static SharedSettings SharedSettings = Randomizer.SSettings;
 
         /// <summary>
