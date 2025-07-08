@@ -1,6 +1,5 @@
 // Untested; not hooked to anything; scratchpad ish file.
 
-using System;
 // using LogicFunctionsNS;
 using TPRandomizer.SSettings.Enums;
 using BOU = LogicFunctionsNS.BottleUtils;
@@ -10,7 +9,6 @@ using CUU = LogicFunctionsNS.CanUseUtilities;
 using DCLB = LogicFunctionsNS.DifficultCombatLogic.CanDefeatBoss;
 using DCLCE = LogicFunctionsNS.DifficultCombatLogic.CanDefeatCommonEnemy;
 using DCLM = LogicFunctionsNS.DifficultCombatLogic.CanDefeatMiniBoss;
-using DCLU = LogicFunctionsNS.DifficultCombatLogicUtils;
 using ERLF = LogicFunctionsNS.ERLogicFunctions;
 using GLB = LogicFunctionsNS.GlitchedLogic.CanDefeatBoss;
 using GLCDS = LogicFunctionsNS.GlitchedLogic.CanDoStuff;
@@ -28,7 +26,6 @@ using NLB = LogicFunctionsNS.NicheLogic.CanDefeatBoss;
 using NLCDS = LogicFunctionsNS.NicheLogic.CanDoStuff;
 using NLCE = LogicFunctionsNS.NicheLogic.CanDefeatCommonEnemy;
 using NLM = LogicFunctionsNS.NicheLogic.CanDefeatMiniBoss;
-using NLU = LogicFunctionsNS.NicheLogicUtils;
 
 // TODO: aggregate class
 
