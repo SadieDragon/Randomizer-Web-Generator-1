@@ -47,6 +47,18 @@ namespace TPRandomizer
     /// </summary>
     public class LogicFunctionsUpdatedRefactored
     {
+        #region KnownNeeded
+        public static bool CanCompleteGoronMines() => CCD.CanCompleteGoronMines();
+
+        public static bool CanCompleteSnowpeakRuins() => CCD.CanCompleteSnowpeakRuins();
+
+        public static bool CanCompleteTempleofTime() => CCD.CanCompleteTempleofTime();
+
+        public static bool HasRangedItem() => MIU.HasRangedItem();
+
+        public static bool HasBombs() => BU.HasBombs();
+        #endregion
+
         #region GlitchlessUtils
         //Evaluate the tokenized settings to their respective values that are set by the settings string.
 
@@ -112,7 +124,6 @@ namespace TPRandomizer
         /// <summary>
         /// summary text.
         /// </summary>
-        public static bool HasRangedItem() => MIU.HasRangedItem();
 
         /// <summary>
         /// summary text.
@@ -136,11 +147,6 @@ namespace TPRandomizer
         public static bool CanCutHangingWeb() => MIU.CanCutHangingWeb();
 
         public static int GetPlayerHealth() => HLF.GetPlayerHealth();
-
-        /// <summary>
-        /// summary text.
-        /// </summary>
-        public static bool HasBombs() => BU.HasBombs();
 
         /// <summary>
         /// summary text.
@@ -996,14 +1002,6 @@ namespace TPRandomizer
         #endregion
 
         // Twilights, Dungeons, and Maps should probably be their own files in a RF dir
-
-        #region NecessaryDungeons
-        public static bool CanCompleteGoronMines() => CCD.CanCompleteGoronMines();
-
-        public static bool CanCompleteSnowpeakRuins() => CCD.CanCompleteSnowpeakRuins();
-
-        public static bool CanCompleteTempleofTime() => CCD.CanCompleteTempleofTime();
-        #endregion
 
         #region Twilights
         /// <summary>
