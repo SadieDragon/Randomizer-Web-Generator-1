@@ -35,8 +35,6 @@ using NLU = LogicFunctionsNS.NicheLogicUtils;
 // maybe add a helper for llc - GLL `CanSmash & Lantern` GL `CanSmash`?
 
 // Where is used notes:
-// - `BackendFunctions.cs` > `CalculateOptimalPlaythrough`
-//    - `CanUse`
 // - `LogicTokenizer.cs` > `Function`'s override of `Evaluate`
 //    - `typeof(LogicFunctions).GetMethod(FunctionName)` - ???
 //       - seems to check if the method even exists, and if it returns a boolean. so any fns that
