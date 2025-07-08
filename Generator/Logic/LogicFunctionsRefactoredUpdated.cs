@@ -69,6 +69,8 @@ namespace TPRandomizer
         public static bool CanGetHotSpringWater() => BOU.CanGetHotSpringWater();
 
         public static bool CanBurnWebs() => MIU.CanBurnWebs();
+
+        public static bool CanCutHangingWeb() => MIU.CanCutHangingWeb();
         #endregion
 
         #region GlitchlessUtils
@@ -118,11 +120,6 @@ namespace TPRandomizer
         // public static bool CanUseBottledFairies() => BOU.CanUseBottledFairies();
 
         // public static bool CanUseOilBottle() => BOU.CanUseOilBottle();
-
-        // /// <summary>
-        // /// summary text.
-        // /// </summary>
-        // public static bool CanCutHangingWeb() => MIU.CanCutHangingWeb();
 
         // public static int GetPlayerHealth() => HLF.GetPlayerHealth();
 
