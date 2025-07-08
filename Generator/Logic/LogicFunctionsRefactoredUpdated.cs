@@ -47,6 +47,8 @@ namespace TPRandomizer
     /// </summary>
     public class LogicFunctionsUpdatedRefactored
     {
+        // Evaluate the tokenized settings to their respective values that are set by the settings string.
+
         #region KnownNeeded
         public static bool CanCompleteGoronMines() => CCD.CanCompleteGoronMines();
 
@@ -80,78 +82,8 @@ namespace TPRandomizer
         public static bool CanUseWaterBombs() => BU.CanUseWaterBombs();
         #endregion
 
-        #region GlitchlessUtils
-        // //Evaluate the tokenized settings to their respective values that are set by the settings string.
-
-        // /// <summary>
-        // /// Checks the setting for difficult combat. Difficult combat includes: difficult, annoying, or time consuming combat
-        // /// </summary>
-        // public static bool CanDoDifficultCombat() => DCLU.CanDoDifficultCombat();
-
-        // /// <sumamry>
-        // /// Checks the setting for niche stuff. Niche stuff includes things that may not be obvious to most players, such as damaging enemies with boots, lantern on Gorons, drained Magic Armor for heavy mod, etc.
-        // /// </summary>
-        // public static bool CanDoNicheStuff() => NLU.CanDoNicheStuff();
-
-        // public static bool CanUseBacksliceAsSword() => NLU.CanUseBacksliceAsSword();
-
-        // /// <summary>
-        // /// summary text.
-        // /// </summary>
-        // public static bool CanUse(Item item) => CUU.CanUse(item);
-
-        // /// <summary>
-        // /// summary text.
-        // /// </summary>
-        // public static bool CanUse(string item) => CUU.CanUse(Enum.Parse<Item>(item));
-
-        // public static bool CanReplenishItem(Item item) => CUU.CanReplenishItem(item);
-
-        // public static bool CanWarp() => HLF.CanWarp();
-
-        // /// <summary>
-        // /// summary text.
-        // /// </summary>
-        // public static bool hasShield() => MIU.HasShield();
-
-        // public static bool CanUseBottledFairy() => BOU.CanUseBottledFairy();
-
-        // public static bool CanUseBottledFairies() => BOU.CanUseBottledFairies();
-
-        // public static bool CanUseOilBottle() => BOU.CanUseOilBottle();
-
-        // public static int GetPlayerHealth() => HLF.GetPlayerHealth();
-
-        // /// <summary>
-        // /// This is a temporary function that ensures arrows can be refilled for bow usage in Faron Woods/FT.
-        // /// </summary>
-        // public static bool CanGetArrows() => CUU.CanGetArrows();
-
-        // public static bool CanRefillOil() => CUU.CanRefillOil();
-
-        // /// <summary>
-        // /// summary text.
-        // /// </summary>
-        // public static bool HasBug() => MIU.HasBug();
-
         // // TODO: If option to not have bug models replaced becomes a thing, this function can be useful
         // public static bool CanGetBugWithLantern() => false;
-
-        // /// <summary>
-        // /// Check for a usable bottle (requires lantern to avoid issues with lantern oil in all bottles)
-        // /// </summary>
-        // public static bool HasBottle() => BOU.HasBottle();
-
-        // public static bool HasBottles() => BOU.HasBottles();
-
-        // /// <summary>
-        // /// summary text.
-        // /// </summary>
-        // public static bool verifyItemQuantity(string itemToBeCounted, int quantity)
-        // {
-        //     return CUU.VerifyItemQuantity(itemToBeCounted, quantity);
-        // }
-        #endregion
 
         #region CanDefeatCommonEnemy
         /// <summary>
