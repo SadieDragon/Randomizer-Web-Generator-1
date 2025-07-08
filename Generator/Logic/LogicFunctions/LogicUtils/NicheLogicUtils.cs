@@ -18,7 +18,7 @@ namespace LogicFunctionsNS
 
         public static bool CanDoNicheCombat(bool includeBackslice = true, bool includeBoots = true)
         {
-            return CanDoNicheCombat()
+            return CanDoNicheStuff()
                 && (
                     (includeBackslice && HHSL.HasBackslice())
                     || (includeBoots && CUU.CanUse(Item.Iron_Boots))
