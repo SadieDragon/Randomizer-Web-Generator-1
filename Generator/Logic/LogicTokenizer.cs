@@ -53,7 +53,8 @@ namespace TPRandomizer
                 if (method == null)
                 {
                     Console.WriteLine($"unknown logic function {FunctionName}");
-                    return false;
+                    // return false;
+                    Environment.Exit(1);
                 }
 
                 object? result = method.Invoke(null, null);
