@@ -71,6 +71,11 @@ namespace TPRandomizer
         public static bool CanBurnWebs() => MIU.CanBurnWebs();
 
         public static bool CanCutHangingWeb() => MIU.CanCutHangingWeb();
+
+        public static bool HasDamagingItem()
+        {
+            return HDI.HasBaseDamagingItem(extraItems: Item.Iron_Boots);
+        }
         #endregion
 
         #region GlitchlessUtils
@@ -101,14 +106,6 @@ namespace TPRandomizer
         // public static bool CanReplenishItem(Item item) => CUU.CanReplenishItem(item);
 
         // public static bool CanWarp() => HLF.CanWarp();
-
-        // /// <summary>
-        // /// summary text.
-        // /// </summary>
-        // public static bool HasDamagingItem()
-        // {
-        //     return HDI.HasBaseDamagingItem(extraItems: Item.Iron_Boots);
-        // }
 
         // /// <summary>
         // /// summary text.
