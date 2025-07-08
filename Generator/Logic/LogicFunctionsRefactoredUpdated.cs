@@ -943,7 +943,8 @@ namespace TPRandomizer
 
         public static bool CanStrikePedestal()
         {
-            return CUU.GetItemCount(Item.Progressive_Sword) >= (int)Randomizer.SSettings.totEntrance;
+            return CUU.GetItemCount(Item.Progressive_Sword)
+                >= (int)Randomizer.SSettings.totEntrance;
         }
 
         public static bool CanWarpMeteor()
