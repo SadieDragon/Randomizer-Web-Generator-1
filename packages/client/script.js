@@ -483,6 +483,14 @@ function setCastleRequirementsSettings()
         
         break;
       }
+      case "6": // Hearts
+      {
+        document.getElementById(sliderName).max = 3;
+        document.getElementById(sliderName).max = 20;
+        document.getElementById(sliderName + 'Label').innerHTML = "Hearts Required:"
+        
+        break;
+      }
       default:
         {
           break;
@@ -548,6 +556,14 @@ function setCastleBKRequirementsSettings()
       {
         document.getElementById(sliderName).max = 60;
         document.getElementById(sliderName + 'Label').innerHTML = "Poe Souls Required:"
+        
+        break;
+      }
+      case "5": // Hearts
+      {
+        document.getElementById(sliderName).max = 3;
+        document.getElementById(sliderName).max = 20;
+        document.getElementById(sliderName + 'Label').innerHTML = "Hearts Required:"
         
         break;
       }
