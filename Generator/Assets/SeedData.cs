@@ -299,9 +299,24 @@ namespace TPRandomizer.Assets
             );
 
             seedHeader.Add(Converter.GcByte((int)randomizerSettings.mirrorChamberEntrance));
-            seedHeader.Add(Converter.GcByte((int)randomizerSettings.castleRequirementCount));
+            if (randomizerSettings.castleRequirements == CastleRequirements.Hearts)
+            {
+                seedHeader.Add(Converter.GcByte((int)randomizerSettings.castleRequirementCount * 5));
+            }
+            else
+            {
+                seedHeader.Add(Converter.GcByte((int)randomizerSettings.castleRequirementCount));
+            }
+            
             seedHeader.Add(Converter.GcByte((int)randomizerSettings.castleBKRequirements));
-            seedHeader.Add(Converter.GcByte((int)randomizerSettings.castleBKRequirementCount));
+            if (randomizerSettings.castleBKRequirements == CastleBKRequirements.Hearts)
+            {
+                seedHeader.Add(Converter.GcByte((int)randomizerSettings.castleBKRequirementCount * 5));
+            }
+            else
+            {
+                seedHeader.Add(Converter.GcByte((int)randomizerSettings.castleBKRequirementCount));
+            }
 
             while (seedHeader.Count < SeedHeaderSize)
             {

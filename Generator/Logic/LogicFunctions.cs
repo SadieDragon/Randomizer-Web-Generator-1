@@ -2156,11 +2156,10 @@ namespace TPRandomizer
                     return getItemCount(Item.Poe_Soul)
                         >= Randomizer.SSettings.castleRequirementCount;
                 }
-                // case CastleRequirements.Hearts:
-                // {
-                //     return GetPlayerHealth()
-                //         >= Randomizer.SSettings.castleRequirementCount;
-                // }
+                case CastleRequirements.Hearts:
+                {
+                    return GetPlayerHealth() >= Randomizer.SSettings.castleRequirementCount;
+                }
             }
 
             return false;
@@ -2201,11 +2200,10 @@ namespace TPRandomizer
                     return getItemCount(Item.Poe_Soul)
                         >= Randomizer.SSettings.castleBKRequirementCount;
                 }
-                // case CastleBKRequirements.Hearts:
-                // {
-                //     return GetPlayerHealth()
-                //         >= Randomizer.SSettings.castleBKRequirementCount;
-                // }
+                case CastleBKRequirements.Hearts:
+                {
+                    return GetPlayerHealth() >= Randomizer.SSettings.castleBKRequirementCount;
+                }
             }
 
             return false;
