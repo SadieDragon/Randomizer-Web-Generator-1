@@ -1131,6 +1131,14 @@
         
         break;
       }
+      case 6: // Hearts
+      {
+        document.getElementById('castleRequirementsSlider').min = 3; // Maybe 4, because 3 would match "Open"
+        document.getElementById('castleRequirementsSlider').max = 20;
+        document.getElementById('castleRequirementsSliderLabel').innerHTML = "Hearts Required:"
+        
+        break;
+      }
       default:
         {
           break;
@@ -1183,6 +1191,14 @@
       {
         document.getElementById('castleBKRequirementsSlider').max = 60;
         document.getElementById('castleBKRequirementsSliderLabel').innerHTML = "Poe Souls Required:"
+        
+        break;
+      }
+      case 5: // Hearts
+      {
+        document.getElementById('castleBKRequirementsSlider').max = 3;
+        document.getElementById('castleBKRequirementsSlider').max = 20;
+        document.getElementById('castleBKRequirementsSliderLabel').innerHTML = "Hearts Required:"
         
         break;
       }
