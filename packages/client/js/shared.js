@@ -1196,7 +1196,7 @@
       }
       case 5: // Hearts
       {
-        document.getElementById('castleBKRequirementsSlider').max = 3;
+        document.getElementById('castleBKRequirementsSlider').min = 3;
         document.getElementById('castleBKRequirementsSlider').max = 20;
         document.getElementById('castleBKRequirementsSliderLabel').innerHTML = "Hearts Required:"
         
