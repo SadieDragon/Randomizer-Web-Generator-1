@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Reflection;
 
 /// Lupa's rough explanation of hacked together implementation:
@@ -106,20 +107,9 @@ namespace LogicFunctionsNS
             }
 
             // Go through each logic setting, and see if the action can be done in any of them.
-            // If any of the settings eval to `true`, `true || x` will always return `true`, so short circuit.
-            // TODO: Given `logicSettings` is a list, this could probably use `Any` to be more readable?
+            // Essentially, (Glitchless || Glitched || Niche || DifficultCombat)
             // TODO: separate function
-            foreach (string ns in logicSettings)
-            {
-                // Break early if ever true.
-                if (Evaluate(ns))
-                {
-                    return true;
-                }
-            }
-
-            // If no settings returned `true`, then the result is `false`.
-            return false;
+            return logicSettings.Any(Evaluate);
         }
     }
 }
