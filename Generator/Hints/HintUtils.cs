@@ -482,7 +482,7 @@ namespace TPRandomizer.Hints
                     result.Add(GoalConstants.Stallord);
                     result.Add(GoalConstants.Zant);
                 }
-                else if (sSettings.castleRequirements == CastleRequirements.All_Dungeons)
+                else if (sSettings.castleRequirements == CastleRequirements.Dungeons)
                 {
                     result.Add(GoalConstants.Diababa);
                     result.Add(GoalConstants.Fyrus);
