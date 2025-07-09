@@ -2137,15 +2137,15 @@ namespace TPRandomizer
                 }
                 case CastleRequirements.Dungeons:
                 {
-                    int dugneonCount = 0;
+                    int dungeonCount = 0;
                     foreach (Item boss in Randomizer.Items.BossItems)
                     {
                         if (CanUse(boss))
                         {
-                            dugneonCount++;
+                            dungeonCount++;
                         }
                     }
-                    return dugneonCount >= Randomizer.SSettings.castleRequirementCount;
+                    return dungeonCount >= Randomizer.SSettings.castleRequirementCount;
                 }
                 case CastleRequirements.Vanilla:
                 {
@@ -2181,15 +2181,15 @@ namespace TPRandomizer
                 }
                 case CastleBKRequirements.Dungeons:
                 {
-                    int dugneonCount = 0;
+                    int dungeonCount = 0;
                     foreach (Item boss in Randomizer.Items.BossItems)
                     {
                         if (CanUse(boss))
                         {
-                            dugneonCount++;
+                            dungeonCount++;
                         }
                     }
-                    return dugneonCount >= Randomizer.SSettings.castleBKRequirementCount;
+                    return dungeonCount >= Randomizer.SSettings.castleBKRequirementCount;
                 }
                 case CastleBKRequirements.Poe_Souls:
                 {
