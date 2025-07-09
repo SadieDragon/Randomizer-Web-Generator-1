@@ -485,7 +485,7 @@ function setCastleRequirementsSettings()
       }
       case "6": // Hearts
       {
-        document.getElementById(sliderName).max = 3;
+        document.getElementById(sliderName).min = 3;
         document.getElementById(sliderName).max = 20;
         document.getElementById(sliderName + 'Label').innerHTML = "Hearts Required:"
         
@@ -561,7 +561,7 @@ function setCastleBKRequirementsSettings()
       }
       case "5": // Hearts
       {
-        document.getElementById(sliderName).max = 3;
+        document.getElementById(sliderName).min = 3;
         document.getElementById(sliderName).max = 20;
         document.getElementById(sliderName + 'Label').innerHTML = "Hearts Required:"
         
