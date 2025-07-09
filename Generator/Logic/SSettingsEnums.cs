@@ -18,7 +18,8 @@ namespace TPRandomizer.SSettings.Enums
         Mirror_Shards = 2,
         Dungeons = 3,
         Vanilla = 4,
-        Poe_Souls,
+        Poe_Souls = 5,
+        Hearts = 6,
     }
 
     public enum CastleBKRequirements
@@ -28,6 +29,7 @@ namespace TPRandomizer.SSettings.Enums
         Mirror_Shards = 2,
         Dungeons = 3,
         Poe_Souls = 4,
+        Hearts = 5,
     }
 
     public enum PalaceRequirements
