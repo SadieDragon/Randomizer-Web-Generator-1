@@ -6,7 +6,7 @@ namespace LogicFunctionsNS
 {
     public class SettingUtils
     {
-        private static readonly SharedSettings sharedSettings = Randomizer.SSettings;
+        public static readonly SharedSettings sharedSettings = Randomizer.SSettings;
 
         public static bool EvaluateSetting(string setting, string value)
         {
