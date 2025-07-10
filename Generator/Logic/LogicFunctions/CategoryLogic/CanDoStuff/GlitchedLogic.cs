@@ -60,9 +60,7 @@ namespace LogicFunctionsNS.GlitchedLogic
 
         public static bool CanClearForestGlitched()
         {
-            return (Randomizer.SSettings.faronWoodsLogic == FaronWoodsLogic.Open)
-                || GLU.CanDoLJA()
-                || GLU.CanDoMapGlitch();
+            return SettingUtils.IsOpenWoods() || GLU.CanDoLJA() || GLU.CanDoMapGlitch();
         }
     }
 }

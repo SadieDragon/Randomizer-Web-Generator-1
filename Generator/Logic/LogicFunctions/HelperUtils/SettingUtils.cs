@@ -57,5 +57,10 @@ namespace LogicFunctionsNS
         public static bool IsOpenMap() => SharedSettings.openMap;
 
         public static bool IsShopSanity() => SharedSettings.shuffleShopItems;
+
+        public static bool IsOpenWoods()
+        {
+            return SharedSettings.faronWoodsLogic == FaronWoodsLogic.Open;
+        }
     }
 }

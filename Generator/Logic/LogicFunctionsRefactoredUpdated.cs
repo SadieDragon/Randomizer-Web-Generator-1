@@ -3,6 +3,8 @@
 // using LogicFunctionsNS;
 using System;
 using System.Linq;
+using LogicFunctionsNS;
+using TPRandomizer.AST;
 using TPRandomizer.SSettings.Enums;
 using BOU = LogicFunctionsNS.BottleUtils;
 using BU = LogicFunctionsNS.BombUtils;
@@ -905,10 +907,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanClearForest()
         {
-            return (
-                    CCD.CanCompleteForestTemple()
-                    || (Randomizer.SSettings.faronWoodsLogic == FaronWoodsLogic.Open)
-                )
+            return (CCD.CanCompleteForestTemple() || SettingUtils.IsOpenWoods())
                 && CanCompletePrologue()
                 && CanCompleteFaronTwilight();
         }
