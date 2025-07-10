@@ -1,6 +1,7 @@
 // TODO: Better name
 // TODO: How to 'subclass?'
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using TPRandomizer;
@@ -51,15 +52,15 @@ namespace LogicFunctionsNS
             return 0;
         }
 
+        public static bool VerifyItemQuantity(Item itemToBeCounted, int targetQuantity)
+        {
+            return ItemList.Count(item => item == itemToBeCounted) >= targetQuantity;
+        }
+
+        // unused override for passing in a str.
         public static bool VerifyItemQuantity(string itemToBeCounted, int quantity)
         {
-            // Convert the list of held items to a list to use to count
-            List<string> heldItemsStrings = ItemList.ConvertAll(static item => item.ToString());
-
-            // Count how many of the desired item there are.
-            int itemQuantity = heldItemsStrings.Count(item => item == itemToBeCounted);
-
-            return itemQuantity >= quantity;
+            return VerifyItemQuantity(HLF.ConvertStrToItem(itemToBeCounted), quantity);
         }
 
         // I put these here because they go with CanReplenish.
