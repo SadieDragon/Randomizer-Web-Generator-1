@@ -45,14 +45,16 @@ namespace TPRandomizer
     /// </summary>
     public class LogicFunctionsUpdatedRefactored
     {
+        private static readonly SharedSettings sharedSettings = SettingUtils.sharedSettings;
+
         // Evaluate the tokenized settings to their respective values that are set by the settings string.
         #region ToRefactor
         // New functions that have been added since I started that I need to sort out.
         public static bool CanBreakHCBarrier()
         {
-            int requirementCount = Randomizer.SSettings.castleRequirementCount;
+            int requirementCount = sharedSettings.castleRequirementCount;
 
-            switch (Randomizer.SSettings.castleRequirements)
+            switch (sharedSettings.castleRequirements)
             {
                 case CastleRequirements.Open:
                 {
@@ -89,9 +91,9 @@ namespace TPRandomizer
 
         public static bool CanOpenHCBKGate()
         {
-            int requirementCount = Randomizer.SSettings.castleBKRequirementCount;
+            int requirementCount = sharedSettings.castleBKRequirementCount;
 
-            switch (Randomizer.SSettings.castleBKRequirements)
+            switch (sharedSettings.castleBKRequirements)
             {
                 case CastleBKRequirements.None:
                 {
