@@ -6,14 +6,16 @@ namespace LogicFunctionsNS
 {
     public class SettingUtils
     {
+        private static readonly SharedSettings SharedSettings = Randomizer.SSettings;
+
         public static bool EvaluateSetting(string setting, string value)
         {
-            PropertyInfo[] settingProperties = Randomizer.SSettings.GetType().GetProperties();
+            PropertyInfo[] settingProperties = SharedSettings.GetType().GetProperties();
             setting = setting.Replace("Setting.", "");
 
             foreach (PropertyInfo property in settingProperties)
             {
-                var settingValue = property.GetValue(Randomizer.SSettings, null);
+                var settingValue = property.GetValue(SharedSettings, null);
                 if ((property.Name == setting) && (value == settingValue.ToString()))
                 {
                     return true;
@@ -24,7 +26,7 @@ namespace LogicFunctionsNS
 
         public static bool IsGlitchedLogic()
         {
-            return Randomizer.SSettings.logicRules == LogicRules.Glitched;
+            return SharedSettings.logicRules == LogicRules.Glitched;
         }
 
         /// <sumamry>
@@ -45,8 +47,8 @@ namespace LogicFunctionsNS
             return false;
         }
 
-        public static bool IsOpenMap() => Randomizer.SSettings.openMap;
+        public static bool IsOpenMap() => SharedSettings.openMap;
 
-        public static bool IsShopSanity() => Randomizer.SSettings.shuffleShopItems;
+        public static bool IsShopSanity() => SharedSettings.shuffleShopItems;
     }
 }
