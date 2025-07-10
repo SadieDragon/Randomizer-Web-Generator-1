@@ -47,6 +47,8 @@ namespace LogicFunctionsNS
             return false;
         }
 
+        public static bool HasSkippedSnowpeakEntrance() => SharedSettings.skipSnowpeakEntrance;
+
         public static bool IsOpenMap() => SharedSettings.openMap;
 
         public static bool IsShopSanity() => SharedSettings.shuffleShopItems;

@@ -21,7 +21,7 @@ namespace LogicFunctionsNS
 
         public static bool CanUnlockSnowpeakMap()
         {
-            return Randomizer.SSettings.skipSnowpeakEntrance
+            return SettingUtils.HasSkippedSnowpeakEntrance()
                 || CanUnlockMapUtil(RoomFunctions.SnowpeakMapRooms);
         }
 
