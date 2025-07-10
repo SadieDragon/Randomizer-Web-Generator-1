@@ -156,6 +156,108 @@ namespace TPRandomizer
             }
         }
 
+        public static bool ValidatePlaythroughBeatable(Room startingRoom, bool printResults = false)
+        {
+            List<Item> playthroughItems = new();
+            List<Item> validationItems = new();
+            SharedSettings parseSetting = Randomizer.SSettings;
+
+            if (parseSetting.logicRules == SSettings.Enums.LogicRules.No_Logic)
+            {
+                return true;
+            }
+
+            // Console.WriteLine("Item to place: " + itemToPlace);
+            foreach (KeyValuePair<string, Check> checkList in Randomizer.Checks.CheckDict.ToList())
+            {
+                Check currentCheck = checkList.Value;
+                currentCheck.hasBeenReached = false;
+                Randomizer.Checks.CheckDict[currentCheck.checkName] = currentCheck;
+            }
+
+            HashSet<string> allowedUnreachableChecks = CalcAllowedUnreachableChecks(parseSetting);
+
+            /*foreach (Item item in Randomizer.Items.heldItems)
+            {
+                Console.WriteLine(item);
+            }*/
+
+            // Walk through the current graph and get a list of rooms that we can currently access
+            // If we collect any items during the playthrough, we add them to the player's inventory
+            // and try walking through the graph again until we have collected every item that we can.
+            do
+            {
+                playthroughItems.Clear();
+                List<Room> currentPlaythroughGraph = Randomizer.GeneratePlaythroughGraph(
+                    startingRoom
+                );
+                foreach (Room graphRoom in currentPlaythroughGraph)
+                {
+                    graphRoom.Visited = true;
+                    //Console.WriteLine("Currently Exploring: " + graphRoom.RoomName);
+                    for (int i = 0; i < graphRoom.Checks.Count; i++)
+                    {
+                        // Create reference to the dictionary entry of the check whose logic we are evaluating
+                        if (
+                            !Randomizer.Checks.CheckDict.TryGetValue(
+                                graphRoom.Checks[i],
+                                out Check currentCheck
+                            )
+                        )
+                        {
+                            if (graphRoom.Checks[i].ToString() == string.Empty)
+                            {
+                                // Console.WriteLine("Room has no checks, continuing on....");
+                                break;
+                            }
+                        }
+
+                        if (!currentCheck.hasBeenReached)
+                        {
+                            if (currentCheck.CachedRequirements().Evaluate())
+                            {
+                                if (currentCheck.itemWasPlaced)
+                                {
+                                    playthroughItems.Add(currentCheck.itemId);
+
+                                    /*Console.WriteLine(
+                                        "Added " + currentCheck.itemId + " to item list."
+                                    );*/
+                                }
+
+                                currentCheck.hasBeenReached = true;
+                            }
+                        }
+                    }
+                }
+
+                Randomizer.Items.heldItems.AddRange(playthroughItems);
+                validationItems.AddRange(playthroughItems);
+            } while (playthroughItems.Count > 0);
+
+            foreach (Item item in validationItems)
+            {
+                Randomizer.Items.heldItems.Remove(item);
+            }
+
+            if (Randomizer.Rooms.RoomDict["Ganondorf Castle"].Visited)
+            {
+                if (printResults)
+                {
+                    Console.WriteLine("Playthrough Beatable");
+                }
+                return true;
+            }
+            else
+            {
+                if (printResults)
+                {
+                    Console.WriteLine("Playthrough Not Beatable");
+                }
+                return false;
+            }
+        }
+
         private static HashSet<string> CalcAllowedUnreachableChecks(SharedSettings sSettings)
         {
             // Can revisit where this code lives once we develop a "Guarantee

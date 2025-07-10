@@ -111,7 +111,7 @@ namespace TPRandomizer
 
             foreach (KeyValuePair<string, Room> roomEntry in Randomizer.Rooms.RoomDict)
             {
-                Console.WriteLine("checking room: " + roomEntry.Value.RoomName);
+                //Console.WriteLine("checking room: " + roomEntry.Value.RoomName);
                 foreach (Entrance entrance in roomEntry.Value.Exits)
                 {
                     if (entrance.IsShuffled())

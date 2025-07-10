@@ -438,8 +438,7 @@ namespace TPRandomizer
                 "Snowpeak Ruins",
                 "Temple of Time",
                 "City in The Sky",
-                "Palace of Twilight",
-                "Hyrule Castle"
+                "Palace of Twilight"
             };
 
         /// <summary>

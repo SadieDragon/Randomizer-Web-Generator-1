@@ -347,6 +347,7 @@ namespace TPRandomizer
                 Item.Armogohma_Defeated,
                 Item.Argorok_Defeated,
                 Item.Zant_Defeated,
+                Item.Ganondorf_Defeated
             };
 
         public List<Item> PortalItems =

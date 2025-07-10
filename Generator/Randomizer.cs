@@ -1071,7 +1071,7 @@ namespace TPRandomizer
             // We determine which dungeons are required after the dungeon rewards are placed but before the other checks
             // are placed because if a certain dungeon's checks need to be excluded, we want to exclude the check before
             // any items are placed in it.
-            CheckUnrequiredDungeons();
+            CheckUnrequiredDungeons(startingRoom);
 
             // Next we want to place items that are locked to a specific region such as keys, maps, compasses, etc.
             Console.WriteLine("Placing Region-Restricted Checks.");
@@ -1433,8 +1433,9 @@ namespace TPRandomizer
             Randomizer.RequiredDungeons = 0;
         }
 
-        private static void CheckUnrequiredDungeons()
+        private static void CheckUnrequiredDungeons(Room startingRoom)
         {
+            /*
             int palace = 0;
             int city = 1;
             int tot = 2;
@@ -1692,6 +1693,166 @@ namespace TPRandomizer
                         listOfRequiredDungeons[i].dungeonReward + " is a required Dungeon!"
                     );
                 }
+            }*/
+            // new stuff
+
+            List<string>[] listOfAffectedChecks = new List<string>[]
+            {
+                CheckFunctions.palaceRequirementChecks,
+                CheckFunctions.cityRequirementChecks,
+                CheckFunctions.totRequirementChecks,
+                CheckFunctions.snowpeakRequirementChecks,
+                CheckFunctions.arbitersRequirementChecks,
+                CheckFunctions.lakebedRequirementChecks,
+                CheckFunctions.minesRequirementChecks,
+                CheckFunctions.forestRequirementChecks,
+            };
+
+            // Create the dungeon entries
+            requiredDungeons forestTemple = new("Forest Temple", false, null);
+            requiredDungeons goronMines = new("Goron Mines", false, null);
+            requiredDungeons lakebedTemple = new("Lakebed Temple", false, null);
+            requiredDungeons arbitersGrounds = new("Arbiters Grounds", false, null);
+            requiredDungeons snowpeakRuins = new("Snowpeak Ruins", false, null);
+            requiredDungeons templeOfTime = new("Temple of Time", false, null);
+            requiredDungeons cityInTheSky = new("City in The Sky", false, null);
+            requiredDungeons palaceOfTwilight = new("Palace of Twilight", false, null);
+
+            requiredDungeons[] listOfRequiredDungeons = new requiredDungeons[]
+            {
+                palaceOfTwilight,
+                cityInTheSky,
+                templeOfTime,
+                snowpeakRuins,
+                arbitersGrounds,
+                lakebedTemple,
+                goronMines,
+                forestTemple,
+            };
+
+            string[] bossRooms =
+            {
+                "Palace of Twilight Boss Room",
+                "City in The Sky Boss Room",
+                "Temple of Time Boss Room",
+                "Snowpeak Ruins Boss Room",
+                "Lakebed Temple Boss Room",
+                "Goron Mines Boss Room",
+                "Forest Temple Boss Room",
+            };
+
+            string[] DungeonNames =
+            {
+                "Palace of Twilight",
+                "City in The Sky",
+                "Temple of Time",
+                "Snowpeak Ruins",
+                "Arbiters Grounds",
+                "Lakebed Temple",
+                "Goron Mines",
+                "Forest Temple",
+            };
+
+            // We want to loop through every dungeon and attempt to pair a boss room to the dungeon.
+            for (int i = 0; i < DungeonNames.GetLength(0); i++)
+            {
+                foreach (string bossRoom in bossRooms)
+                {
+                    Room bRoom = Randomizer.Rooms.RoomDict[bossRoom];
+                    // If there's a match, we want to account for the boss room and all affected checks in relation to the dungeon.
+                    // Example: if Fyrus is after Forest, we want to associate the Fyrus check and post GM checks with Forest.
+                    if (bRoom.Region == DungeonNames[i])
+                    {
+                        listOfAffectedChecks[i].AddRange(bRoom.Checks);
+                        switch (DungeonNames[i])
+                        {
+                            case "Goron Mines":
+                            {
+                                listOfAffectedChecks[i].AddRange(CheckFunctions.postFyrusChecks);
+                                break;
+                            }
+                            case "Snowpeak Ruins":
+                            {
+                                listOfAffectedChecks[i].AddRange(CheckFunctions.postBlizettaChecks);
+                                break;
+                            }
+                            case "Temple of Time":
+                            {
+                                listOfAffectedChecks[i].AddRange(
+                                    CheckFunctions.postArmogohmaChecks
+                                );
+                                break;
+                            }
+                            default:
+                            {
+                                break;
+                            }
+                        }
+                        break;
+                    }
+                }
+            }
+
+            // Next we want to associate the check lists with their respective dungeons.
+            for (int i = 0; i < listOfRequiredDungeons.GetLength(0); i++)
+            {
+                listOfRequiredDungeons[i].requirementChecks = listOfAffectedChecks[i];
+            }
+
+            Console.WriteLine("Checking Required Dungeons!");
+            // Now loop through all dungeons and validate the necessity of every check related to the dungeon.
+            for (int i = 0; i < listOfRequiredDungeons.GetLength(0); i++)
+            {
+                foreach (string dungeonCheck in listOfRequiredDungeons[i].requirementChecks)
+                {
+                    Item checkItem = Randomizer.Checks.CheckDict[dungeonCheck].itemId;
+
+                    Randomizer.Checks.CheckDict[dungeonCheck].itemId = Item.Recovery_Heart;
+                    bool isBeatable = BackendFunctions.ValidatePlaythroughBeatable(
+                        startingRoom,
+                        false
+                    );
+                    Randomizer.Checks.CheckDict[dungeonCheck].itemId = checkItem;
+
+                    if (!isBeatable)
+                    {
+                        listOfRequiredDungeons[i].isRequired = true;
+                        break;
+                    }
+                }
+            }
+
+            for (int i = 0; i < listOfRequiredDungeons.GetLength(0); i++)
+            {
+                if (!listOfRequiredDungeons[i].isRequired)
+                {
+                    if (Randomizer.SSettings.barrenDungeons)
+                    {
+                        foreach (string check in listOfRequiredDungeons[i].requirementChecks)
+                        {
+                            if (
+                                Checks.CheckDict[check].checkStatus != "Vanilla"
+                                && Checks.CheckDict[check].checkStatus != "Excluded"
+                            )
+                            {
+                                // Note: this used to check against
+                                // itemWasPlaced, but this caused dungeonReward
+                                // checks in unrequired barren dungeons to not
+                                // be marked as "Excluded-Unrequired".
+
+                                //Console.WriteLine(check + " is now excluded");
+                                Checks.CheckDict[check].checkStatus = "Excluded-Unrequired";
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    Randomizer.RequiredDungeons |= 0x80 >> i;
+                    Console.WriteLine(
+                        listOfRequiredDungeons[i].dungeon + " is a required Dungeon!"
+                    );
+                }
             }
         }
 
@@ -1877,6 +2038,7 @@ namespace TPRandomizer
                                 "(" + currentRoom.Exits[i].GlitchedRequirements + ")";
                         }
                         currentRoom.Exits[i].ParentArea = currentRoom.RoomName;
+                        currentRoom.Exits[i].ParentRegion = currentRoom.Region;
                         currentRoom.Exits[i].OriginalConnectedArea = currentRoom.Exits[
                             i
                         ].ConnectedArea;
@@ -1907,17 +2069,13 @@ namespace TPRandomizer
 
         public struct requiredDungeons
         {
-            public string dungeonReward;
+            public string dungeon;
             public bool isRequired;
             public List<String> requirementChecks;
 
-            public requiredDungeons(
-                string dungeonReward,
-                bool isRequired,
-                List<string> requirementChecks
-            )
+            public requiredDungeons(string dungeon, bool isRequired, List<string> requirementChecks)
             {
-                this.dungeonReward = dungeonReward;
+                this.dungeon = dungeon;
                 this.isRequired = isRequired;
                 this.requirementChecks = requirementChecks;
             }
