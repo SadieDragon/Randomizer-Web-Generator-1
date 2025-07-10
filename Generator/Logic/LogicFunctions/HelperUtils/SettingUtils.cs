@@ -20,5 +20,8 @@ namespace LogicFunctionsNS
             }
             return false;
         }
+
+        /// if open, true
+        /// if fused shadow, check that the count matches
     }
 }
