@@ -54,16 +54,21 @@ namespace TPRandomizer
                 }
                 case CastleRequirements.Fused_Shadows:
                 {
-                    return CUU.GetItemCount(Item.Progressive_Fused_Shadow)
-                        >= Randomizer.SSettings.castleRequirementCount;
+                    return CUU.VerifyItemQuantity(
+                        Item.Progressive_Fused_Shadow,
+                        Randomizer.SSettings.castleRequirementCount
+                    );
                 }
                 case CastleRequirements.Mirror_Shards:
                 {
-                    return CUU.GetItemCount(Item.Progressive_Mirror_Shard)
-                        >= Randomizer.SSettings.castleRequirementCount;
+                    return CUU.VerifyItemQuantity(
+                        Item.Progressive_Mirror_Shard,
+                        Randomizer.SSettings.castleRequirementCount
+                    );
                 }
                 case CastleRequirements.Dungeons:
                 {
+                    // TODO: Can probs use "Count" but i'm not making too many changes at once
                     int dungeonCount = 0;
                     foreach (Item boss in Randomizer.Items.BossItems)
                     {
@@ -80,8 +85,10 @@ namespace TPRandomizer
                 }
                 case CastleRequirements.Poe_Souls:
                 {
-                    return CUU.GetItemCount(Item.Poe_Soul)
-                        >= Randomizer.SSettings.castleRequirementCount;
+                    return CUU.VerifyItemQuantity(
+                        Item.Poe_Soul,
+                        Randomizer.SSettings.castleRequirementCount
+                    );
                 }
                 case CastleRequirements.Hearts:
                 {
@@ -102,13 +109,17 @@ namespace TPRandomizer
                 }
                 case CastleBKRequirements.Fused_Shadows:
                 {
-                    return CUU.GetItemCount(Item.Progressive_Fused_Shadow)
-                        >= Randomizer.SSettings.castleBKRequirementCount;
+                    return CUU.VerifyItemQuantity(
+                        Item.Progressive_Fused_Shadow,
+                        Randomizer.SSettings.castleRequirementCount
+                    );
                 }
                 case CastleBKRequirements.Mirror_Shards:
                 {
-                    return CUU.GetItemCount(Item.Progressive_Mirror_Shard)
-                        >= Randomizer.SSettings.castleBKRequirementCount;
+                    return CUU.VerifyItemQuantity(
+                        Item.Progressive_Mirror_Shard,
+                        Randomizer.SSettings.castleRequirementCount
+                    );
                 }
                 case CastleBKRequirements.Dungeons:
                 {
@@ -124,8 +135,10 @@ namespace TPRandomizer
                 }
                 case CastleBKRequirements.Poe_Souls:
                 {
-                    return CUU.GetItemCount(Item.Poe_Soul)
-                        >= Randomizer.SSettings.castleBKRequirementCount;
+                    return CUU.VerifyItemQuantity(
+                        Item.Poe_Soul,
+                        Randomizer.SSettings.castleRequirementCount
+                    );
                 }
                 case CastleBKRequirements.Hearts:
                 {
