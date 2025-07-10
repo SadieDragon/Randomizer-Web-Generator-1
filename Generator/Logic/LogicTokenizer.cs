@@ -73,7 +73,7 @@ namespace TPRandomizer
 
             public override bool Evaluate()
             {
-                int heldCount = LogicFunctions.getItemCount(ItemId);
+                int heldCount = LogicFunctions.GetItemCount(ItemId);
                 // Console.WriteLine($"Item.Evaluate {heldCount} {Count} {ItemId}");
                 return heldCount >= Count;
             }
