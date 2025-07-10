@@ -6,16 +6,16 @@ namespace LogicFunctionsNS
 {
     public class SettingUtils
     {
-        private static readonly SharedSettings SharedSettings = Randomizer.SSettings;
+        private static readonly SharedSettings sharedSettings = Randomizer.SSettings;
 
         public static bool EvaluateSetting(string setting, string value)
         {
-            PropertyInfo[] settingProperties = SharedSettings.GetType().GetProperties();
+            PropertyInfo[] settingProperties = sharedSettings.GetType().GetProperties();
             setting = setting.Replace("Setting.", "");
 
             foreach (PropertyInfo property in settingProperties)
             {
-                var settingValue = property.GetValue(SharedSettings, null);
+                var settingValue = property.GetValue(sharedSettings, null);
                 if ((property.Name == setting) && (value == settingValue.ToString()))
                 {
                     return true;
@@ -26,7 +26,7 @@ namespace LogicFunctionsNS
 
         public static bool IsGlitchedLogic()
         {
-            return SharedSettings.logicRules == LogicRules.Glitched;
+            return sharedSettings.logicRules == LogicRules.Glitched;
         }
 
         /// <sumamry>
@@ -47,42 +47,42 @@ namespace LogicFunctionsNS
             return false;
         }
 
-        public static bool BonksDamageEnabled() => SharedSettings.bonksDoDamage;
+        public static bool BonksDamageEnabled() => sharedSettings.bonksDoDamage;
 
         public static bool CanStrikePedestal()
         {
-            return HasSwordLevel.CurrentSwordLevel() >= (int)SharedSettings.totEntrance;
+            return HasSwordLevel.CurrentSwordLevel() >= (int)sharedSettings.totEntrance;
         }
 
-        public static bool HasSkippedPrologue() => SharedSettings.skipPrologue;
+        public static bool HasSkippedPrologue() => sharedSettings.skipPrologue;
 
-        public static bool HasSkippedFaronTwilight() => SharedSettings.faronTwilightCleared;
+        public static bool HasSkippedFaronTwilight() => sharedSettings.faronTwilightCleared;
 
-        public static bool HasSkippedEldinTwilight() => SharedSettings.eldinTwilightCleared;
+        public static bool HasSkippedEldinTwilight() => sharedSettings.eldinTwilightCleared;
 
-        public static bool HasSkippedLanayruTwilight() => SharedSettings.lanayruTwilightCleared;
+        public static bool HasSkippedLanayruTwilight() => sharedSettings.lanayruTwilightCleared;
 
-        public static bool HasSkippedMDH() => SharedSettings.skipMdh;
+        public static bool HasSkippedMDH() => sharedSettings.skipMdh;
 
-        public static bool HasSkippedSnowpeakEntrance() => SharedSettings.skipSnowpeakEntrance;
+        public static bool HasSkippedSnowpeakEntrance() => sharedSettings.skipSnowpeakEntrance;
 
         public static bool IsKeysy()
         {
-            return SharedSettings.smallKeySettings == SmallKeySettings.Keysy;
+            return sharedSettings.smallKeySettings == SmallKeySettings.Keysy;
         }
 
         public static bool IsOHKO()
         {
-            return SharedSettings.damageMagnification == DamageMagnification.OHKO;
+            return sharedSettings.damageMagnification == DamageMagnification.OHKO;
         }
 
-        public static bool IsOpenMap() => SharedSettings.openMap;
+        public static bool IsOpenMap() => sharedSettings.openMap;
 
-        public static bool IsShopSanity() => SharedSettings.shuffleShopItems;
+        public static bool IsShopSanity() => sharedSettings.shuffleShopItems;
 
         public static bool IsOpenWoods()
         {
-            return SharedSettings.faronWoodsLogic == FaronWoodsLogic.Open;
+            return sharedSettings.faronWoodsLogic == FaronWoodsLogic.Open;
         }
     }
 }
