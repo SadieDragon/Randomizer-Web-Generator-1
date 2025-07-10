@@ -56,6 +56,8 @@ namespace LogicFunctionsNS
 
         public static bool HasSkippedPrologue() => SharedSettings.skipPrologue;
 
+        public static bool HasSkippedMDH() => SharedSettings.skipMdh;
+
         public static bool HasSkippedSnowpeakEntrance() => SharedSettings.skipSnowpeakEntrance;
 
         public static bool IsKeysy()

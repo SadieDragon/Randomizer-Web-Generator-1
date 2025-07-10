@@ -893,7 +893,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanCompleteMDH()
         {
-            return (Randomizer.SSettings.skipMdh == true)
+            return SettingUtils.HasSkippedMDH()
                 || (CCD.CanCompleteLakebedTemple() && ERLF.HasReachedRoom("Castle Town South"));
             //return (CanCompleteLakebedTemple() || (Randomizer.SSettings.skipMdh == true));
         }
