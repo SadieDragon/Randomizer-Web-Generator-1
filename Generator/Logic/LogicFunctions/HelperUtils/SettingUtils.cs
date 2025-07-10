@@ -56,6 +56,12 @@ namespace LogicFunctionsNS
 
         public static bool HasSkippedPrologue() => SharedSettings.skipPrologue;
 
+        public static bool HasSkippedFaronTwilight() => SharedSettings.faronTwilightCleared;
+
+        public static bool HasSkippedEldinTwilight() => SharedSettings.eldinTwilightCleared;
+
+        public static bool HasSkippedLanayruTwilight() => SharedSettings.lanayruTwilightCleared;
+
         public static bool HasSkippedMDH() => SharedSettings.skipMdh;
 
         public static bool HasSkippedSnowpeakEntrance() => SharedSettings.skipSnowpeakEntrance;

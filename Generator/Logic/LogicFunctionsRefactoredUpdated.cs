@@ -917,7 +917,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanCompleteFaronTwilight()
         {
-            return Randomizer.SSettings.faronTwilightCleared
+            return SettingUtils.HasSkippedFaronTwilight()
                 || (
                     CanCompletePrologue()
                     && HLF.CanCompleteTwilight(RoomFunctions.faronTwilightRooms)
@@ -929,13 +929,13 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanCompleteEldinTwilight()
         {
-            return Randomizer.SSettings.eldinTwilightCleared
+            return SettingUtils.HasSkippedEldinTwilight()
                 || HLF.CanCompleteTwilight(RoomFunctions.eldinTwilightRooms);
         }
 
         public static bool CanCompleteLanayruTwilight()
         {
-            return Randomizer.SSettings.lanayruTwilightCleared
+            return SettingUtils.HasSkippedLanayruTwilight()
                 || (
                     (ERLF.HasReachedRoom("North Eldin Field") || CUU.CanUse(Item.Shadow_Crystal))
                     && HLF.CanCompleteTwilight(RoomFunctions.lanayruTwilightRooms)
@@ -944,11 +944,9 @@ namespace TPRandomizer
 
         public static bool CanCompleteAllTwilight()
         {
-            return (
-                CanCompleteFaronTwilight()
+            return CanCompleteFaronTwilight()
                 && CanCompleteEldinTwilight()
-                && CanCompleteLanayruTwilight()
-            );
+                && CanCompleteLanayruTwilight();
         }
         #endregion
 
@@ -1010,7 +1008,7 @@ namespace TPRandomizer
         // TODO: This Can probably be removed once CanClearForest is simplified.
         public static bool CanCompleteEldinTwilightGlitched()
         {
-            return Randomizer.SSettings.eldinTwilightCleared || CanClearForestGlitched();
+            return SettingUtils.HasSkippedEldinTwilight() || CanClearForestGlitched();
         }
 
         /// <summary>
