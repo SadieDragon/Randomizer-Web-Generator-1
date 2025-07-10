@@ -2494,7 +2494,7 @@ namespace TPRandomizer
         /// <summary>
         /// summary text.
         /// </summary>
-        public static bool verifyItemQuantity(string itemToBeCounted, int quantity)
+        public static bool VerifyItemQuantity(string itemToBeCounted, int quantity)
         {
             List<Item> itemList = Randomizer.Items.heldItems;
             int itemQuantity = 0;
