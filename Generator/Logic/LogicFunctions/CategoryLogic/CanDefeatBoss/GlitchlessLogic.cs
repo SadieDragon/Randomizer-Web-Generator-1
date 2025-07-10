@@ -37,7 +37,7 @@ namespace LogicFunctionsNS.GlitchlessLogic
         {
             return CUU.CanUse(Item.Shadow_Crystal)
                 && HSL.HasMasterSword()
-                && CUU.CanUse(Item.Progressive_Hidden_Skill);
+                && HasHiddenSkillLevel.HasEndingBlow();
         }
     }
 }

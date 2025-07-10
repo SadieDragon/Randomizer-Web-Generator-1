@@ -9,6 +9,8 @@ using BU = LogicFunctionsNS.BombUtils;
 using CUU = LogicFunctionsNS.CanUseUtils;
 using NLU = LogicFunctionsNS.NicheLogicUtils;
 
+// in the JSON, all calls to these functions should pretend the setting is already checked
+
 namespace LogicFunctionsNS
 {
     public class DifficultCombatLogicUtils
