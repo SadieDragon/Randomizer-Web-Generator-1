@@ -42,6 +42,100 @@ namespace TPRandomizer
     public class LogicFunctionsUpdatedRefactored
     {
         // Evaluate the tokenized settings to their respective values that are set by the settings string.
+        #region ToRefactor
+        // New functions that have been added since I started that I need to sort out.
+        public static bool CanBreakHCBarrier()
+        {
+            switch (Randomizer.SSettings.castleRequirements)
+            {
+                case CastleRequirements.Open:
+                {
+                    return true;
+                }
+                case CastleRequirements.Fused_Shadows:
+                {
+                    return CUU.GetItemCount(Item.Progressive_Fused_Shadow)
+                        >= Randomizer.SSettings.castleRequirementCount;
+                }
+                case CastleRequirements.Mirror_Shards:
+                {
+                    return CUU.GetItemCount(Item.Progressive_Mirror_Shard)
+                        >= Randomizer.SSettings.castleRequirementCount;
+                }
+                case CastleRequirements.Dungeons:
+                {
+                    int dungeonCount = 0;
+                    foreach (Item boss in Randomizer.Items.BossItems)
+                    {
+                        if (CUU.CanUse(boss))
+                        {
+                            dungeonCount++;
+                        }
+                    }
+                    return dungeonCount >= Randomizer.SSettings.castleRequirementCount;
+                }
+                case CastleRequirements.Vanilla:
+                {
+                    return CCD.CanCompletePalaceofTwilight();
+                }
+                case CastleRequirements.Poe_Souls:
+                {
+                    return CUU.GetItemCount(Item.Poe_Soul)
+                        >= Randomizer.SSettings.castleRequirementCount;
+                }
+                case CastleRequirements.Hearts:
+                {
+                    return HLF.GetPlayerHealth() >= Randomizer.SSettings.castleRequirementCount;
+                }
+            }
+
+            return false;
+        }
+
+        public static bool CanOpenHCBKGate()
+        {
+            switch (Randomizer.SSettings.castleBKRequirements)
+            {
+                case CastleBKRequirements.None:
+                {
+                    return true;
+                }
+                case CastleBKRequirements.Fused_Shadows:
+                {
+                    return CUU.GetItemCount(Item.Progressive_Fused_Shadow)
+                        >= Randomizer.SSettings.castleBKRequirementCount;
+                }
+                case CastleBKRequirements.Mirror_Shards:
+                {
+                    return CUU.GetItemCount(Item.Progressive_Mirror_Shard)
+                        >= Randomizer.SSettings.castleBKRequirementCount;
+                }
+                case CastleBKRequirements.Dungeons:
+                {
+                    int dungeonCount = 0;
+                    foreach (Item boss in Randomizer.Items.BossItems)
+                    {
+                        if (CUU.CanUse(boss))
+                        {
+                            dungeonCount++;
+                        }
+                    }
+                    return dungeonCount >= Randomizer.SSettings.castleBKRequirementCount;
+                }
+                case CastleBKRequirements.Poe_Souls:
+                {
+                    return CUU.GetItemCount(Item.Poe_Soul)
+                        >= Randomizer.SSettings.castleBKRequirementCount;
+                }
+                case CastleBKRequirements.Hearts:
+                {
+                    return HLF.GetPlayerHealth() >= Randomizer.SSettings.castleBKRequirementCount;
+                }
+            }
+
+            return false;
+        }
+        #endregion
 
         #region KnownNeeded
         public static bool CanCompleteGoronMines() => CCD.CanCompleteGoronMines();
