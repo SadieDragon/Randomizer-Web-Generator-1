@@ -11,18 +11,18 @@ namespace LogicFunctionsNS.NicheLogic
     {
         public static bool CanKnockDownHCPainting()
         {
-            return NLU.CanDoNicheStuff()
+            return SettingUtils.CanDoNicheStuff()
                 && (BU.HasBombs() || (HSL.HasSword() && HHSL.HasJumpStrike()));
         }
 
         public static bool CanBreakMonkeyCage()
         {
-            return NLU.CanDoNicheStuff() && MIU.CanShieldAttack();
+            return SettingUtils.CanDoNicheStuff() && MIU.CanShieldAttack();
         }
 
         public static bool CanPressMinesSwitch()
         {
-            return NLU.CanDoNicheStuff() && CUU.CanUse(TPRandomizer.Item.Ball_and_Chain);
+            return SettingUtils.CanDoNicheStuff() && CUU.CanUse(TPRandomizer.Item.Ball_and_Chain);
         }
 
         public static bool CanBreakWoodenDoor() => NLU.CanDoNicheCombat(includeBoots: false);

@@ -13,38 +13,29 @@ namespace LogicFunctionsNS
 {
     public class DifficultCombatLogicUtils
     {
-        /// <summary>
-        /// Checks the setting for difficult combat. Difficult combat includes: difficult, annoying, or time consuming combat
-        /// </summary>
-        public static bool CanDoDifficultCombat()
-        {
-            // TODO: Change to use setting once it's made
-            return false;
-        }
-
         public static bool CanUseBacksliceInDC()
         {
-            return CanDoDifficultCombat() && NLU.CanUseBacksliceAsSword();
+            return SettingUtils.CanDoDifficultCombat() && NLU.CanUseBacksliceAsSword();
         }
 
         public static bool CanUseItemInDC(params Item[] damagingItemList)
         {
-            return CanDoDifficultCombat() && damagingItemList.Any(CUU.CanUse);
+            return SettingUtils.CanDoDifficultCombat() && damagingItemList.Any(CUU.CanUse);
         }
 
         public static bool CanUseBombsInDC()
         {
-            return CanDoDifficultCombat() && BU.HasBombs();
+            return SettingUtils.CanDoDifficultCombat() && BU.HasBombs();
         }
 
         public static bool CanUseIronBootsInDC()
         {
-            return CanDoDifficultCombat() && CUU.CanUse(Item.Iron_Boots);
+            return SettingUtils.CanDoDifficultCombat() && CUU.CanUse(Item.Iron_Boots);
         }
 
         public static bool CanUseSpinnerInDC()
         {
-            return CanDoDifficultCombat() && CUU.CanUse(Item.Spinner);
+            return SettingUtils.CanDoDifficultCombat() && CUU.CanUse(Item.Spinner);
         }
 
         public static bool CanUseSpinnerOrIronBootsInDC()
@@ -54,7 +45,7 @@ namespace LogicFunctionsNS
 
         public static bool CanUseShadowCrystalInDC()
         {
-            return CanDoDifficultCombat() && CUU.CanUse(Item.Shadow_Crystal);
+            return SettingUtils.CanDoDifficultCombat() && CUU.CanUse(Item.Shadow_Crystal);
         }
     }
 }

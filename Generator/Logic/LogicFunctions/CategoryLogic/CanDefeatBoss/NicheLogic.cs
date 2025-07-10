@@ -9,12 +9,12 @@ namespace LogicFunctionsNS.NicheLogic
     {
         public static bool CanDefeatDiababa()
         {
-            return NLU.CanDoNicheStuff() && CUU.CanUse(Item.Iron_Boots);
+            return SettingUtils.CanDoNicheStuff() && CUU.CanUse(Item.Iron_Boots);
         }
 
         public static bool CanDefeatMorpheel()
         {
-            return NLU.CanDoNicheStuff() && GLU.CanDoAirRefill();
+            return SettingUtils.CanDoNicheStuff() && GLU.CanDoAirRefill();
         }
 
         public static bool CanDefeatArgorok() => NLU.CanUseMagicArmorNiche();

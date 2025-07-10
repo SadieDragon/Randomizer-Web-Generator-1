@@ -12,7 +12,7 @@ namespace LogicFunctionsNS.NicheLogic
 
         public static bool CanDefeatDangoro()
         {
-            return NLU.CanDoNicheStuff() && CUU.CanUse(Item.Ball_and_Chain);
+            return SettingUtils.CanDoNicheStuff() && CUU.CanUse(Item.Ball_and_Chain);
         }
 
         public static bool CanDefeatDekuToad() => NLU.CanDoNicheCombat();

@@ -14,7 +14,7 @@ namespace LogicFunctionsNS.GlitchedLogic
     {
         public static bool CanKnockDownHCPainting()
         {
-            return GLU.IsGlitchedLogic()
+            return SettingUtils.IsGlitchedLogic()
                 && ((HSL.HasSword() && GLU.CanDoMoonBoots()) || GLU.CanDoBSMoonBoots());
         }
 

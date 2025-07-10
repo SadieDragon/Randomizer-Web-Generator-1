@@ -6,7 +6,7 @@ namespace LogicFunctionsNS.GlitchedLogic
     {
         public static bool CanDefeatZant()
         {
-            return GLU.IsGlitchedLogic() && GLU.CanDoAirRefill();
+            return SettingUtils.IsGlitchedLogic() && GLU.CanDoAirRefill();
         }
     }
 }
