@@ -47,6 +47,8 @@ namespace LogicFunctionsNS
             return false;
         }
 
+        public static bool BonksDamageEnabled() => SharedSettings.bonksDoDamage;
+
         public static bool CanStrikePedestal()
         {
             return HasSwordLevel.CurrentSwordLevel() >= (int)SharedSettings.totEntrance;
@@ -57,6 +59,11 @@ namespace LogicFunctionsNS
         public static bool IsKeysy()
         {
             return SharedSettings.smallKeySettings == SmallKeySettings.Keysy;
+        }
+
+        public static bool IsOHKO()
+        {
+            return SharedSettings.damageMagnification == DamageMagnification.OHKO;
         }
 
         public static bool IsOpenMap() => SharedSettings.openMap;

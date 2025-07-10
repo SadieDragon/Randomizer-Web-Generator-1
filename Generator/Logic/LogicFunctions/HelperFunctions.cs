@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using TPRandomizer;
-using TPRandomizer.SSettings.Enums;
 using BOU = LogicFunctionsNS.BottleUtils;
 using CUU = LogicFunctionsNS.CanUseUtils;
 using ERLF = LogicFunctionsNS.ERLogicFunctions;
@@ -10,8 +9,6 @@ namespace LogicFunctionsNS
 {
     public class HelperFunctions
     {
-        public static SharedSettings SharedSettings = Randomizer.SSettings;
-
         public static Item ConvertStrToItem(string item) => Enum.Parse<Item>(item);
 
         /// <summary>
@@ -20,14 +17,11 @@ namespace LogicFunctionsNS
         /// /// <returns>`true` if so, else `false`.</returns>
         public static bool CanSurviveBonkDamage()
         {
-            // Check the setting "bonksDoDamage"
-            bool BonksDamageEnabled = SharedSettings.bonksDoDamage;
-
-            // Check the setting "damageMagnification"
-            bool IsOHKO = SharedSettings.damageMagnification == DamageMagnification.OHKO;
-
-            return !BonksDamageEnabled
-                || (BonksDamageEnabled && (!IsOHKO || BOU.CanUseBottledFairies()));
+            return !SettingUtils.BonksDamageEnabled()
+                || (
+                    SettingUtils.BonksDamageEnabled()
+                    && (!SettingUtils.IsOHKO() || BOU.CanUseBottledFairies())
+                );
         }
 
         public static int GetPlayerHealth()
