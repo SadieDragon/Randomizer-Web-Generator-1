@@ -48,6 +48,8 @@ namespace TPRandomizer
         // New functions that have been added since I started that I need to sort out.
         public static bool CanBreakHCBarrier()
         {
+            int requirementCount = Randomizer.SSettings.castleRequirementCount;
+
             switch (Randomizer.SSettings.castleRequirements)
             {
                 case CastleRequirements.Open:
@@ -56,22 +58,15 @@ namespace TPRandomizer
                 }
                 case CastleRequirements.Fused_Shadows:
                 {
-                    return CUU.VerifyItemQuantity(
-                        Item.Progressive_Fused_Shadow,
-                        Randomizer.SSettings.castleRequirementCount
-                    );
+                    return CUU.VerifyItemQuantity(Item.Progressive_Fused_Shadow, requirementCount);
                 }
                 case CastleRequirements.Mirror_Shards:
                 {
-                    return CUU.VerifyItemQuantity(
-                        Item.Progressive_Mirror_Shard,
-                        Randomizer.SSettings.castleRequirementCount
-                    );
+                    return CUU.VerifyItemQuantity(Item.Progressive_Mirror_Shard, requirementCount);
                 }
                 case CastleRequirements.Dungeons:
                 {
-                    return Randomizer.Items.BossItems.Count(CUU.CanUse)
-                        >= Randomizer.SSettings.castleRequirementCount;
+                    return Randomizer.Items.BossItems.Count(CUU.CanUse) >= requirementCount;
                 }
                 case CastleRequirements.Vanilla:
                 {
@@ -79,14 +74,11 @@ namespace TPRandomizer
                 }
                 case CastleRequirements.Poe_Souls:
                 {
-                    return CUU.VerifyItemQuantity(
-                        Item.Poe_Soul,
-                        Randomizer.SSettings.castleRequirementCount
-                    );
+                    return CUU.VerifyItemQuantity(Item.Poe_Soul, requirementCount);
                 }
                 case CastleRequirements.Hearts:
                 {
-                    return HLF.GetPlayerHealth() >= Randomizer.SSettings.castleRequirementCount;
+                    return HLF.GetPlayerHealth() >= requirementCount;
                 }
             }
 
@@ -95,6 +87,8 @@ namespace TPRandomizer
 
         public static bool CanOpenHCBKGate()
         {
+            int requirementCount = Randomizer.SSettings.castleBKRequirementCount;
+
             switch (Randomizer.SSettings.castleBKRequirements)
             {
                 case CastleBKRequirements.None:
@@ -103,33 +97,23 @@ namespace TPRandomizer
                 }
                 case CastleBKRequirements.Fused_Shadows:
                 {
-                    return CUU.VerifyItemQuantity(
-                        Item.Progressive_Fused_Shadow,
-                        Randomizer.SSettings.castleBKRequirementCount
-                    );
+                    return CUU.VerifyItemQuantity(Item.Progressive_Fused_Shadow, requirementCount);
                 }
                 case CastleBKRequirements.Mirror_Shards:
                 {
-                    return CUU.VerifyItemQuantity(
-                        Item.Progressive_Mirror_Shard,
-                        Randomizer.SSettings.castleBKRequirementCount
-                    );
+                    return CUU.VerifyItemQuantity(Item.Progressive_Mirror_Shard, requirementCount);
                 }
                 case CastleBKRequirements.Dungeons:
                 {
-                    return Randomizer.Items.BossItems.Count(CUU.CanUse)
-                        >= Randomizer.SSettings.castleBKRequirementCount;
+                    return Randomizer.Items.BossItems.Count(CUU.CanUse) >= requirementCount;
                 }
                 case CastleBKRequirements.Poe_Souls:
                 {
-                    return CUU.VerifyItemQuantity(
-                        Item.Poe_Soul,
-                        Randomizer.SSettings.castleBKRequirementCount
-                    );
+                    return CUU.VerifyItemQuantity(Item.Poe_Soul, requirementCount);
                 }
                 case CastleBKRequirements.Hearts:
                 {
-                    return HLF.GetPlayerHealth() >= Randomizer.SSettings.castleBKRequirementCount;
+                    return HLF.GetPlayerHealth() >= requirementCount;
                 }
             }
 
