@@ -1,6 +1,8 @@
 // Untested; not hooked to anything; scratchpad ish file.
 
 // using LogicFunctionsNS;
+using System;
+using System.Linq;
 using TPRandomizer.SSettings.Enums;
 using BOU = LogicFunctionsNS.BottleUtils;
 using BU = LogicFunctionsNS.BombUtils;
@@ -68,16 +70,8 @@ namespace TPRandomizer
                 }
                 case CastleRequirements.Dungeons:
                 {
-                    // TODO: Can probs use "Count" but i'm not making too many changes at once
-                    int dungeonCount = 0;
-                    foreach (Item boss in Randomizer.Items.BossItems)
-                    {
-                        if (CUU.CanUse(boss))
-                        {
-                            dungeonCount++;
-                        }
-                    }
-                    return dungeonCount >= Randomizer.SSettings.castleRequirementCount;
+                    return Randomizer.Items.BossItems.Count(CUU.CanUse)
+                        >= Randomizer.SSettings.castleRequirementCount;
                 }
                 case CastleRequirements.Vanilla:
                 {
@@ -111,33 +105,26 @@ namespace TPRandomizer
                 {
                     return CUU.VerifyItemQuantity(
                         Item.Progressive_Fused_Shadow,
-                        Randomizer.SSettings.castleRequirementCount
+                        Randomizer.SSettings.castleBKRequirementCount
                     );
                 }
                 case CastleBKRequirements.Mirror_Shards:
                 {
                     return CUU.VerifyItemQuantity(
                         Item.Progressive_Mirror_Shard,
-                        Randomizer.SSettings.castleRequirementCount
+                        Randomizer.SSettings.castleBKRequirementCount
                     );
                 }
                 case CastleBKRequirements.Dungeons:
                 {
-                    int dungeonCount = 0;
-                    foreach (Item boss in Randomizer.Items.BossItems)
-                    {
-                        if (CUU.CanUse(boss))
-                        {
-                            dungeonCount++;
-                        }
-                    }
-                    return dungeonCount >= Randomizer.SSettings.castleBKRequirementCount;
+                    return Randomizer.Items.BossItems.Count(CUU.CanUse)
+                        >= Randomizer.SSettings.castleBKRequirementCount;
                 }
                 case CastleBKRequirements.Poe_Souls:
                 {
                     return CUU.VerifyItemQuantity(
                         Item.Poe_Soul,
-                        Randomizer.SSettings.castleRequirementCount
+                        Randomizer.SSettings.castleBKRequirementCount
                     );
                 }
                 case CastleBKRequirements.Hearts:
