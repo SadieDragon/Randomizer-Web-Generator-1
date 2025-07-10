@@ -8,7 +8,7 @@ namespace LogicFunctionsNS
     {
         public static bool CanUnlockMapUtil(List<string> roomsInMap)
         {
-            return Randomizer.SSettings.openMap || ERLF.HasReachedAnyRooms(roomsInMap);
+            return SettingUtils.IsOpenMap() || ERLF.HasReachedAnyRooms(roomsInMap);
         }
 
         public static bool CanUnlockOrdonaMap() => CanUnlockMapUtil(RoomFunctions.OrdonaMapRooms);

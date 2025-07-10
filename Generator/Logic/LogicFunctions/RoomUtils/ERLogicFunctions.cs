@@ -80,7 +80,7 @@ namespace LogicFunctionsNS
         {
             // If openMap is true, then the map is already open.
             // Otherwise, we need to check if any rooms on the map have been accessed.
-            return SharedSettings.openMap || HasReachedAnyRooms(RoomsOnMap);
+            return SettingUtils.IsOpenMap() || HasReachedAnyRooms(RoomsOnMap);
         }
 
         public static bool HasReachedBarnesBombs()

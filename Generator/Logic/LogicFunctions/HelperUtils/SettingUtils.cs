@@ -44,5 +44,7 @@ namespace LogicFunctionsNS
             // TODO: Change to use setting once it's made
             return false;
         }
+
+        public static bool IsOpenMap() => Randomizer.SSettings.openMap;
     }
 }
