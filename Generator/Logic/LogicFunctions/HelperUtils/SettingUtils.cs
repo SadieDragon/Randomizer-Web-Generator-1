@@ -49,6 +49,11 @@ namespace LogicFunctionsNS
 
         public static bool HasSkippedSnowpeakEntrance() => SharedSettings.skipSnowpeakEntrance;
 
+        public static bool IsKeysy()
+        {
+            return SharedSettings.smallKeySettings == SmallKeySettings.Keysy;
+        }
+
         public static bool IsOpenMap() => SharedSettings.openMap;
 
         public static bool IsShopSanity() => SharedSettings.shuffleShopItems;

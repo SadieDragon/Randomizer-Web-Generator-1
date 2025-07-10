@@ -23,7 +23,7 @@ namespace LogicFunctionsNS.GlitchedLogic
         ///
         public static bool CanSkipKeyToDekuToad()
         {
-            return (Randomizer.SSettings.smallKeySettings == SmallKeySettings.Keysy)
+            return SettingUtils.IsKeysy()
                 || HHSL.HasBackslice()
                 || GLU.CanDoBSMoonBoots()
                 || GLU.CanDoJSMoonBoots()

@@ -25,14 +25,12 @@ namespace LogicFunctionsNS.GlitchlessLogic
 
         public static bool CanFreeAllMonkeys()
         {
-            bool isKeysy = Randomizer.SSettings.smallKeySettings == SmallKeySettings.Keysy;
-
             return MIU.CanBurnWebs()
                 && CUU.CanUse(Item.Boomerang)
-                && (isKeysy || (CUU.GetItemCount(Item.Forest_Temple_Small_Key) >= 4))
+                && (SettingUtils.IsKeysy() || (CUU.GetItemCount(Item.Forest_Temple_Small_Key) >= 4))
                 && (
                     CUU.CanUse(Item.Lantern)
-                    || (isKeysy && (BU.HasBombs() || CUU.CanUse(Item.Iron_Boots)))
+                    || (SettingUtils.IsKeysy() && (BU.HasBombs() || CUU.CanUse(Item.Iron_Boots)))
                 );
         }
 
