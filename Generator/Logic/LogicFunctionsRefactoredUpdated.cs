@@ -860,11 +860,7 @@ namespace TPRandomizer
             return CanCompleteMDH() && CanCompleteAllTwilight();
         }
 
-        public static bool CanStrikePedestal()
-        {
-            return CUU.GetItemCount(Item.Progressive_Sword)
-                >= (int)Randomizer.SSettings.totEntrance;
-        }
+        public static bool CanStrikePedestal() => SettingUtils.CanStrikePedestal();
 
         public static bool CanWarpMeteor()
         {

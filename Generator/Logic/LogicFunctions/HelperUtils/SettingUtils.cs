@@ -47,6 +47,11 @@ namespace LogicFunctionsNS
             return false;
         }
 
+        public static bool CanStrikePedestal()
+        {
+            return HasSwordLevel.CurrentSwordLevel() >= (int)SharedSettings.totEntrance;
+        }
+
         public static bool HasSkippedSnowpeakEntrance() => SharedSettings.skipSnowpeakEntrance;
 
         public static bool IsKeysy()

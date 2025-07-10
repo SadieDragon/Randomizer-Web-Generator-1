@@ -13,14 +13,9 @@ namespace LogicFunctionsNS
             Light = 4,
         }
 
-        private static int CurrentSwordLevel()
+        public static int CurrentSwordLevel()
         {
             return CUU.GetItemCount(Item.Progressive_Sword);
-        }
-
-        public static bool CanStrikePedestal()
-        {
-            return CurrentSwordLevel() >= (int)Randomizer.SSettings.totEntrance;
         }
 
         public static bool HasSword()
