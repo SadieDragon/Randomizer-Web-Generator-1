@@ -1,6 +1,6 @@
 using TPRandomizer;
 using TPRandomizer.SSettings.Enums;
-using CUU = LogicFunctionsNS.CanUseUtilities;
+using CUU = LogicFunctionsNS.CanUseUtils;
 using HHSL = LogicFunctionsNS.HasHiddenSkillLevel;
 
 namespace LogicFunctionsNS

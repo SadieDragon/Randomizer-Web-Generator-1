@@ -4,7 +4,7 @@
 
 using TPRandomizer;
 using TPRandomizer.SSettings.Enums;
-using CUU = LogicFunctionsNS.CanUseUtilities;
+using CUU = LogicFunctionsNS.CanUseUtils;
 
 namespace LogicFunctionsNS.GlitchedLogic
 {

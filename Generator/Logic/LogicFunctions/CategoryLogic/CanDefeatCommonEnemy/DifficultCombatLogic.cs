@@ -4,7 +4,7 @@
 
 using TPRandomizer;
 using BU = LogicFunctionsNS.BombUtils;
-using CUU = LogicFunctionsNS.CanUseUtilities;
+using CUU = LogicFunctionsNS.CanUseUtils;
 using DCLU = LogicFunctionsNS.DifficultCombatLogicUtils;
 
 namespace LogicFunctionsNS.DifficultCombatLogic

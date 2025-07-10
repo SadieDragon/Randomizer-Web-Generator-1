@@ -41,7 +41,7 @@ namespace LogicFunctionsNS
                 foreach (var (portal, room) in entries)
                 {
                     // Console.WriteLine($"{portal} being checked, which maps to {room}");
-                    if (CanUseUtilities.CanUse(portal))
+                    if (CanUseUtils.CanUse(portal))
                     {
                         // Console.WriteLine($"Added {room} to the entry.");
                         portalRooms.Add(Randomizer.Rooms.RoomDict[room]);

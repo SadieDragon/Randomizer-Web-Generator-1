@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using TPRandomizer;
 using TPRandomizer.SSettings.Enums;
 using BOU = LogicFunctionsNS.BottleUtils;
-using CUU = LogicFunctionsNS.CanUseUtilities;
+using CUU = LogicFunctionsNS.CanUseUtils;
 using ERLF = LogicFunctionsNS.ERLogicFunctions;
 
 namespace LogicFunctionsNS

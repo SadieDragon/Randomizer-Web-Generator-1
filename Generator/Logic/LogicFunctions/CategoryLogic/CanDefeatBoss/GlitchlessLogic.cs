@@ -1,5 +1,5 @@
 using TPRandomizer;
-using CUU = LogicFunctionsNS.CanUseUtilities;
+using CUU = LogicFunctionsNS.CanUseUtils;
 using HBL = LogicFunctionsNS.HasBowLevel;
 using HDI = LogicFunctionsNS.DamagingItems;
 using HSL = LogicFunctionsNS.HasSwordLevel;

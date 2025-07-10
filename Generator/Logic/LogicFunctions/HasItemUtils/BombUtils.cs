@@ -1,5 +1,5 @@
 using TPRandomizer;
-using CUU = LogicFunctionsNS.CanUseUtilities;
+using CUU = LogicFunctionsNS.CanUseUtils;
 using ERLF = LogicFunctionsNS.ERLogicFunctions;
 
 namespace LogicFunctionsNS

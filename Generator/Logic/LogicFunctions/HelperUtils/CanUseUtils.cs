@@ -10,7 +10,7 @@ using HLF = LogicFunctionsNS.HelperFunctions;
 
 namespace LogicFunctionsNS
 {
-    public class CanUseUtilities
+    public class CanUseUtils
     {
         private static readonly List<Item> ItemList = Randomizer.Items.heldItems;
 

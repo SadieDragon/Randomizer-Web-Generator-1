@@ -351,7 +351,7 @@ namespace TPRandomizer
         /// <returns></returns>
         private static bool HasDefeatedGanondorf()
         {
-            return CanUseUtilities.CanUse(Item.Ganondorf_Defeated);
+            return CanUseUtils.CanUse(Item.Ganondorf_Defeated);
         }
 
         /// <summary>

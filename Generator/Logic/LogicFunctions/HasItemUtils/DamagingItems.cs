@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using TPRandomizer;
 using BU = LogicFunctionsNS.BombUtils;
-using CUU = LogicFunctionsNS.CanUseUtilities;
+using CUU = LogicFunctionsNS.CanUseUtils;
 using HSL = LogicFunctionsNS.HasSwordLevel;
 using MIU = LogicFunctionsNS.MiscItemUtils;
 

@@ -3,7 +3,7 @@ using TPRandomizer;
 using TPRandomizer.SSettings.Enums;
 using BOU = LogicFunctionsNS.BottleUtils;
 using BU = LogicFunctionsNS.BombUtils;
-using CUU = LogicFunctionsNS.CanUseUtilities;
+using CUU = LogicFunctionsNS.CanUseUtils;
 using ERLF = LogicFunctionsNS.ERLogicFunctions;
 using HHSL = LogicFunctionsNS.HasHiddenSkillLevel;
 using HSL = LogicFunctionsNS.HasSwordLevel;

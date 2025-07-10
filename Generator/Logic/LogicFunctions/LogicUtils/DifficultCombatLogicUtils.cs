@@ -6,7 +6,7 @@
 using System.Linq;
 using TPRandomizer;
 using BU = LogicFunctionsNS.BombUtils;
-using CUU = LogicFunctionsNS.CanUseUtilities;
+using CUU = LogicFunctionsNS.CanUseUtils;
 using NLU = LogicFunctionsNS.NicheLogicUtils;
 
 namespace LogicFunctionsNS

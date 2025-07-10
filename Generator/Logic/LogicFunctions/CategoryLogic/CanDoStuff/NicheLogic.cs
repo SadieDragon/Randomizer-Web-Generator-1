@@ -1,5 +1,5 @@
 using BU = LogicFunctionsNS.BombUtils;
-using CUU = LogicFunctionsNS.CanUseUtilities;
+using CUU = LogicFunctionsNS.CanUseUtils;
 using HHSL = LogicFunctionsNS.HasHiddenSkillLevel;
 using HSL = LogicFunctionsNS.HasSwordLevel;
 using MIU = LogicFunctionsNS.MiscItemUtils;

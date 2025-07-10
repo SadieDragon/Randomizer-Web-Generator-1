@@ -16,7 +16,7 @@ namespace LogicFunctionsNS.AggregateLogic
         {
             return BombUtils.CanLaunchBombs()
                 || (
-                    CanUseUtilities.CanUse(Item.Boomerang)
+                    CanUseUtils.CanUse(Item.Boomerang)
                     && (
                         Glitchless.CanDefeatDiababa()
                         || Niche.CanDefeatDiababa()
@@ -77,8 +77,8 @@ namespace LogicFunctionsNS.AggregateLogic
         {
             // Core && (Glitchless || Niche) && (Glitchless || Glitched)
             return Core.CanDefeatZant()
-                && (CanUseUtilities.CanUse(Item.Iron_Boots) || Niche.CanDefeatZant())
-                && (CanUseUtilities.CanUse(Item.Zora_Armor) || Glitched.CanDefeatZant());
+                && (CanUseUtils.CanUse(Item.Iron_Boots) || Niche.CanDefeatZant())
+                && (CanUseUtils.CanUse(Item.Zora_Armor) || Glitched.CanDefeatZant());
         }
 
         /// <summary>
