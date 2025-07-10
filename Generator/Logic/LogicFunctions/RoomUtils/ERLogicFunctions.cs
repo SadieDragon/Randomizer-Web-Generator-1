@@ -6,8 +6,6 @@ namespace LogicFunctionsNS
 {
     class ERLogicFunctions
     {
-        public static SharedSettings SharedSettings = Randomizer.SSettings;
-
         public static bool HasReachedRoom(string room)
         {
             // This ensures that the key (room name) must exist in the dictionary.
@@ -31,7 +29,7 @@ namespace LogicFunctionsNS
         /// <returns>`true` if the shop room can be accessed and not shopsanity, else `false`.</returns>
         public static bool CanShopFromRoom(string Room)
         {
-            return HasReachedRoom(Room) && !SharedSettings.shuffleShopItems;
+            return HasReachedRoom(Room) && !SettingUtils.IsShopSanity();
         }
 
         /// <summary>

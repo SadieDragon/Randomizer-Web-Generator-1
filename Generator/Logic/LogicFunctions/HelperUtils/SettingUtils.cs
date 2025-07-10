@@ -46,5 +46,7 @@ namespace LogicFunctionsNS
         }
 
         public static bool IsOpenMap() => Randomizer.SSettings.openMap;
+
+        public static bool IsShopSanity() => Randomizer.SSettings.shuffleShopItems;
     }
 }
