@@ -1,7 +1,4 @@
 using TPRandomizer;
-using CUU = LogicFunctionsNS.CanUseUtils;
-using GLU = LogicFunctionsNS.GlitchedLogicUtils;
-using NLU = LogicFunctionsNS.NicheLogicUtils;
 
 namespace LogicFunctionsNS.NicheLogic
 {
@@ -9,16 +6,16 @@ namespace LogicFunctionsNS.NicheLogic
     {
         public static bool CanDefeatDiababa()
         {
-            return SettingUtils.CanDoNicheStuff() && CUU.CanUse(Item.Iron_Boots);
+            return SettingUtils.CanDoNicheStuff() && CanUseUtils.CanUse(Item.Iron_Boots);
         }
 
         public static bool CanDefeatMorpheel()
         {
-            return SettingUtils.CanDoNicheStuff() && GLU.CanDoAirRefill();
+            return SettingUtils.CanDoNicheStuff() && GlitchedLogicUtils.CanDoAirRefill();
         }
 
-        public static bool CanDefeatArgorok() => NLU.CanUseMagicArmorNiche();
+        public static bool CanDefeatArgorok() => NicheLogicUtils.CanUseMagicArmorNiche();
 
-        public static bool CanDefeatZant() => NLU.CanUseMagicArmorNiche();
+        public static bool CanDefeatZant() => NicheLogicUtils.CanUseMagicArmorNiche();
     }
 }
