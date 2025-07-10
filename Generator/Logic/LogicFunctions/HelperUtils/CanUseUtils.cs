@@ -20,6 +20,9 @@ namespace LogicFunctionsNS
             return ItemList.Contains(item) && CanReplenishItem(item);
         }
 
+        // unused override for passing in a str.
+        public static bool CanUse(string item) => CanUse(HLF.ConvertStrToItem(item));
+
         public static bool CanReplenishItem(Item item)
         {
             Dictionary<Item, bool> itemRefills = new()
