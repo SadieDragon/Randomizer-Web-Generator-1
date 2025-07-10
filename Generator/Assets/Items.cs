@@ -838,19 +838,6 @@ namespace TPRandomizer
             Randomizer.Items.RandomizedImportantItems.AddRange(this.ImportantItems);
             Randomizer.Items.ShuffledDungeonRewards.AddRange(this.VanillaDungeonRewards);
 
-            // Handle Hearts
-            if (
-                (parseSetting.castleBKRequirements == CastleBKRequirements.Hearts)
-                || (parseSetting.castleRequirements == CastleRequirements.Hearts)
-            )
-            {
-                Randomizer.Items.RandomizedImportantItems.AddRange(this.healthItems);
-            }
-            else
-            {
-                Randomizer.Items.alwaysItems.AddRange(this.healthItems);
-            }
-
             // Handle poes
             int numPoesForBaseItemPool = SetupItemPoolPoes(parseSetting);
 
@@ -916,6 +903,24 @@ namespace TPRandomizer
             else if (parseSetting.mapAndCompassSettings == MapAndCompassSettings.Start_With)
             {
                 parseSetting.startingItems.AddRange(this.DungeonMapsAndCompasses);
+            }
+
+            // Handle Castle settings
+            if (
+                (parseSetting.castleBKRequirements == CastleBKRequirements.Hearts)
+                || (parseSetting.castleRequirements == CastleRequirements.Hearts)
+            )
+            {
+                Randomizer.Items.RandomizedImportantItems.AddRange(this.healthItems);
+            }
+            else
+            {
+                Randomizer.Items.alwaysItems.AddRange(this.healthItems);
+            }
+
+            if (parseSetting.castleBKRequirements != CastleBKRequirements.None)
+            {
+                RemoveItem(Item.Hyrule_Castle_Big_Key);
             }
 
             // Modifying Item Pool based on ice trap settings
