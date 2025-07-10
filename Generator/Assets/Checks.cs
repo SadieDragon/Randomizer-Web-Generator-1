@@ -481,6 +481,7 @@ namespace TPRandomizer
                         else
                         {
                             currentCheck.checkStatus = "Vanilla";
+                            Randomizer.Items.RandomizedImportantItems.Remove(currentCheck.itemId);
                         }
                     }
                 }
