@@ -54,6 +54,8 @@ namespace LogicFunctionsNS
             return HasSwordLevel.CurrentSwordLevel() >= (int)SharedSettings.totEntrance;
         }
 
+        public static bool HasSkippedPrologue() => SharedSettings.skipPrologue;
+
         public static bool HasSkippedSnowpeakEntrance() => SharedSettings.skipSnowpeakEntrance;
 
         public static bool IsKeysy()

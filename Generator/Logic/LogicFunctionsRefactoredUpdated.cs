@@ -879,7 +879,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanCompletePrologue()
         {
-            return (Randomizer.SSettings.skipPrologue == true)
+            return SettingUtils.HasSkippedPrologue()
                 || (ERLF.HasReachedRoom("North Faron Woods") && CanDefeatBokoblin());
         }
 
