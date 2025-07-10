@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using TPRandomizer;
 using TPRandomizer.SSettings.Enums;
@@ -10,6 +11,8 @@ namespace LogicFunctionsNS
     public class HelperFunctions
     {
         public static SharedSettings SharedSettings = Randomizer.SSettings;
+
+        public static Item ConvertStrToItem(string item) => Enum.Parse<Item>(item);
 
         /// <summary>
         /// Checks for the ability to survive damage done by bonks in OHKO mode.
