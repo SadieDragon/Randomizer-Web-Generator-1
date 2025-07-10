@@ -81,6 +81,8 @@ namespace TPRandomizer
         public string Requirements { get; set; }
         public string GlitchedRequirements { get; set; }
         public string ParentArea { get; set; }
+
+        public string ParentRegion { get; set; }
         public string ConnectedArea { get; set; }
         public string OriginalConnectedArea { get; set; }
         public bool Primary { get; set; } = false;
@@ -203,6 +205,11 @@ namespace TPRandomizer
         public string GetParentArea()
         {
             return ParentArea;
+        }
+
+        public string GetParentRegion()
+        {
+            return ParentRegion;
         }
 
         public void SetState(string newState)
@@ -1198,6 +1205,10 @@ namespace TPRandomizer
                             GetReverseConnectionEntrance(bossRoomName)[0]
                         )
                         .GetReplacedEntrance();
+
+                    string newRegion = newEntrance.GetParentRegion();
+
+                    Randomizer.Rooms.RoomDict[bossRoomName].Region = newRegion;
 
                     if (!Randomizer.SSettings.decoupleEntrances)
                     {
