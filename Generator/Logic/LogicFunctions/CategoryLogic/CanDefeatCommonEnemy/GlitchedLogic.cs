@@ -3,19 +3,15 @@
 //  simplify this, unless you are going to simplify the `CanX` system altogether. - Lupa
 
 using TPRandomizer;
-using TPRandomizer.SSettings.Enums;
 using CUU = LogicFunctionsNS.CanUseUtils;
 
 namespace LogicFunctionsNS.GlitchedLogic
 {
     public class CanDefeatCommonEnemy
     {
-        private static readonly bool isGlitched =
-            Randomizer.SSettings.logicRules == LogicRules.Glitched;
-
         public static bool CanDefeatBombfish()
         {
-            return isGlitched && CUU.CanUse(Item.Magic_Armor);
+            return SettingUtils.IsGlitchedLogic() && CUU.CanUse(Item.Magic_Armor);
         }
     }
 }
