@@ -45,12 +45,12 @@ namespace LogicFunctionsNS
 
         public static bool CanUseBottledFairy()
         {
-            return HasBottle() && ERLF.HasReachedLakeHylia();
+            return HasBottle() && ERLF.HasReachedRoom("Lake Hylia");
         }
 
         public static bool CanUseBottledFairies()
         {
-            return HasBottles() && ERLF.HasReachedLakeHylia();
+            return HasBottles() && ERLF.HasReachedRoom("Lake Hylia");
         }
 
         public static bool CanUseOilBottle()

@@ -885,7 +885,7 @@ namespace TPRandomizer
             return CanCompleteLanayruTwilight()
                 || (
                     CanCompleteEldinTwilight()
-                    && ERLF.HasReachedZorasThroneRoom()
+                    && ERLF.HasReachedRoom("Zoras Domain Throne Room")
                     && CUU.CanUse(Item.Shadow_Crystal)
                 );
         }
@@ -898,7 +898,7 @@ namespace TPRandomizer
         public static bool CanCompletePrologue()
         {
             return (Randomizer.SSettings.skipPrologue == true)
-                || (ERLF.HasReachedNFaronWoods() && CanDefeatBokoblin());
+                || (ERLF.HasReachedRoom("North Faron Woods") && CanDefeatBokoblin());
         }
 
         public static bool CanCompleteGoats1()
@@ -912,7 +912,7 @@ namespace TPRandomizer
         public static bool CanCompleteMDH()
         {
             return (Randomizer.SSettings.skipMdh == true)
-                || (CCD.CanCompleteLakebedTemple() && ERLF.HasReachedSCastleTown());
+                || (CCD.CanCompleteLakebedTemple() && ERLF.HasReachedRoom("Castle Town South"));
             //return (CanCompleteLakebedTemple() || (Randomizer.SSettings.skipMdh == true));
         }
 

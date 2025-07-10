@@ -26,10 +26,11 @@ namespace LogicFunctionsNS
         {
             return CUU.CanUse(Item.Filled_Bomb_Bag)
                 && (
-                    ERLF.HasReachedBarnesBombs()
+                    ERLF.HasReachedRoom("Kakariko Barnes Bomb Shop Lower")
                     || CanFishForWaterBombs()
                     || (
-                        ERLF.HasReachedBarnesBombs() && ERLF.HasReachedRoom("Castle Town Malo Mart")
+                        ERLF.HasReachedRoom("Kakariko Barnes Bomb Shop Lower")
+                        && ERLF.HasReachedRoom("Castle Town Malo Mart")
                     )
                 );
         }
@@ -38,7 +39,7 @@ namespace LogicFunctionsNS
         {
             return CUU.CanUse(Item.Filled_Bomb_Bag)
                 && (
-                    ERLF.HasReachedBarnesBombs()
+                    ERLF.HasReachedRoom("Kakariko Barnes Bomb Shop Lower")
                     || CanFishForWaterBombs()
                     || ERLF.HasReachedRoom("City in The Sky Entrance")
                 );

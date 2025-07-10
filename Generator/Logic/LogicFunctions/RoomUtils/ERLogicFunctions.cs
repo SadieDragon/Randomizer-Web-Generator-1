@@ -80,45 +80,5 @@ namespace LogicFunctionsNS
             // Otherwise, we need to check if any rooms on the map have been accessed.
             return SettingUtils.IsOpenMap() || HasReachedAnyRooms(RoomsOnMap);
         }
-
-        public static bool HasReachedBarnesBombs()
-        {
-            return HasReachedRoom("Kakariko Barnes Bomb Shop Lower");
-        }
-
-        public static bool HasReachedKakMaloMart()
-        {
-            return HasReachedRoom("Kakariko Malo Mart");
-        }
-
-        public static bool HasReachedLakeHylia()
-        {
-            return HasReachedRoom("Lake Hylia");
-        }
-
-        public static bool HasReachedLowerKakVillage()
-        {
-            return HasReachedRoom("Lower Kakariko Village");
-        }
-
-        public static bool HasReachedNFaronWoods()
-        {
-            return HasReachedRoom("North Faron Woods");
-        }
-
-        public static bool HasReachedSCastleTown()
-        {
-            return HasReachedRoom("Castle Town South");
-        }
-
-        public static bool HasReachedSFaronWoods()
-        {
-            return HasReachedRoom("South Faron Woods");
-        }
-
-        public static bool HasReachedZorasThroneRoom()
-        {
-            return HasReachedRoom("Zoras Domain Throne Room");
-        }
     }
 }
