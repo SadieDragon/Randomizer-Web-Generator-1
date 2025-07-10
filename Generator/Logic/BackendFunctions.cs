@@ -365,7 +365,6 @@ namespace TPRandomizer
                     throw new Exception(
                         "Could not validate playthrough. There possibly is an error in logic or the specific playthrough has failed."
                     );
-                    break;
                 }
             }
 
@@ -538,7 +537,6 @@ namespace TPRandomizer
                     throw new Exception(
                         "Could not validate playthrough. There possibly is an error in logic or the specific playthrough has failed."
                     );
-                    break;
                 }
             }
 
@@ -741,7 +739,6 @@ namespace TPRandomizer
             }
 
             bool hasCompletedSphere;
-            bool hasConcludedPlaythrough;
             List<Room> currentPlaythroughGraph;
             List<Item> sphereItems = new();
             SharedSettings parseSetting = Randomizer.SSettings;
@@ -811,7 +808,6 @@ namespace TPRandomizer
             while (true)
             {
                 hasCompletedSphere = false;
-                hasConcludedPlaythrough = false;
                 currentPlaythroughGraph = Randomizer.GeneratePlaythroughGraph(startingRoom);
 
                 // Walk through the current graph and get a list of rooms that we can currently access

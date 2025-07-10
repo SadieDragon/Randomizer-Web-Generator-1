@@ -347,7 +347,6 @@ namespace TPRandomizer
                 Item.Armogohma_Defeated,
                 Item.Argorok_Defeated,
                 Item.Zant_Defeated,
-                Item.Ganondorf_Defeated,
             };
 
         public List<Item> PortalItems =
@@ -582,11 +581,8 @@ namespace TPRandomizer
                 Item.Female_Snail,
             };
 
-        /// <summary>
-        /// summary text.
-        /// </summary>
-        public List<Item> alwaysItems =
-            new() // Items from the vanilla pool that are guaranteed to be in every seed
+        public List<Item> healthItems =
+            new()
             {
                 Item.Piece_of_Heart,
                 Item.Piece_of_Heart,
@@ -641,6 +637,14 @@ namespace TPRandomizer
                 Item.Heart_Container,
                 Item.Heart_Container,
                 Item.Heart_Container,
+            };
+
+        /// <summary>
+        /// summary text.
+        /// </summary>
+        public List<Item> alwaysItems =
+            new() // Items from the vanilla pool that are guaranteed to be in every seed
+            {
                 Item.Purple_Rupee_Links_House,
                 Item.Green_Rupee,
                 Item.Green_Rupee,
@@ -899,6 +903,24 @@ namespace TPRandomizer
             else if (parseSetting.mapAndCompassSettings == MapAndCompassSettings.Start_With)
             {
                 parseSetting.startingItems.AddRange(this.DungeonMapsAndCompasses);
+            }
+
+            // Handle Castle settings
+            if (
+                (parseSetting.castleBKRequirements == CastleBKRequirements.Hearts)
+                || (parseSetting.castleRequirements == CastleRequirements.Hearts)
+            )
+            {
+                Randomizer.Items.RandomizedImportantItems.AddRange(this.healthItems);
+            }
+            else
+            {
+                Randomizer.Items.alwaysItems.AddRange(this.healthItems);
+            }
+
+            if (parseSetting.castleBKRequirements != CastleBKRequirements.None)
+            {
+                RemoveItem(Item.Hyrule_Castle_Big_Key);
             }
 
             // Modifying Item Pool based on ice trap settings

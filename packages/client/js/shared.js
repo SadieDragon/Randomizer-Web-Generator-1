@@ -450,6 +450,9 @@
       { id: 'unpairedEntrancesCheckbox' },
       { id: 'decoupleEntrancesCheckbox' },
       { id: 'freestandingRupeeCheckbox' },
+      { id: 'castleRequirementsSlider', bitLength: 6 },
+      { id: 'castleBKRequirementsFieldset', bitLength: 3 },
+      { id: 'castleBKRequirementsSlider', bitLength: 6 },
     ].map(({ id, bitLength }) => {
       const val = getVal(id);
       if (bitLength) {
@@ -936,6 +939,9 @@
       processBasic({ id: 'unpairEntrances' });
       processBasic({ id: 'decoupleEntrances' });
       processBasic({ id: 'freestandingRupees' });
+      processBasic({ id: 'castleRequirementCount', bitLength: 6 });
+      processBasic({ id: 'castleBKRequirements', bitLength: 3 });
+      processBasic({ id: 'castleBKRequirementCount', bitLength: 6 });
     } else {
       res.randomizeStartingPoint = false; // Vanilla
       res.hiddenRupees = false; // Vanilla
@@ -946,6 +952,31 @@
       res.unpairEntrances = false; // Vanilla
       res.decoupleEntrances = false; // Vanilla
       res.freestandingRupees = false; // Vanilla
+      switch(res.castleRequirements)
+      {
+        case 1:
+          {
+            res.castleRequirementCount = 3;
+            break;
+          }
+        case 2:
+            {
+              res.castleRequirementCount = 4;
+              break;
+            }
+        case 3:
+          {
+            res.castleRequirementCount = 8;
+            break;
+          }
+        default:
+          {
+            res.castleRequirementCount = 1;
+            break;
+          }
+      }
+      res.castleBKRequirements = 0;
+      res.castleBKRequirementCount = 1;
     }
 
     res.startingItems = processor.nextEolList(9);

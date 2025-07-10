@@ -93,6 +93,7 @@ namespace TPRandomizer.Assets
             { 0x0, 0x61 }, // Defeated first bulblin outside link's house
             { 0x0, 0x62 }, // Defeated second bulblin outside link's house
             { 0x0, 0x60 }, // Defeated Hugo
+            { 0x18, 0x4B }, // Watched CS with Allies in HC.
         };
 
         /// <summary>
@@ -252,8 +253,6 @@ namespace TPRandomizer.Assets
             { 0x18, 0xA4 }, // Midna text after Owl Statue chest in graveyard.
             { 0x18, 0xB7 }, // Lit southeast torch in second floor north room for the first time CS.
             { 0x18, 0xB8 }, // Lit northeast torch in second floor north room for the first time CS.
-            { 0x18, 0x4B }, // Watched CS with Allies in HC.
-            { 0x18, 0x94 }, // BK Gate opened in HC.
             { 0x13, 0x9C }, // Main room poes taking flames cs.
             { 0x13, 0x9A }, // Close poe door
             { 0x15, 0x54 }, // statue getting possessed for the first time cs
@@ -510,6 +509,11 @@ namespace TPRandomizer.Assets
             { 0x16, 0xE9 },
         };
 
+        public static readonly byte[,] HCBKRegionFlags = new byte[,]
+        {
+            { 0x18, 0x94 }, // Open HC BK gate
+        };
+
         /// <summary>
         /// summary text.
         /// </summary>
@@ -536,6 +540,7 @@ namespace TPRandomizer.Assets
                 { 26, StatueRegionFlags },
                 { 27, CharmRegionFlags },
                 { 28, DungeonERRegionFlags },
+                { 29, HCBKRegionFlags },
             };
 
         /// <summary>
@@ -784,6 +789,7 @@ namespace TPRandomizer.Assets
             /* 26 */RandomizerSettings.iliaQuest >= IliaQuest.Statue,
             /* 27 */RandomizerSettings.iliaQuest >= IliaQuest.Charm,
             /* 28 */RandomizerSettings.shuffleDungeonEntrances != DungeonER.Off,
+            /* 29 */RandomizerSettings.castleBKRequirements == CastleBKRequirements.None,
         };
     }
 }
