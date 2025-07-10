@@ -38,6 +38,11 @@ namespace LogicFunctionsNS
             return true;
         }
 
+        private static int CountItem(Item itemToBeCounted)
+        {
+            return ItemList.Count(item => item == itemToBeCounted);
+        }
+
         /// <summary>
         /// Count the number of a given item available, including if the item can
         /// be replenished.
@@ -49,7 +54,7 @@ namespace LogicFunctionsNS
             // Only count how many of the item there are if it can be replenished
             if (CanReplenishItem(itemToBeCounted))
             {
-                return ItemList.Count(item => item == itemToBeCounted);
+                return CountItem(itemToBeCounted);
             }
             // Fallback of "0"
             return 0;
@@ -57,7 +62,7 @@ namespace LogicFunctionsNS
 
         public static bool VerifyItemQuantity(Item itemToBeCounted, int targetQuantity)
         {
-            return ItemList.Count(item => item == itemToBeCounted) >= targetQuantity;
+            return CountItem(itemToBeCounted) >= targetQuantity;
         }
 
         // unused override for passing in a str.
