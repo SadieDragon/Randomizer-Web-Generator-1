@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using TPRandomizer;
-using CUU = LogicFunctionsNS.CanUseUtilities;
+using CUU = LogicFunctionsNS.CanUseUtils;
 using ERLF = LogicFunctionsNS.ERLogicFunctions;
 using GLLCE = LogicFunctionsNS.GlitchlessLogic.CanDefeatCommonEnemy;
 
