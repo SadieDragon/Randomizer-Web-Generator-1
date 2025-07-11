@@ -7,6 +7,8 @@ using BU = LogicFunctionsNS.BombUtils;
 using CUU = LogicFunctionsNS.CanUseUtils;
 using DCLU = LogicFunctionsNS.DifficultCombatLogicUtils;
 
+// "difficultCombatRequirements":
+
 namespace LogicFunctionsNS.DifficultCombatLogic
 {
     public class CanDefeatCommonEnemy

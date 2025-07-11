@@ -5,6 +5,8 @@
 using TPRandomizer;
 using CUU = LogicFunctionsNS.CanUseUtils;
 
+// "glitchedRequirements":
+
 namespace LogicFunctionsNS.GlitchedLogic
 {
     public class CanDefeatCommonEnemy

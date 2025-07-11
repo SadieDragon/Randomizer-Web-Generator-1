@@ -14,6 +14,8 @@ using HDI = LogicFunctionsNS.DamagingItems;
 using HHSL = LogicFunctionsNS.HasHiddenSkillLevel;
 using HSL = LogicFunctionsNS.HasSwordLevel;
 
+// "glitchlessRequirements":
+
 namespace LogicFunctionsNS.GlitchlessLogic
 {
     public class CanDefeatCommonEnemy

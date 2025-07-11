@@ -4,6 +4,8 @@
 
 using NLU = LogicFunctionsNS.NicheLogicUtils;
 
+// "nicheRequirements":
+
 namespace LogicFunctionsNS.NicheLogic
 {
     public class CanDefeatCommonEnemy
