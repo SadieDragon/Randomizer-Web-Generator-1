@@ -23,6 +23,7 @@ namespace TPRandomizer
         Mixed,
         Paired,
         All,
+        Boss_Exit,
     }
 
     public enum EntranceShuffleError
@@ -241,6 +242,10 @@ namespace TPRandomizer
             {
                 Type = EntranceType.Boss_Reverse;
             }
+            else if (entranceType == "Boss Room Exit")
+            {
+                Type = EntranceType.Boss_Exit;
+            }
             else if (entranceType == "Paired")
             {
                 Type = EntranceType.Paired;
@@ -368,6 +373,7 @@ namespace TPRandomizer
                         && (
                             (exit.GetEntranceType() != EntranceType.Boss)
                             || (exit.GetEntranceType() != EntranceType.Boss_Reverse)
+                            || (exit.GetEntranceType() != EntranceType.Boss_Exit)
                         )
                     )
                     {
