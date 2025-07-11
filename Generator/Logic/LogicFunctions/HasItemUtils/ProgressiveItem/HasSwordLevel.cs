@@ -1,5 +1,4 @@
 using TPRandomizer;
-using CUU = LogicFunctionsNS.CanUseUtils;
 
 namespace LogicFunctionsNS
 {
@@ -15,7 +14,7 @@ namespace LogicFunctionsNS
 
         public static int CurrentSwordLevel()
         {
-            return CUU.GetItemCount(Item.Progressive_Sword);
+            return CanUseUtils.GetItemCount(Item.Progressive_Sword);
         }
 
         public static bool HasSword()

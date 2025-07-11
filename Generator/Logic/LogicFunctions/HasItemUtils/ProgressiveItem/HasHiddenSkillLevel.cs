@@ -1,5 +1,4 @@
 using TPRandomizer;
-using CUU = LogicFunctionsNS.CanUseUtils;
 
 namespace LogicFunctionsNS
 {
@@ -18,7 +17,7 @@ namespace LogicFunctionsNS
 
         private static int CurrentHiddenSkillLevel()
         {
-            return CUU.GetItemCount(Item.Progressive_Hidden_Skill);
+            return CanUseUtils.GetItemCount(Item.Progressive_Hidden_Skill);
         }
 
         public static bool HasEndingBlow()

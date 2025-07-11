@@ -1,5 +1,4 @@
 using TPRandomizer;
-using CUU = LogicFunctionsNS.CanUseUtils;
 
 namespace LogicFunctionsNS
 {
@@ -14,7 +13,7 @@ namespace LogicFunctionsNS
 
         private static int CurrentBowCount()
         {
-            return CUU.GetItemCount(Item.Progressive_Bow);
+            return CanUseUtils.GetItemCount(Item.Progressive_Bow);
         }
 
         // I don't expect this to get much use but eh I'll put it in here.
