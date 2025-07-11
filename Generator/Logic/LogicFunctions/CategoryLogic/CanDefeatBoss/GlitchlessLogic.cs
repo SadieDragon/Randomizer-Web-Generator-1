@@ -25,7 +25,7 @@ namespace LogicFunctionsNS.GlitchlessLogic
 
         public static bool CanDefeatArmogohma()
         {
-            return HasBowLevel.HasBow() && CanUseUtils.CanUse(Item.Progressive_Dominion_Rod);
+            return HasQuiverSize.HasBow() && CanUseUtils.CanUse(Item.Progressive_Dominion_Rod);
         }
 
         public static bool CanDefeatArgorok() => CanUseUtils.CanUse(Item.Iron_Boots);

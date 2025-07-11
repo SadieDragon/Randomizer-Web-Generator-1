@@ -9,7 +9,7 @@
 using TPRandomizer;
 using BU = LogicFunctionsNS.BombUtils;
 using CUU = LogicFunctionsNS.CanUseUtils;
-using HBL = LogicFunctionsNS.HasBowLevel;
+using HBL = LogicFunctionsNS.HasQuiverSize;
 using HDI = LogicFunctionsNS.DamagingItems;
 using HHSL = LogicFunctionsNS.HasHiddenSkillLevel;
 using HSL = LogicFunctionsNS.HasSwordLevel;

@@ -1,5 +1,5 @@
 using DCLU = LogicFunctionsNS.DifficultCombatLogicUtils;
-using HBL = LogicFunctionsNS.HasBowLevel;
+using HBL = LogicFunctionsNS.HasQuiverSize;
 
 namespace LogicFunctionsNS.DifficultCombatLogic
 {
@@ -9,7 +9,7 @@ namespace LogicFunctionsNS.DifficultCombatLogic
         {
             return DCLU.CanUseSpinnerOrIronBootsInDC()
                 || DCLU.CanUseBombsInDC()
-                || (DCLU.CanDoDifficultCombat() && HBL.HasMediumQuiver());
+                || (SettingUtils.CanDoDifficultCombat() && HBL.HasMediumQuiver());
         }
 
         public static bool CanDefeatKingBulblinCastle()

@@ -2,16 +2,16 @@ using TPRandomizer;
 
 namespace LogicFunctionsNS
 {
-    public class HasBowLevel
+    public class HasQuiverSize
     {
-        private enum BowLevel
+        private enum QuiverSize
         {
             Bow = 1,
             MediumQuiver = 2,
             LargeQuiver = 3,
         }
 
-        private static int CurrentBowCount()
+        private static int CurrentQuiverSize()
         {
             return CanUseUtils.GetItemCount(Item.Progressive_Bow);
         }
@@ -19,17 +19,17 @@ namespace LogicFunctionsNS
         // I don't expect this to get much use but eh I'll put it in here.
         public static bool HasBow()
         {
-            return CurrentBowCount() >= (int)BowLevel.Bow;
+            return CurrentQuiverSize() >= (int)QuiverSize.Bow;
         }
 
         public static bool HasMediumQuiver()
         {
-            return CurrentBowCount() >= (int)BowLevel.MediumQuiver;
+            return CurrentQuiverSize() >= (int)QuiverSize.MediumQuiver;
         }
 
         public static bool HasLargeQuiver()
         {
-            return CurrentBowCount() >= (int)BowLevel.LargeQuiver;
+            return CurrentQuiverSize() >= (int)QuiverSize.LargeQuiver;
         }
     }
 }
