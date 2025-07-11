@@ -11,20 +11,19 @@ namespace LogicFunctionsNS.DifficultCombatLogic
 {
     public class CanDefeatCommonEnemy
     {
-        private static readonly bool canDoDifficultCombat = false;
-
         public static bool CanDefeatBokoblinRed() => DCLU.CanUseSpinnerOrIronBootsInDC();
 
         public static bool CanDefeatDarknut()
         {
-            return canDoDifficultCombat && (BU.HasBombs() || CUU.CanUse(Item.Ball_and_Chain));
+            return SettingUtils.CanDoDifficultCombat()
+                && (BU.HasBombs() || CUU.CanUse(Item.Ball_and_Chain));
         }
 
         public static bool CanDefeatFireToadpoli() => DCLU.CanUseShadowCrystalInDC();
 
         public static bool CanDefeatGoron()
         {
-            return canDoDifficultCombat && CUU.CanUse(Item.Lantern);
+            return SettingUtils.CanDoDifficultCombat() && CUU.CanUse(Item.Lantern);
         }
 
         public static bool CanDefeatGuay() => DCLU.CanUseSpinnerInDC();
