@@ -431,7 +431,9 @@ namespace TPRandomizer
                                 sphereItems.Add(currentCheck.itemId);
                                 currentCheck.hasBeenReached = true;
                                 if (
-                                    Randomizer.Items.ImportantItems.Contains(currentCheck.itemId)
+                                    Randomizer.Items.RandomizedImportantItemsStatic.Contains(
+                                        currentCheck.itemId
+                                    )
                                     || Randomizer.Items.RegionSmallKeys.Contains(
                                         currentCheck.itemId
                                     )
@@ -599,7 +601,9 @@ namespace TPRandomizer
                                 sphereItems.Add(currentCheck.itemId);
                                 currentCheck.hasBeenReached = true;
                                 if (
-                                    Randomizer.Items.ImportantItems.Contains(currentCheck.itemId)
+                                    Randomizer.Items.RandomizedImportantItemsStatic.Contains(
+                                        currentCheck.itemId
+                                    )
                                     || Randomizer.Items.RegionSmallKeys.Contains(
                                         currentCheck.itemId
                                     )
@@ -789,7 +793,7 @@ namespace TPRandomizer
                                 {
                                     currentCheck.hasBeenReached = true;
                                     if (
-                                        Randomizer.Items.ImportantItems.Contains(
+                                        Randomizer.Items.RandomizedImportantItemsStatic.Contains(
                                             currentCheck.itemId
                                         )
                                         || Randomizer.Items.RegionSmallKeys.Contains(
@@ -951,7 +955,7 @@ namespace TPRandomizer
                                 {
                                     currentCheck.hasBeenReached = true;
                                     if (
-                                        Randomizer.Items.ImportantItems.Contains(
+                                        Randomizer.Items.RandomizedImportantItemsStatic.Contains(
                                             currentCheck.itemId
                                         )
                                         || Randomizer.Items.RegionSmallKeys.Contains(

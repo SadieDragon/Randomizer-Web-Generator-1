@@ -303,6 +303,8 @@ namespace TPRandomizer
     public class ItemFunctions
     {
         public List<Item> RandomizedImportantItems = new();
+
+        public List<Item> RandomizedImportantItemsStatic = new(); // A copy of the randomized important items to be read and referenced.
         public List<Item> StartingItems = new(); // Any items that the player starts with as selected by the gui.
         public List<Item> RandomizedDungeonRegionItems = new(); // Items that are shuffled among dungeons.
         public List<Item> JunkItems = new(); // Extra junk items that are put in the pool if there are checks left and all items have been placed..
@@ -1181,6 +1183,7 @@ namespace TPRandomizer
             Randomizer.Items.BaseItemPool.AddRange(this.ShuffledDungeonRewards);
             Randomizer.Items.BaseItemPool.AddRange(this.RandomizedImportantItems);
             Randomizer.Items.BaseItemPool.AddRange(this.RandomizedDungeonRegionItems);
+            Randomizer.Items.RandomizedImportantItemsStatic.AddRange(this.RandomizedImportantItems);
             // Adjust Poe souls for BaseItemPool to match calculated value
             updateItemToCount(Randomizer.Items.BaseItemPool, Item.Poe_Soul, numPoesForBaseItemPool);
             return;
