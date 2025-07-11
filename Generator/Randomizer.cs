@@ -11,6 +11,7 @@ namespace TPRandomizer
     using System.Text.RegularExpressions;
     using Assets;
     using Hints;
+    using LogicFunctionsNS;
     using Newtonsoft.Json;
     using Newtonsoft.Json.Linq;
     using TPRandomizer.FcSettings.Enums;
@@ -942,7 +943,7 @@ namespace TPRandomizer
             {
                 availableRooms = 0;
                 roomsToExplore.AddRange(availableBaseRooms);
-                roomsToExplore.AddRange(GeneratePortalRooms());
+                roomsToExplore.AddRange(PortalRooms.GeneratePortalRooms());
                 playthroughGraph.AddRange(availableBaseRooms);
                 foreach (KeyValuePair<string, Room> roomList in Randomizer.Rooms.RoomDict.ToList())
                 {
@@ -1718,27 +1719,27 @@ namespace TPRandomizer
                 case GameRegion.GC_EUR:
                 case GameRegion.GC_JAP:
                 case GameRegion.All:
-                {
-                    files = System.IO.Directory.GetFiles(
-                        Global.CombineRootPath("./Assets/CheckMetadata/Gamecube/"),
-                        "*",
-                        SearchOption.AllDirectories
-                    );
-                    break;
-                }
+                    {
+                        files = System.IO.Directory.GetFiles(
+                            Global.CombineRootPath("./Assets/CheckMetadata/Gamecube/"),
+                            "*",
+                            SearchOption.AllDirectories
+                        );
+                        break;
+                    }
 
                 case GameRegion.WII_10_USA:
                 case GameRegion.WII_10_EU:
                 case GameRegion.WII_10_JP:
                 case GameRegion.WII_12_USA:
-                {
-                    files = System.IO.Directory.GetFiles(
-                        Global.CombineRootPath("./Assets/CheckMetadata/Wii1.0/"),
-                        "*",
-                        SearchOption.AllDirectories
-                    );
-                    break;
-                }
+                    {
+                        files = System.IO.Directory.GetFiles(
+                            Global.CombineRootPath("./Assets/CheckMetadata/Wii1.0/"),
+                            "*",
+                            SearchOption.AllDirectories
+                        );
+                        break;
+                    }
             }
 
             // Sort so that the item placement algorithm produces the exact same
@@ -2025,99 +2026,6 @@ namespace TPRandomizer
                     Randomizer.Items.heldItems.Remove(currentItem);
                 }
             }
-        }
-
-        private static List<Room> GeneratePortalRooms()
-        {
-            List<Room> portalRooms = new();
-            // With sewers no longer a thing, the player starts with Ordon Portal (until we find a way to randomize it)
-            if (LogicFunctions.CanWarp())
-            {
-                if (LogicFunctions.CanUnlockOrdonaMap())
-                {
-                    portalRooms.Add(Randomizer.Rooms.RoomDict["Ordon Spring"]);
-                }
-
-                if (LogicFunctions.CanUnlockFaronMap())
-                {
-                    if (LogicFunctions.CanUse(Item.South_Faron_Portal))
-                    {
-                        portalRooms.Add(Randomizer.Rooms.RoomDict["South Faron Woods"]);
-                    }
-                    if (LogicFunctions.CanUse(Item.North_Faron_Portal))
-                    {
-                        portalRooms.Add(Randomizer.Rooms.RoomDict["North Faron Woods"]);
-                    }
-                    if (LogicFunctions.CanUse(Item.Sacred_Grove_Portal))
-                    {
-                        portalRooms.Add(Randomizer.Rooms.RoomDict["Sacred Grove Lower"]);
-                    }
-                }
-
-                if (LogicFunctions.CanUnlockEldinMap())
-                {
-                    if (LogicFunctions.CanUse(Item.Kakariko_Village_Portal))
-                    {
-                        portalRooms.Add(Randomizer.Rooms.RoomDict["Lower Kakariko Village"]);
-                    }
-                    if (LogicFunctions.CanUse(Item.Kakariko_Gorge_Portal))
-                    {
-                        portalRooms.Add(Randomizer.Rooms.RoomDict["Kakariko Gorge"]);
-                    }
-                    if (LogicFunctions.CanUse(Item.Death_Mountain_Portal))
-                    {
-                        portalRooms.Add(Randomizer.Rooms.RoomDict["Death Mountain Volcano"]);
-                    }
-                    if (LogicFunctions.CanUse(Item.Bridge_of_Eldin_Portal))
-                    {
-                        portalRooms.Add(Randomizer.Rooms.RoomDict["Eldin Field"]);
-                    }
-                }
-
-                if (LogicFunctions.CanUnlockLanayruMap())
-                {
-                    if (LogicFunctions.CanUse(Item.Lake_Hylia_Portal))
-                    {
-                        portalRooms.Add(Randomizer.Rooms.RoomDict["Lake Hylia"]);
-                    }
-                    if (LogicFunctions.CanUse(Item.Castle_Town_Portal))
-                    {
-                        portalRooms.Add(Randomizer.Rooms.RoomDict["Outside Castle Town West"]);
-                    }
-                    if (LogicFunctions.CanUse(Item.Zoras_Domain_Portal))
-                    {
-                        portalRooms.Add(Randomizer.Rooms.RoomDict["Zoras Domain Throne Room"]);
-                    }
-                    if (LogicFunctions.CanUse(Item.Upper_Zoras_River_Portal))
-                    {
-                        portalRooms.Add(Randomizer.Rooms.RoomDict["Upper Zoras River"]);
-                    }
-                }
-
-                if (LogicFunctions.CanUnlockSnowpeakMap())
-                {
-                    if (LogicFunctions.CanUse(Item.Snowpeak_Portal))
-                    {
-                        portalRooms.Add(Randomizer.Rooms.RoomDict["Snowpeak Summit Upper"]);
-                    }
-                }
-
-                if (LogicFunctions.CanUnlockGerudoMap())
-                {
-                    if (LogicFunctions.CanUse(Item.Gerudo_Desert_Portal))
-                    {
-                        portalRooms.Add(
-                            Randomizer.Rooms.RoomDict["Gerudo Desert Cave of Ordeals Plateau"]
-                        );
-                    }
-
-                    if (LogicFunctions.CanUse(Item.Mirror_Chamber_Portal))
-                    {
-                        portalRooms.Add(Randomizer.Rooms.RoomDict["Mirror Chamber Upper"]);
-                    }
-                }
-            }
-            return portalRooms;
         }
     }
 

@@ -1,8 +1,11 @@
+// NOTE: DO NOT TOUCH THIS FILE. IT LIKES TO BE BROKEN. - lupa for future lupa
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Text.RegularExpressions;
+using LogicFunctionsNS;
 
 #nullable enable
 namespace TPRandomizer
@@ -44,11 +47,14 @@ namespace TPRandomizer
 
             public override bool Evaluate()
             {
-                MethodInfo? method = typeof(LogicFunctions).GetMethod(FunctionName);
+                MethodInfo? method = typeof(LogicFunctionsUpdatedRefactored).GetMethod(
+                    FunctionName
+                );
                 if (method == null)
                 {
                     Console.WriteLine($"unknown logic function {FunctionName}");
-                    return false;
+                    // return false;
+                    Environment.Exit(1);
                 }
 
                 object? result = method.Invoke(null, null);
@@ -73,7 +79,7 @@ namespace TPRandomizer
 
             public override bool Evaluate()
             {
-                int heldCount = LogicFunctions.GetItemCount(ItemId);
+                int heldCount = CanUseUtils.GetItemCount(ItemId);
                 // Console.WriteLine($"Item.Evaluate {heldCount} {Count} {ItemId}");
                 return heldCount >= Count;
             }
@@ -99,7 +105,7 @@ namespace TPRandomizer
                 (SettingName, SettingValue, Sense) = (setting, value, sense);
 
             public override bool Evaluate() =>
-                LogicFunctions.EvaluateSetting(SettingName, SettingValue) == Sense;
+                SettingUtils.EvaluateSetting(SettingName, SettingValue) == Sense;
         }
 
         public class Conjunction : LogicAST
