@@ -238,10 +238,6 @@ namespace TPRandomizer
             {
                 Type = EntranceType.Boss;
             }
-            else if (entranceType == "Boss Room Second Exit")
-            {
-                Type = EntranceType.Boss_Reverse;
-            }
             else if (entranceType == "Boss Room Exit")
             {
                 Type = EntranceType.Boss_Exit;

@@ -3213,6 +3213,31 @@
         "Type": "Boss Room Exit",
         "SourceRoomSpawn":
         {
+            "SourceRoom": "Arbiters Grounds Boss Room",
+            "TargetRoom": "Mirror Chamber Lower",
+            "Stage": 60,
+            "Room": 4,
+            "Spawn": "00",
+            "SpawnType": "10",
+            "Parameters": "501F",
+            "State": "FF"
+        },
+        "TargetRoomSpawn":
+        {
+            "SourceRoom": "Mirror Chamber Lower",
+            "TargetRoom": "Arbiters Grounds Boss Room",
+            "Stage": 25,
+            "Room": 50,
+            "Spawn": "03",
+            "SpawnType": "00",
+            "Parameters": "F01F",
+            "State": "FF"
+        }
+    },
+    {
+        "Type": "Boss Room Exit",
+        "SourceRoomSpawn":
+        {
             "SourceRoom": "Snowpeak Ruins Boss Room",
             "TargetRoom": "Snowpeak Summit Lower",
             "Stage": 51,
@@ -3261,32 +3286,6 @@
             "Room": 0,
             "Spawn": "04",
             "SpawnType": "60",
-            "Parameters": "F01F",
-            "State": "FF"
-        }
-    },
-	// Boss Room Second Exit
-    {
-        "Type": "Boss Room Second Exit",
-        "SourceRoomSpawn":
-        {
-            "SourceRoom": "Arbiters Grounds Boss Room",
-            "TargetRoom": "Mirror Chamber Lower",
-            "Stage": 60,
-            "Room": 4,
-            "Spawn": "00",
-            "SpawnType": "10",
-            "Parameters": "501F",
-            "State": "FF"
-        },
-        "TargetRoomSpawn":
-        {
-            "SourceRoom": "Mirror Chamber Lower",
-            "TargetRoom": "Arbiters Grounds Boss Room",
-            "Stage": 25,
-            "Room": 50,
-            "Spawn": "03",
-            "SpawnType": "00",
             "Parameters": "F01F",
             "State": "FF"
         }
