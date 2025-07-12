@@ -1208,7 +1208,9 @@ namespace TPRandomizer
                         )
                         .GetReplacedEntrance();
 
-                    string newRegion = newEntrance.GetParentRegion();
+                    string newRegion = GetReverseConnectionEntrance(bossRoomName)[
+                        0
+                    ].GetParentRegion();
 
                     Randomizer.Rooms.RoomDict[bossRoomName].Region = newRegion;
 

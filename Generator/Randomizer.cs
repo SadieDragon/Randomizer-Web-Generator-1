@@ -1474,6 +1474,7 @@ namespace TPRandomizer
                 "City in The Sky Boss Room",
                 "Temple of Time Boss Room",
                 "Snowpeak Ruins Boss Room",
+                "Arbiters Grounds Boss Room",
                 "Lakebed Temple Boss Room",
                 "Goron Mines Boss Room",
                 "Forest Temple Boss Room",
@@ -1499,6 +1500,7 @@ namespace TPRandomizer
                     Room bRoom = Randomizer.Rooms.RoomDict[bossRoom];
                     // If there's a match, we want to account for the boss room and all affected checks in relation to the dungeon.
                     // Example: if Fyrus is after Forest, we want to associate the Fyrus check and post GM checks with Forest.
+                    //Console.WriteLine("region: " + bRoom.Region + " for room: " + bRoom.RoomName);
                     if (bRoom.Region == DungeonNames[i])
                     {
                         listOfAffectedChecks[i].AddRange(bRoom.Checks);
