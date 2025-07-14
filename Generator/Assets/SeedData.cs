@@ -172,6 +172,13 @@ namespace TPRandomizer.Assets
                 GCIDataRaw.AddRange(dataBytes);
             }
 
+            dataBytes = GenerateSfxData();
+            if (dataBytes != null)
+            {
+                SeedHeaderRaw.sfxInfoDataOffset = (UInt16)GCIDataRaw.Count();
+                GCIDataRaw.AddRange(dataBytes);
+            }
+
             dataBytes = ParseClr0Bytes();
             if (dataBytes != null)
             {
@@ -2333,6 +2340,64 @@ namespace TPRandomizer.Assets
 
             return data;
         }
+        
+        private List<byte> GenerateSfxData()
+        {
+            List<byte> data = new();
+            int replacementCount = 0;
+            if (fcSettings.randomizeSfx)
+            {
+
+                List<List<SoundAssets.JAISoundID>> sfxLists = new()
+                {
+                    SoundAssets.itemSoundEffects,
+                    SoundAssets.playerSoundEffects,
+                };
+                List<SoundAssets.JAISoundID> originalSfxList = new();
+                List<SoundAssets.JAISoundID> replacementSfxList = new();
+
+                foreach (List<SoundAssets.JAISoundID> sfxList in sfxLists)
+                {
+                    originalSfxList.AddRange(sfxList);
+
+                }
+                foreach (SoundAssets.JAISoundID sfx in originalSfxList)
+                {
+                    
+                    Random rnd = new();
+                    while (true)
+                    {
+                        SoundAssets.JAISoundID replacement = originalSfxList[rnd.Next(originalSfxList.Count)];
+                        if (replacement != sfx)
+                        {
+                            replacementSfxList.Add(replacement);
+                            break;
+                        }
+                    }
+                }
+                if (originalSfxList.Count != replacementSfxList.Count)
+                {
+                    Console.WriteLine(
+                        "Sfx Pool ("
+                            + originalSfxList.Count
+                            + ") and Replacement ("
+                            + replacementSfxList.Count
+                            + ") have different lengths!"
+                    );
+                }
+                
+
+                for (int i = 0; i < originalSfxList.Count; i++)
+                {
+                    data.AddRange(Converter.GcBytes((UInt32)originalSfxList[i]));
+                    data.AddRange(Converter.GcBytes((UInt32)replacementSfxList[i]));
+                }
+                replacementCount = replacementSfxList.Count;
+            }
+            SeedHeaderRaw.sfxInfoNumEntries = (byte)replacementCount;
+
+            return data;
+        }
 
         private static string getStartingTime()
         {
@@ -2340,20 +2405,20 @@ namespace TPRandomizer.Assets
             switch (Randomizer.SSettings.startingToD)
             {
                 case StartingToD.Morning:
-                {
-                    time = "700F"; // Set time to 105
-                    break;
-                }
+                    {
+                        time = "700F"; // Set time to 105
+                        break;
+                    }
                 case StartingToD.Noon:
-                {
-                    time = "C00F"; // Set time to 180
-                    break;
-                }
+                    {
+                        time = "C00F"; // Set time to 180
+                        break;
+                    }
                 case StartingToD.Night:
-                {
-                    time = "000F"; // Set time to 0
-                    break;
-                }
+                    {
+                        time = "000F"; // Set time to 0
+                        break;
+                    }
             }
             return time;
         }
@@ -2428,16 +2493,6 @@ namespace TPRandomizer.Assets
             public UInt32 msgTableSize { get; set; }
             public UInt32 msgIdTableOffset { get; set; }
         }
-    }
-
-    public class BgmHeader
-    {
-        public UInt16 bgmTableSize { get; set; }
-        public UInt16 fanfareTableSize { get; set; }
-        public UInt16 bgmTableOffset { get; set; }
-        public UInt16 fanfareTableOffset { get; set; }
-        public byte bgmTableNumEntries { get; set; }
-        public byte fanfareTableNumEntries { get; set; }
     }
 
     public class ARCReplacement

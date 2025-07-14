@@ -4145,5 +4145,78 @@ namespace TPRandomizer.Assets
             Z2SE_D20_ENV_SHINE = 0x9004D,
             Z2SE_D15_JINARI = 0x9004E,
         }
+
+        public static List<JAISoundID> playerSoundEffects =
+            new()
+            {
+                JAISoundID.Z2SE_FN_WALK_DUMMY, // Walking
+                JAISoundID.Z2SE_FN_JUMP_DUMMY, // Small Leap
+                JAISoundID.Z2SE_FN_BOUND_DUMMY, // Dirt walking - Shoes
+                JAISoundID.Z2SE_FN_HAND_DUMMY, // Dirt walking - barefoot
+                JAISoundID.Z2SE_FN_WALK_HEAVY, // Iron Boots Normal Walking Sound
+                JAISoundID.Z2SE_FN_JUMP_HEAVY, // Iron Boots equip sound
+                JAISoundID.Z2SE_FN_LADDER_CLIMB, // Ladder Ascend
+                JAISoundID.Z2SE_FN_LADDER_DOWN, // Ladder Decend
+                JAISoundID.Z2SE_WL_WALK_L_DUMMY, // Wolf Link Left Leg Walk
+                JAISoundID.Z2SE_WL_WALK_R_DUMMY, // Wolf Link Right Leg Walk
+                JAISoundID.Z2SE_WL_RUN_L_DUMMY, // Wolf Link Left Leg Run
+                JAISoundID.Z2SE_WL_RUN_R_DUMMY, // Wolf Link Right Leg Run
+                JAISoundID.Z2SE_FN_WALL_CLIMB, // Wall Climb
+                JAISoundID.Z2SE_FN_LINK_CRAWL, // Crawling
+                JAISoundID.Z2SE_FN_ROPE_CREAK, // Balancing Rope Creak
+                JAISoundID.Z2SE_FN_CHAIN_CREAK, // Chain/Bones Creak
+                JAISoundID.Z2SE_HS_WALK_L_DUMMY, // Epona - Left Leg Walk
+                JAISoundID.Z2SE_HS_WALK_R_DUMMY, // Epona - Right Leg Walk
+                JAISoundID.Z2SE_HS_TROT_L_DUMMY, // Epona - Left Leg Trot
+                JAISoundID.Z2SE_HS_TROT_R_DUMMY, // Epona - Right Leg Trot
+                JAISoundID.Z2SE_HS_GALLOP_L_DUMMY, // Epona - Left Leg Gallop
+                JAISoundID.Z2SE_HS_GALLOP_R_DUMMY, // Epona - Right Leg Galop
+                JAISoundID.Z2SE_FT_HORSE_PEDAL, // Epona - Turn sound
+                JAISoundID.Z2SE_AL_SWIM, // Adult Link - Swim
+                JAISoundID.Z2SE_AL_INTO_WATER, // Adult Link - Walking into water
+                JAISoundID.Z2SE_AL_OUTOF_WATER, // Adult Link - Walking out of water
+                JAISoundID.Z2SE_AL_DIVE_INTO_WATER, // Adult Link - Dive into water
+                JAISoundID.Z2SE_AL_DIVE_SWIM, // Adult Link - Diving Swim
+                JAISoundID.Z2SE_AL_SWIM_UNDERWATER, // Adult Link - Swim Undetwater
+                JAISoundID.Z2SE_WL_SWIM, // Wolf Link - Swim
+                JAISoundID.Z2SE_WL_OUTOF_WATER, // Wolf Link - Out of Water
+                JAISoundID.Z2SE_FN_ARMER_LIGHT_ADD, // MA - Light Walk
+                JAISoundID.Z2SE_FN_ARMER_HEAVY_ADD, // MA - Heavy Walk
+                JAISoundID.Z2SE_FN_SEKIZOU_L, // Statue Walk
+                JAISoundID.Z2SE_FN_SEKIZOU_R, // Statue Walk
+                JAISoundID.Z2SE_FN_ZORA_L, // Zora Armor Left Leg
+                JAISoundID.Z2SE_FN_ZORA_R, // Zora Armor Right Leg
+                JAISoundID.Z2SE_AL_SWIM_DASH, // Adult Link - Swim Dash
+                JAISoundID.Z2SE_WL_SWIM_DASH, // Wolf Link - Swim Dash
+            };
+
+        public static List<JAISoundID> itemSoundEffects =
+            new()
+            {
+                JAISoundID.Z2SE_HIT_SWORD, // Sword Hit
+                JAISoundID.Z2SE_HIT_SWORD_STAB, // Sword Stab
+                JAISoundID.Z2SE_HIT_SHIELD_ATTACK, // Shield Attack
+                JAISoundID.Z2SE_HIT_HAMMER, // Dom Rod Statue Hammer
+                JAISoundID.Z2SE_HIT_ARROW_STICK, // Arrow Stab Sound
+                JAISoundID.Z2SE_HIT_ARROW_REBOUND, // Arrow Rebound
+                JAISoundID.Z2SE_HIT_METAL_WEAPON, // Weapon Hitting Metal
+                JAISoundID.Z2SE_HIT_STONE_WEAPON, // Weapon Hitting Stone
+                JAISoundID.Z2SE_HIT_HARD_BODY, // Weapon Hitting hard Body
+                JAISoundID.Z2SE_HIT_SOFT_BODY, // Weapon Hitting Soft Body
+                JAISoundID.Z2SE_HIT_SWORD_RUN, // Running Sword Hit
+                JAISoundID.Z2SE_HIT_SPINNER, // Spinner Hit
+                JAISoundID.Z2SE_HIT_COPYROD, // Dom Rod Statue hit
+                JAISoundID.Z2SE_HIT_STATUE_HAMMER, // Domt Rod Statue Hammer Hit
+                JAISoundID.Z2SE_HIT_AL_ARROW_STICK, // Adult Link - Arrow Stick
+                JAISoundID.Z2SE_HIT_AL_ARROW_REBOUND, // Adult Link - Arrow Rebound
+                JAISoundID.Z2SE_HIT_PACHINKO, // Slingshot hit
+                JAISoundID.Z2SE_SWORD_STICK_PULLOUT, // Unsheath Sword
+                JAISoundID.Z2SE_HIT_ROPE_CUT, // Rope Cut
+                JAISoundID.Z2SE_HIT_ROPE_REBOUND, // Rope Rebound
+                JAISoundID.Z2SE_HIT_CHAIN_REBOUND, // Chain Rebound
+                JAISoundID.JA_SE_OBJ_BREAK_WOOD_S, // Break Wood Object - Small
+                JAISoundID.JA_SE_OBJ_BREAK_WOOD_L, // Break Wood Object - Large
+                JAISoundID.JA_SE_OBJ_HIT_SHOCK_SWITCH, // Hit Crystal Switch
+            };
     }
 }

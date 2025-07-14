@@ -1345,6 +1345,7 @@
 
         { id: 'bgmFieldset', bitLength: 2 },
         { id: 'randomizeFanfaresCheckbox' },
+        { id: 'randomizeSfxCheckbox' },
         { id: 'disableEnemyBGMCheckbox' },
         { id: 'invertCameraCheckbox' },
         { id: 'hTunicHatColorFieldset', rgb: true },

@@ -12,6 +12,8 @@ namespace TPRandomizer
         public bool patchFileOnly { get; }
         public bool includeSpoilerLog { get; }
         public RandomizeBgm randomizeBgm { get; }
+
+        public bool randomizeSfx { get; }
         public bool randomizeFanfares { get; }
         public bool disableEnemyBgm { get; }
         public bool invertCameraAxis { get; }
@@ -74,6 +76,7 @@ namespace TPRandomizer
 
             randomizeBgm = (RandomizeBgm)processor.NextInt(2);
             randomizeFanfares = processor.NextBool();
+            randomizeSfx = processor.NextBool();
             disableEnemyBgm = processor.NextBool();
             invertCameraAxis = processor.NextBool();
 
