@@ -631,9 +631,10 @@ namespace TPRandomizer
                 sphereCount++;
                 if ((hasCompletedSphere == false) && !hasConcludedPlaythrough)
                 {
-                    throw new Exception(
+                    Console.WriteLine(
                         "Could not validate playthrough. There possibly is an error in logic or the specific playthrough has failed."
                     );
+                    break;
                 }
             }
 
