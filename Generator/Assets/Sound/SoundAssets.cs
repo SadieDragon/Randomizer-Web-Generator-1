@@ -4,7 +4,6 @@ namespace TPRandomizer.Assets
     using System.Collections.Generic;
     using System.IO;
     using System.Linq;
-    using System.Security.Cryptography.X509Certificates;
     using Newtonsoft.Json;
     using TPRandomizer.FcSettings.Enums;
 
@@ -4281,8 +4280,8 @@ namespace TPRandomizer.Assets
                 JAISoundID.Z2SE_FN_LADDER_DOWN, // Ladder Decend
                 //JAISoundID.Z2SE_WL_WALK_L_DUMMY, // Wolf Link Left Leg Walk
                 //JAISoundID.Z2SE_WL_WALK_R_DUMMY, // Wolf Link Right Leg Walk
-                JAISoundID.Z2SE_WL_RUN_L_DUMMY, // Wolf Link Left Leg Run
-                JAISoundID.Z2SE_WL_RUN_R_DUMMY, // Wolf Link Right Leg Run
+                //JAISoundID.Z2SE_WL_RUN_L_DUMMY, // Wolf Link Left Leg Run
+                //JAISoundID.Z2SE_WL_RUN_R_DUMMY, // Wolf Link Right Leg Run
                 JAISoundID.Z2SE_FN_WALL_CLIMB, // Wall Climb
                 JAISoundID.Z2SE_FN_LINK_CRAWL, // Crawling
                 JAISoundID.Z2SE_FN_ROPE_CREAK, // Balancing Rope Creak
