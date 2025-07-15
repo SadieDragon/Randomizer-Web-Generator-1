@@ -2352,6 +2352,8 @@ namespace TPRandomizer.Assets
                 {
                     SoundAssets.itemSoundEffects,
                     SoundAssets.playerSoundEffects,
+                    SoundAssets.gameSoundEffects,
+                    SoundAssets.equipmentSoundEffects,
                 };
                 List<SoundAssets.JAISoundID> originalSfxList = new();
                 List<SoundAssets.JAISoundID> replacementSfxList = new();
