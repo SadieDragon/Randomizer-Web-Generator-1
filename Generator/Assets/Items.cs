@@ -1033,14 +1033,12 @@ namespace TPRandomizer
 
                     // If wallet size is not increased, we need to be able to
                     // find 1 wallet so we can afford the magic armor check.
-                    Console.WriteLine((int)Randomizer.SSettings.walletSize);
                     if (Randomizer.SSettings.walletSize == WalletSize.Vanilla)
                     {
                         updateItemToCount(RandomizedImportantItems, Item.Progressive_Wallet, 1);
                     }
                     else if (Randomizer.SSettings.walletSize >= WalletSize.HD)
                     {
-                        Console.WriteLine("tada");
                         updateItemToCount(RandomizedImportantItems, Item.Progressive_Wallet, 0);
                     }
 
