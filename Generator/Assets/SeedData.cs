@@ -262,6 +262,7 @@ namespace TPRandomizer.Assets
                 }
             }
 
+            seedHeader.AddRange(Converter.GcBytes((UInt16) (2000 - randomizerSettings.maloShopDonation)));
             seedHeader.Add(Converter.GcByte((int)randomizerSettings.castleRequirements));
             seedHeader.Add(Converter.GcByte((int)randomizerSettings.palaceRequirements));
             int mapBits = 0;
@@ -993,6 +994,16 @@ namespace TPRandomizer.Assets
             List<byte> listOfEventFlags = new();
             ushort count = 0;
             byte[,] arrayOfEventFlags = { };
+
+            if (!Randomizer.SSettings.skipBridgeDonation)
+            {
+                byte[,] donationBits = new byte[,]
+                {
+                    { 0xF9, 0x1 }, // Add 256 Rupees to Malo Mart.
+                    { 0xFA, 0xF4 }, // Add 244 Rupees to Malo Mart.
+                };
+                arrayOfEventFlags = BackendFunctions.ConcatFlagArrays(arrayOfEventFlags, donationBits);
+            }
 
             arrayOfEventFlags = BackendFunctions.ConcatFlagArrays(
                 arrayOfEventFlags,

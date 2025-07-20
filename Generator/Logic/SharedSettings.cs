@@ -73,6 +73,8 @@ namespace TPRandomizer
         public int castleRequirementCount { get; set; }
         public CastleBKRequirements castleBKRequirements { get; set; }
         public int castleBKRequirementCount { get; set; }
+        public bool skipBridgeDonation { get; set; }
+        public int maloShopDonation { get; set; }
         public List<Item> startingItems { get; set; }
         public List<string> excludedChecks { get; set; }
         public List<(string, Item)> plandoChecks { get; set; }
@@ -141,6 +143,8 @@ namespace TPRandomizer
             castleBKRequirements = (CastleBKRequirements)processor.NextInt(3);
             castleBKRequirementCount = processor.NextInt(6);
             autoFillWallet = processor.NextBool();
+            skipBridgeDonation = processor.NextBool();
+            maloShopDonation = processor.NextInt(11);
             // We sort these lists so that the order which the UI happens to
             // pass the data up does not affect anything.
             startingItems = processor.NextItemList();

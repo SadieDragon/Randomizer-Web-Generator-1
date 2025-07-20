@@ -429,6 +429,13 @@ document
   .getElementById('autoFillWalletCheckbox')
   .addEventListener('click', setSettingsString);
 
+  document
+  .getElementById('skipBridgeDonationCheckbox')
+  .addEventListener('click', setSettingsString);
+
+  document
+  .getElementById('maloShopDonationSlider').oninput = setMaloShopDonationValue;
+
 function importSettingsString() {
   parseSettingsString(document.getElementById('settingsStringTextbox').value);
 }
@@ -509,6 +516,12 @@ function setCastleRequirementsSettings()
 function setCastleRequirementsValue()
 {
   document.getElementById('castleRequirementsSliderOutput').innerHTML = document.getElementById('castleRequirementsSlider').value;
+  setSettingsString();
+}
+
+function setMaloShopDonationValue()
+{
+  document.getElementById('maloShopDonationSliderOutput').innerHTML = document.getElementById('maloShopDonationSlider').value;
   setSettingsString();
 }
 
@@ -1532,6 +1545,7 @@ function setHiddenUIValues(s)
           break;
         }
   }
+  document.getElementById('maloShopDonationSliderOutput').innerHTML = s.maloShopDonation;
 }
 
 function populateSSettings(s) {
@@ -1610,6 +1624,8 @@ function populateSSettings(s) {
   $('#castleBKRequirementsFieldset').val(s.castleBKRequirements);
   $('#castleBKRequirementsSlider').val(s.castleBKRequirementCount);
   $('#autoFillWalletCheckbox').prop('checked', s.autoFillWallet);
+  $('#skipBridgeDonationCheckbox').prop('checked', s.skipBridgeDonation);
+  $('#maloShopDonationSlider').val(s.maloShopDonation);
 
   const $excludedChecksParent = $('#baseExcludedChecksListbox');
   s.excludedChecks.forEach((checkNumId) => {

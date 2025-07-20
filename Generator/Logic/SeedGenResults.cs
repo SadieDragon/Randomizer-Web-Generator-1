@@ -578,6 +578,8 @@ namespace TPRandomizer
             result.Add("unpairEntrances", sSettings.unpairEntrances);
             result.Add("castleBKRequirements", sSettings.castleBKRequirements.ToString());
             result.Add("castleBKRequirementCount", sSettings.castleBKRequirementCount);
+            result.Add("skipBridgeDonation", sSettings.skipBridgeDonation);
+            result.Add("maloShopDonation", sSettings.maloShopDonation);
 
             result.Add("startingItems", sSettings.startingItems);
             result.Add("excludedChecks", sSettings.excludedChecks);

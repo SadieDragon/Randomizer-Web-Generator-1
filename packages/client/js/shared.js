@@ -454,6 +454,8 @@
       { id: 'castleBKRequirementsFieldset', bitLength: 3 },
       { id: 'castleBKRequirementsSlider', bitLength: 6 },
       { id: 'autoFillWalletCheckbox' },
+      { id: 'skipBridgeDonationCheckbox' },
+      { id: 'maloShopDonationSlider', bitLength: 11 },
     ].map(({ id, bitLength }) => {
       const val = getVal(id);
       if (bitLength) {
@@ -963,6 +965,8 @@
       processBasic({ id: 'castleBKRequirements', bitLength: 3 });
       processBasic({ id: 'castleBKRequirementCount', bitLength: 6 });
       processBasic({ id: 'autoFillWallet' });
+      processBasic({ id: 'skipBridgeDonation' });
+      processBasic({ id: 'maloShopDonation', bitLength: 11 });
     } else {
       res.randomizeStartingPoint = false; // Vanilla
       res.hiddenRupees = false; // Vanilla
@@ -999,6 +1003,8 @@
       res.castleBKRequirements = 0;
       res.castleBKRequirementCount = 1;
       res.autoFillWallet = false;
+      res.skipBridgeDonation = false;
+      res.maloShopDonation = 2000;
     }
 
     res.startingItems = processor.nextEolList(9);

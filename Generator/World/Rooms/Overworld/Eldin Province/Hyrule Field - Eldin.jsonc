@@ -118,8 +118,8 @@
         "ConnectedArea": "Eldin Field Near Castle Town",
         // When it comes time for ER, we will add (Room.Kakariko_Malo_Mart and Setting.randomizeOverworldEntrances) or  . . . 
         // For now, it's only in logic if we have visited the other side.
-        "Requirements": "Room.Eldin_Field_Near_Castle_Town and CanCompleteEldinTwilight and CanCompleteLanayruTwilight and Room.Kakariko_Malo_Mart",
-        "GlitchedRequirements": "(Room.Kakariko_Malo_Mart or Shadow_Crystal) and CanCompleteEldinTwilight"
+        "Requirements": "(Room.Eldin_Field_Near_Castle_Town and CanCompleteEldinTwilight and CanCompleteLanayruTwilight and Room.Kakariko_Malo_Mart) or (Setting.skipBridgeDonation equals true)",
+        "GlitchedRequirements": "((Room.Kakariko_Malo_Mart or Shadow_Crystal) and CanCompleteEldinTwilight) or (Setting.skipBridgeDonation equals true)"
       },
       {
         "ConnectedArea": "Eldin Field Lava Cave Ledge",
@@ -177,8 +177,8 @@
     [
       {
         "ConnectedArea": "Eldin Field",
-        "Requirements": "Room.Kakariko_Malo_Mart and CanCompleteEldinTwilight and CanCompleteLanayruTwilight",
-        "GlitchedRequirements": "Room.Kakariko_Malo_Mart and CanCompleteEldinTwilight and CanCompleteLanayruTwilight"
+        "Requirements": "(Room.Kakariko_Malo_Mart and CanCompleteEldinTwilight and CanCompleteLanayruTwilight) or (Setting.skipBridgeDonation equals true)",
+        "GlitchedRequirements": "(Room.Kakariko_Malo_Mart and CanCompleteEldinTwilight and CanCompleteLanayruTwilight) or (Setting.skipBridgeDonation equals true)"
       },
       {
         "ConnectedArea": "Outside Castle Town East",
