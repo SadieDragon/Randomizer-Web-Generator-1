@@ -264,6 +264,10 @@ img.flag {
   overflow-x: hidden;
 }
 
+.otherItemsFieldset {
+  width: 100%;
+}
+
 ul {
   list-style: none;
 }

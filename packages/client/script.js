@@ -384,8 +384,7 @@ document
   .getElementById('openDotCheckbox')
   .addEventListener('click', setSettingsString);
 document
-  .getElementById('increaseWalletCheckbox')
-  .addEventListener('click', setSettingsString);
+  .getElementById('walletSizeFieldset').onchange = setSettingsString;
 document
   .getElementById('modifyShopModelsCheckbox')
   .addEventListener('click', setSettingsString);
@@ -425,6 +424,10 @@ document
   setCastleBKRequirementsSettings;
   document
   .getElementById('castleBKRequirementsSlider').oninput = setCastleBKRequirementsValue;
+
+  document
+  .getElementById('autoFillWalletCheckbox')
+  .addEventListener('click', setSettingsString);
 
 function importSettingsString() {
   parseSettingsString(document.getElementById('settingsStringTextbox').value);
@@ -700,8 +703,8 @@ function setSettingsString() {
   settingsStringRaw[27] =
     document.getElementById('seedNumberFieldset').selectedIndex;
   settingsStringRaw[28] = document.getElementById(
-    'increaseWalletCheckbox'
-  ).checked;
+    'walletSizeFieldset'
+  ).selectedIndex;
   settingsStringRaw[29] = document.getElementById(
     'modifyShopModelsCheckbox'
   ).checked;
@@ -1566,7 +1569,7 @@ function populateSSettings(s) {
   $('#fastIBCheckbox').prop('checked', s.fastIronBoots);
   $('#quickTransformCheckbox').prop('checked', s.quickTransform);
   $('#transformAnywhereCheckbox').prop('checked', s.transformAnywhere);
-  $('#increaseWalletCheckbox').prop('checked', s.increaseWalletCapacity);
+  $('#walletSizeFieldset').val(s.walletSize);
   $('#modifyShopModelsCheckbox').prop(
     'checked',
     s.shopModelsShowTheReplacedItem
@@ -1606,6 +1609,7 @@ function populateSSettings(s) {
   $('#castleRequirementsSlider').val(s.castleRequirementCount);
   $('#castleBKRequirementsFieldset').val(s.castleBKRequirements);
   $('#castleBKRequirementsSlider').val(s.castleBKRequirementCount);
+  $('#autoFillWalletCheckbox').prop('checked', s.autoFillWallet);
 
   const $excludedChecksParent = $('#baseExcludedChecksListbox');
   s.excludedChecks.forEach((checkNumId) => {

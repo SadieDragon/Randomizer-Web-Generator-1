@@ -37,7 +37,8 @@ namespace TPRandomizer
         public bool fastIronBoots { get; set; }
         public bool quickTransform { get; set; }
         public bool transformAnywhere { get; set; }
-        public bool increaseWallet { get; set; }
+        public WalletSize walletSize { get; set; }
+        public bool autoFillWallet { get; set; }
         public bool modifyShopModels { get; set; }
         public TrapFrequency trapFrequency { get; set; }
         public bool barrenDungeons { get; set; }
@@ -104,7 +105,7 @@ namespace TPRandomizer
             fastIronBoots = processor.NextBool();
             quickTransform = processor.NextBool();
             transformAnywhere = processor.NextBool();
-            increaseWallet = processor.NextBool();
+            walletSize = (WalletSize)processor.NextInt(2);
             modifyShopModels = processor.NextBool();
             trapFrequency = (TrapFrequency)processor.NextInt(3);
             barrenDungeons = processor.NextBool();
@@ -139,6 +140,7 @@ namespace TPRandomizer
             castleRequirementCount = processor.NextInt(6);
             castleBKRequirements = (CastleBKRequirements)processor.NextInt(3);
             castleBKRequirementCount = processor.NextInt(6);
+            autoFillWallet = processor.NextBool();
             // We sort these lists so that the order which the UI happens to
             // pass the data up does not affect anything.
             startingItems = processor.NextItemList();

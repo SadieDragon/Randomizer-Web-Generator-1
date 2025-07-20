@@ -548,7 +548,8 @@ namespace TPRandomizer
             result.Add("fastIronBoots", sSettings.fastIronBoots);
             result.Add("quickTransform", sSettings.quickTransform);
             result.Add("transformAnywhere", sSettings.transformAnywhere);
-            result.Add("increaseWallet", sSettings.increaseWallet);
+            result.Add("walletSize", sSettings.walletSize.ToString());
+            result.Add("autoFillWallet", sSettings.autoFillWallet);
             result.Add("modifyShopModels", sSettings.modifyShopModels);
             result.Add("trapFrequency", sSettings.trapFrequency.ToString());
             result.Add("barrenDungeons", sSettings.barrenDungeons);

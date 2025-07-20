@@ -464,8 +464,8 @@ namespace TPRandomizer
                 part2Settings.Add("quickTransform", SSettings.quickTransform);
             if (SSettings.transformAnywhere)
                 part2Settings.Add("transformAnywhere", SSettings.transformAnywhere);
-            if (SSettings.increaseWallet)
-                part2Settings.Add("increaseWallet", SSettings.increaseWallet);
+            if (SSettings.walletSize != WalletSize.Reduced)
+                part2Settings.Add("walletSize", SSettings.walletSize);
             if (SSettings.modifyShopModels)
                 part2Settings.Add("modifyShopModels", SSettings.modifyShopModels);
 

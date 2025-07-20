@@ -326,6 +326,8 @@ namespace TPRandomizer.Assets
                 seedHeader.Add(Converter.GcByte((int)randomizerSettings.castleBKRequirementCount));
             }
 
+            seedHeader.Add(Converter.GcByte((int)randomizerSettings.walletSize));
+
             while (seedHeader.Count < SeedHeaderSize)
             {
                 seedHeader.Add((byte)0x0);
@@ -349,7 +351,6 @@ namespace TPRandomizer.Assets
             };
             bool[] oneTimePatchSettingsArray =
             {
-                randomizerSettings.increaseWallet,
                 randomizerSettings.fastIronBoots,
                 fcSettings.disableEnemyBgm,
                 randomizerSettings.instantText,
@@ -362,7 +363,7 @@ namespace TPRandomizer.Assets
                 randomizerSettings.quickTransform,
                 randomizerSettings.increaseSpinnerSpeed,
                 randomizerSettings.bonksDoDamage,
-                randomizerSettings.increaseWallet,
+                randomizerSettings.autoFillWallet,
                 randomizerSettings.modifyShopModels,
             };
 
