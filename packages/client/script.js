@@ -149,6 +149,16 @@ function onDomContentLoaded() {
 
   $('#plandoCheckSelect').select2();
   $('#plandoItemSelect').select2();
+
+  updatePresetDropdown();
+
+  $('#presetDropdown').on('change', function () {
+    const selected = $(this).val();
+    const visible = Boolean(selected);
+    $('#renamePresetBtn').toggle(visible);
+    $('#updatePresetBtn').toggle(visible);
+    $('#deletePresetBtn').toggle(visible);
+  });
 }
 
 function buildPlandoListItemElStr(checkId, checkName, itemId, itemName) {
@@ -444,7 +454,8 @@ function setSettingPresets() {
   var reqs = document.getElementById('settingsPresetFieldset').value;
 
   switch (reqs) {
-    case '0': { // Default
+    case '0': {
+      // Default
       populateFromSettingsString('6s1M9m000201W21600109z3__-');
       break;
     }
@@ -477,35 +488,40 @@ function setCastleRequirementsSettings() {
   }
 
   switch (reqs) {
-    case '1': { // Fused Shadows
+    case '1': {
+      // Fused Shadows
       document.getElementById(sliderName).max = 3;
       document.getElementById(sliderName + 'Label').innerHTML =
         'Fused Shadows Required:';
 
       break;
     }
-    case '2': { // Mirror Shards
+    case '2': {
+      // Mirror Shards
       document.getElementById(sliderName).max = 4;
       document.getElementById(sliderName + 'Label').innerHTML =
         'Mirror Shards Required:';
 
       break;
     }
-    case '3': { // Dungeons
+    case '3': {
+      // Dungeons
       document.getElementById(sliderName).max = 8;
       document.getElementById(sliderName + 'Label').innerHTML =
         'Number of Dungeons Required:';
 
       break;
     }
-    case '5': { // Poe Souls
+    case '5': {
+      // Poe Souls
       document.getElementById(sliderName).max = 60;
       document.getElementById(sliderName + 'Label').innerHTML =
         'Poe Souls Required:';
 
       break;
     }
-    case '6': { // Hearts
+    case '6': {
+      // Hearts
       document.getElementById(sliderName).min = 4;
       document.getElementById(sliderName).value = 4;
       document.getElementById(sliderName).max = 20;
@@ -554,35 +570,40 @@ function setCastleBKRequirementsSettings() {
   }
 
   switch (reqs) {
-    case '1': { // Fused Shadows
+    case '1': {
+      // Fused Shadows
       document.getElementById(sliderName).max = 3;
       document.getElementById(sliderName + 'Label').innerHTML =
         'Fused Shadows Required:';
 
       break;
     }
-    case '2': { // Mirror Shards
+    case '2': {
+      // Mirror Shards
       document.getElementById(sliderName).max = 4;
       document.getElementById(sliderName + 'Label').innerHTML =
         'Mirror Shards Required:';
 
       break;
     }
-    case '3': { // Dungeons
+    case '3': {
+      // Dungeons
       document.getElementById(sliderName).max = 8;
       document.getElementById(sliderName + 'Label').innerHTML =
         'Number of Dungeons Required:';
 
       break;
     }
-    case '4': { // Poe Souls
+    case '4': {
+      // Poe Souls
       document.getElementById(sliderName).max = 60;
       document.getElementById(sliderName + 'Label').innerHTML =
         'Poe Souls Required:';
 
       break;
     }
-    case '5': { // Hearts
+    case '5': {
+      // Hearts
       document.getElementById(sliderName).min = 4;
       document.getElementById(sliderName).value = 4;
       document.getElementById(sliderName).max = 20;
@@ -1491,35 +1512,40 @@ function setHiddenUIValues(s) {
   }
 
   switch (s.castleRequirements) {
-    case 1: { // Fused Shadows
+    case 1: {
+      // Fused Shadows
       document.getElementById('castleRequirementsSlider').max = 3;
       document.getElementById('castleRequirementsSliderLabel').innerHTML =
         'Fused Shadows Required:';
 
       break;
     }
-    case 2: { // Mirror Shards
+    case 2: {
+      // Mirror Shards
       document.getElementById('castleRequirementsSlider').max = 4;
       document.getElementById('castleRequirementsSliderLabel').innerHTML =
         'Mirror Shards Required:';
 
       break;
     }
-    case 3: { // Dungeons
+    case 3: {
+      // Dungeons
       document.getElementById('castleRequirementsSlider').max = 8;
       document.getElementById('castleRequirementsSliderLabel').innerHTML =
         'Number of Dungeons Required:';
 
       break;
     }
-    case 5: { // Poe Souls
+    case 5: {
+      // Poe Souls
       document.getElementById('castleRequirementsSlider').max = 60;
       document.getElementById('castleRequirementsSliderLabel').innerHTML =
         'Poe Souls Required:';
 
       break;
     }
-    case 6: { // Hearts
+    case 6: {
+      // Hearts
       document.getElementById('castleRequirementsSlider').min = 4; // Maybe 4, because 3 would match "Open"
       document.getElementById('castleRequirementsSlider').max = 20;
       document.getElementById('castleRequirementsSliderLabel').innerHTML =
@@ -1549,35 +1575,40 @@ function setHiddenUIValues(s) {
   }
 
   switch (s.castleBKRequirements) {
-    case 1: { // Fused Shadows
+    case 1: {
+      // Fused Shadows
       document.getElementById('castleBKRequirementsSlider').max = 3;
       document.getElementById('castleBKRequirementsSliderLabel').innerHTML =
         'Fused Shadows Required:';
 
       break;
     }
-    case 2: { // Mirror Shards
+    case 2: {
+      // Mirror Shards
       document.getElementById('castleBKRequirementsSlider').max = 4;
       document.getElementById('castleBKRequirementsSliderLabel').innerHTML =
         'Mirror Shards Required:';
 
       break;
     }
-    case 3: { // Dungeons
+    case 3: {
+      // Dungeons
       document.getElementById('castleBKRequirementsSlider').max = 8;
       document.getElementById('castleBKRequirementsSliderLabel').innerHTML =
         'Number of Dungeons Required:';
 
       break;
     }
-    case 4: { // Poe Souls
+    case 4: {
+      // Poe Souls
       document.getElementById('castleBKRequirementsSlider').max = 60;
       document.getElementById('castleBKRequirementsSliderLabel').innerHTML =
         'Poe Souls Required:';
 
       break;
     }
-    case 5: { // Hearts
+    case 5: {
+      // Hearts
       document.getElementById('castleBKRequirementsSlider').min = 4;
       document.getElementById('castleBKRequirementsSlider').max = 20;
       document.getElementById('castleBKRequirementsSliderLabel').innerHTML =
