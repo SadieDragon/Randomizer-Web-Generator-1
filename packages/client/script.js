@@ -436,6 +436,27 @@ document
   document
   .getElementById('maloShopDonationSlider').oninput = setMaloShopDonationValue;
 
+  document.getElementById('settingsPresetFieldset').onchange =
+  setSettingPresets;
+
+function setSettingPresets()
+{
+  var reqs = document.getElementById('settingsPresetFieldset').value;
+
+  switch (reqs)
+  {
+    case "0": // Default
+      {
+        populateFromSettingsString("6s1M9m000201W21600109z3__-");
+        break;
+      }
+    default:
+    {
+      break;
+    }
+  }
+}
+
 function importSettingsString() {
   parseSettingsString(document.getElementById('settingsStringTextbox').value);
 }

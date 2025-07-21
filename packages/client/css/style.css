@@ -1616,7 +1616,8 @@ table.settingsTable > tbody > tr:nth-child(even) {
   border-style: solid;
   border-color: #cc9900;
   white-space: pre-wrap;
-  max-width: 400px;
+  max-width: 30%;
+  overflow-y: auto;
 }
 
 .col-l40 {

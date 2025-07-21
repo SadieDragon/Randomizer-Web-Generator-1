@@ -4284,7 +4284,7 @@ namespace TPRandomizer.Assets
                 //JAISoundID.Z2SE_WL_RUN_R_DUMMY, // Wolf Link Right Leg Run
                 JAISoundID.Z2SE_FN_WALL_CLIMB, // Wall Climb
                 JAISoundID.Z2SE_FN_LINK_CRAWL, // Crawling
-                //JAISoundID.Z2SE_FN_ROPE_CREAK, // Balancing Rope Creak
+                JAISoundID.Z2SE_FN_ROPE_CREAK, // Balancing Rope Creak
                 JAISoundID.Z2SE_FN_CHAIN_CREAK, // Chain/Bones Creak
                 //JAISoundID.Z2SE_HS_WALK_L_DUMMY, // Epona - Left Leg Walk
                 //JAISoundID.Z2SE_HS_WALK_R_DUMMY, // Epona - Right Leg Walk
@@ -4318,8 +4318,8 @@ namespace TPRandomizer.Assets
                 JAISoundID.Z2SE_HIT_SWORD_STAB, // Sword Stab
                 JAISoundID.Z2SE_HIT_SHIELD_ATTACK, // Shield Attack
                 JAISoundID.Z2SE_HIT_HAMMER, // Dom Rod Statue Hammer
-                JAISoundID.Z2SE_HIT_ARROW_STICK, // Arrow Stab Sound
-                JAISoundID.Z2SE_HIT_ARROW_REBOUND, // Arrow Rebound
+                //JAISoundID.Z2SE_HIT_ARROW_STICK, // Arrow Stab Sound
+                //JAISoundID.Z2SE_HIT_ARROW_REBOUND, // Arrow Rebound
                 JAISoundID.Z2SE_HIT_METAL_WEAPON, // Weapon Hitting Metal
                 JAISoundID.Z2SE_HIT_STONE_WEAPON, // Weapon Hitting Stone
                 JAISoundID.Z2SE_HIT_HARD_BODY, // Weapon Hitting hard Body
@@ -4328,12 +4328,12 @@ namespace TPRandomizer.Assets
                 JAISoundID.Z2SE_HIT_SPINNER, // Spinner Hit
                 JAISoundID.Z2SE_HIT_COPYROD, // Dom Rod Statue hit
                 JAISoundID.Z2SE_HIT_STATUE_HAMMER, // Domt Rod Statue Hammer Hit
-                JAISoundID.Z2SE_HIT_AL_ARROW_STICK, // Adult Link - Arrow Stick
-                JAISoundID.Z2SE_HIT_AL_ARROW_REBOUND, // Adult Link - Arrow Rebound
-                JAISoundID.Z2SE_HIT_PACHINKO, // Slingshot hit
+                //JAISoundID.Z2SE_HIT_AL_ARROW_STICK, // Adult Link - Arrow Stick
+                //JAISoundID.Z2SE_HIT_AL_ARROW_REBOUND, // Adult Link - Arrow Rebound
+                //JAISoundID.Z2SE_HIT_PACHINKO, // Slingshot hit
                 JAISoundID.Z2SE_SWORD_STICK_PULLOUT, // Unsheath Sword
                 JAISoundID.Z2SE_HIT_ROPE_CUT, // Rope Cut
-                //JAISoundID.Z2SE_HIT_ROPE_REBOUND, // Rope Rebound
+                JAISoundID.Z2SE_HIT_ROPE_REBOUND, // Rope Rebound
                 JAISoundID.Z2SE_HIT_CHAIN_REBOUND, // Chain Rebound
                 JAISoundID.JA_SE_OBJ_BREAK_WOOD_S, // Break Wood Object - Small
                 JAISoundID.JA_SE_OBJ_BREAK_WOOD_L, // Break Wood Object - Large
