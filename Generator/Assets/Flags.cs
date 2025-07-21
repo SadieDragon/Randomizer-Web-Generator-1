@@ -516,7 +516,7 @@ namespace TPRandomizer.Assets
 
         public static readonly byte[,] bridgeDonationRegionFlags = new byte[,]
         {
-            { 0x4, 0x44 }, // East Castle Town Bridge
+            { 0x6, 0x44 }, // East Castle Town Bridge
         };
 
         /// <summary>
