@@ -129,6 +129,11 @@ function onDomContentLoaded() {
   // their previous values.
   window.addEventListener('load', setSettingsString, { once: true });
 
+  // Hide the load string button if no strings are saved in local storage.
+  if (!localStorage.getItem('settingsString')) {
+    $('#loadString').hide();
+  }
+
   initSettingsModal();
   initGeneratingModal();
 
@@ -949,6 +954,8 @@ function saveSettingsString() {
   });
 
   localStorage.setItem('settingsString', payload);
+
+  $('#loadString').show();
 }
 
 function loadSettingsString() {
@@ -982,7 +989,11 @@ function loadSettingsString() {
 
   const error = populateFromSettingsString(settingsString);
   if (error) {
-    fieldErrorText.text('Unable to understand those settings.').show();
+    fieldErrorText
+      .text(
+        'Unable to understand the settings string saved in local storage. Please select new settings or enter a new settings string manually.'
+      )
+      .show();
     return;
   }
 
