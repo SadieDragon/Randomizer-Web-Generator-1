@@ -1,5 +1,53 @@
 const $ = window.$;
 
+const DEFAULT_PRESETS = [
+  {
+    name: 'Default',
+    settingsString: '6s1M9m000201W21600109z3__-',
+    description:
+      'Aimed towards players who may have played the vanilla game but are not as familiar with the world. No timesavers are enabled and only the absolute minimum amount of checks are randomized.',
+  },
+  {
+    name: 'Easy',
+    settingsString: '6s1M9m80W201W21701109z3__-',
+    description:
+      'Aimed towards players who are familiar with randomizers and want a little more randomness. Many of the story timesavers are skipped and the world is much more random. A number of time-intensive checks are excluded.',
+  },
+  {
+    name: 'Experienced',
+    settingsString: '6s1M3m80W201W21701109z3__-',
+    description:
+      'These settings are aimed towards players who have a lot of seeds under their belt and are looking for a new challenge. A majority of timesavers are enabled, all check types are randomized, and no checks are excluded.',
+  },
+  {
+    name: 'Nightmare',
+    settingsString: '6s1M9m000201W21600109z3__-',
+    description:
+      'These settings are designed to cause pain. Everything is randomized and settings such as One-Hit-KO, Bonks Do Damage, and Nightmare trap items are enabled. These seeds rely on glitchless logic to be beatable. Good luck.',
+  },
+  {
+    name: 'Nightmare²',
+    settingsString: '6s1M9m000201W21600109z3__-',
+    description:
+      'Was the previous Nightmare setting too easy for you? These settings take things to the next level by setting the logical requirements to Glitched.',
+  },
+  {
+    name: 'Bingo',
+    settingsString: '6s1M9m000201W21600109z3__-',
+    description: '',
+  },
+  {
+    name: 'Glitched',
+    settingsString: '6s1M9m000201W21600109z3__-',
+    description: '',
+  },
+  {
+    name: 'No Logic',
+    settingsString: '',
+    description: '',
+  },
+];
+
 let userJwt;
 let generateCallInProgress = false;
 
@@ -154,10 +202,28 @@ function onDomContentLoaded() {
 
   $('#presetDropdown').on('change', function () {
     const selected = $(this).val();
-    const visible = Boolean(selected);
-    $('#renamePresetBtn').toggle(visible);
-    $('#updatePresetBtn').toggle(visible);
-    $('#deletePresetBtn').toggle(visible);
+    if (!selected) return;
+
+    const [type, name] = selected.split('::');
+
+    if (type === 'default') {
+      const preset = DEFAULT_PRESETS.find((p) => p.name === name);
+      if (!preset) return;
+
+      const error = populateFromSettingsString(preset.settingsString);
+      if (error) {
+        showPresetError('Invalid settings in default preset.');
+      } else {
+        $('#combinedSettingsString').text(preset.settingsString);
+      }
+
+      $('#updatePresetBtn').hide();
+    }
+
+    if (type === 'custom') {
+      loadPreset(name);
+      $('#updatePresetBtn').show();
+    }
   });
 }
 
@@ -447,23 +513,6 @@ document
 
 document.getElementById('maloShopDonationSlider').oninput =
   setMaloShopDonationValue;
-
-document.getElementById('settingsPresetFieldset').onchange = setSettingPresets;
-
-function setSettingPresets() {
-  var reqs = document.getElementById('settingsPresetFieldset').value;
-
-  switch (reqs) {
-    case '0': {
-      // Default
-      populateFromSettingsString('6s1M9m000201W21600109z3__-');
-      break;
-    }
-    default: {
-      break;
-    }
-  }
-}
 
 function importSettingsString() {
   parseSettingsString(document.getElementById('settingsStringTextbox').value);
@@ -1842,6 +1891,12 @@ function handleRenamePreset() {
   clearPresetModalError();
 
   const oldName = getSelectedModalPresetName();
+
+  if (isDefaultPreset(oldName)) {
+    showPresetError('Cannot modify default presets.');
+    return;
+  }
+
   if (!oldName) {
     showPresetModalError('Select a preset to rename.');
     return;
@@ -1877,6 +1932,11 @@ function updateCurrentPreset() {
 
   const name = getSelectedPresetName();
   const settingsString = $('#combinedSettingsString').text().trim();
+
+  if (isDefaultPreset(name)) {
+    showPresetError('Cannot modify default presets.');
+    return;
+  }
 
   if (!name) {
     showPresetError('No preset selected to update.');
@@ -1927,6 +1987,12 @@ function handleDeletePreset() {
   clearPresetModalError();
 
   const name = getSelectedModalPresetName();
+
+  if (isDefaultPreset(name)) {
+    showPresetError('Cannot modify default presets.');
+    return;
+  }
+
   if (!name) return;
 
   if (!confirm(`Delete preset "${name}"? This cannot be undone.`)) return;
@@ -1938,21 +2004,33 @@ function handleDeletePreset() {
   updateModalDropdown();
 }
 
-function updatePresetDropdown(selectedName = null) {
+function updatePresetDropdown(selectedValue = null) {
   const dropdown = $('#presetDropdown');
-  dropdown.empty().append('<option disabled selected>Select preset</option>');
+  dropdown.empty();
 
-  getPresets()
+  dropdown.append('<option disabled selected>Select preset</option>');
+
+  // Default presets
+  dropdown.append('<optgroup label="Default Presets">');
+  DEFAULT_PRESETS.slice().forEach((p) => {
+    dropdown.append(`<option value="default::${p.name}">${p.name}</option>`);
+  });
+  dropdown.append('</optgroup>');
+
+  // Custom presets
+  const customPresets = getPresets()
     .slice()
-    .sort((a, b) => a.name.localeCompare(b.name))
-    .forEach((p) => {
-      dropdown.append(`<option value="${p.name}">${p.name}</option>`);
+    .sort((a, b) => a.name.localeCompare(b.name));
+  if (customPresets.length > 0) {
+    dropdown.append('<optgroup label="Custom Presets">');
+    customPresets.forEach((p) => {
+      dropdown.append(`<option value="custom::${p.name}">${p.name}</option>`);
     });
+    dropdown.append('</optgroup>');
+  }
 
-  if (selectedName) {
-    dropdown.val(selectedName);
-  } else {
-    dropdown.val('Select preset');
+  if (selectedValue) {
+    dropdown.val(selectedValue);
   }
 
   dropdown.trigger('change');
@@ -2003,4 +2081,17 @@ function showPresetModalError(msg) {
 
 function clearPresetModalError() {
   $('#presetModalError').text('').hide();
+}
+
+function isDefaultPreset(name) {
+  return DEFAULT_PRESETS.some((p) => p.name === name);
+}
+
+function copySettingsString() {
+  const text = $('#combinedSettingsString').text().trim();
+  if (!text) return;
+
+  navigator.clipboard.writeText(text).then(() => {
+    showPresetUpdateStatus('Settings string copied.');
+  });
 }

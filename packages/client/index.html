@@ -524,26 +524,6 @@
               </div>
             </fieldset>
           </div>
-          <div style="width: 100%">
-            <fieldset id="settingsFieldset">
-              <legend>Settings Presets</legend>
-              <select
-                name="Settings Preset Fieldset"
-                id="settingsPresetFieldset"
-                data-tooltip-text="'Default': Aimed towards players who may have played the vanilla game but are not as familiar with the world. No timesavers are enabled and only the absolute minimum amount of checks are randomized.&#0010;&#0010;'Easy': Aimed towards players who are familiar with randomizers and want a little more randomness. Many of the story timesavers are skipped and the world is much more random. A number of time-intensive checks are excluded.&#0010;&#0010;'Experienced': These settings are aimed towards players who have a lot of seeds under their belt and are looking for a new challenge. A majority of timesavers are enabled, all check types are randomized, and no checks are excluded.&#0010;&#0010;'Nightmare': These settings are designed to cause pain. Everything is randomized and settings such as One-Hit-KO, Bonks Do Damage, and Nightmare trap items are enabled. These seeds rely on glitchless logic to be beatable. Good luck.&#0010;&#0010;'Nightmare²': Was the previous Nightmare setting too easy for you? These settings take things to the next level by setting the logical requirements to Glitched.&#0010;&#0010;Other presets are used for racing/events and/or tournaments."
-              >
-                <option value="0">Default</option>
-                <option value="1">Easy</option>
-                <option value="2">Experienced</option>
-                <option value="3">Nightmare</option>
-                <option value="4">Nightmare²</option>
-                <option value="5">S1 Tournament</option>
-                <option value="6">Bingo</option>
-                <option value="7">Glitched</option>
-                <option value="8">No Logic</option>
-              </select>
-            </fieldset>
-          </div>
         </div>
 
         <div id="gameplaySettingsTab" class="tabcontent">
@@ -1125,6 +1105,16 @@
           "
         >
           <button
+            id="copySettingsBtn"
+            type="button"
+            title="Copy settings string"
+            style="cursor: pointer; font-size: 1.4em"
+            class="css-1egpgfe"
+            onclick="copySettingsString()"
+          >
+            📋
+          </button>
+          <button
             id="editSettingsBtn"
             class="settingsEditBtnPos css-1egpgfe"
             tabindex="0"
@@ -1151,6 +1141,7 @@
             <button onclick="saveCurrentAsPreset()">
               Save string as preset
             </button>
+            <button onclick="openManagePresetsModal()">Manage presets</button>
             <button
               id="updatePresetBtn"
               onclick="updateCurrentPreset()"
@@ -1158,7 +1149,6 @@
             >
               Update preset
             </button>
-            <button onclick="openManagePresetsModal()">Manage presets</button>
           </div>
 
           <div id="presetUpdateStatus" class="preset-toast">Preset updated</div>
