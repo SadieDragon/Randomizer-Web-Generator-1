@@ -1138,7 +1138,10 @@
               <option disabled selected>Select preset</option>
             </select>
 
-            <button onclick="saveCurrentAsPreset()">
+            <button
+              onclick="saveCurrentAsPreset()"
+              data-tooltip-text="Save string as a named preset. A preset will be deleted when a new version of the generator is released."
+            >
               Save string as preset
             </button>
             <button onclick="openManagePresetsModal()">Manage presets</button>
@@ -1146,6 +1149,7 @@
               id="updatePresetBtn"
               onclick="updateCurrentPreset()"
               style="display: none"
+              data-tooltip-text="Update the selected preset with the new selected settings."
             >
               Update preset
             </button>

@@ -169,7 +169,7 @@ function onDomContentLoaded() {
   initTabButtons();
 
   // Set default settings string in UI.
-  setSettingsString();
+  const defaultSettingsString = setSettingsString();
   setDungeonERSettings();
   setOverworldERSettings();
   // If returning back from the seed page, the browser will fill in the state.
@@ -198,6 +198,10 @@ function onDomContentLoaded() {
   $('#plandoCheckSelect').select2();
   $('#plandoItemSelect').select2();
 
+  // Delete every invalid string the user might have in their local storage.
+  // A string is invalid if its version does not match the one of defaultSettingsString (as in, every char up to the first 's').
+  cleanInvalidUserPresets(defaultSettingsString);
+
   updatePresetDropdown();
 
   $('#presetDropdown').on('change', function () {
@@ -211,10 +215,9 @@ function onDomContentLoaded() {
       if (!preset) return;
 
       const error = populateFromSettingsString(preset.settingsString);
+
       if (error) {
         showPresetError('Invalid settings in default preset.');
-      } else {
-        $('#combinedSettingsString').text(preset.settingsString);
       }
 
       $('#updatePresetBtn').hide();
@@ -821,8 +824,11 @@ function setSettingsString() {
   document.getElementById('settingsStringTextbox').textContent =
     getSettingsString(settingsStringRaw);
 
+  const combinedSettingsString = window.tpr.shared.genSSettingsFromUi();
   document.getElementById('combinedSettingsString').textContent =
-    window.tpr.shared.genSSettingsFromUi();
+    combinedSettingsString;
+
+  return combinedSettingsString;
 }
 
 function getSettingsString(settingsStringRaw) {
@@ -2094,4 +2100,37 @@ function copySettingsString() {
   navigator.clipboard.writeText(text).then(() => {
     showPresetUpdateStatus('Settings string copied.');
   });
+}
+
+function cleanInvalidUserPresets(defaultString) {
+  const validVersion = defaultString.split('s')[0];
+  const raw = localStorage.getItem('settingsPresets');
+
+  if (!raw) return;
+
+  let presets;
+  try {
+    presets = JSON.parse(raw);
+  } catch (e) {
+    // If the JSON is malformed, remove the whole key
+    localStorage.removeItem('settingsPresets');
+    return;
+  }
+
+  if (!Array.isArray(presets)) {
+    localStorage.removeItem('settingsPresets');
+    return;
+  }
+
+  const cleaned = presets.filter((preset) => {
+    if (!preset || typeof preset.settingsString !== 'string') return false;
+    const version = preset.settingsString.split('s')[0];
+    return version === validVersion;
+  });
+
+  if (cleaned.length > 0) {
+    localStorage.setItem('settingsPresets', JSON.stringify(cleaned));
+  } else {
+    localStorage.removeItem('settingsPresets');
+  }
 }
