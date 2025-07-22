@@ -1892,3 +1892,12 @@ input[type='file']:disabled::file-selector-button {
   border-color: #9e9e9e;
   color: #000;
 }
+
+/* These 2 rules disable scrolling with a mouse through presets. Doing this would overwrite settings accidently and is not wanted behavior. */
+#presetDropdownModal {
+  pointer-events: none;
+}
+
+#presetDropdownModal:focus {
+  pointer-events: auto;
+}
