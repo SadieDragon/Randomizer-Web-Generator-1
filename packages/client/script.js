@@ -1838,11 +1838,12 @@ function testProgressFunc(id) {
 }
 
 // Preset handling
-const MAX_PRESET_NAME_LENGTH = 40;
+const MAX_PRESET_NAME_LENGTH = 20;
 
 function savePresets(presets) {
   localStorage.setItem('settingsPresets', JSON.stringify(presets));
 }
+
 function getPresets() {
   clearPresetError();
 
@@ -1856,10 +1857,13 @@ function getPresets() {
 function saveCurrentAsPreset() {
   clearPresetError();
 
-  const name = prompt('Enter preset name:')
+  const name = prompt('Enter preset name (must be below 20 characters):')
     ?.trim()
     .slice(0, MAX_PRESET_NAME_LENGTH);
   if (!name) return;
+
+  // To save the cosmetics string:
+  // Get the value of the cosmetics string field, and push it in the presets array to be saved to local storage.
 
   const settingsString = $('#combinedSettingsString').text().trim();
   if (!settingsString) {
@@ -2104,7 +2108,7 @@ function copySettingsString() {
 
 function cleanInvalidUserPresets(defaultString) {
   const validVersion = defaultString.split('s')[0];
-  const raw = localStorage.getItem('settingsPresets');
+  const raw = getPresets();
 
   if (!raw) return;
 
