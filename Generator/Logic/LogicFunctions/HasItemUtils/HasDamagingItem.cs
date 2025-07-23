@@ -71,7 +71,7 @@ namespace LogicFunctionsNS
         /// E for excluding. Checks for Sword, B&C, Bow, Spinner, and Crystal.
         /// </summary>
         /// <returns></returns>
-        public static bool HasDamagingItemEgBombs()
+        public static bool HasDamagingItemEBombs()
         {
             return HasAnyItems(AddItemsToBase(Item.Shadow_Crystal));
         }
