@@ -1,7 +1,3 @@
-// The one in HLF, minus bombs & crystal (HasDamagingItemExcludingCrystalAndBombs)
-// That, + bombs (HasDamagingItemExcludingCrystal)
-// The first, + crystal (HasDamagingItemExcludingBombs)
-// The first, + bombs and crystal (HasDamagingItem)
 // The fourth + claw (HasDamagingItemIncludingClaw)
 // The fourth + sling (HasDamagingItemIncludingSling)
 
@@ -22,14 +18,19 @@ namespace LogicFunctionsNS
         ];
 
         // Wrapper for adding items to the list for HAI
-        private static List<Item> AddItemsToBase(Item params itemToAdd);
-        private static readonly List<Item> bombBag = [Item.Filled_Bomb_Bag];
+        private static List<Item> AddItemsToBase(params Item[] itemToAdd)
+        {
+            return (List<Item>)baseItems.Concat(itemToAdd);
+        }
+
+        // A placeholder for the bomb bag to be recognized
+        private static readonly Item bombBag = Item.Filled_Bomb_Bag;
 
         private static bool HasAnyItems(List<Item> itemsToCheck)
         {
             // Note: This could be `itemsToCheck.Any(CanUseUtils.CanUse), technically,
             //   but I wanted to code this so that there were special cases for bombs and
-            //   the sword.
+            //   the sword and bombs.
             // This could also be in `CanUseUtils`, but I decided to do it here, for now.
             // - Lupa (SadieDragon)
             foreach (Item itemToCheck in itemsToCheck)
@@ -39,7 +40,7 @@ namespace LogicFunctionsNS
                 {
                     return true;
                 }
-                // Sepcial case for bomb bag.
+                // Sepcial case for bomb bag
                 else if ((itemToCheck == Item.Filled_Bomb_Bag) && BombUtils.HasBombs())
                 {
                     return true;
@@ -50,7 +51,7 @@ namespace LogicFunctionsNS
                     return true;
                 }
             }
-            // If did not short circuit, then false.
+            // If did not short circuit, then the user does not have any of the items.
             return false;
         }
 
@@ -66,7 +67,7 @@ namespace LogicFunctionsNS
         /// <returns></returns>
         public static bool HasDamagingItemECrystal()
         {
-            return HasAnyItems((List<Item>)baseItems.Concat(bombBag));
+            return HasAnyItems(AddItemsToBase(bombBag));
         }
 
         /// <summary>
@@ -75,7 +76,7 @@ namespace LogicFunctionsNS
         /// <returns></returns>
         public static bool HasDamagingItemEgBombs()
         {
-            return HasDamagingItemECrystalAndBombs() || CanUseUtils.CanUse(Item.Shadow_Crystal);
+            return HasAnyItems(AddItemsToBase(Item.Shadow_Crystal));
         }
 
         /// <summary>
@@ -84,9 +85,7 @@ namespace LogicFunctionsNS
         /// <returns></returns>
         public static bool HasDamagingItem()
         {
-            return HasDamagingItemECrystalAndBombs()
-                || BombUtils.HasBombs()
-                || CanUseUtils.CanUse(Item.Shadow_Crystal);
+            return HasAnyItems(AddItemsToBase(bombBag, Item.Shadow_Crystal));
         }
     }
 }
