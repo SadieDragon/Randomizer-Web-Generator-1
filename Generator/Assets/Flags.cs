@@ -514,6 +514,11 @@ namespace TPRandomizer.Assets
             { 0x18, 0x94 }, // Open HC BK gate
         };
 
+        public static readonly byte[,] bridgeDonationRegionFlags = new byte[,]
+        {
+            { 0x6, 0x44 }, // East Castle Town Bridge
+        };
+
         /// <summary>
         /// summary text.
         /// </summary>
@@ -541,6 +546,7 @@ namespace TPRandomizer.Assets
                 { 27, CharmRegionFlags },
                 { 28, DungeonERRegionFlags },
                 { 29, HCBKRegionFlags },
+                { 30, bridgeDonationRegionFlags },
             };
 
         /// <summary>
@@ -566,8 +572,6 @@ namespace TPRandomizer.Assets
             { 0x5F, 0x20 }, // Shad leaves sanctuary.
             { 0xF7, 0x1 }, // Add 256 Rupees to Charlo.
             { 0xF8, 0xF4 }, // Add 244 Rupees to Charlo.
-            { 0xF9, 0x1 }, // Add 256 Rupees to Malo Mart.
-            { 0xFA, 0xF4 }, // Add 244 Rupees to Malo Mart.
             { 0x60, 0x1 }, // Talked to Fyer after Lanayru Twilight
             { 0x38, 0x80 }, // Talked to Jovani after defeating Poe.
             { 0x22, 0x8 }, // Talked to Yeto on top of the mountain after clearing SPR
@@ -728,6 +732,11 @@ namespace TPRandomizer.Assets
             { 0x22, 0x80 }, // Got Ilia's Charm
         };
 
+        public static readonly byte[,] bridgeDonationEventFlags = new byte[,]
+        {
+            { 0x2E, 0x20 }, // Bridge Fundraising completed.
+        };
+
         /// <summary>
         /// summary text.
         /// </summary>
@@ -751,7 +760,8 @@ namespace TPRandomizer.Assets
                 { 23, OverworldEREventFlags },
                 { 24, RenadoLetterEventFlags },
                 { 26, WoodStatueEventFlags },
-                { 27, CharmEventFlags }
+                { 27, CharmEventFlags },
+                { 30, bridgeDonationEventFlags },
             };
         private static readonly SharedSettings RandomizerSettings = Randomizer.SSettings;
 
@@ -790,6 +800,7 @@ namespace TPRandomizer.Assets
             /* 27 */RandomizerSettings.iliaQuest >= IliaQuest.Charm,
             /* 28 */RandomizerSettings.shuffleDungeonEntrances != DungeonER.Off,
             /* 29 */RandomizerSettings.castleBKRequirements == CastleBKRequirements.None,
+            /* 30 */RandomizerSettings.skipBridgeDonation,
         };
     }
 }

@@ -1715,6 +1715,20 @@ namespace TPRandomizer
                     Randomizer.Rooms.RoomDict["Castle Town Goron House"].ReachedByPlaythrough
                     && !Randomizer.SSettings.shuffleShopItems
                 )
+                || Randomizer.Rooms.RoomDict["Death Mountain Hot Spring"].ReachedByPlaythrough
+                || Randomizer.Rooms.RoomDict["City in The Sky Entrance"].ReachedByPlaythrough
+                || (
+                    Randomizer.Rooms.RoomDict["Hyrule Castle Main Hall"].ReachedByPlaythrough
+                    && CanDefeatBokoblin()
+                    && CanDefeatLizalfos()
+                    && (GetItemCount(Item.Progressive_Clawshot) >= 2)
+                    && CanDefeatDarknut()
+                )
+                || (
+                    Randomizer.Rooms.RoomDict["Eldin Lantern Cave"].ReachedByPlaythrough
+                    && CanBurnWebs()
+                    && CanDefeatChu()
+                )
             );
         }
 
@@ -2207,6 +2221,25 @@ namespace TPRandomizer
             }
 
             return false;
+        }
+
+        public static bool CanBuyMagicArmor()
+        {
+            switch (Randomizer.SSettings.walletSize)
+            {
+                case WalletSize.Reduced:
+                {
+                    return GetItemCount(Item.Progressive_Wallet) >= 2;
+                }
+                case WalletSize.Vanilla:
+                {
+                    return CanUse(Item.Progressive_Wallet);
+                }
+                default:
+                {
+                    return true;
+                }
+            }
         }
 
         // START OF GLITCHED LOGIC

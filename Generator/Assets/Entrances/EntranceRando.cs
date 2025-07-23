@@ -23,6 +23,7 @@ namespace TPRandomizer
         Mixed,
         Paired,
         All,
+        Boss_Exit,
     }
 
     public enum EntranceShuffleError
@@ -237,9 +238,9 @@ namespace TPRandomizer
             {
                 Type = EntranceType.Boss;
             }
-            else if (entranceType == "Boss Room Second Exit")
+            else if (entranceType == "Boss Room Exit")
             {
-                Type = EntranceType.Boss_Reverse;
+                Type = EntranceType.Boss_Exit;
             }
             else if (entranceType == "Paired")
             {
@@ -368,6 +369,7 @@ namespace TPRandomizer
                         && (
                             (exit.GetEntranceType() != EntranceType.Boss)
                             || (exit.GetEntranceType() != EntranceType.Boss_Reverse)
+                            || (exit.GetEntranceType() != EntranceType.Boss_Exit)
                         )
                     )
                     {
@@ -1206,7 +1208,9 @@ namespace TPRandomizer
                         )
                         .GetReplacedEntrance();
 
-                    string newRegion = newEntrance.GetParentRegion();
+                    string newRegion = GetReverseConnectionEntrance(bossRoomName)[
+                        0
+                    ].GetParentRegion();
 
                     Randomizer.Rooms.RoomDict[bossRoomName].Region = newRegion;
 

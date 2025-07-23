@@ -548,7 +548,8 @@ namespace TPRandomizer
             result.Add("fastIronBoots", sSettings.fastIronBoots);
             result.Add("quickTransform", sSettings.quickTransform);
             result.Add("transformAnywhere", sSettings.transformAnywhere);
-            result.Add("increaseWallet", sSettings.increaseWallet);
+            result.Add("walletSize", sSettings.walletSize.ToString());
+            result.Add("autoFillWallet", sSettings.autoFillWallet);
             result.Add("modifyShopModels", sSettings.modifyShopModels);
             result.Add("trapFrequency", sSettings.trapFrequency.ToString());
             result.Add("barrenDungeons", sSettings.barrenDungeons);
@@ -577,6 +578,8 @@ namespace TPRandomizer
             result.Add("unpairEntrances", sSettings.unpairEntrances);
             result.Add("castleBKRequirements", sSettings.castleBKRequirements.ToString());
             result.Add("castleBKRequirementCount", sSettings.castleBKRequirementCount);
+            result.Add("skipBridgeDonation", sSettings.skipBridgeDonation);
+            result.Add("maloShopDonation", sSettings.maloShopDonation);
 
             result.Add("startingItems", sSettings.startingItems);
             result.Add("excludedChecks", sSettings.excludedChecks);

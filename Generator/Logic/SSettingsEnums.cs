@@ -11,6 +11,14 @@ namespace TPRandomizer.SSettings.Enums
         No_Logic = 2,
     }
 
+    public enum WalletSize
+    {
+        Reduced = 0,
+        Vanilla = 1,
+        HD = 2,
+        Large = 3,
+    }
+
     public enum CastleRequirements
     {
         Open = 0,

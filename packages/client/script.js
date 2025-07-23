@@ -129,6 +129,11 @@ function onDomContentLoaded() {
   // their previous values.
   window.addEventListener('load', setSettingsString, { once: true });
 
+  // Hide the load string button if no strings are saved in local storage.
+  if (!localStorage.getItem('settingsString')) {
+    $('#loadString').hide();
+  }
+
   initSettingsModal();
   initGeneratingModal();
 
@@ -284,7 +289,7 @@ document.getElementById('logicRulesFieldset').onchange = setSettingsString;
 document.getElementById('gameRegionFieldset').onchange = setSettingsString;
 document.getElementById('seedNumberFieldset').onchange = setSettingsString;
 document.getElementById('castleRequirementsFieldset').onchange =
-setCastleRequirementsSettings;
+  setCastleRequirementsSettings;
 document.getElementById('palaceRequirementsFieldset').onchange =
   setSettingsString;
 document.getElementById('faronLogicFieldset').onchange = setSettingsString;
@@ -383,9 +388,7 @@ document
 document
   .getElementById('openDotCheckbox')
   .addEventListener('click', setSettingsString);
-document
-  .getElementById('increaseWalletCheckbox')
-  .addEventListener('click', setSettingsString);
+document.getElementById('walletSizeFieldset').onchange = setSettingsString;
 document
   .getElementById('modifyShopModelsCheckbox')
   .addEventListener('click', setSettingsString);
@@ -401,212 +404,225 @@ document
 document
   .getElementById('randomizeStartingPointCheckbox')
   .addEventListener('click', setOverworldERSettings);
-  document.getElementById('iliaQuestFieldset').onchange = setSettingsString;
-document.getElementById('mirrorChamberFieldset').onchange =
-  setSettingsString;
-document.getElementById('dungeonERFieldset').onchange =
-setDungeonERSettings;
+document.getElementById('iliaQuestFieldset').onchange = setSettingsString;
+document.getElementById('mirrorChamberFieldset').onchange = setSettingsString;
+document.getElementById('dungeonERFieldset').onchange = setDungeonERSettings;
 document
   .getElementById('unpairedEntrancesCheckbox')
   .addEventListener('click', setSettingsString);
-  document
+document
   .getElementById('decoupleEntrancesCheckbox')
   .addEventListener('click', setSettingsString);
-  document
+document
   .getElementById('freestandingRupeeCheckbox')
   .addEventListener('click', setSettingsString);
 document
   .getElementById('importSettingsStringButton')
   .addEventListener('click', importSettingsString);
 
-  document
-  .getElementById('castleRequirementsSlider').oninput = setCastleRequirementsValue;
-  document.getElementById('castleBKRequirementsFieldset').onchange =
+document.getElementById('castleRequirementsSlider').oninput =
+  setCastleRequirementsValue;
+document.getElementById('castleBKRequirementsFieldset').onchange =
   setCastleBKRequirementsSettings;
-  document
-  .getElementById('castleBKRequirementsSlider').oninput = setCastleBKRequirementsValue;
+document.getElementById('castleBKRequirementsSlider').oninput =
+  setCastleBKRequirementsValue;
+
+document
+  .getElementById('autoFillWalletCheckbox')
+  .addEventListener('click', setSettingsString);
+
+document
+  .getElementById('skipBridgeDonationCheckbox')
+  .addEventListener('click', setSettingsString);
+
+document.getElementById('maloShopDonationSlider').oninput =
+  setMaloShopDonationValue;
+
+document.getElementById('settingsPresetFieldset').onchange = setSettingPresets;
+
+function setSettingPresets() {
+  var reqs = document.getElementById('settingsPresetFieldset').value;
+
+  switch (reqs) {
+    case '0': { // Default
+      populateFromSettingsString('6s1M9m000201W21600109z3__-');
+      break;
+    }
+    default: {
+      break;
+    }
+  }
+}
 
 function importSettingsString() {
   parseSettingsString(document.getElementById('settingsStringTextbox').value);
 }
 
-function setCastleRequirementsSettings()
-{
+function setCastleRequirementsSettings() {
   var reqs = document.getElementById('castleRequirementsFieldset').value;
   let sliderName = 'castleRequirementsSlider';
-  
+
   document.getElementById(sliderName).min = 1;
   document.getElementById(sliderName).value = 1;
 
   // Hide the slider info if we are not using an option that uses it
-  if ((reqs == "0") || (reqs == "4"))
-  {
-    
+  if (reqs == '0' || reqs == '4') {
     document.getElementById(sliderName).hidden = true;
     document.getElementById(sliderName + 'Label').hidden = true;
     document.getElementById(sliderName + 'Output').hidden = true;
-  }
-  else
-  {
+  } else {
     document.getElementById(sliderName).hidden = false;
     document.getElementById(sliderName + 'Label').hidden = false;
     document.getElementById(sliderName + 'Output').hidden = false;
   }
 
-  switch (reqs)
-  {
-    case "1": // Fused Shadows
-      {
-        
-        document.getElementById(sliderName).max = 3;
-        document.getElementById(sliderName + 'Label').innerHTML = "Fused Shadows Required:"
-        
-        break;
-      }
-      case "2": // Mirror Shards
-      {
-        document.getElementById(sliderName).max = 4;
-        document.getElementById(sliderName + 'Label').innerHTML = "Mirror Shards Required:"
-        
-        break;
-      }
-      case "3": // Dungeons
-      {
-        document.getElementById(sliderName).max = 8;
-        document.getElementById(sliderName + 'Label').innerHTML = "Number of Dungeons Required:"
-        
-        break;
-      }
-      case "5": // Poe Souls
-      {
-        document.getElementById(sliderName).max = 60;
-        document.getElementById(sliderName + 'Label').innerHTML = "Poe Souls Required:"
-        
-        break;
-      }
-      case "6": // Hearts
-      {
-        document.getElementById(sliderName).min = 4;
-        document.getElementById(sliderName).value = 4;
-        document.getElementById(sliderName).max = 20;
-        document.getElementById(sliderName + 'Label').innerHTML = "Hearts Required:"
-        
-        break;
-      }
-      default:
-        {
-          break;
-        }
+  switch (reqs) {
+    case '1': { // Fused Shadows
+      document.getElementById(sliderName).max = 3;
+      document.getElementById(sliderName + 'Label').innerHTML =
+        'Fused Shadows Required:';
+
+      break;
+    }
+    case '2': { // Mirror Shards
+      document.getElementById(sliderName).max = 4;
+      document.getElementById(sliderName + 'Label').innerHTML =
+        'Mirror Shards Required:';
+
+      break;
+    }
+    case '3': { // Dungeons
+      document.getElementById(sliderName).max = 8;
+      document.getElementById(sliderName + 'Label').innerHTML =
+        'Number of Dungeons Required:';
+
+      break;
+    }
+    case '5': { // Poe Souls
+      document.getElementById(sliderName).max = 60;
+      document.getElementById(sliderName + 'Label').innerHTML =
+        'Poe Souls Required:';
+
+      break;
+    }
+    case '6': { // Hearts
+      document.getElementById(sliderName).min = 4;
+      document.getElementById(sliderName).value = 4;
+      document.getElementById(sliderName).max = 20;
+      document.getElementById(sliderName + 'Label').innerHTML =
+        'Hearts Required:';
+
+      break;
+    }
+    default: {
+      break;
+    }
   }
-  
-  document.getElementById(sliderName + 'Output').innerHTML = document.getElementById(sliderName).value;
+
+  document.getElementById(sliderName + 'Output').innerHTML =
+    document.getElementById(sliderName).value;
   setSettingsString();
 }
 
-function setCastleRequirementsValue()
-{
-  document.getElementById('castleRequirementsSliderOutput').innerHTML = document.getElementById('castleRequirementsSlider').value;
+function setCastleRequirementsValue() {
+  document.getElementById('castleRequirementsSliderOutput').innerHTML =
+    document.getElementById('castleRequirementsSlider').value;
   setSettingsString();
 }
 
-function setCastleBKRequirementsSettings()
-{
+function setMaloShopDonationValue() {
+  document.getElementById('maloShopDonationSliderOutput').innerHTML =
+    document.getElementById('maloShopDonationSlider').value;
+  setSettingsString();
+}
+
+function setCastleBKRequirementsSettings() {
   var reqs = document.getElementById('castleBKRequirementsFieldset').value;
   let sliderName = 'castleBKRequirementsSlider';
   document.getElementById(sliderName).min = 1;
   document.getElementById(sliderName).value = 1;
 
   // Hide the slider info if we are not using an option that uses it
-  if ((reqs == "0"))
-  {
-    
+  if (reqs == '0') {
     document.getElementById(sliderName).hidden = true;
     document.getElementById(sliderName + 'Label').hidden = true;
     document.getElementById(sliderName + 'Output').hidden = true;
-  }
-  else
-  {
+  } else {
     document.getElementById(sliderName).hidden = false;
     document.getElementById(sliderName + 'Label').hidden = false;
     document.getElementById(sliderName + 'Output').hidden = false;
   }
 
-  switch (reqs)
-  {
-    case "1": // Fused Shadows
-      {
-        
-        document.getElementById(sliderName).max = 3;
-        document.getElementById(sliderName + 'Label').innerHTML = "Fused Shadows Required:"
-        
-        break;
-      }
-      case "2": // Mirror Shards
-      {
-        document.getElementById(sliderName).max = 4;
-        document.getElementById(sliderName + 'Label').innerHTML = "Mirror Shards Required:"
-        
-        break;
-      }
-      case "3": // Dungeons
-      {
-        document.getElementById(sliderName).max = 8;
-        document.getElementById(sliderName + 'Label').innerHTML = "Number of Dungeons Required:"
-        
-        break;
-      }
-      case "4": // Poe Souls
-      {
-        document.getElementById(sliderName).max = 60;
-        document.getElementById(sliderName + 'Label').innerHTML = "Poe Souls Required:"
-        
-        break;
-      }
-      case "5": // Hearts
-      {
-        document.getElementById(sliderName).min = 4;
-        document.getElementById(sliderName).value = 4;
-        document.getElementById(sliderName).max = 20;
-        document.getElementById(sliderName + 'Label').innerHTML = "Hearts Required:"
-        
-        break;
-      }
-      default:
-        {
-          break;
-        }
+  switch (reqs) {
+    case '1': { // Fused Shadows
+      document.getElementById(sliderName).max = 3;
+      document.getElementById(sliderName + 'Label').innerHTML =
+        'Fused Shadows Required:';
+
+      break;
+    }
+    case '2': { // Mirror Shards
+      document.getElementById(sliderName).max = 4;
+      document.getElementById(sliderName + 'Label').innerHTML =
+        'Mirror Shards Required:';
+
+      break;
+    }
+    case '3': { // Dungeons
+      document.getElementById(sliderName).max = 8;
+      document.getElementById(sliderName + 'Label').innerHTML =
+        'Number of Dungeons Required:';
+
+      break;
+    }
+    case '4': { // Poe Souls
+      document.getElementById(sliderName).max = 60;
+      document.getElementById(sliderName + 'Label').innerHTML =
+        'Poe Souls Required:';
+
+      break;
+    }
+    case '5': { // Hearts
+      document.getElementById(sliderName).min = 4;
+      document.getElementById(sliderName).value = 4;
+      document.getElementById(sliderName).max = 20;
+      document.getElementById(sliderName + 'Label').innerHTML =
+        'Hearts Required:';
+
+      break;
+    }
+    default: {
+      break;
+    }
   }
-  
-  document.getElementById(sliderName + 'Output').innerHTML = document.getElementById(sliderName).value;
+
+  document.getElementById(sliderName + 'Output').innerHTML =
+    document.getElementById(sliderName).value;
   setSettingsString();
 }
 
-function setCastleBKRequirementsValue()
-{
-  document.getElementById('castleBKRequirementsSliderOutput').innerHTML = document.getElementById('castleBKRequirementsSlider').value;
+function setCastleBKRequirementsValue() {
+  document.getElementById('castleBKRequirementsSliderOutput').innerHTML =
+    document.getElementById('castleBKRequirementsSlider').value;
   setSettingsString();
 }
 
-
-function setOverworldERSettings()
-{
-  var overworldEREnabled = document.getElementById('randomizeStartingPointCheckbox').checked;
+function setOverworldERSettings() {
+  var overworldEREnabled = document.getElementById(
+    'randomizeStartingPointCheckbox'
+  ).checked;
   document.getElementById('introCheckbox').checked = overworldEREnabled;
   document.getElementById('introCheckbox').disabled = overworldEREnabled;
   setSettingsString();
 }
 
-function setDungeonERSettings()
-{
-  if (document.getElementById('dungeonERFieldset').value !=0)
-  {
+function setDungeonERSettings() {
+  if (document.getElementById('dungeonERFieldset').value != 0) {
     document.getElementById('mdhCheckbox').checked = true;
     document.getElementById('mdhCheckbox').disabled = true;
     document.getElementById('unpairedEntrancesCheckbox').disabled = false;
     document.getElementById('decoupleEntrancesCheckbox').disabled = false;
-  }
-  else
-  {
+  } else {
     document.getElementById('mdhCheckbox').disabled = false;
     document.getElementById('unpairedEntrancesCheckbox').checked = false;
     document.getElementById('decoupleEntrancesCheckbox').checked = false;
@@ -614,7 +630,6 @@ function setDungeonERSettings()
     document.getElementById('decoupleEntrancesCheckbox').disabled = true;
   }
   setSettingsString();
-  
 }
 
 function setSettingsString() {
@@ -699,9 +714,8 @@ function setSettingsString() {
   ).checked;
   settingsStringRaw[27] =
     document.getElementById('seedNumberFieldset').selectedIndex;
-  settingsStringRaw[28] = document.getElementById(
-    'increaseWalletCheckbox'
-  ).checked;
+  settingsStringRaw[28] =
+    document.getElementById('walletSizeFieldset').selectedIndex;
   settingsStringRaw[29] = document.getElementById(
     'modifyShopModelsCheckbox'
   ).checked;
@@ -896,6 +910,67 @@ var arrayOfSettingsItems = [
   'spinnerSpeedCheckbox',
   'openDotCheckbox',
 ];
+
+function saveSettingsString() {
+  const settingsString = $('#combinedSettingsString').text().trim();
+  const version = $('#envImageVersion').val();
+
+  if (!settingsString) {
+    console.warn('No settings string to save.');
+    return;
+  }
+
+  const payload = JSON.stringify({
+    settingsString,
+    version: version ?? null, // The explicit null check here is only for dev purposes. This should never happen in a production environment, and isn't a very critical feature anyways.
+  });
+
+  localStorage.setItem('settingsString', payload);
+
+  $('#loadString').show();
+}
+
+function loadSettingsString() {
+  const fieldErrorText = $('#loadFieldError');
+  const raw = localStorage.getItem('settingsString');
+
+  if (!raw) {
+    console.warn('No saved settings string.');
+    return;
+  }
+
+  let parsed;
+  try {
+    parsed = JSON.parse(raw);
+  } catch (e) {
+    console.warn('Corrupted settings string.');
+    localStorage.removeItem('settingsString');
+    return;
+  }
+
+  const { settingsString, version } = parsed;
+
+  const currentVersion = $('#envImageVersion').val();
+  if (version != currentVersion) {
+    fieldErrorText.text(
+      'Your setting string was saved on a previous version of the generator, rendering it incompatible with the current version. Your saved setting string will now be deleted.'
+    );
+    localStorage.removeItem('settingsString');
+    return;
+  }
+
+  const error = populateFromSettingsString(settingsString);
+  if (error) {
+    fieldErrorText
+      .text(
+        'Unable to understand the settings string saved in local storage. Please select new settings or enter a new settings string manually.'
+      )
+      .show();
+    return;
+  }
+
+  $('#combinedSettingsString').text(`${settingsString}`);
+}
 
 function parseSettingsString(settingsString) {
   settingsString = atob(settingsString);
@@ -1385,7 +1460,6 @@ function populateFromSettingsString(settingsString) {
   }
 
   if (byType.s) {
-    
     setHiddenUIValues(byType.s);
     populateSSettings(byType.s);
   }
@@ -1399,136 +1473,124 @@ function populateFromSettingsString(settingsString) {
   return null;
 }
 
-function setHiddenUIValues(s)
-{
+function setHiddenUIValues(s) {
   let val = s.castleRequirementCount;
-  document.getElementById('castleRequirementsSliderOutput').innerHTML = s.castleRequirementCount;
+  document.getElementById('castleRequirementsSliderOutput').innerHTML =
+    s.castleRequirementCount;
 
-  
   document.getElementById('castleRequirementsSlider').min = 1;
   // Hide the slider info if we are not using an option that uses it
-  if ((s.castleRequirements == 0) || (s.castleRequirements == 4))
-  {
-    
+  if (s.castleRequirements == 0 || s.castleRequirements == 4) {
     document.getElementById('castleRequirementsSlider').hidden = true;
     document.getElementById('castleRequirementsSliderLabel').hidden = true;
     document.getElementById('castleRequirementsSliderOutput').hidden = true;
-  }
-  else
-  {
+  } else {
     document.getElementById('castleRequirementsSlider').hidden = false;
     document.getElementById('castleRequirementsSliderLabel').hidden = false;
     document.getElementById('castleRequirementsSliderOutput').hidden = false;
   }
 
-  switch (s.castleRequirements)
-  {
-    case 1: // Fused Shadows
-      {
-        
-        document.getElementById('castleRequirementsSlider').max = 3;
-        document.getElementById('castleRequirementsSliderLabel').innerHTML = "Fused Shadows Required:"
-        
-        break;
-      }
-      case 2: // Mirror Shards
-      {
-        document.getElementById('castleRequirementsSlider').max = 4;
-        document.getElementById('castleRequirementsSliderLabel').innerHTML = "Mirror Shards Required:"
-        
-        break;
-      }
-      case 3: // Dungeons
-      {
-        document.getElementById('castleRequirementsSlider').max = 8;
-        document.getElementById('castleRequirementsSliderLabel').innerHTML = "Number of Dungeons Required:"
-        
-        break;
-      }
-      case 5: // Poe Souls
-      {
-        document.getElementById('castleRequirementsSlider').max = 60;
-        document.getElementById('castleRequirementsSliderLabel').innerHTML = "Poe Souls Required:"
-        
-        break;
-      }
-      case 6: // Hearts
-      {
-        document.getElementById('castleRequirementsSlider').min = 4; // Maybe 4, because 3 would match "Open"
-        document.getElementById('castleRequirementsSlider').max = 20;
-        document.getElementById('castleRequirementsSliderLabel').innerHTML = "Hearts Required:"
-        
-        break;
-      }
-      default:
-        {
-          break;
-        }
+  switch (s.castleRequirements) {
+    case 1: { // Fused Shadows
+      document.getElementById('castleRequirementsSlider').max = 3;
+      document.getElementById('castleRequirementsSliderLabel').innerHTML =
+        'Fused Shadows Required:';
+
+      break;
+    }
+    case 2: { // Mirror Shards
+      document.getElementById('castleRequirementsSlider').max = 4;
+      document.getElementById('castleRequirementsSliderLabel').innerHTML =
+        'Mirror Shards Required:';
+
+      break;
+    }
+    case 3: { // Dungeons
+      document.getElementById('castleRequirementsSlider').max = 8;
+      document.getElementById('castleRequirementsSliderLabel').innerHTML =
+        'Number of Dungeons Required:';
+
+      break;
+    }
+    case 5: { // Poe Souls
+      document.getElementById('castleRequirementsSlider').max = 60;
+      document.getElementById('castleRequirementsSliderLabel').innerHTML =
+        'Poe Souls Required:';
+
+      break;
+    }
+    case 6: { // Hearts
+      document.getElementById('castleRequirementsSlider').min = 4; // Maybe 4, because 3 would match "Open"
+      document.getElementById('castleRequirementsSlider').max = 20;
+      document.getElementById('castleRequirementsSliderLabel').innerHTML =
+        'Hearts Required:';
+
+      break;
+    }
+    default: {
+      break;
+    }
   }
 
   val = s.castleBKRequirementCount;
-  document.getElementById('castleBKRequirementsSliderOutput').innerHTML = s.castleBKRequirementCount;
+  document.getElementById('castleBKRequirementsSliderOutput').innerHTML =
+    s.castleBKRequirementCount;
 
   document.getElementById('castleBKRequirementsSliderOutput').min = 1;
   // Hide the slider info if we are not using an option that uses it
-  if (s.castleBKRequirements == 0)
-  {
-    
+  if (s.castleBKRequirements == 0) {
     document.getElementById('castleBKRequirementsSlider').hidden = true;
     document.getElementById('castleBKRequirementsSliderLabel').hidden = true;
     document.getElementById('castleBKRequirementsSliderOutput').hidden = true;
-  }
-  else
-  {
+  } else {
     document.getElementById('castleBKRequirementsSlider').hidden = false;
     document.getElementById('castleBKRequirementsSliderLabel').hidden = false;
     document.getElementById('castleBKRequirementsSliderOutput').hidden = false;
   }
 
-  switch (s.castleBKRequirements)
-  {
-    case 1: // Fused Shadows
-      {
-        
-        document.getElementById('castleBKRequirementsSlider').max = 3;
-        document.getElementById('castleBKRequirementsSliderLabel').innerHTML = "Fused Shadows Required:"
-        
-        break;
-      }
-      case 2: // Mirror Shards
-      {
-        document.getElementById('castleBKRequirementsSlider').max = 4;
-        document.getElementById('castleBKRequirementsSliderLabel').innerHTML = "Mirror Shards Required:"
-        
-        break;
-      }
-      case 3: // Dungeons
-      {
-        document.getElementById('castleBKRequirementsSlider').max = 8;
-        document.getElementById('castleBKRequirementsSliderLabel').innerHTML = "Number of Dungeons Required:"
-        
-        break;
-      }
-      case 4: // Poe Souls
-      {
-        document.getElementById('castleBKRequirementsSlider').max = 60;
-        document.getElementById('castleBKRequirementsSliderLabel').innerHTML = "Poe Souls Required:"
-        
-        break;
-      }
-      case 5: // Hearts
-      {
-        document.getElementById('castleBKRequirementsSlider').min = 4;
-        document.getElementById('castleBKRequirementsSlider').max = 20;
-        document.getElementById('castleBKRequirementsSliderLabel').innerHTML = "Hearts Required:"
-        
-        break;
-      }
-      default:
-        {
-          break;
-        }
+  switch (s.castleBKRequirements) {
+    case 1: { // Fused Shadows
+      document.getElementById('castleBKRequirementsSlider').max = 3;
+      document.getElementById('castleBKRequirementsSliderLabel').innerHTML =
+        'Fused Shadows Required:';
+
+      break;
+    }
+    case 2: { // Mirror Shards
+      document.getElementById('castleBKRequirementsSlider').max = 4;
+      document.getElementById('castleBKRequirementsSliderLabel').innerHTML =
+        'Mirror Shards Required:';
+
+      break;
+    }
+    case 3: { // Dungeons
+      document.getElementById('castleBKRequirementsSlider').max = 8;
+      document.getElementById('castleBKRequirementsSliderLabel').innerHTML =
+        'Number of Dungeons Required:';
+
+      break;
+    }
+    case 4: { // Poe Souls
+      document.getElementById('castleBKRequirementsSlider').max = 60;
+      document.getElementById('castleBKRequirementsSliderLabel').innerHTML =
+        'Poe Souls Required:';
+
+      break;
+    }
+    case 5: { // Hearts
+      document.getElementById('castleBKRequirementsSlider').min = 4;
+      document.getElementById('castleBKRequirementsSlider').max = 20;
+      document.getElementById('castleBKRequirementsSliderLabel').innerHTML =
+        'Hearts Required:';
+
+      break;
+    }
+    default: {
+      break;
+    }
   }
+  document.getElementById('maloShopDonationSliderOutput').innerHTML =
+    s.maloShopDonation;
 }
 
 function populateSSettings(s) {
@@ -1566,7 +1628,7 @@ function populateSSettings(s) {
   $('#fastIBCheckbox').prop('checked', s.fastIronBoots);
   $('#quickTransformCheckbox').prop('checked', s.quickTransform);
   $('#transformAnywhereCheckbox').prop('checked', s.transformAnywhere);
-  $('#increaseWalletCheckbox').prop('checked', s.increaseWalletCapacity);
+  $('#walletSizeFieldset').val(s.walletSize);
   $('#modifyShopModelsCheckbox').prop(
     'checked',
     s.shopModelsShowTheReplacedItem
@@ -1606,6 +1668,9 @@ function populateSSettings(s) {
   $('#castleRequirementsSlider').val(s.castleRequirementCount);
   $('#castleBKRequirementsFieldset').val(s.castleBKRequirements);
   $('#castleBKRequirementsSlider').val(s.castleBKRequirementCount);
+  $('#autoFillWalletCheckbox').prop('checked', s.autoFillWallet);
+  $('#skipBridgeDonationCheckbox').prop('checked', s.skipBridgeDonation);
+  $('#maloShopDonationSlider').val(s.maloShopDonation);
 
   const $excludedChecksParent = $('#baseExcludedChecksListbox');
   s.excludedChecks.forEach((checkNumId) => {
@@ -1684,4 +1749,227 @@ function testProgressFunc(id) {
       console.error('/api/seed/progress error');
       console.error(err);
     });
+}
+
+// Preset handling
+const MAX_PRESET_NAME_LENGTH = 40;
+
+function savePresets(presets) {
+  localStorage.setItem('settingsPresets', JSON.stringify(presets));
+}
+function getPresets() {
+  clearPresetError();
+
+  try {
+    return JSON.parse(localStorage.getItem('settingsPresets')) || [];
+  } catch {
+    return [];
+  }
+}
+
+function saveCurrentAsPreset() {
+  clearPresetError();
+
+  const name = prompt('Enter preset name:')
+    ?.trim()
+    .slice(0, MAX_PRESET_NAME_LENGTH);
+  if (!name) return;
+
+  const settingsString = $('#combinedSettingsString').text().trim();
+  if (!settingsString) {
+    showPresetError('No settings string to save.');
+    return;
+  }
+
+  const presets = getPresets();
+  if (presets.some((p) => p.name === name)) {
+    showPresetError('A preset with this name already exists.');
+    return;
+  }
+
+  presets.push({ name, settingsString });
+  savePresets(presets);
+  updatePresetDropdown(name);
+}
+
+function loadPreset(name) {
+  clearPresetError();
+
+  const presets = getPresets();
+  const preset = presets.find((p) => p.name === name);
+  if (!preset) return;
+
+  const error = populateFromSettingsString(preset.settingsString);
+  if (error) {
+    showPresetError('Invalid settings in selected preset.');
+  } else {
+    $('#combinedSettingsString').text(preset.settingsString);
+  }
+}
+
+function handleRenamePreset() {
+  clearPresetModalError();
+
+  const oldName = getSelectedModalPresetName();
+  if (!oldName) {
+    showPresetModalError('Select a preset to rename.');
+    return;
+  }
+
+  const newName = prompt('Enter new name:', oldName)
+    ?.trim()
+    .slice(0, MAX_PRESET_NAME_LENGTH);
+  if (!newName) return;
+
+  const presets = getPresets();
+  const preset = presets.find((p) => p.name === oldName);
+  if (!preset) {
+    showPresetModalError('Preset not found.');
+    return;
+  }
+
+  if (presets.some((p) => p.name === newName)) {
+    showPresetModalError('A preset with this name already exists.');
+    return;
+  }
+
+  preset.name = newName;
+  savePresets(presets);
+  updatePresetDropdown(newName);
+  updateModalDropdown();
+  $('#presetDropdownModal').val(newName);
+}
+
+function updateCurrentPreset() {
+  clearPresetError();
+  clearPresetUpdateStatus();
+
+  const name = getSelectedPresetName();
+  const settingsString = $('#combinedSettingsString').text().trim();
+
+  if (!name) {
+    showPresetError('No preset selected to update.');
+    return;
+  }
+
+  if (!settingsString) {
+    showPresetError('No settings string to save.');
+    return;
+  }
+
+  const presets = getPresets();
+  const preset = presets.find((p) => p.name === name);
+
+  if (!preset) {
+    showPresetError('Preset not found.');
+    return;
+  }
+
+  preset.settingsString = settingsString;
+  savePresets(presets);
+
+  showPresetUpdateStatus(`Preset "${name}" updated.`);
+}
+
+function showPresetUpdateStatus(msg) {
+  const $toast = $('#presetUpdateStatus');
+  $toast.text(msg).css('display', 'block');
+
+  // Allow time for display to apply before adding transition class
+  requestAnimationFrame(() => {
+    $toast.addClass('show');
+  });
+
+  setTimeout(() => {
+    $toast.removeClass('show');
+    setTimeout(() => {
+      $toast.css('display', 'none');
+    }, 200);
+  }, 3000);
+}
+
+function clearPresetUpdateStatus() {
+  $('#presetUpdateStatus').text('').hide();
+}
+
+function handleDeletePreset() {
+  clearPresetModalError();
+
+  const name = getSelectedModalPresetName();
+  if (!name) return;
+
+  if (!confirm(`Delete preset "${name}"? This cannot be undone.`)) return;
+
+  let presets = getPresets();
+  presets = presets.filter((p) => p.name !== name);
+  savePresets(presets);
+  updatePresetDropdown();
+  updateModalDropdown();
+}
+
+function updatePresetDropdown(selectedName = null) {
+  const dropdown = $('#presetDropdown');
+  dropdown.empty().append('<option disabled selected>Select preset</option>');
+
+  getPresets()
+    .slice()
+    .sort((a, b) => a.name.localeCompare(b.name))
+    .forEach((p) => {
+      dropdown.append(`<option value="${p.name}">${p.name}</option>`);
+    });
+
+  if (selectedName) {
+    dropdown.val(selectedName);
+  } else {
+    dropdown.val('Select preset');
+  }
+
+  dropdown.trigger('change');
+}
+
+function showPresetError(msg) {
+  $('#presetError').text(msg).show();
+}
+
+function getSelectedPresetName() {
+  return $('#presetDropdown').val();
+}
+
+function clearPresetError() {
+  $('#presetError').text('').hide();
+}
+
+// Preset modal
+function openManagePresetsModal() {
+  clearPresetModalError();
+  updateModalDropdown();
+  $('#presetModal').show();
+}
+
+function closeManagePresetsModal() {
+  $('#presetModal').hide();
+}
+
+function updateModalDropdown() {
+  const dropdown = $('#presetDropdownModal');
+  dropdown.empty().append('<option disabled selected>Select preset</option>');
+
+  getPresets()
+    .slice()
+    .sort((a, b) => a.name.localeCompare(b.name))
+    .forEach((p) => {
+      dropdown.append(`<option value="${p.name}">${p.name}</option>`);
+    });
+}
+
+function getSelectedModalPresetName() {
+  return $('#presetDropdownModal').val();
+}
+
+function showPresetModalError(msg) {
+  $('#presetModalError').text(msg).show();
+}
+
+function clearPresetModalError() {
+  $('#presetModalError').text('').hide();
 }

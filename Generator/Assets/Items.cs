@@ -1033,11 +1033,14 @@ namespace TPRandomizer
 
                     // If wallet size is not increased, we need to be able to
                     // find 1 wallet so we can afford the magic armor check.
-                    updateItemToCount(
-                        RandomizedImportantItems,
-                        Item.Progressive_Wallet,
-                        Randomizer.SSettings.increaseWallet ? 0 : 1
-                    );
+                    if (Randomizer.SSettings.walletSize == WalletSize.Vanilla)
+                    {
+                        updateItemToCount(RandomizedImportantItems, Item.Progressive_Wallet, 1);
+                    }
+                    else if (Randomizer.SSettings.walletSize >= WalletSize.HD)
+                    {
+                        updateItemToCount(RandomizedImportantItems, Item.Progressive_Wallet, 0);
+                    }
 
                     break;
                 }

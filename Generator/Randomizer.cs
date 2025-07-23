@@ -465,8 +465,8 @@ namespace TPRandomizer
                 part2Settings.Add("quickTransform", SSettings.quickTransform);
             if (SSettings.transformAnywhere)
                 part2Settings.Add("transformAnywhere", SSettings.transformAnywhere);
-            if (SSettings.increaseWallet)
-                part2Settings.Add("increaseWallet", SSettings.increaseWallet);
+            if (SSettings.walletSize != WalletSize.Reduced)
+                part2Settings.Add("walletSize", SSettings.walletSize);
             if (SSettings.modifyShopModels)
                 part2Settings.Add("modifyShopModels", SSettings.modifyShopModels);
 
@@ -1475,6 +1475,7 @@ namespace TPRandomizer
                 "City in The Sky Boss Room",
                 "Temple of Time Boss Room",
                 "Snowpeak Ruins Boss Room",
+                "Arbiters Grounds Boss Room",
                 "Lakebed Temple Boss Room",
                 "Goron Mines Boss Room",
                 "Forest Temple Boss Room",
@@ -1500,6 +1501,7 @@ namespace TPRandomizer
                     Room bRoom = Randomizer.Rooms.RoomDict[bossRoom];
                     // If there's a match, we want to account for the boss room and all affected checks in relation to the dungeon.
                     // Example: if Fyrus is after Forest, we want to associate the Fyrus check and post GM checks with Forest.
+                    //Console.WriteLine("region: " + bRoom.Region + " for room: " + bRoom.RoomName);
                     if (bRoom.Region == DungeonNames[i])
                     {
                         listOfAffectedChecks[i].AddRange(bRoom.Checks);

@@ -418,7 +418,7 @@
       { id: 'fastIBCheckbox' },
       { id: 'quickTransformCheckbox' },
       { id: 'transformAnywhereCheckbox' },
-      { id: 'increaseWalletCheckbox' },
+      { id: 'walletSizeFieldset', bitLength: 2 },
       { id: 'modifyShopModelsCheckbox' },
       { id: 'trapItemFieldset', bitLength: 3 },
       { id: 'barrenCheckbox' },
@@ -453,6 +453,9 @@
       { id: 'castleRequirementsSlider', bitLength: 6 },
       { id: 'castleBKRequirementsFieldset', bitLength: 3 },
       { id: 'castleBKRequirementsSlider', bitLength: 6 },
+      { id: 'autoFillWalletCheckbox' },
+      { id: 'skipBridgeDonationCheckbox' },
+      { id: 'maloShopDonationSlider', bitLength: 11 },
     ].map(({ id, bitLength }) => {
       const val = getVal(id);
       if (bitLength) {
@@ -839,7 +842,26 @@
     processBasic({ id: 'fastIronBoots' });
     processBasic({ id: 'quickTransform' });
     processBasic({ id: 'transformAnywhere' });
-    processBasic({ id: 'increaseWalletCapacity' });
+    if (version >= 6) {
+      // `increaseWalletCapacity` changed from a checkbox to a select
+      processBasic({ id: 'walletSize', bitLength: 2 });
+    } else {
+      const walletSize = {
+        minimal: 0,
+        vanilla: 1,
+        hd: 2,
+        large: 3,
+      };
+      const walletSizeValue = processor.nextBoolean();
+      if (walletSizeValue)
+      {
+        res.walletSize = walletSize.large;
+      }
+      else
+      {
+        res.walletSize = walletSize.vanilla;
+      }
+    }
     processBasic({ id: 'shopModelsShowTheReplacedItem' });
     processBasic({ id: 'trapItemsFrequency', bitLength: 3 });
     processBasic({ id: 'barrenDungeons' });
@@ -942,6 +964,9 @@
       processBasic({ id: 'castleRequirementCount', bitLength: 6 });
       processBasic({ id: 'castleBKRequirements', bitLength: 3 });
       processBasic({ id: 'castleBKRequirementCount', bitLength: 6 });
+      processBasic({ id: 'autoFillWallet' });
+      processBasic({ id: 'skipBridgeDonation' });
+      processBasic({ id: 'maloShopDonation', bitLength: 11 });
     } else {
       res.randomizeStartingPoint = false; // Vanilla
       res.hiddenRupees = false; // Vanilla
@@ -977,6 +1002,9 @@
       }
       res.castleBKRequirements = 0;
       res.castleBKRequirementCount = 1;
+      res.autoFillWallet = false;
+      res.skipBridgeDonation = false;
+      res.maloShopDonation = 2000;
     }
 
     res.startingItems = processor.nextEolList(9);
@@ -1345,6 +1373,7 @@
 
         { id: 'bgmFieldset', bitLength: 2 },
         { id: 'randomizeFanfaresCheckbox' },
+        { id: 'randomizeSfxCheckbox' },
         { id: 'disableEnemyBGMCheckbox' },
         { id: 'invertCameraCheckbox' },
         { id: 'hTunicHatColorFieldset', rgb: true },
