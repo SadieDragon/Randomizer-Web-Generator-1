@@ -4,6 +4,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using LogicFunctionsNS.AggregateLogic;
 using TPRandomizer;
 using BU = LogicFunctionsNS.BombUtils;
 using ERLF = LogicFunctionsNS.ERLogicFunctions;
@@ -94,7 +95,22 @@ namespace LogicFunctionsNS
                     && ERLF.HasReachedRoom("Lower Kakariko Village")
                     && HLF.CanChangeTime()
                 )
-                || ERLF.CanShopFromRoom("Castle Town Goron House");
+                || ERLF.CanShopFromRoom("Castle Town Goron House")
+                || ERLF.HasReachedRoom("Death Mountain Hot Spring")
+                || ERLF.HasReachedRoom("City in The Sky Entrance")
+                // This is for the room that needs the rang in HC
+                || (
+                    ERLF.HasReachedRoom("Hyrule Castle Main Hall")
+                    && CanDefeatCommonEnemy.CanDefeatBokoblin()
+                    && CanDefeatCommonEnemy.CanDefeatLizalfos()
+                    && HasClawshotCount.HasDoubleClawshot()
+                    && CanDefeatCommonEnemy.CanDefeatDarknut()
+                )
+                || (
+                    ERLF.HasReachedRoom("Eldin Lantern Cave")
+                    && MiscItemUtils.CanBurnWebs()
+                    && CanDefeatCommonEnemy.CanDefeatChu()
+                );
         }
     }
 }

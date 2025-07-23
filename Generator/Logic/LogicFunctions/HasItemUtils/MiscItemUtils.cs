@@ -2,6 +2,7 @@
 
 using System.Linq;
 using TPRandomizer;
+using TPRandomizer.SSettings.Enums;
 using BU = LogicFunctionsNS.BombUtils;
 using CUU = LogicFunctionsNS.CanUseUtils;
 using ERLF = LogicFunctionsNS.ERLogicFunctions;
@@ -49,6 +50,25 @@ namespace LogicFunctionsNS
         public static bool HasBug()
         {
             return Randomizer.Items.goldenBugs.Any(CUU.CanUse);
+        }
+
+        public static bool CanBuyMagicArmor()
+        {
+            switch (Randomizer.SSettings.walletSize)
+            {
+                case WalletSize.Reduced:
+                {
+                    return CUU.GetItemCount(Item.Progressive_Wallet) >= 2;
+                }
+                case WalletSize.Vanilla:
+                {
+                    return CUU.CanUse(Item.Progressive_Wallet);
+                }
+                default:
+                {
+                    return true;
+                }
+            }
         }
     }
 }
