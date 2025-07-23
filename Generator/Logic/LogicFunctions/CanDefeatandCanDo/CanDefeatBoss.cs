@@ -12,13 +12,10 @@ namespace LogicFunctionsNS.AggregateLogic
                     && (
                         HasSwordLevel.HasSword()
                         || CanUseUtils.CanUse(Item.Ball_and_Chain)
-                        || (SettingUtils.CanDoNicheStuff() && CanUseUtils.CanUse(Item.Iron_Boots))
                         || CanUseUtils.CanUse(Item.Shadow_Crystal)
                         || BombUtils.HasBombs()
-                        || (
-                            SettingUtils.CanDoDifficultCombat()
-                            && NicheLogicUtils.CanUseBacksliceAsSword()
-                        )
+                        || DifficultCombatLogicUtils.CanUseBacksliceInDC()
+                        || NicheLogicUtils.CanDoNicheCombat(includeBackslice: false)
                     )
                 );
         }
@@ -27,13 +24,7 @@ namespace LogicFunctionsNS.AggregateLogic
         {
             return CanUseUtils.CanUse(Item.Progressive_Bow)
                 && CanUseUtils.CanUse(Item.Iron_Boots)
-                && (
-                    HasSwordLevel.HasSword()
-                    || (
-                        SettingUtils.CanDoDifficultCombat()
-                        && NicheLogicUtils.CanUseBacksliceAsSword()
-                    )
-                );
+                && HelperFunctions.CanUseSwordOrDifficultBackslice();
         }
 
         public static bool CanDefeatMorpheel()
@@ -55,7 +46,7 @@ namespace LogicFunctionsNS.AggregateLogic
         public static bool CanDefeatStallord()
         {
             return (CanUseUtils.CanUse(Item.Spinner) && HasSwordLevel.HasSword())
-                || (SettingUtils.CanDoDifficultCombat() && CanUseUtils.CanUse(Item.Spinner));
+                || DifficultCombatLogicUtils.CanUseSpinnerInDC();
         }
 
         public static bool CanDefeatBlizzeta()
@@ -73,10 +64,7 @@ namespace LogicFunctionsNS.AggregateLogic
         {
             return HasClawshotCount.HasDoubleClawshot()
                 && HasSwordLevel.HasOrdonSword()
-                && (
-                    CanUseUtils.CanUse(Item.Iron_Boots)
-                    || (SettingUtils.CanDoNicheStuff() && CanUseUtils.CanUse(Item.Magic_Armor))
-                );
+                && HelperFunctions.CanUseBootsOrNicheMagicArmor();
         }
 
         public static bool CanDefeatZant()
@@ -85,10 +73,7 @@ namespace LogicFunctionsNS.AggregateLogic
                 && CanUseUtils.CanUse(Item.Boomerang)
                 && CanUseUtils.CanUse(Item.Progressive_Clawshot)
                 && CanUseUtils.CanUse(Item.Ball_and_Chain)
-                && (
-                    CanUseUtils.CanUse(Item.Iron_Boots)
-                    || (SettingUtils.CanDoNicheStuff() && CanUseUtils.CanUse(Item.Magic_Armor))
-                )
+                && HelperFunctions.CanUseBootsOrNicheMagicArmor()
                 && (
                     CanUseUtils.CanUse(Item.Zora_Armor)
                     || (SettingUtils.IsGlitchedLogic() && GlitchedLogicUtils.CanDoAirRefill())

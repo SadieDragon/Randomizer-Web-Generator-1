@@ -66,5 +66,15 @@ namespace LogicFunctionsNS
         {
             return CanSurviveBonkDamage() && ERLF.HasReachedAllRooms(roomsInTwilight);
         }
+
+        public static bool CanUseSwordOrDifficultBackslice()
+        {
+            return HasSwordLevel.HasSword() || DifficultCombatLogicUtils.CanUseBacksliceInDC();
+        }
+
+        public static bool CanUseBootsOrNicheMagicArmor()
+        {
+            return CUU.CanUse(Item.Iron_Boots) || NicheLogicUtils.CanUseMagicArmorNiche();
+        }
     }
 }
