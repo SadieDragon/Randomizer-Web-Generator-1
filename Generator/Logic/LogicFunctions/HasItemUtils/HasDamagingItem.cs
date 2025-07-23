@@ -1,6 +1,3 @@
-// The fourth + claw (HasDamagingItemIncludingClaw)
-// The fourth + sling (HasDamagingItemIncludingSling)
-
 using System.Collections.Generic;
 using System.Linq;
 using TPRandomizer;
@@ -86,6 +83,24 @@ namespace LogicFunctionsNS
         public static bool HasDamagingItem()
         {
             return HasAnyItems(AddItemsToBase(bombBag, Item.Shadow_Crystal));
+        }
+
+        /// <summary>
+        /// I for including. Checks for Sword, B&C, Bow, Spinner, Bombs, Crystal, and Clawshot.
+        /// </summary>
+        /// <returns></returns>
+        public static bool HasDamagingItemIClawshot()
+        {
+            return HasDamagingItem() || HasClawshotCount.HasSingleClawshot();
+        }
+
+        /// <summary>
+        /// I for including. Checks for Sword, B&C, Bow, Spinner, Bombs, Crystal, and Slingshot.
+        /// </summary>
+        /// <returns></returns>
+        public static bool HasDamagingItemISlingshot()
+        {
+            return HasDamagingItem() || CanUseUtils.CanUse(Item.Slingshot);
         }
     }
 }
