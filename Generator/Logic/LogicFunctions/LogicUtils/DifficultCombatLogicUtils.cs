@@ -1,8 +1,3 @@
-// TODO: Doesn't belong here; but change the different states to flags. so flags for Glitched,
-//  Niche, etc logic. Probs break the niche and DC into diff cats of flags? I assume they'll be
-//  diff...
-// TODO: also doesn't belong here, but look into that last ?
-
 using System.Linq;
 using TPRandomizer;
 using BU = LogicFunctionsNS.BombUtils;
