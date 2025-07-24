@@ -28,8 +28,8 @@ namespace LogicFunctionsNS.AggregateLogic
                 && (
                     HasSwordLevel.HasSword()
                     || CanUseUtils.CanUse(Item.Shadow_Crystal)
-                    || (SettingUtils.CanDoNicheStuff() && CanUseUtils.CanUse(Item.Ball_and_Chain))
                     || (CanUseUtils.CanUse(Item.Progressive_Bow) && BombUtils.HasBombs())
+                    || (SettingUtils.CanDoNicheStuff() && CanUseUtils.CanUse(Item.Ball_and_Chain))
                 );
         }
 
@@ -48,9 +48,9 @@ namespace LogicFunctionsNS.AggregateLogic
             return HasSwordLevel.HasSword()
                 || CanUseUtils.CanUse(Item.Ball_and_Chain)
                 || CanUseUtils.CanUse(Item.Progressive_Bow)
-                || (SettingUtils.CanDoNicheStuff() && CanUseUtils.CanUse(Item.Iron_Boots))
                 || CanUseUtils.CanUse(Item.Shadow_Crystal)
                 || BombUtils.HasBombs()
+                || NicheLogicUtils.CanUseIronBootsNiche()
                 || NicheLogicUtils.CanUseBacksliceAsSword();
         }
 
@@ -115,12 +115,10 @@ namespace LogicFunctionsNS.AggregateLogic
             return HasSwordLevel.HasSword()
                 || CanUseUtils.CanUse(Item.Ball_and_Chain)
                 || CanUseUtils.CanUse(Item.Progressive_Bow)
-                || (SettingUtils.CanDoNicheStuff() && CanUseUtils.CanUse(Item.Iron_Boots))
                 || CanUseUtils.CanUse(Item.Shadow_Crystal)
                 || BombUtils.HasBombs()
-                || (
-                    SettingUtils.CanDoDifficultCombat() && NicheLogicUtils.CanUseBacksliceAsSword()
-                );
+                || NicheLogicUtils.CanUseIronBootsNiche()
+                || DifficultCombatLogicUtils.CanUseBacksliceInDC();
         }
 
         public static bool CanDefeatPhantomZant()
