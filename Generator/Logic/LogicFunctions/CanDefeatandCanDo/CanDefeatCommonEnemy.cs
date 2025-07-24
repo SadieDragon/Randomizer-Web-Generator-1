@@ -82,7 +82,7 @@ namespace LogicFunctionsNS.AggregateLogic
 
         public static bool CanDefeatBombfish()
         {
-            return HelperFunctions.CanUseBootsOrGlitchedMagicArmor()
+            return CombinedLogicUtils.CanUseBootsOrGlitchedMagicArmor()
                 && (
                     HasSwordLevel.HasSword()
                     || CanUseUtils.CanUse(Item.Progressive_Clawshot)
@@ -364,7 +364,7 @@ namespace LogicFunctionsNS.AggregateLogic
         public static bool CanDefeatShellBlade()
         {
             return BombUtils.CanUseWaterBombs()
-                || (HasSwordLevel.HasSword() && HelperFunctions.CanUseBootsOrNicheMagicArmor());
+                || (HasSwordLevel.HasSword() && CombinedLogicUtils.CanUseBootsOrNicheMagicArmor());
         }
 
         public static bool CanDefeatSkullfish()

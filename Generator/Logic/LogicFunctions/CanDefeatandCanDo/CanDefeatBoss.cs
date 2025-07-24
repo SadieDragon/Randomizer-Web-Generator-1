@@ -24,7 +24,7 @@ namespace LogicFunctionsNS.AggregateLogic
         {
             return CanUseUtils.CanUse(Item.Progressive_Bow)
                 && CanUseUtils.CanUse(Item.Iron_Boots)
-                && HelperFunctions.CanUseSwordOrDifficultBackslice();
+                && CombinedLogicUtils.CanUseSwordOrDifficultBackslice();
         }
 
         public static bool CanDefeatMorpheel()
@@ -64,7 +64,7 @@ namespace LogicFunctionsNS.AggregateLogic
         {
             return HasClawshotCount.HasDoubleClawshot()
                 && HasSwordLevel.HasOrdonSword()
-                && HelperFunctions.CanUseBootsOrNicheMagicArmor();
+                && CombinedLogicUtils.CanUseBootsOrNicheMagicArmor();
         }
 
         public static bool CanDefeatZant()
@@ -73,7 +73,7 @@ namespace LogicFunctionsNS.AggregateLogic
                 && CanUseUtils.CanUse(Item.Boomerang)
                 && CanUseUtils.CanUse(Item.Progressive_Clawshot)
                 && CanUseUtils.CanUse(Item.Ball_and_Chain)
-                && HelperFunctions.CanUseBootsOrNicheMagicArmor()
+                && CombinedLogicUtils.CanUseBootsOrNicheMagicArmor()
                 && (
                     CanUseUtils.CanUse(Item.Zora_Armor)
                     || (SettingUtils.IsGlitchedLogic() && GlitchedLogicUtils.CanDoAirRefill())
