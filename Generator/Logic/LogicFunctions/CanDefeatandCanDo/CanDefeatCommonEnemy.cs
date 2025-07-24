@@ -11,52 +11,33 @@ namespace LogicFunctionsNS.AggregateLogic
                     HasSwordLevel.HasSword()
                     || CanUseUtils.CanUse(Item.Ball_and_Chain)
                     || CanUseUtils.CanUse(Item.Shadow_Crystal)
-                    || (SettingUtils.CanDoNicheStuff() && CanUseUtils.CanUse(Item.Iron_Boots))
+                    || NicheLogicUtils.CanUseIronBootsNiche()
                 );
         }
 
         public static bool CanDefeatArmos()
         {
-            return HasSwordLevel.HasSword()
-                || CanUseUtils.CanUse(Item.Ball_and_Chain)
-                || CanUseUtils.CanUse(Item.Progressive_Bow)
-                || (SettingUtils.CanDoNicheStuff() && CanUseUtils.CanUse(Item.Iron_Boots))
-                || CanUseUtils.CanUse(Item.Shadow_Crystal)
-                || CanUseUtils.CanUse(Item.Progressive_Clawshot)
-                || BombUtils.HasBombs()
-                || CanUseUtils.CanUse(Item.Spinner)
-                || NicheLogicUtils.CanUseBacksliceAsSword();
+            return HasDamagingItemUtils.HasDamagingItemIClawshot()
+                || NicheLogicUtils.CanDoNicheCombat();
         }
 
         public static bool CanDefeatBabaSerpent()
         {
-            return HasSwordLevel.HasSword()
-                || CanUseUtils.CanUse(Item.Ball_and_Chain)
-                || CanUseUtils.CanUse(Item.Progressive_Bow)
-                || (SettingUtils.CanDoNicheStuff() && CanUseUtils.CanUse(Item.Iron_Boots))
-                || CanUseUtils.CanUse(Item.Spinner)
-                || CanUseUtils.CanUse(Item.Shadow_Crystal)
-                || BombUtils.HasBombs()
-                || NicheLogicUtils.CanUseBacksliceAsSword();
+            return HasDamagingItemUtils.HasDamagingItem() || NicheLogicUtils.CanDoNicheCombat();
         }
 
         public static bool CanDefeatHangingBabaSerpent()
         {
-            return (CanUseUtils.CanUse(Item.Boomerang) || CanUseUtils.CanUse(Item.Progressive_Bow))
-                && LogicFunctions.CanDefeatBabaSerpent();
+            return CanDefeatBabaSerpent()
+                && (CanUseUtils.CanUse(Item.Boomerang) || CanUseUtils.CanUse(Item.Progressive_Bow));
         }
 
         public static bool CanDefeatBabyGohma()
         {
-            return HasSwordLevel.HasSword()
-                || CanUseUtils.CanUse(Item.Ball_and_Chain)
-                || CanUseUtils.CanUse(Item.Progressive_Bow)
-                || (SettingUtils.CanDoNicheStuff() && CanUseUtils.CanUse(Item.Iron_Boots))
-                || CanUseUtils.CanUse(Item.Spinner)
+            return HasDamagingItemUtils.HasDamagingItemECrystal()
                 || CanUseUtils.CanUse(Item.Slingshot)
                 || CanUseUtils.CanUse(Item.Progressive_Clawshot)
-                || BombUtils.HasBombs()
-                || NicheLogicUtils.CanUseBacksliceAsSword();
+                || NicheLogicUtils.CanDoNicheCombat();
         }
 
         public static bool CanDefeatBari()
@@ -73,40 +54,19 @@ namespace LogicFunctionsNS.AggregateLogic
 
         public static bool CanDefeatBigBaba()
         {
-            return HasSwordLevel.HasSword()
-                || CanUseUtils.CanUse(Item.Ball_and_Chain)
-                || CanUseUtils.CanUse(Item.Progressive_Bow)
-                || (SettingUtils.CanDoNicheStuff() && CanUseUtils.CanUse(Item.Iron_Boots))
-                || CanUseUtils.CanUse(Item.Shadow_Crystal)
-                || CanUseUtils.CanUse(Item.Spinner)
-                || BombUtils.HasBombs()
-                || NicheLogicUtils.CanUseBacksliceAsSword();
+            return HasDamagingItemUtils.HasDamagingItem() || NicheLogicUtils.CanDoNicheCombat();
         }
 
         public static bool CanDefeatChu()
         {
-            return HasSwordLevel.HasSword()
-                || CanUseUtils.CanUse(Item.Ball_and_Chain)
-                || CanUseUtils.CanUse(Item.Progressive_Bow)
-                || (SettingUtils.CanDoNicheStuff() && CanUseUtils.CanUse(Item.Iron_Boots))
-                || CanUseUtils.CanUse(Item.Spinner)
-                || CanUseUtils.CanUse(Item.Shadow_Crystal)
-                || CanUseUtils.CanUse(Item.Progressive_Clawshot)
-                || BombUtils.HasBombs()
-                || NicheLogicUtils.CanUseBacksliceAsSword();
+            return HasDamagingItemUtils.HasDamagingItemIClawshot()
+                || NicheLogicUtils.CanDoNicheCombat();
         }
 
         public static bool CanDefeatBokoblin()
         {
-            return HasSwordLevel.HasSword()
-                || CanUseUtils.CanUse(Item.Ball_and_Chain)
-                || CanUseUtils.CanUse(Item.Progressive_Bow)
-                || (SettingUtils.CanDoNicheStuff() && CanUseUtils.CanUse(Item.Iron_Boots))
-                || CanUseUtils.CanUse(Item.Spinner)
-                || CanUseUtils.CanUse(Item.Slingshot)
-                || CanUseUtils.CanUse(Item.Shadow_Crystal)
-                || BombUtils.HasBombs()
-                || NicheLogicUtils.CanUseBacksliceAsSword();
+            return HasDamagingItemUtils.HasDamagingItemISlingshot()
+                || NicheLogicUtils.CanDoNicheCombat();
         }
 
         public static bool CanDefeatBokoblinRed()
@@ -117,18 +77,12 @@ namespace LogicFunctionsNS.AggregateLogic
                 || CanUseUtils.CanUse(Item.Shadow_Crystal)
                 || BombUtils.HasBombs()
                 || NicheLogicUtils.CanUseBacksliceAsSword()
-                || (
-                    SettingUtils.CanDoDifficultCombat()
-                    && (CanUseUtils.CanUse(Item.Iron_Boots) || CanUseUtils.CanUse(Item.Spinner))
-                );
+                || DifficultCombatLogicUtils.CanUseSpinnerOrIronBootsInDC();
         }
 
         public static bool CanDefeatBombfish()
         {
-            return (
-                    CanUseUtils.CanUse(Item.Iron_Boots)
-                    || (SettingUtils.IsGlitchedLogic() && CanUseUtils.CanUse(Item.Magic_Armor))
-                )
+            return HelperFunctions.CanUseBootsOrGlitchedMagicArmor()
                 && (
                     HasSwordLevel.HasSword()
                     || CanUseUtils.CanUse(Item.Progressive_Clawshot)
@@ -138,96 +92,59 @@ namespace LogicFunctionsNS.AggregateLogic
 
         public static bool CanDefeatBombling()
         {
-            return HasSwordLevel.HasSword()
-                || CanUseUtils.CanUse(Item.Ball_and_Chain)
-                || CanUseUtils.CanUse(Item.Progressive_Bow)
-                || (SettingUtils.CanDoNicheStuff() && CanUseUtils.CanUse(Item.Iron_Boots))
-                || CanUseUtils.CanUse(Item.Spinner)
-                || CanUseUtils.CanUse(Item.Shadow_Crystal)
-                || CanUseUtils.CanUse(Item.Progressive_Clawshot);
+            return HasDamagingItemUtils.HasDamagingItemEBombs()
+                || CanUseUtils.CanUse(Item.Progressive_Clawshot)
+                || NicheLogicUtils.CanUseIronBootsNiche();
         }
 
         public static bool CanDefeatBomskit()
         {
-            return HasSwordLevel.HasSword()
-                || CanUseUtils.CanUse(Item.Ball_and_Chain)
-                || CanUseUtils.CanUse(Item.Progressive_Bow)
-                || CanUseUtils.CanUse(Item.Spinner)
-                || CanUseUtils.CanUse(Item.Shadow_Crystal)
-                || BombUtils.HasBombs()
-                || NicheLogicUtils.CanUseBacksliceAsSword()
-                || (SettingUtils.CanDoNicheStuff() && CanUseUtils.CanUse(Item.Iron_Boots));
+            return HasDamagingItemUtils.HasDamagingItem() || NicheLogicUtils.CanDoNicheCombat();
         }
 
         public static bool CanDefeatBubble()
         {
-            return HasSwordLevel.HasSword()
-                || CanUseUtils.CanUse(Item.Ball_and_Chain)
-                || CanUseUtils.CanUse(Item.Progressive_Bow)
-                || (SettingUtils.CanDoNicheStuff() && CanUseUtils.CanUse(Item.Iron_Boots))
-                || CanUseUtils.CanUse(Item.Spinner)
-                || CanUseUtils.CanUse(Item.Shadow_Crystal)
-                || NicheLogicUtils.CanUseBacksliceAsSword();
+            return HasDamagingItemUtils.HasDamagingItemEBombs()
+                || NicheLogicUtils.CanDoNicheCombat();
         }
 
         public static bool CanDefeatBulblin()
         {
-            return HasSwordLevel.HasSword()
-                || CanUseUtils.CanUse(Item.Ball_and_Chain)
-                || CanUseUtils.CanUse(Item.Progressive_Bow)
-                || (SettingUtils.CanDoNicheStuff() && CanUseUtils.CanUse(Item.Iron_Boots))
-                || CanUseUtils.CanUse(Item.Spinner)
-                || CanUseUtils.CanUse(Item.Shadow_Crystal)
-                || BombUtils.HasBombs()
-                || NicheLogicUtils.CanUseBacksliceAsSword();
+            return HasDamagingItemUtils.HasDamagingItem() || NicheLogicUtils.CanDoNicheCombat();
         }
 
         public static bool CanDefeatChilfos()
         {
             return HasSwordLevel.HasSword()
                 || CanUseUtils.CanUse(Item.Ball_and_Chain)
-                || (SettingUtils.CanDoNicheStuff() && CanUseUtils.CanUse(Item.Iron_Boots))
                 || CanUseUtils.CanUse(Item.Shadow_Crystal)
                 || CanUseUtils.CanUse(Item.Spinner)
                 || BombUtils.HasBombs()
-                || NicheLogicUtils.CanUseBacksliceAsSword();
+                || NicheLogicUtils.CanDoNicheCombat();
         }
 
         public static bool CanDefeatChuWorm()
         {
             return (BombUtils.HasBombs() || CanUseUtils.CanUse(Item.Progressive_Clawshot))
                 && (
-                    HasSwordLevel.HasSword()
-                    || CanUseUtils.CanUse(Item.Ball_and_Chain)
-                    || CanUseUtils.CanUse(Item.Progressive_Bow)
-                    || (SettingUtils.CanDoNicheStuff() && CanUseUtils.CanUse(Item.Iron_Boots))
-                    || CanUseUtils.CanUse(Item.Spinner)
-                    || CanUseUtils.CanUse(Item.Shadow_Crystal)
-                    || NicheLogicUtils.CanUseBacksliceAsSword()
+                    HasDamagingItemUtils.HasDamagingItemEBombs()
+                    || NicheLogicUtils.CanDoNicheCombat()
                 );
         }
 
         public static bool CanDefeatDarknut()
         {
             return HasSwordLevel.HasSword()
-                || (
-                    SettingUtils.CanDoDifficultCombat()
-                    && (BombUtils.HasBombs() || CanUseUtils.CanUse(Item.Ball_and_Chain))
-                );
+                || (SettingUtils.CanDoDifficultCombat() && BombUtils.CanSmash());
         }
 
         public static bool CanDefeatDekuBaba()
         {
-            return HasSwordLevel.HasSword()
-                || CanUseUtils.CanUse(Item.Ball_and_Chain)
-                || CanUseUtils.CanUse(Item.Progressive_Bow)
-                || (SettingUtils.CanDoNicheStuff() && CanUseUtils.CanUse(Item.Iron_Boots))
-                || CanUseUtils.CanUse(Item.Spinner)
+            return HasDamagingItemUtils.HasDamagingItemECrystal()
                 || MiscItemUtils.CanShieldAttack()
                 || CanUseUtils.CanUse(Item.Slingshot)
                 || CanUseUtils.CanUse(Item.Progressive_Clawshot)
-                || BombUtils.HasBombs()
-                || NicheLogicUtils.CanUseBacksliceAsSword();
+                || NicheLogicUtils.CanDoNicheCombat();
         }
 
         public static bool CanDefeatDekuLike()
@@ -237,14 +154,7 @@ namespace LogicFunctionsNS.AggregateLogic
 
         public static bool CanDefeatDodongo()
         {
-            return HasSwordLevel.HasSword()
-                || CanUseUtils.CanUse(Item.Ball_and_Chain)
-                || CanUseUtils.CanUse(Item.Progressive_Bow)
-                || (SettingUtils.CanDoNicheStuff() && CanUseUtils.CanUse(Item.Iron_Boots))
-                || CanUseUtils.CanUse(Item.Spinner)
-                || CanUseUtils.CanUse(Item.Shadow_Crystal)
-                || BombUtils.HasBombs()
-                || NicheLogicUtils.CanUseBacksliceAsSword();
+            return HasDamagingItemUtils.HasDamagingItem() || NicheLogicUtils.CanDoNicheCombat();
         }
 
         public static bool CanDefeatDinalfos()
@@ -256,25 +166,15 @@ namespace LogicFunctionsNS.AggregateLogic
 
         public static bool CanDefeatFireBubble()
         {
-            return HasSwordLevel.HasSword()
-                || CanUseUtils.CanUse(Item.Ball_and_Chain)
-                || CanUseUtils.CanUse(Item.Progressive_Bow)
-                || (SettingUtils.CanDoNicheStuff() && CanUseUtils.CanUse(Item.Iron_Boots))
-                || CanUseUtils.CanUse(Item.Spinner)
-                || CanUseUtils.CanUse(Item.Shadow_Crystal)
-                || NicheLogicUtils.CanUseBacksliceAsSword();
+            return HasDamagingItemUtils.HasDamagingItemEBombs()
+                || NicheLogicUtils.CanDoNicheCombat();
         }
 
         public static bool CanDefeatFireKeese()
         {
-            return HasSwordLevel.HasSword()
-                || CanUseUtils.CanUse(Item.Ball_and_Chain)
-                || CanUseUtils.CanUse(Item.Progressive_Bow)
-                || (SettingUtils.CanDoNicheStuff() && CanUseUtils.CanUse(Item.Iron_Boots))
-                || CanUseUtils.CanUse(Item.Spinner)
+            return HasDamagingItemUtils.HasDamagingItemEBombs()
                 || CanUseUtils.CanUse(Item.Slingshot)
-                || CanUseUtils.CanUse(Item.Shadow_Crystal)
-                || NicheLogicUtils.CanUseBacksliceAsSword();
+                || NicheLogicUtils.CanDoNicheCombat();
         }
 
         public static bool CanDefeatFireToadpoli()
@@ -283,7 +183,7 @@ namespace LogicFunctionsNS.AggregateLogic
                 || CanUseUtils.CanUse(Item.Ball_and_Chain)
                 || CanUseUtils.CanUse(Item.Progressive_Bow)
                 || (CanUseUtils.CanUse(Item.Hylian_Shield) && HasHiddenSkillLevel.HasShieldAttack())
-                || (SettingUtils.CanDoDifficultCombat() && CanUseUtils.CanUse(Item.Shadow_Crystal));
+                || DifficultCombatLogicUtils.CanUseShadowCrystalInDC();
         }
 
         public static bool CanDefeatFreezard()
@@ -293,17 +193,12 @@ namespace LogicFunctionsNS.AggregateLogic
 
         public static bool CanDefeatGoron()
         {
-            return HasSwordLevel.HasSword()
-                || CanUseUtils.CanUse(Item.Ball_and_Chain)
-                || CanUseUtils.CanUse(Item.Progressive_Bow)
-                || (SettingUtils.CanDoNicheStuff() && CanUseUtils.CanUse(Item.Iron_Boots))
-                || CanUseUtils.CanUse(Item.Spinner)
+            return HasDamagingItemUtils.HasDamagingItemECrystal()
                 || MiscItemUtils.CanShieldAttack()
                 || CanUseUtils.CanUse(Item.Slingshot)
-                || (SettingUtils.CanDoDifficultCombat() && CanUseUtils.CanUse(Item.Lantern))
                 || CanUseUtils.CanUse(Item.Progressive_Clawshot)
-                || BombUtils.HasBombs()
-                || NicheLogicUtils.CanUseBacksliceAsSword();
+                || (SettingUtils.CanDoDifficultCombat() && CanUseUtils.CanUse(Item.Lantern))
+                || NicheLogicUtils.CanDoNicheCombat();
         }
 
         public static bool CanDefeatGhoulRat()
@@ -316,57 +211,33 @@ namespace LogicFunctionsNS.AggregateLogic
             return HasSwordLevel.HasSword()
                 || CanUseUtils.CanUse(Item.Ball_and_Chain)
                 || CanUseUtils.CanUse(Item.Progressive_Bow)
-                || (SettingUtils.CanDoNicheStuff() && CanUseUtils.CanUse(Item.Iron_Boots))
-                || (SettingUtils.CanDoDifficultCombat() && CanUseUtils.CanUse(Item.Spinner))
                 || CanUseUtils.CanUse(Item.Shadow_Crystal)
-                || CanUseUtils.CanUse(Item.Slingshot);
+                || CanUseUtils.CanUse(Item.Slingshot)
+                || NicheLogicUtils.CanUseIronBootsNiche()
+                || DifficultCombatLogicUtils.CanUseSpinnerInDC();
         }
 
         public static bool CanDefeatHelmasaur()
         {
-            return HasSwordLevel.HasSword()
-                || CanUseUtils.CanUse(Item.Ball_and_Chain)
-                || CanUseUtils.CanUse(Item.Progressive_Bow)
-                || (SettingUtils.CanDoNicheStuff() && CanUseUtils.CanUse(Item.Iron_Boots))
-                || CanUseUtils.CanUse(Item.Spinner)
-                || CanUseUtils.CanUse(Item.Shadow_Crystal)
-                || BombUtils.HasBombs()
-                || NicheLogicUtils.CanUseBacksliceAsSword();
+            return HasDamagingItemUtils.HasDamagingItem() || NicheLogicUtils.CanDoNicheCombat();
         }
 
         public static bool CanDefeatHelmasaurus()
         {
-            return HasSwordLevel.HasSword()
-                || CanUseUtils.CanUse(Item.Ball_and_Chain)
-                || CanUseUtils.CanUse(Item.Progressive_Bow)
-                || (SettingUtils.CanDoNicheStuff() && CanUseUtils.CanUse(Item.Iron_Boots))
-                || CanUseUtils.CanUse(Item.Spinner)
-                || CanUseUtils.CanUse(Item.Shadow_Crystal)
-                || BombUtils.HasBombs()
-                || NicheLogicUtils.CanUseBacksliceAsSword();
+            return HasDamagingItemUtils.HasDamagingItem() || NicheLogicUtils.CanDoNicheCombat();
         }
 
         public static bool CanDefeatIceBubble()
         {
-            return HasSwordLevel.HasSword()
-                || CanUseUtils.CanUse(Item.Ball_and_Chain)
-                || CanUseUtils.CanUse(Item.Progressive_Bow)
-                || (SettingUtils.CanDoNicheStuff() && CanUseUtils.CanUse(Item.Iron_Boots))
-                || CanUseUtils.CanUse(Item.Spinner)
-                || CanUseUtils.CanUse(Item.Shadow_Crystal)
-                || NicheLogicUtils.CanUseBacksliceAsSword();
+            return HasDamagingItemUtils.HasDamagingItemEBombs()
+                || NicheLogicUtils.CanDoNicheCombat();
         }
 
         public static bool CanDefeatIceKeese()
         {
-            return HasSwordLevel.HasSword()
-                || CanUseUtils.CanUse(Item.Ball_and_Chain)
-                || CanUseUtils.CanUse(Item.Progressive_Bow)
-                || (SettingUtils.CanDoNicheStuff() && CanUseUtils.CanUse(Item.Iron_Boots))
-                || CanUseUtils.CanUse(Item.Spinner)
+            return HasDamagingItemUtils.HasDamagingItemEBombs()
                 || CanUseUtils.CanUse(Item.Slingshot)
-                || CanUseUtils.CanUse(Item.Shadow_Crystal)
-                || NicheLogicUtils.CanUseBacksliceAsSword();
+                || NicheLogicUtils.CanDoNicheCombat();
         }
 
         public static bool CanDefeatPoe()
@@ -376,36 +247,20 @@ namespace LogicFunctionsNS.AggregateLogic
 
         public static bool CanDefeatKargarok()
         {
-            return HasSwordLevel.HasSword()
-                || CanUseUtils.CanUse(Item.Ball_and_Chain)
-                || CanUseUtils.CanUse(Item.Progressive_Bow)
-                || (SettingUtils.CanDoNicheStuff() && CanUseUtils.CanUse(Item.Iron_Boots))
-                || CanUseUtils.CanUse(Item.Spinner)
-                || CanUseUtils.CanUse(Item.Shadow_Crystal)
-                || NicheLogicUtils.CanUseBacksliceAsSword();
+            return HasDamagingItemUtils.HasDamagingItemEBombs()
+                || NicheLogicUtils.CanDoNicheCombat();
         }
 
         public static bool CanDefeatKeese()
         {
-            return HasSwordLevel.HasSword()
-                || CanUseUtils.CanUse(Item.Ball_and_Chain)
-                || CanUseUtils.CanUse(Item.Progressive_Bow)
-                || (SettingUtils.CanDoNicheStuff() && CanUseUtils.CanUse(Item.Iron_Boots))
-                || CanUseUtils.CanUse(Item.Spinner)
+            return HasDamagingItemUtils.HasDamagingItemEBombs()
                 || CanUseUtils.CanUse(Item.Slingshot)
-                || CanUseUtils.CanUse(Item.Shadow_Crystal)
-                || NicheLogicUtils.CanUseBacksliceAsSword();
+                || NicheLogicUtils.CanDoNicheCombat();
         }
 
         public static bool CanDefeatLeever()
         {
-            return HasSwordLevel.HasSword()
-                || CanUseUtils.CanUse(Item.Ball_and_Chain)
-                || CanUseUtils.CanUse(Item.Progressive_Bow)
-                || (SettingUtils.CanDoNicheStuff() && CanUseUtils.CanUse(Item.Iron_Boots))
-                || CanUseUtils.CanUse(Item.Spinner)
-                || CanUseUtils.CanUse(Item.Shadow_Crystal)
-                || BombUtils.HasBombs();
+            return HasDamagingItemUtils.HasDamagingItem() || NicheLogicUtils.CanUseIronBootsNiche();
         }
 
         public static bool CanDefeatLizalfos()
@@ -413,43 +268,24 @@ namespace LogicFunctionsNS.AggregateLogic
             return HasSwordLevel.HasSword()
                 || CanUseUtils.CanUse(Item.Ball_and_Chain)
                 || CanUseUtils.CanUse(Item.Progressive_Bow)
-                || (SettingUtils.CanDoNicheStuff() && CanUseUtils.CanUse(Item.Iron_Boots))
                 || CanUseUtils.CanUse(Item.Shadow_Crystal)
                 || BombUtils.HasBombs()
-                || NicheLogicUtils.CanUseBacksliceAsSword();
+                || NicheLogicUtils.CanDoNicheCombat();
         }
 
         public static bool CanDefeatMiniFreezard()
         {
-            return HasSwordLevel.HasSword()
-                || CanUseUtils.CanUse(Item.Ball_and_Chain)
-                || CanUseUtils.CanUse(Item.Progressive_Bow)
-                || (SettingUtils.CanDoNicheStuff() && CanUseUtils.CanUse(Item.Iron_Boots))
-                || CanUseUtils.CanUse(Item.Spinner)
-                || CanUseUtils.CanUse(Item.Shadow_Crystal)
-                || BombUtils.HasBombs()
-                || NicheLogicUtils.CanUseBacksliceAsSword();
+            return HasDamagingItemUtils.HasDamagingItem() || NicheLogicUtils.CanDoNicheCombat();
         }
 
         public static bool CanDefeatMoldorm()
         {
-            return HasSwordLevel.HasSword()
-                || CanUseUtils.CanUse(Item.Ball_and_Chain)
-                || CanUseUtils.CanUse(Item.Progressive_Bow)
-                || (SettingUtils.CanDoNicheStuff() && CanUseUtils.CanUse(Item.Iron_Boots))
-                || CanUseUtils.CanUse(Item.Spinner)
-                || CanUseUtils.CanUse(Item.Shadow_Crystal)
-                || BombUtils.HasBombs();
+            return HasDamagingItemUtils.HasDamagingItem() || NicheLogicUtils.CanUseIronBootsNiche();
         }
 
         public static bool CanDefeatPoisonMite()
         {
-            return HasSwordLevel.HasSword()
-                || CanUseUtils.CanUse(Item.Ball_and_Chain)
-                || CanUseUtils.CanUse(Item.Progressive_Bow)
-                || CanUseUtils.CanUse(Item.Lantern)
-                || CanUseUtils.CanUse(Item.Spinner)
-                || CanUseUtils.CanUse(Item.Shadow_Crystal);
+            return HasDamagingItemUtils.HasDamagingItemEBombs() || CanUseUtils.CanUse(Item.Lantern);
         }
 
         public static bool CanDefeatPuppet()
@@ -457,7 +293,7 @@ namespace LogicFunctionsNS.AggregateLogic
             return HasSwordLevel.HasSword()
                 || CanUseUtils.CanUse(Item.Ball_and_Chain)
                 || CanUseUtils.CanUse(Item.Progressive_Bow)
-                || (SettingUtils.CanDoNicheStuff() && CanUseUtils.CanUse(Item.Iron_Boots))
+                || NicheLogicUtils.CanUseIronBootsNiche()
                 || CanUseUtils.CanUse(Item.Spinner)
                 || CanUseUtils.CanUse(Item.Shadow_Crystal)
                 || BombUtils.HasBombs()
@@ -466,15 +302,8 @@ namespace LogicFunctionsNS.AggregateLogic
 
         public static bool CanDefeatRat()
         {
-            return HasSwordLevel.HasSword()
-                || CanUseUtils.CanUse(Item.Ball_and_Chain)
-                || CanUseUtils.CanUse(Item.Progressive_Bow)
-                || (SettingUtils.CanDoNicheStuff() && CanUseUtils.CanUse(Item.Iron_Boots))
-                || CanUseUtils.CanUse(Item.Spinner)
-                || CanUseUtils.CanUse(Item.Slingshot)
-                || CanUseUtils.CanUse(Item.Shadow_Crystal)
-                || BombUtils.HasBombs()
-                || NicheLogicUtils.CanUseBacksliceAsSword();
+            return HasDamagingItemUtils.HasDamagingItemISlingshot()
+                || NicheLogicUtils.CanDoNicheCombat();
         }
 
         public static bool CanDefeatRedeadKnight()
@@ -482,10 +311,9 @@ namespace LogicFunctionsNS.AggregateLogic
             return HasSwordLevel.HasSword()
                 || CanUseUtils.CanUse(Item.Ball_and_Chain)
                 || CanUseUtils.CanUse(Item.Progressive_Bow)
-                || (SettingUtils.CanDoNicheStuff() && CanUseUtils.CanUse(Item.Iron_Boots))
                 || CanUseUtils.CanUse(Item.Shadow_Crystal)
                 || BombUtils.HasBombs()
-                || NicheLogicUtils.CanUseBacksliceAsSword();
+                || NicheLogicUtils.CanDoNicheCombat();
         }
 
         public static bool CanDefeatShadowBeast()
@@ -499,28 +327,16 @@ namespace LogicFunctionsNS.AggregateLogic
 
         public static bool CanDefeatShadowBulblin()
         {
-            return HasSwordLevel.HasSword()
-                || CanUseUtils.CanUse(Item.Ball_and_Chain)
-                || CanUseUtils.CanUse(Item.Progressive_Bow)
-                || (SettingUtils.CanDoNicheStuff() && CanUseUtils.CanUse(Item.Iron_Boots))
-                || CanUseUtils.CanUse(Item.Spinner)
-                || CanUseUtils.CanUse(Item.Shadow_Crystal)
-                || BombUtils.HasBombs()
-                || NicheLogicUtils.CanUseBacksliceAsSword();
+            return HasDamagingItemUtils.HasDamagingItem() || NicheLogicUtils.CanDoNicheCombat();
         }
 
         public static bool CanDefeatShadowDekuBaba()
         {
-            return HasSwordLevel.HasSword()
-                || CanUseUtils.CanUse(Item.Ball_and_Chain)
-                || CanUseUtils.CanUse(Item.Progressive_Bow)
-                || (SettingUtils.CanDoNicheStuff() && CanUseUtils.CanUse(Item.Iron_Boots))
-                || CanUseUtils.CanUse(Item.Spinner)
+            return HasDamagingItemUtils.HasDamagingItemECrystal()
                 || MiscItemUtils.CanShieldAttack()
                 || CanUseUtils.CanUse(Item.Slingshot)
                 || CanUseUtils.CanUse(Item.Progressive_Clawshot)
-                || BombUtils.HasBombs()
-                || NicheLogicUtils.CanUseBacksliceAsSword();
+                || NicheLogicUtils.CanDoNicheCombat();
         }
 
         public static bool CanDefeatShadowInsect()
@@ -530,72 +346,36 @@ namespace LogicFunctionsNS.AggregateLogic
 
         public static bool CanDefeatShadowKargarok()
         {
-            return HasSwordLevel.HasSword()
-                || CanUseUtils.CanUse(Item.Ball_and_Chain)
-                || CanUseUtils.CanUse(Item.Progressive_Bow)
-                || (SettingUtils.CanDoNicheStuff() && CanUseUtils.CanUse(Item.Iron_Boots))
-                || CanUseUtils.CanUse(Item.Spinner)
-                || CanUseUtils.CanUse(Item.Shadow_Crystal)
-                || BombUtils.HasBombs()
-                || NicheLogicUtils.CanUseBacksliceAsSword();
+            return HasDamagingItemUtils.HasDamagingItem() || NicheLogicUtils.CanDoNicheCombat();
         }
 
         public static bool CanDefeatShadowKeese()
         {
-            return HasSwordLevel.HasSword()
-                || CanUseUtils.CanUse(Item.Ball_and_Chain)
-                || CanUseUtils.CanUse(Item.Progressive_Bow)
-                || (SettingUtils.CanDoNicheStuff() && CanUseUtils.CanUse(Item.Iron_Boots))
-                || CanUseUtils.CanUse(Item.Spinner)
+            return HasDamagingItemUtils.HasDamagingItemEBombs()
                 || CanUseUtils.CanUse(Item.Slingshot)
-                || CanUseUtils.CanUse(Item.Shadow_Crystal)
-                || NicheLogicUtils.CanUseBacksliceAsSword();
+                || NicheLogicUtils.CanDoNicheCombat();
         }
 
         public static bool CanDefeatShadowVermin()
         {
-            return HasSwordLevel.HasSword()
-                || CanUseUtils.CanUse(Item.Ball_and_Chain)
-                || CanUseUtils.CanUse(Item.Progressive_Bow)
-                || (SettingUtils.CanDoNicheStuff() && CanUseUtils.CanUse(Item.Iron_Boots))
-                || CanUseUtils.CanUse(Item.Spinner)
-                || CanUseUtils.CanUse(Item.Shadow_Crystal)
-                || BombUtils.HasBombs()
-                || NicheLogicUtils.CanUseBacksliceAsSword();
+            return HasDamagingItemUtils.HasDamagingItem() || NicheLogicUtils.CanDoNicheCombat();
         }
 
         public static bool CanDefeatShellBlade()
         {
             return BombUtils.CanUseWaterBombs()
-                || (
-                    HasSwordLevel.HasSword()
-                    && (
-                        CanUseUtils.CanUse(Item.Iron_Boots)
-                        || (SettingUtils.CanDoNicheStuff() && CanUseUtils.CanUse(Item.Magic_Armor))
-                    )
-                );
+                || (HasSwordLevel.HasSword() && HelperFunctions.CanUseBootsOrNicheMagicArmor());
         }
 
         public static bool CanDefeatSkullfish()
         {
-            return HasSwordLevel.HasSword()
-                || CanUseUtils.CanUse(Item.Ball_and_Chain)
-                || CanUseUtils.CanUse(Item.Progressive_Bow)
-                || (SettingUtils.CanDoNicheStuff() && CanUseUtils.CanUse(Item.Iron_Boots))
-                || CanUseUtils.CanUse(Item.Spinner)
-                || CanUseUtils.CanUse(Item.Shadow_Crystal);
+            return HasDamagingItemUtils.HasDamagingItemEBombs()
+                || NicheLogicUtils.CanUseIronBootsNiche();
         }
 
         public static bool CanDefeatSkulltula()
         {
-            return HasSwordLevel.HasSword()
-                || CanUseUtils.CanUse(Item.Ball_and_Chain)
-                || CanUseUtils.CanUse(Item.Progressive_Bow)
-                || (SettingUtils.CanDoNicheStuff() && CanUseUtils.CanUse(Item.Iron_Boots))
-                || CanUseUtils.CanUse(Item.Spinner)
-                || CanUseUtils.CanUse(Item.Shadow_Crystal)
-                || BombUtils.HasBombs()
-                || NicheLogicUtils.CanUseBacksliceAsSword();
+            return HasDamagingItemUtils.HasDamagingItem() || NicheLogicUtils.CanDoNicheCombat();
         }
 
         public static bool CanDefeatStalfos()
@@ -605,62 +385,28 @@ namespace LogicFunctionsNS.AggregateLogic
 
         public static bool CanDefeatStalhound()
         {
-            return HasSwordLevel.HasSword()
-                || CanUseUtils.CanUse(Item.Ball_and_Chain)
-                || CanUseUtils.CanUse(Item.Progressive_Bow)
-                || (SettingUtils.CanDoNicheStuff() && CanUseUtils.CanUse(Item.Iron_Boots))
-                || CanUseUtils.CanUse(Item.Spinner)
-                || CanUseUtils.CanUse(Item.Shadow_Crystal)
-                || BombUtils.HasBombs()
-                || NicheLogicUtils.CanUseBacksliceAsSword();
+            return HasDamagingItemUtils.HasDamagingItem() || NicheLogicUtils.CanDoNicheCombat();
         }
 
         public static bool CanDefeatStalchild()
         {
-            return HasSwordLevel.HasSword()
-                || CanUseUtils.CanUse(Item.Ball_and_Chain)
-                || CanUseUtils.CanUse(Item.Progressive_Bow)
-                || (SettingUtils.CanDoNicheStuff() && CanUseUtils.CanUse(Item.Iron_Boots))
-                || CanUseUtils.CanUse(Item.Spinner)
-                || CanUseUtils.CanUse(Item.Shadow_Crystal)
-                || BombUtils.HasBombs()
-                || NicheLogicUtils.CanUseBacksliceAsSword();
+            return HasDamagingItemUtils.HasDamagingItem() || NicheLogicUtils.CanDoNicheCombat();
         }
 
         public static bool CanDefeatTektite()
         {
-            return HasSwordLevel.HasSword()
-                || CanUseUtils.CanUse(Item.Ball_and_Chain)
-                || CanUseUtils.CanUse(Item.Progressive_Bow)
-                || (SettingUtils.CanDoNicheStuff() && CanUseUtils.CanUse(Item.Iron_Boots))
-                || CanUseUtils.CanUse(Item.Spinner)
-                || CanUseUtils.CanUse(Item.Shadow_Crystal)
-                || BombUtils.HasBombs()
-                || NicheLogicUtils.CanUseBacksliceAsSword();
+            return HasDamagingItemUtils.HasDamagingItem() || NicheLogicUtils.CanDoNicheCombat();
         }
 
         public static bool CanDefeatTileWorm()
         {
             return CanUseUtils.CanUse(Item.Boomerang)
-                && (
-                    HasSwordLevel.HasSword()
-                    || CanUseUtils.CanUse(Item.Ball_and_Chain)
-                    || CanUseUtils.CanUse(Item.Progressive_Bow)
-                    || CanUseUtils.CanUse(Item.Shadow_Crystal)
-                    || CanUseUtils.CanUse(Item.Spinner)
-                    || (SettingUtils.CanDoNicheStuff() && CanUseUtils.CanUse(Item.Iron_Boots))
-                    || BombUtils.HasBombs()
-                    || NicheLogicUtils.CanUseBacksliceAsSword()
-                );
+                && (HasDamagingItemUtils.HasDamagingItem() || NicheLogicUtils.CanDoNicheCombat());
         }
 
         public static bool CanDefeatToado()
         {
-            return HasSwordLevel.HasSword()
-                || CanUseUtils.CanUse(Item.Ball_and_Chain)
-                || CanUseUtils.CanUse(Item.Progressive_Bow)
-                || CanUseUtils.CanUse(Item.Spinner)
-                || CanUseUtils.CanUse(Item.Shadow_Crystal);
+            return HasDamagingItemUtils.HasDamagingItemEBombs();
         }
 
         public static bool CanDefeatWaterToadpoli()
@@ -669,7 +415,7 @@ namespace LogicFunctionsNS.AggregateLogic
                 || CanUseUtils.CanUse(Item.Ball_and_Chain)
                 || CanUseUtils.CanUse(Item.Progressive_Bow)
                 || MiscItemUtils.CanShieldAttack()
-                || (SettingUtils.CanDoDifficultCombat() && CanUseUtils.CanUse(Item.Shadow_Crystal));
+                || DifficultCombatLogicUtils.CanUseShadowCrystalInDC();
         }
 
         public static bool CanDefeatTorchSlug()
@@ -692,24 +438,12 @@ namespace LogicFunctionsNS.AggregateLogic
 
         public static bool CanDefeatWhiteWolfos()
         {
-            return HasSwordLevel.HasSword()
-                || CanUseUtils.CanUse(Item.Ball_and_Chain)
-                || CanUseUtils.CanUse(Item.Progressive_Bow)
-                || (SettingUtils.CanDoNicheStuff() && CanUseUtils.CanUse(Item.Iron_Boots))
-                || CanUseUtils.CanUse(Item.Spinner)
-                || CanUseUtils.CanUse(Item.Shadow_Crystal)
-                || BombUtils.HasBombs();
+            return HasDamagingItemUtils.HasDamagingItem() || NicheLogicUtils.CanUseIronBootsNiche();
         }
 
         public static bool CanDefeatYoungGohma()
         {
-            return HasSwordLevel.HasSword()
-                || CanUseUtils.CanUse(Item.Ball_and_Chain)
-                || CanUseUtils.CanUse(Item.Progressive_Bow)
-                || (SettingUtils.CanDoNicheStuff() && CanUseUtils.CanUse(Item.Iron_Boots))
-                || CanUseUtils.CanUse(Item.Spinner)
-                || CanUseUtils.CanUse(Item.Shadow_Crystal)
-                || BombUtils.HasBombs();
+            return HasDamagingItemUtils.HasDamagingItem() || NicheLogicUtils.CanUseIronBootsNiche();
         }
     }
 }

@@ -24,5 +24,10 @@ namespace LogicFunctionsNS
         {
             return SettingUtils.CanDoNicheStuff() && CUU.CanUse(Item.Magic_Armor);
         }
+
+        public static bool CanUseIronBootsNiche()
+        {
+            return SettingUtils.CanDoNicheStuff() && CUU.CanUse(Item.Iron_Boots);
+        }
     }
 }

@@ -15,7 +15,7 @@ namespace LogicFunctionsNS.AggregateLogic
                         || CanUseUtils.CanUse(Item.Shadow_Crystal)
                         || BombUtils.HasBombs()
                         || DifficultCombatLogicUtils.CanUseBacksliceInDC()
-                        || NicheLogicUtils.CanDoNicheCombat(includeBackslice: false)
+                        || NicheLogicUtils.CanUseIronBootsNiche()
                     )
                 );
         }

@@ -76,5 +76,11 @@ namespace LogicFunctionsNS
         {
             return CUU.CanUse(Item.Iron_Boots) || NicheLogicUtils.CanUseMagicArmorNiche();
         }
+
+        public static bool CanUseBootsOrGlitchedMagicArmor()
+        {
+            return CUU.CanUse(Item.Iron_Boots)
+                || (SettingUtils.IsGlitchedLogic() && CUU.CanUse(Item.Magic_Armor));
+        }
     }
 }
