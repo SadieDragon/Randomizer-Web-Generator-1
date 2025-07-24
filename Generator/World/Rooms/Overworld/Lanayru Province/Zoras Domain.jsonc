@@ -67,11 +67,15 @@
         "ConnectedArea": "Fishing Hole House",
         "Requirements": "true",
         "GlitchedRequirements": "true"
+      },
+      {
+        "ConnectedArea": "Fishing Hole Piece of Heart",
+        "Requirements": "(Progressive_Clawshot, 1)",
+        "GlitchedRequirements": "(Progressive_Clawshot, 1)"
       }
     ],
     "Checks":
     [
-        "Fishing Hole Heart Piece",
         "Fishing Hole Bottle"
     ],
     "Region": "Zoras Domain"
@@ -84,9 +88,23 @@
         "ConnectedArea": "Fishing Hole",
         "Requirements": "true",
         "GlitchedRequirements": "true"
+      },
+      {
+        "ConnectedArea": "Fishing Hole Piece of Heart",
+        "Requirements": "true",
+        "GlitchedRequirements": "true"
       }
     ],
     "Checks": [""],
+    "Region": "Zoras Domain"
+  },
+  {
+    "RoomName": "Fishing Hole Piece of Heart",
+    "Exits": [],
+    "Checks":
+    [
+        "Fishing Hole Heart Piece"
+    ],
     "Region": "Zoras Domain"
   },
   {
