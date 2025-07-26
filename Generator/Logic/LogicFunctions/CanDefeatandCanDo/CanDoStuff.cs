@@ -25,14 +25,8 @@ namespace LogicFunctionsNS.AggregateLogic
 
         public static bool CanBreakMonkeyCage()
         {
-            return HasSwordLevel.HasSword()
+            return HasDamagingItemUtils.HasDamagingItemIClawshot()
                 || CanUseUtils.CanUse(Item.Iron_Boots)
-                || CanUseUtils.CanUse(Item.Spinner)
-                || CanUseUtils.CanUse(Item.Ball_and_Chain)
-                || CanUseUtils.CanUse(Item.Shadow_Crystal)
-                || BombUtils.HasBombs()
-                || CanUseUtils.CanUse(Item.Progressive_Bow)
-                || CanUseUtils.CanUse(Item.Progressive_Clawshot)
                 || (SettingUtils.CanDoNicheStuff() && MiscItemUtils.CanShieldAttack());
         }
 
