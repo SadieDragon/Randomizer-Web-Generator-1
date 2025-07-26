@@ -1,6 +1,4 @@
 using TPRandomizer;
-using CUU = LogicFunctionsNS.CanUseUtils;
-using ERLF = LogicFunctionsNS.ERLogicFunctions;
 
 namespace LogicFunctionsNS
 {
@@ -8,40 +6,41 @@ namespace LogicFunctionsNS
     {
         public static bool CanFishForWaterBombs()
         {
-            return ERLF.HasReachedRoom("Eldin Field Water Bomb Fish Grotto")
-                && CUU.CanUse(Item.Progressive_Fishing_Rod);
+            return ERLogicFunctions.HasReachedRoom("Eldin Field Water Bomb Fish Grotto")
+                && CanUseUtils.CanUse(Item.Progressive_Fishing_Rod);
         }
 
         public static bool CanLaunchBombs()
         {
-            return (CUU.CanUse(Item.Boomerang) || CUU.CanUse(Item.Progressive_Bow)) && HasBombs();
+            return HasBombs()
+                && (CanUseUtils.CanUse(Item.Boomerang) || CanUseUtils.CanUse(Item.Progressive_Bow));
         }
 
         public static bool CanSmash()
         {
-            return CUU.CanUse(Item.Ball_and_Chain) || HasBombs();
+            return CanUseUtils.CanUse(Item.Ball_and_Chain) || HasBombs();
         }
 
         public static bool CanUseWaterBombs()
         {
-            return CUU.CanUse(Item.Filled_Bomb_Bag)
+            return CanUseUtils.CanUse(Item.Filled_Bomb_Bag)
                 && (
-                    ERLF.HasReachedRoom("Kakariko Barnes Bomb Shop Lower")
+                    ERLogicFunctions.HasReachedRoom("Kakariko Barnes Bomb Shop Lower")
                     || CanFishForWaterBombs()
                     || (
-                        ERLF.HasReachedRoom("Kakariko Barnes Bomb Shop Lower")
-                        && ERLF.HasReachedRoom("Castle Town Malo Mart")
+                        ERLogicFunctions.HasReachedRoom("Kakariko Barnes Bomb Shop Lower")
+                        && ERLogicFunctions.HasReachedRoom("Castle Town Malo Mart")
                     )
                 );
         }
 
         public static bool HasBombs()
         {
-            return CUU.CanUse(Item.Filled_Bomb_Bag)
+            return CanUseUtils.CanUse(Item.Filled_Bomb_Bag)
                 && (
-                    ERLF.HasReachedRoom("Kakariko Barnes Bomb Shop Lower")
+                    ERLogicFunctions.HasReachedRoom("Kakariko Barnes Bomb Shop Lower")
                     || CanFishForWaterBombs()
-                    || ERLF.HasReachedRoom("City in The Sky Entrance")
+                    || ERLogicFunctions.HasReachedRoom("City in The Sky Entrance")
                 );
         }
     }
