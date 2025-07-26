@@ -5,15 +5,6 @@ using System;
 using System.Linq;
 using LogicFunctionsNS;
 using TPRandomizer.SSettings.Enums;
-using BOU = LogicFunctionsNS.BottleUtils;
-using BU = LogicFunctionsNS.BombUtils;
-using CCD = LogicFunctionsNS.CanCompleteDungeon;
-using CUU = LogicFunctionsNS.CanUseUtils;
-using ERLF = LogicFunctionsNS.ERLogicFunctions;
-using GLU = LogicFunctionsNS.GlitchedLogicUtils;
-using HLF = LogicFunctionsNS.HelperFunctions;
-using HSL = LogicFunctionsNS.HasSwordLevel;
-using MIU = LogicFunctionsNS.MiscItemUtils;
 
 // maybe add a helper for llc - GLL `CanSmash & Lantern` GL `CanSmash`?
 
@@ -41,27 +32,33 @@ namespace TPRandomizer
                 }
                 case CastleRequirements.Fused_Shadows:
                 {
-                    return CUU.VerifyItemQuantity(Item.Progressive_Fused_Shadow, requirementCount);
+                    return CanUseUtils.VerifyItemQuantity(
+                        Item.Progressive_Fused_Shadow,
+                        requirementCount
+                    );
                 }
                 case CastleRequirements.Mirror_Shards:
                 {
-                    return CUU.VerifyItemQuantity(Item.Progressive_Mirror_Shard, requirementCount);
+                    return CanUseUtils.VerifyItemQuantity(
+                        Item.Progressive_Mirror_Shard,
+                        requirementCount
+                    );
                 }
                 case CastleRequirements.Dungeons:
                 {
-                    return Randomizer.Items.BossItems.Count(CUU.CanUse) >= requirementCount;
+                    return Randomizer.Items.BossItems.Count(CanUseUtils.CanUse) >= requirementCount;
                 }
                 case CastleRequirements.Vanilla:
                 {
-                    return CCD.CanCompletePalaceofTwilight();
+                    return CanCompleteDungeon.CanCompletePalaceofTwilight();
                 }
                 case CastleRequirements.Poe_Souls:
                 {
-                    return CUU.VerifyItemQuantity(Item.Poe_Soul, requirementCount);
+                    return CanUseUtils.VerifyItemQuantity(Item.Poe_Soul, requirementCount);
                 }
                 case CastleRequirements.Hearts:
                 {
-                    return HLF.GetPlayerHealth() >= requirementCount;
+                    return HelperFunctions.GetPlayerHealth() >= requirementCount;
                 }
             }
 
@@ -80,23 +77,29 @@ namespace TPRandomizer
                 }
                 case CastleBKRequirements.Fused_Shadows:
                 {
-                    return CUU.VerifyItemQuantity(Item.Progressive_Fused_Shadow, requirementCount);
+                    return CanUseUtils.VerifyItemQuantity(
+                        Item.Progressive_Fused_Shadow,
+                        requirementCount
+                    );
                 }
                 case CastleBKRequirements.Mirror_Shards:
                 {
-                    return CUU.VerifyItemQuantity(Item.Progressive_Mirror_Shard, requirementCount);
+                    return CanUseUtils.VerifyItemQuantity(
+                        Item.Progressive_Mirror_Shard,
+                        requirementCount
+                    );
                 }
                 case CastleBKRequirements.Dungeons:
                 {
-                    return Randomizer.Items.BossItems.Count(CUU.CanUse) >= requirementCount;
+                    return Randomizer.Items.BossItems.Count(CanUseUtils.CanUse) >= requirementCount;
                 }
                 case CastleBKRequirements.Poe_Souls:
                 {
-                    return CUU.VerifyItemQuantity(Item.Poe_Soul, requirementCount);
+                    return CanUseUtils.VerifyItemQuantity(Item.Poe_Soul, requirementCount);
                 }
                 case CastleBKRequirements.Hearts:
                 {
-                    return HLF.GetPlayerHealth() >= requirementCount;
+                    return HelperFunctions.GetPlayerHealth() >= requirementCount;
                 }
             }
 
@@ -105,38 +108,40 @@ namespace TPRandomizer
         #endregion
 
         #region KnownNeeded
-        public static bool CanCompleteGoronMines() => CCD.CanCompleteGoronMines();
+        public static bool CanCompleteGoronMines() => CanCompleteDungeon.CanCompleteGoronMines();
 
-        public static bool CanCompleteSnowpeakRuins() => CCD.CanCompleteSnowpeakRuins();
+        public static bool CanCompleteSnowpeakRuins() =>
+            CanCompleteDungeon.CanCompleteSnowpeakRuins();
 
-        public static bool CanCompleteTempleofTime() => CCD.CanCompleteTempleofTime();
+        public static bool CanCompleteTempleofTime() =>
+            CanCompleteDungeon.CanCompleteTempleofTime();
 
-        public static bool HasRangedItem() => MIU.HasRangedItem();
+        public static bool HasRangedItem() => MiscItemUtils.HasRangedItem();
 
-        public static bool HasBombs() => BU.HasBombs();
+        public static bool HasBombs() => BombUtils.HasBombs();
 
-        public static bool HasSword() => HSL.HasSword();
+        public static bool HasSword() => HasSwordLevel.HasSword();
 
-        public static bool CanSmash() => BU.CanSmash();
+        public static bool CanSmash() => BombUtils.CanSmash();
 
         public static bool CanChangeTime() => CanDoStuff.CanChangeTime();
 
-        public static bool CanLaunchBombs() => BU.CanLaunchBombs();
+        public static bool CanLaunchBombs() => BombUtils.CanLaunchBombs();
 
-        public static bool CanGetHotSpringWater() => BOU.CanGetHotSpringWater();
+        public static bool CanGetHotSpringWater() => BottleUtils.CanGetHotSpringWater();
 
-        public static bool CanBurnWebs() => MIU.CanBurnWebs();
+        public static bool CanBurnWebs() => MiscItemUtils.CanBurnWebs();
 
-        public static bool CanCutHangingWeb() => MIU.CanCutHangingWeb();
+        public static bool CanCutHangingWeb() => MiscItemUtils.CanCutHangingWeb();
 
         public static bool HasDamagingItem()
         {
             // Iron boots is often treated as a niche item, and is never used in the logic fns,
             // but to return it to how it's originally coded. - Lupa
-            return HasDamagingItemUtils.HasDamagingItem() || CUU.CanUse(Item.Iron_Boots);
+            return HasDamagingItemUtils.HasDamagingItem() || CanUseUtils.CanUse(Item.Iron_Boots);
         }
 
-        public static bool CanUseWaterBombs() => BU.CanUseWaterBombs();
+        public static bool CanUseWaterBombs() => BombUtils.CanUseWaterBombs();
         #endregion
 
         // TODO: If option to not have bug models replaced becomes a thing, this function can be useful
@@ -623,8 +628,8 @@ namespace TPRandomizer
             return CanCompleteLanayruTwilight()
                 || (
                     CanCompleteEldinTwilight()
-                    && ERLF.HasReachedRoom("Zoras Domain Throne Room")
-                    && CUU.CanUse(Item.Shadow_Crystal)
+                    && ERLogicFunctions.HasReachedRoom("Zoras Domain Throne Room")
+                    && CanUseUtils.CanUse(Item.Shadow_Crystal)
                 );
         }
         #endregion
@@ -636,12 +641,12 @@ namespace TPRandomizer
         public static bool CanCompletePrologue()
         {
             return SettingUtils.HasSkippedPrologue()
-                || (ERLF.HasReachedRoom("North Faron Woods") && CanDefeatBokoblin());
+                || (ERLogicFunctions.HasReachedRoom("North Faron Woods") && CanDefeatBokoblin());
         }
 
         public static bool CanCompleteGoats1()
         {
-            return CanCompletePrologue() || ERLF.HasReachedRoom("Ordon Ranch");
+            return CanCompletePrologue() || ERLogicFunctions.HasReachedRoom("Ordon Ranch");
         }
 
         /// <summary>
@@ -650,7 +655,10 @@ namespace TPRandomizer
         public static bool CanCompleteMDH()
         {
             return SettingUtils.HasSkippedMDH()
-                || (CCD.CanCompleteLakebedTemple() && ERLF.HasReachedRoom("Castle Town South"));
+                || (
+                    CanCompleteDungeon.CanCompleteLakebedTemple()
+                    && ERLogicFunctions.HasReachedRoom("Castle Town South")
+                );
             //return (CanCompleteLakebedTemple() || (Randomizer.SSettings.skipMdh == true));
         }
 
@@ -659,7 +667,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanClearForest()
         {
-            return (CCD.CanCompleteForestTemple() || SettingUtils.IsOpenWoods())
+            return (CanCompleteDungeon.CanCompleteForestTemple() || SettingUtils.IsOpenWoods())
                 && CanCompletePrologue()
                 && CanCompleteFaronTwilight();
         }
@@ -676,7 +684,7 @@ namespace TPRandomizer
             return SettingUtils.HasSkippedFaronTwilight()
                 || (
                     CanCompletePrologue()
-                    && HLF.CanCompleteTwilight(RoomFunctions.faronTwilightRooms)
+                    && HelperFunctions.CanCompleteTwilight(RoomFunctions.faronTwilightRooms)
                 );
         }
 
@@ -686,15 +694,18 @@ namespace TPRandomizer
         public static bool CanCompleteEldinTwilight()
         {
             return SettingUtils.HasSkippedEldinTwilight()
-                || HLF.CanCompleteTwilight(RoomFunctions.eldinTwilightRooms);
+                || HelperFunctions.CanCompleteTwilight(RoomFunctions.eldinTwilightRooms);
         }
 
         public static bool CanCompleteLanayruTwilight()
         {
             return SettingUtils.HasSkippedLanayruTwilight()
                 || (
-                    (ERLF.HasReachedRoom("North Eldin Field") || CUU.CanUse(Item.Shadow_Crystal))
-                    && HLF.CanCompleteTwilight(RoomFunctions.lanayruTwilightRooms)
+                    HelperFunctions.CanCompleteTwilight(RoomFunctions.lanayruTwilightRooms)
+                    && (
+                        ERLogicFunctions.HasReachedRoom("North Eldin Field")
+                        || CanUseUtils.CanUse(Item.Shadow_Crystal)
+                    )
                 );
         }
 
@@ -708,35 +719,35 @@ namespace TPRandomizer
 
         // START OF GLITCHED LOGIC
         #region GlitchedUtils
-        public static bool HasSwordOrBS() => GLU.HasSwordOrBS();
+        public static bool HasSwordOrBS() => GlitchedLogicUtils.HasSwordOrBS();
 
-        public static bool HasHeavyMod() => GLU.HasHeavyMod();
+        public static bool HasHeavyMod() => GlitchedLogicUtils.HasHeavyMod();
 
-        public static bool HasCutsceneItem() => GLU.HasCutsceneItem();
+        public static bool HasCutsceneItem() => GlitchedLogicUtils.HasCutsceneItem();
 
-        public static bool CanDoLJA() => GLU.CanDoLJA();
+        public static bool CanDoLJA() => GlitchedLogicUtils.CanDoLJA();
 
-        public static bool CanDoJSLJA() => GLU.CanDoJSLJA();
+        public static bool CanDoJSLJA() => GlitchedLogicUtils.CanDoJSLJA();
 
-        public static bool CanDoMapGlitch() => GLU.CanDoMapGlitch();
+        public static bool CanDoMapGlitch() => GlitchedLogicUtils.CanDoMapGlitch();
 
-        public static bool CanDoStorage() => GLU.CanDoStorage();
+        public static bool CanDoStorage() => GlitchedLogicUtils.CanDoStorage();
 
-        public static bool HasOneHandedItem() => GLU.HasOneHandedItem();
+        public static bool HasOneHandedItem() => GlitchedLogicUtils.HasOneHandedItem();
 
-        public static bool CanDoMoonBoots() => GLU.CanDoMoonBoots();
+        public static bool CanDoMoonBoots() => GlitchedLogicUtils.CanDoMoonBoots();
 
-        public static bool CanDoJSMoonBoots() => GLU.CanDoJSMoonBoots();
+        public static bool CanDoJSMoonBoots() => GlitchedLogicUtils.CanDoJSMoonBoots();
 
-        public static bool CanDoBSMoonBoots() => GLU.CanDoBSMoonBoots();
+        public static bool CanDoBSMoonBoots() => GlitchedLogicUtils.CanDoBSMoonBoots();
 
-        public static bool CanDoEBMoonBoots() => GLU.CanDoEBMoonBoots();
+        public static bool CanDoEBMoonBoots() => GlitchedLogicUtils.CanDoEBMoonBoots();
 
-        public static bool CanDoHSMoonBoots() => GLU.CanDoHSMoonBoots();
+        public static bool CanDoHSMoonBoots() => GlitchedLogicUtils.CanDoHSMoonBoots();
 
-        public static bool CanDoFlyGlitch() => GLU.CanDoFlyGlitch();
+        public static bool CanDoFlyGlitch() => GlitchedLogicUtils.CanDoFlyGlitch();
 
-        public static bool CanDoAirRefill() => GLU.CanDoAirRefill();
+        public static bool CanDoAirRefill() => GlitchedLogicUtils.CanDoAirRefill();
         #endregion
 
         #region GlitchedCanDoStuff
@@ -745,16 +756,16 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDoHiddenVillageGlitched()
         {
-            return CUU.CanUse(Item.Progressive_Bow)
-                || CUU.CanUse(Item.Ball_and_Chain)
+            return CanUseUtils.CanUse(Item.Progressive_Bow)
+                || CanUseUtils.CanUse(Item.Ball_and_Chain)
                 || (
-                    CUU.CanUse(Item.Slingshot)
+                    CanUseUtils.CanUse(Item.Slingshot)
                     && (
-                        CUU.CanUse(Item.Shadow_Crystal)
-                        || HSL.HasSword()
-                        || BU.HasBombs()
-                        || CUU.CanUse(Item.Iron_Boots)
-                        || CUU.CanUse(Item.Spinner)
+                        CanUseUtils.CanUse(Item.Shadow_Crystal)
+                        || HasSwordLevel.HasSword()
+                        || BombUtils.HasBombs()
+                        || CanUseUtils.CanUse(Item.Iron_Boots)
+                        || CanUseUtils.CanUse(Item.Spinner)
                     )
                 );
         }
@@ -764,7 +775,9 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDoFTWindlessBridgeRoom()
         {
-            return BU.HasBombs() || GLU.CanDoBSMoonBoots() || GLU.CanDoJSMoonBoots();
+            return BombUtils.HasBombs()
+                || GlitchedLogicUtils.CanDoBSMoonBoots()
+                || GlitchedLogicUtils.CanDoJSMoonBoots();
         }
 
         // TODO: Combine this into the overall CanClearForest.
@@ -774,9 +787,9 @@ namespace TPRandomizer
             return CanCompletePrologue()
                 && (
                     SettingUtils.IsOpenWoods()
-                    || CCD.CanCompleteForestTemple()
-                    || GLU.CanDoLJA()
-                    || GLU.CanDoMapGlitch()
+                    || CanCompleteDungeon.CanCompleteForestTemple()
+                    || GlitchedLogicUtils.CanDoLJA()
+                    || GlitchedLogicUtils.CanDoMapGlitch()
                 );
         }
 
