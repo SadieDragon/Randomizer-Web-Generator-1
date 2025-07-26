@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using TPRandomizer;
-using ERLF = LogicFunctionsNS.ERLogicFunctions;
 
 namespace LogicFunctionsNS
 {
@@ -8,7 +7,7 @@ namespace LogicFunctionsNS
     {
         public static bool CanUnlockMapUtil(List<string> roomsInMap)
         {
-            return SettingUtils.IsOpenMap() || ERLF.HasReachedAnyRooms(roomsInMap);
+            return SettingUtils.IsOpenMap() || ERLogicFunctions.HasReachedAnyRooms(roomsInMap);
         }
 
         public static bool CanUnlockOrdonaMap() => CanUnlockMapUtil(RoomFunctions.OrdonaMapRooms);

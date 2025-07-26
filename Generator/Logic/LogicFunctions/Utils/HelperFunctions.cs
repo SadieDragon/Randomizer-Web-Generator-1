@@ -1,9 +1,6 @@
 using System;
 using System.Collections.Generic;
 using TPRandomizer;
-using BOU = LogicFunctionsNS.BottleUtils;
-using CUU = LogicFunctionsNS.CanUseUtils;
-using ERLF = LogicFunctionsNS.ERLogicFunctions;
 
 namespace LogicFunctionsNS
 {
@@ -20,7 +17,7 @@ namespace LogicFunctionsNS
             return !SettingUtils.BonksDamageEnabled()
                 || (
                     SettingUtils.BonksDamageEnabled()
-                    && (!SettingUtils.IsOHKO() || BOU.CanUseBottledFairies())
+                    && (!SettingUtils.IsOHKO() || BottleUtils.CanUseBottledFairies())
                 );
         }
 
@@ -29,8 +26,8 @@ namespace LogicFunctionsNS
             double playerHealth = 3.0; // start at 3 since we have 3 hearts.
 
             //Pieces of heart are 1/5 of a heart.
-            playerHealth += CUU.GetItemCount(Item.Piece_of_Heart) * 0.2;
-            playerHealth += CUU.GetItemCount(Item.Heart_Container);
+            playerHealth += CanUseUtils.GetItemCount(Item.Piece_of_Heart) * 0.2;
+            playerHealth += CanUseUtils.GetItemCount(Item.Heart_Container);
 
             return (int)playerHealth;
         }
@@ -38,7 +35,7 @@ namespace LogicFunctionsNS
         // TODO: Room funcs dir/helper util file?
         public static bool CanCompleteTwilight(List<string> roomsInTwilight)
         {
-            return CanSurviveBonkDamage() && ERLF.HasReachedAllRooms(roomsInTwilight);
+            return CanSurviveBonkDamage() && ERLogicFunctions.HasReachedAllRooms(roomsInTwilight);
         }
     }
 }
