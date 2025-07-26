@@ -3,10 +3,6 @@
 using System.Linq;
 using TPRandomizer;
 using TPRandomizer.SSettings.Enums;
-using BU = LogicFunctionsNS.BombUtils;
-using CUU = LogicFunctionsNS.CanUseUtils;
-using ERLF = LogicFunctionsNS.ERLogicFunctions;
-using HHSL = LogicFunctionsNS.HasHiddenSkillLevel;
 
 namespace LogicFunctionsNS
 {
@@ -14,42 +10,44 @@ namespace LogicFunctionsNS
     {
         public static bool HasShield()
         {
-            return CUU.CanUse(Item.Hylian_Shield)
-                || ERLF.CanShopFromRoom("Kakariko Malo Mart")
-                || ERLF.CanShopFromRoom("Castle Town Goron House")
-                || ERLF.HasReachedRoom("Death Mountain Hot Spring");
+            return CanUseUtils.CanUse(Item.Hylian_Shield)
+                || ERLogicFunctions.CanShopFromRoom("Kakariko Malo Mart")
+                || ERLogicFunctions.CanShopFromRoom("Castle Town Goron House")
+                || ERLogicFunctions.HasReachedRoom("Death Mountain Hot Spring");
         }
 
         public static bool CanShieldAttack()
         {
-            return HasShield() && HHSL.HasShieldAttack();
+            return HasShield() && HasHiddenSkillLevel.HasShieldAttack();
         }
 
         public static bool CanBurnWebs()
         {
-            return CUU.CanUse(Item.Lantern) || BU.HasBombs() || CUU.CanUse(Item.Ball_and_Chain);
+            return CanUseUtils.CanUse(Item.Lantern)
+                || BombUtils.HasBombs()
+                || CanUseUtils.CanUse(Item.Ball_and_Chain);
         }
 
         public static bool HasRangedItem()
         {
-            return CUU.CanUse(Item.Ball_and_Chain)
-                || CUU.CanUse(Item.Slingshot)
-                || CUU.CanUse(Item.Progressive_Bow)
-                || CUU.CanUse(Item.Progressive_Clawshot)
-                || CUU.CanUse(Item.Boomerang);
+            return CanUseUtils.CanUse(Item.Ball_and_Chain)
+                || CanUseUtils.CanUse(Item.Slingshot)
+                || CanUseUtils.CanUse(Item.Progressive_Bow)
+                || CanUseUtils.CanUse(Item.Progressive_Clawshot)
+                || CanUseUtils.CanUse(Item.Boomerang);
         }
 
         public static bool CanCutHangingWeb()
         {
-            return CUU.CanUse(Item.Progressive_Clawshot)
-                || CUU.CanUse(Item.Progressive_Bow)
-                || CUU.CanUse(Item.Boomerang)
-                || CUU.CanUse(Item.Ball_and_Chain);
+            return CanUseUtils.CanUse(Item.Progressive_Clawshot)
+                || CanUseUtils.CanUse(Item.Progressive_Bow)
+                || CanUseUtils.CanUse(Item.Boomerang)
+                || CanUseUtils.CanUse(Item.Ball_and_Chain);
         }
 
         public static bool HasBug()
         {
-            return Randomizer.Items.goldenBugs.Any(CUU.CanUse);
+            return Randomizer.Items.goldenBugs.Any(CanUseUtils.CanUse);
         }
 
         public static bool CanBuyMagicArmor()
@@ -58,11 +56,11 @@ namespace LogicFunctionsNS
             {
                 case WalletSize.Reduced:
                 {
-                    return CUU.GetItemCount(Item.Progressive_Wallet) >= 2;
+                    return CanUseUtils.GetItemCount(Item.Progressive_Wallet) >= 2;
                 }
                 case WalletSize.Vanilla:
                 {
-                    return CUU.CanUse(Item.Progressive_Wallet);
+                    return CanUseUtils.CanUse(Item.Progressive_Wallet);
                 }
                 default:
                 {
