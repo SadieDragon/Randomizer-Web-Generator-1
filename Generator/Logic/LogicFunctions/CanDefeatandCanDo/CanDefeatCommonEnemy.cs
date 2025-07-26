@@ -319,10 +319,7 @@ namespace LogicFunctionsNS.AggregateLogic
         public static bool CanDefeatShadowBeast()
         {
             return HasSwordLevel.HasSword()
-                || (
-                    CanUseUtils.CanUse(Item.Shadow_Crystal)
-                    && LogicFunctionsUpdatedRefactored.CanMidnaCharge()
-                );
+                || (CanUseUtils.CanUse(Item.Shadow_Crystal) && CanDoStuff.CanMidnaCharge());
         }
 
         public static bool CanDefeatShadowBulblin()

@@ -35,22 +35,6 @@ namespace LogicFunctionsNS
             return (int)playerHealth;
         }
 
-        /// <summary>
-        /// summary text.
-        /// </summary>
-        public static bool CanChangeTime()
-        {
-            return CUU.CanUse(Item.Shadow_Crystal)
-                || ERLF.HasReachedAnyRooms(RoomFunctions.timeFlowStages);
-        }
-
-        public static bool CanWarp()
-        {
-            return CUU.CanUse(Item.Shadow_Crystal)
-                && ERLF.HasReachedAnyRooms(RoomFunctions.WarpableStages);
-        }
-
-        // TODO: Do i even need CSBD? can it be defined in here?
         // TODO: Room funcs dir/helper util file?
         public static bool CanCompleteTwilight(List<string> roomsInTwilight)
         {

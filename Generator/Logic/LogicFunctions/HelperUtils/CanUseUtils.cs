@@ -93,7 +93,7 @@ namespace LogicFunctionsNS
                 || (
                     CanCompleteDungeon.CanCompleteGoronMines()
                     && ERLF.HasReachedRoom("Lower Kakariko Village")
-                    && HLF.CanChangeTime()
+                    && CanDoStuff.CanChangeTime()
                 )
                 || ERLF.CanShopFromRoom("Castle Town Goron House")
                 || ERLF.HasReachedRoom("Death Mountain Hot Spring")

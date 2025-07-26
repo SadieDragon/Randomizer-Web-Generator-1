@@ -70,5 +70,25 @@ namespace LogicFunctionsNS.AggregateLogic
                 || BombUtils.CanSmash()
                 || NicheLogicUtils.CanUseBacksliceAsSword();
         }
+
+        public static bool CanChangeTime()
+        {
+            return CanUseUtils.CanUse(Item.Shadow_Crystal)
+                || ERLogicFunctions.HasReachedAnyRooms(RoomFunctions.timeFlowStages);
+        }
+
+        public static bool CanWarp()
+        {
+            return CanUseUtils.CanUse(Item.Shadow_Crystal)
+                && ERLogicFunctions.HasReachedAnyRooms(RoomFunctions.WarpableStages);
+        }
+
+        // TODO: Move twilights into a file
+        // TODO: Move MDH out into a story stuff file
+        public static bool CanMidnaCharge()
+        {
+            return LogicFunctionsUpdatedRefactored.CanCompleteMDH()
+                || LogicFunctionsUpdatedRefactored.CanCompleteAllTwilight();
+        }
     }
 }

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using LogicFunctionsNS.AggregateLogic;
 using TPRandomizer;
 
 namespace LogicFunctionsNS
@@ -13,7 +14,7 @@ namespace LogicFunctionsNS
             List<Room> portalRooms = [];
 
             // If we cannot warp, then we cannot use portals anyway.
-            if (!HelperFunctions.CanWarp())
+            if (!CanDoStuff.CanWarp())
             {
                 // Console.WriteLine("Cannot warp; did not generate any portal rooms.");
                 return portalRooms;

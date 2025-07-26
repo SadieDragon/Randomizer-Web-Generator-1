@@ -614,13 +614,11 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanBreakWoodenDoor() => CanDoStuff.CanBreakWoodenDoor();
 
-        public static bool CanMidnaCharge()
-        {
-            return CanCompleteMDH() && CanCompleteAllTwilight();
-        }
+        public static bool CanMidnaCharge() => CanDoStuff.CanMidnaCharge();
 
         public static bool CanStrikePedestal() => SettingUtils.CanStrikePedestal();
 
+        // TODO: Goes with story stuff, as it is a 1-time use to change ZD from ice to not
         public static bool CanWarpMeteor()
         {
             return CanCompleteLanayruTwilight()
