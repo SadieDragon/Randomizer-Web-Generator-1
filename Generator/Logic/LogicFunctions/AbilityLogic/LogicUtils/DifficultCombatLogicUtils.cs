@@ -1,10 +1,5 @@
 using System.Linq;
 using TPRandomizer;
-using BU = LogicFunctionsNS.BombUtils;
-using CUU = LogicFunctionsNS.CanUseUtils;
-using NLU = LogicFunctionsNS.NicheLogicUtils;
-
-// in the JSON, all calls to these functions should pretend the setting is already checked
 
 namespace LogicFunctionsNS
 {
@@ -12,27 +7,27 @@ namespace LogicFunctionsNS
     {
         public static bool CanUseBacksliceInDC()
         {
-            return SettingUtils.CanDoDifficultCombat() && NLU.CanUseBacksliceAsSword();
+            return SettingUtils.CanDoDifficultCombat() && NicheLogicUtils.CanUseBacksliceAsSword();
         }
 
         public static bool CanUseItemInDC(params Item[] damagingItemList)
         {
-            return SettingUtils.CanDoDifficultCombat() && damagingItemList.Any(CUU.CanUse);
+            return SettingUtils.CanDoDifficultCombat() && damagingItemList.Any(CanUseUtils.CanUse);
         }
 
         public static bool CanUseBombsInDC()
         {
-            return SettingUtils.CanDoDifficultCombat() && BU.HasBombs();
+            return SettingUtils.CanDoDifficultCombat() && BombUtils.HasBombs();
         }
 
         public static bool CanUseIronBootsInDC()
         {
-            return SettingUtils.CanDoDifficultCombat() && CUU.CanUse(Item.Iron_Boots);
+            return SettingUtils.CanDoDifficultCombat() && CanUseUtils.CanUse(Item.Iron_Boots);
         }
 
         public static bool CanUseSpinnerInDC()
         {
-            return SettingUtils.CanDoDifficultCombat() && CUU.CanUse(Item.Spinner);
+            return SettingUtils.CanDoDifficultCombat() && CanUseUtils.CanUse(Item.Spinner);
         }
 
         public static bool CanUseSpinnerOrIronBootsInDC()
@@ -42,7 +37,7 @@ namespace LogicFunctionsNS
 
         public static bool CanUseShadowCrystalInDC()
         {
-            return SettingUtils.CanDoDifficultCombat() && CUU.CanUse(Item.Shadow_Crystal);
+            return SettingUtils.CanDoDifficultCombat() && CanUseUtils.CanUse(Item.Shadow_Crystal);
         }
     }
 }

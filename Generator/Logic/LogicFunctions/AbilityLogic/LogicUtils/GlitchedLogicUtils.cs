@@ -1,12 +1,5 @@
 using System.Linq;
 using TPRandomizer;
-using BOU = LogicFunctionsNS.BottleUtils;
-using BU = LogicFunctionsNS.BombUtils;
-using CUU = LogicFunctionsNS.CanUseUtils;
-using ERLF = LogicFunctionsNS.ERLogicFunctions;
-using HHSL = LogicFunctionsNS.HasHiddenSkillLevel;
-using HSL = LogicFunctionsNS.HasSwordLevel;
-using MIU = LogicFunctionsNS.MiscItemUtils;
 
 namespace LogicFunctionsNS
 {
@@ -17,7 +10,7 @@ namespace LogicFunctionsNS
         /// </summary>
         public static bool HasSwordOrBS()
         {
-            return HSL.HasSword() || HHSL.HasBackslice();
+            return HasSwordLevel.HasSword() || HasHiddenSkillLevel.HasBackslice();
         }
 
         /// <summary>
@@ -25,7 +18,7 @@ namespace LogicFunctionsNS
         /// </summary>
         public static bool HasHeavyMod()
         {
-            return CUU.CanUse(Item.Iron_Boots) || CUU.CanUse(Item.Magic_Armor);
+            return CanUseUtils.CanUse(Item.Iron_Boots) || CanUseUtils.CanUse(Item.Magic_Armor);
         }
 
         /// <summary>
@@ -33,9 +26,9 @@ namespace LogicFunctionsNS
         /// </summary>
         public static bool HasCutsceneItem()
         {
-            return CUU.CanUse(Item.Progressive_Sky_Book)
-                || BOU.HasBottle()
-                || CUU.CanUse(Item.Horse_Call);
+            return CanUseUtils.CanUse(Item.Progressive_Sky_Book)
+                || BottleUtils.HasBottle()
+                || CanUseUtils.CanUse(Item.Horse_Call);
         }
 
         /// <summary>
@@ -43,29 +36,29 @@ namespace LogicFunctionsNS
         /// </summary>
         public static bool HasOneHandedItem()
         {
-            return HSL.HasSword()
-                || BOU.HasBottle()
-                || CUU.CanUse(Item.Boomerang)
-                || CUU.CanUse(Item.Progressive_Clawshot)
-                || CUU.CanUse(Item.Lantern)
-                || CUU.CanUse(Item.Progressive_Bow)
-                || CUU.CanUse(Item.Slingshot)
-                || CUU.CanUse(Item.Progressive_Dominion_Rod);
+            return HasSwordLevel.HasSword()
+                || BottleUtils.HasBottle()
+                || CanUseUtils.CanUse(Item.Boomerang)
+                || CanUseUtils.CanUse(Item.Progressive_Clawshot)
+                || CanUseUtils.CanUse(Item.Lantern)
+                || CanUseUtils.CanUse(Item.Progressive_Bow)
+                || CanUseUtils.CanUse(Item.Slingshot)
+                || CanUseUtils.CanUse(Item.Progressive_Dominion_Rod);
         }
 
         public static int GetItemWheelSlotCount()
         {
-            return Randomizer.Items.ItemWheelItems.Count(CUU.CanUse);
+            return Randomizer.Items.ItemWheelItems.Count(CanUseUtils.CanUse);
         }
 
         public static bool CanEquipOverBoots()
         {
-            return CUU.CanUse(Item.Iron_Boots) && (GetItemWheelSlotCount() >= 3);
+            return CanUseUtils.CanUse(Item.Iron_Boots) && (GetItemWheelSlotCount() >= 3);
         }
 
         public static bool HasMagicArmorOrCanEquipOverBoots()
         {
-            return CUU.CanUse(Item.Magic_Armor) || CanEquipOverBoots();
+            return CanUseUtils.CanUse(Item.Magic_Armor) || CanEquipOverBoots();
         }
 
         /// <summary>
@@ -73,7 +66,7 @@ namespace LogicFunctionsNS
         /// </summary>
         public static bool CanDoLJA()
         {
-            return HSL.HasSword() || CUU.CanUse(Item.Boomerang);
+            return HasSwordLevel.HasSword() || CanUseUtils.CanUse(Item.Boomerang);
         }
 
         /// <summary>
@@ -81,7 +74,7 @@ namespace LogicFunctionsNS
         /// </summary>
         public static bool CanDoJSLJA()
         {
-            return CanDoLJA() && HHSL.HasJumpStrike();
+            return CanDoLJA() && HasHiddenSkillLevel.HasJumpStrike();
         }
 
         /// <summary>
@@ -89,7 +82,8 @@ namespace LogicFunctionsNS
         /// </summary>
         public static bool CanDoMapGlitch()
         {
-            return CUU.CanUse(Item.Shadow_Crystal) && ERLF.HasReachedRoom("Kakariko Gorge");
+            return CanUseUtils.CanUse(Item.Shadow_Crystal)
+                && ERLogicFunctions.HasReachedRoom("Kakariko Gorge");
         }
 
         /// <summary>
@@ -105,7 +99,7 @@ namespace LogicFunctionsNS
         /// </summary>
         public static bool CanDoMoonBoots()
         {
-            return HSL.HasSword() && HasMagicArmorOrCanEquipOverBoots();
+            return HasSwordLevel.HasSword() && HasMagicArmorOrCanEquipOverBoots();
         }
 
         /// <summary>
@@ -113,7 +107,7 @@ namespace LogicFunctionsNS
         /// </summary>
         public static bool CanDoJSMoonBoots()
         {
-            return CanDoMoonBoots() && HHSL.HasJumpStrike();
+            return CanDoMoonBoots() && HasHiddenSkillLevel.HasJumpStrike();
         }
 
         /// <summary>
@@ -121,7 +115,7 @@ namespace LogicFunctionsNS
         /// </summary>
         public static bool CanDoBSMoonBoots()
         {
-            return HHSL.HasBackslice() && CUU.CanUse(Item.Magic_Armor);
+            return HasHiddenSkillLevel.HasBackslice() && CanUseUtils.CanUse(Item.Magic_Armor);
         }
 
         /// <summary>
@@ -129,7 +123,9 @@ namespace LogicFunctionsNS
         /// </summary>
         public static bool CanDoEBMoonBoots()
         {
-            return CanDoMoonBoots() && HHSL.HasEndingBlow() && HSL.HasOrdonSword();
+            return CanDoMoonBoots()
+                && HasHiddenSkillLevel.HasEndingBlow()
+                && HasSwordLevel.HasOrdonSword();
         }
 
         /// <summary>
@@ -137,7 +133,10 @@ namespace LogicFunctionsNS
         /// </summary>
         public static bool CanDoHSMoonBoots()
         {
-            return CanDoMoonBoots() && HHSL.HasHelmSplitter() && HSL.HasSword() && MIU.HasShield();
+            return CanDoMoonBoots()
+                && HasHiddenSkillLevel.HasHelmSplitter()
+                && HasSwordLevel.HasSword()
+                && MiscItemUtils.HasShield();
         }
 
         /// <summary>
@@ -145,7 +144,7 @@ namespace LogicFunctionsNS
         /// </summary>
         public static bool CanDoFlyGlitch()
         {
-            return CUU.CanUse(Item.Progressive_Fishing_Rod) && HasHeavyMod();
+            return CanUseUtils.CanUse(Item.Progressive_Fishing_Rod) && HasHeavyMod();
         }
 
         /// <summary>
@@ -153,7 +152,7 @@ namespace LogicFunctionsNS
         /// </summary>
         public static bool CanDoAirRefill()
         {
-            return BU.CanUseWaterBombs() && HasMagicArmorOrCanEquipOverBoots();
+            return BombUtils.CanUseWaterBombs() && HasMagicArmorOrCanEquipOverBoots();
         }
     }
 }
