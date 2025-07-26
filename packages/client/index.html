@@ -1096,14 +1096,7 @@
         <br />
 
         <div class="settingsStringLabel">Settings String</div>
-        <div
-          style="
-            display: flex;
-            align-items: center;
-            min-width: 0;
-            position: relative;
-          "
-        >
+        <div class="settingsStringRowWrapper">
           <button
             id="copySettingsBtn"
             class="css-1egpgfe"
@@ -1143,19 +1136,18 @@
               ></path>
             </svg>
           </button>
-          <span id="combinedSettingsString" class="settingsStringValue"></span>
           <div class="preset-controls" style="margin: 8px">
             <select id="presetDropdown">
               <option disabled selected>Select preset</option>
             </select>
 
             <button
-              onclick="saveCurrentAsPreset()"
+              id="saveAsPreset"
               data-tooltip-text="Save string as a named preset. A preset will be deleted when a new version of the generator is released."
             >
               Save string as preset
             </button>
-            <button onclick="openManagePresetsModal()">Manage presets</button>
+            <button id="managePresets">Manage presets</button>
             <button
               id="updatePresetBtn"
               onclick="updateCurrentPreset()"
@@ -1165,6 +1157,8 @@
               Update preset
             </button>
           </div>
+          <br />
+          <span id="combinedSettingsString" class="settingsStringValue"></span>
 
           <div id="presetUpdateStatus" class="preset-toast">Preset updated</div>
 

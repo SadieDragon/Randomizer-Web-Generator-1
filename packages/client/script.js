@@ -206,13 +206,17 @@ function onDomContentLoaded() {
 
   $('#presetDropdown').on('change', function () {
     const selected = $(this).val();
-    if (!selected) return;
+    if (!selected) {
+      return;
+    }
 
     const [type, name] = selected.split('::');
 
     if (type === 'default') {
       const preset = DEFAULT_PRESETS.find((p) => p.name === name);
-      if (!preset) return;
+      if (!preset) {
+        return;
+      }
 
       const error = populateFromSettingsString(preset.settingsString);
 
@@ -1302,10 +1306,11 @@ $('#generateRaceSeed').on('click', () => {
 });
 
 function initSettingsModal() {
-  $('#copySettingsBtn').on('click', function () {
-    copySettingsString();
-  });
+  $('#copySettingsBtn').on('click', copySettingsString);
+  $('#saveAsPreset').on('click', saveCurrentAsPreset);
+  $('#managePresets').on('click', openManagePresetsModal);
 
+  // Init modal
   const modal = document.getElementById('myModal');
   const btn = document.getElementById('editSettingsBtn');
   const span = modal.querySelector('.modal-close');
@@ -1864,7 +1869,9 @@ function saveCurrentAsPreset() {
   const name = prompt('Enter preset name (must be below 20 characters):')
     ?.trim()
     .slice(0, MAX_PRESET_NAME_LENGTH);
-  if (!name) return;
+  if (!name) {
+    return;
+  }
 
   // To save the cosmetics string:
   // Get the value of the cosmetics string field, and push it in the presets array to be saved to local storage.
@@ -1891,7 +1898,9 @@ function loadPreset(name) {
 
   const presets = getPresets();
   const preset = presets.find((p) => p.name === name);
-  if (!preset) return;
+  if (!preset) {
+    return;
+  }
 
   const error = populateFromSettingsString(preset.settingsString);
   if (error) {
@@ -1919,7 +1928,9 @@ function handleRenamePreset() {
   const newName = prompt('Enter new name:', oldName)
     ?.trim()
     .slice(0, MAX_PRESET_NAME_LENGTH);
-  if (!newName) return;
+  if (!newName) {
+    return;
+  }
 
   const presets = getPresets();
   const preset = presets.find((p) => p.name === oldName);
@@ -2007,9 +2018,13 @@ function handleDeletePreset() {
     return;
   }
 
-  if (!name) return;
+  if (!name) {
+    return;
+  }
 
-  if (!confirm(`Delete preset "${name}"? This cannot be undone.`)) return;
+  if (!confirm(`Delete preset "${name}"? This cannot be undone.`)) {
+    return;
+  }
 
   let presets = getPresets();
   presets = presets.filter((p) => p.name !== name);
@@ -2117,7 +2132,9 @@ function cleanInvalidUserPresets(defaultString) {
   const validVersion = defaultString.split('s')[0];
   const raw = getPresets();
 
-  if (!raw) return;
+  if (!raw) {
+    return;
+  }
 
   let presets;
   try {
