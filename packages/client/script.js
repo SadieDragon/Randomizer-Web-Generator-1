@@ -1302,6 +1302,10 @@ $('#generateRaceSeed').on('click', () => {
 });
 
 function initSettingsModal() {
+  $('#copySettingsBtn').on('click', function () {
+    copySettingsString();
+  });
+
   const modal = document.getElementById('myModal');
   const btn = document.getElementById('editSettingsBtn');
   const span = modal.querySelector('.modal-close');
@@ -2099,11 +2103,14 @@ function isDefaultPreset(name) {
 
 function copySettingsString() {
   const text = $('#combinedSettingsString').text().trim();
-  if (!text) return;
-
-  navigator.clipboard.writeText(text).then(() => {
-    showPresetUpdateStatus('Settings string copied.');
-  });
+  navigator.clipboard.writeText(text).then(
+    () => {
+      showPresetUpdateStatus('Copied settings');
+    },
+    (err) => {
+      showPresetUpdateStatus('Failed to copy');
+    }
+  );
 }
 
 function cleanInvalidUserPresets(defaultString) {
