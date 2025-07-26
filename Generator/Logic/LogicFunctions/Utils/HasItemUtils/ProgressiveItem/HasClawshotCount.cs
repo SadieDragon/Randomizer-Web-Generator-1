@@ -1,3 +1,5 @@
+// This file was mostly added for use in JSON files.
+
 using TPRandomizer;
 
 namespace LogicFunctionsNS

@@ -32,7 +32,6 @@ namespace LogicFunctionsNS
             return (int)playerHealth;
         }
 
-        // TODO: Room funcs dir/helper util file?
         public static bool CanCompleteTwilight(List<string> roomsInTwilight)
         {
             return CanSurviveBonkDamage() && ERLogicFunctions.HasReachedAllRooms(roomsInTwilight);

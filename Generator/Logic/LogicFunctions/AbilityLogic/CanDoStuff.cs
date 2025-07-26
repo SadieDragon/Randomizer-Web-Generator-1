@@ -83,8 +83,6 @@ namespace LogicFunctionsNS
                 && ERLogicFunctions.HasReachedAnyRooms(RoomFunctions.WarpableStages);
         }
 
-        // TODO: Move twilights into a file
-        // TODO: Move MDH out into a story stuff file
         public static bool CanMidnaCharge()
         {
             return LogicFunctionsUpdatedRefactored.CanCompleteMDH()

@@ -16,7 +16,6 @@ namespace LogicFunctionsNS
             return CanUseUtils.GetItemCount(Item.Progressive_Bow);
         }
 
-        // I don't expect this to get much use but eh I'll put it in here.
         public static bool HasBow()
         {
             return CurrentQuiverSize() >= (int)QuiverSize.Bow;

@@ -29,7 +29,6 @@ namespace LogicFunctionsNS
                 params (Item portal, string room)[] entries
             )
             {
-                // TODO: Can I move the `canUnlockMap` function in here? Is it needed anywhere else? - Lupa
                 if (!canUnlockMap())
                 {
                     // Console.WriteLine(
