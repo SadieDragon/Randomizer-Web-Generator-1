@@ -1,9 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using TPRandomizer;
-using CUU = LogicFunctionsNS.CanUseUtils;
-using ERLF = LogicFunctionsNS.ERLogicFunctions;
-using GLLCE = LogicFunctionsNS.GlitchlessLogic.CanDefeatCommonEnemy;
 
 namespace LogicFunctionsNS
 {
@@ -21,7 +18,8 @@ namespace LogicFunctionsNS
                 Item.Coro_Bottle,
             ];
 
-            return CUU.CanUse(Item.Lantern) && (bottles.Count(ItemList.Contains) >= minimumBottles);
+            return CanUseUtils.CanUse(Item.Lantern)
+                && (bottles.Count(ItemList.Contains) >= minimumBottles);
         }
 
         /// <summary>
@@ -35,27 +33,27 @@ namespace LogicFunctionsNS
         {
             return HasBottle()
                 && (
-                    ERLF.HasReachedRoom("Lower Kakariko Village")
+                    ERLogicFunctions.HasReachedRoom("Lower Kakariko Village")
                     || (
-                        ERLF.HasReachedRoom("Death Mountain Elevator Lower")
-                        && GLLCE.CanDefeatGoron()
+                        ERLogicFunctions.HasReachedRoom("Death Mountain Elevator Lower")
+                        && CanDefeatCommonEnemy.CanDefeatGoron()
                     )
                 );
         }
 
         public static bool CanUseBottledFairy()
         {
-            return HasBottle() && ERLF.HasReachedRoom("Lake Hylia");
+            return HasBottle() && ERLogicFunctions.HasReachedRoom("Lake Hylia");
         }
 
         public static bool CanUseBottledFairies()
         {
-            return HasBottles() && ERLF.HasReachedRoom("Lake Hylia");
+            return HasBottles() && ERLogicFunctions.HasReachedRoom("Lake Hylia");
         }
 
         public static bool CanUseOilBottle()
         {
-            return CUU.CanUse(Item.Lantern) && CUU.CanUse(Item.Coro_Bottle);
+            return CanUseUtils.CanUse(Item.Lantern) && CanUseUtils.CanUse(Item.Coro_Bottle);
         }
     }
 }
