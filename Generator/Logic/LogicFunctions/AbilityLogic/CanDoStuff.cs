@@ -1,6 +1,6 @@
 using TPRandomizer;
 
-namespace LogicFunctionsNS.AggregateLogic
+namespace LogicFunctionsNS
 {
     public static class CanDoStuff
     {
