@@ -4,13 +4,10 @@
 using System;
 using System.Linq;
 using LogicFunctionsNS;
+using LogicFunctionsNS.AggregateLogic;
 using TPRandomizer.SSettings.Enums;
 using BOU = LogicFunctionsNS.BottleUtils;
 using BU = LogicFunctionsNS.BombUtils;
-using CanDefeatBoss = LogicFunctionsNS.AggregateLogic.CanDefeatBoss;
-using CanDefeatCommonEnemy = LogicFunctionsNS.AggregateLogic.CanDefeatCommonEnemy;
-using CanDefeatMiniboss = LogicFunctionsNS.AggregateLogic.CanDefeatMiniBoss;
-using CanDoStuff = LogicFunctionsNS.AggregateLogic.CanDoStuff;
 using CCD = LogicFunctionsNS.CanCompleteDungeon;
 using CUU = LogicFunctionsNS.CanUseUtils;
 using ERLF = LogicFunctionsNS.ERLogicFunctions;
@@ -123,7 +120,7 @@ namespace TPRandomizer
 
         public static bool CanSmash() => BU.CanSmash();
 
-        public static bool CanChangeTime() => HLF.CanChangeTime();
+        public static bool CanChangeTime() => CanDoStuff.CanChangeTime();
 
         public static bool CanLaunchBombs() => BU.CanLaunchBombs();
 
@@ -487,51 +484,51 @@ namespace TPRandomizer
         public static bool CanDefeatYoungGohma() => CanDefeatCommonEnemy.CanDefeatYoungGohma();
         #endregion
 
-        #region CanDefeatMiniboss
+        #region CanDefeatMiniBoss
         /// <summary>
         /// summary text.
         /// </summary>
-        public static bool CanDefeatZantHead() => CanDefeatMiniboss.CanDefeatZantHead();
+        public static bool CanDefeatZantHead() => CanDefeatMiniBoss.CanDefeatZantHead();
 
         /// <summary>
         /// summary text.
         /// </summary>
-        public static bool CanDefeatOok() => CanDefeatMiniboss.CanDefeatOok();
+        public static bool CanDefeatOok() => CanDefeatMiniBoss.CanDefeatOok();
 
         /// <summary>
         /// summary text.
         /// </summary>
-        public static bool CanDefeatDangoro() => CanDefeatMiniboss.CanDefeatDangoro();
+        public static bool CanDefeatDangoro() => CanDefeatMiniBoss.CanDefeatDangoro();
 
         /// <summary>
         /// summary text.
         /// </summary>
         public static bool CanDefeatCarrierKargarok()
         {
-            return CanDefeatMiniboss.CanDefeatCarrierKargarok();
+            return CanDefeatMiniBoss.CanDefeatCarrierKargarok();
         }
 
         /// <summary>
         /// summary text.
         /// </summary>
-        public static bool CanDefeatTwilitBloat() => CanDefeatMiniboss.CanDefeatTwilitBloat();
+        public static bool CanDefeatTwilitBloat() => CanDefeatMiniBoss.CanDefeatTwilitBloat();
 
         /// <summary>
         /// summary text.
         /// </summary>
-        public static bool CanDefeatDekuToad() => CanDefeatMiniboss.CanDefeatDekuToad();
+        public static bool CanDefeatDekuToad() => CanDefeatMiniBoss.CanDefeatDekuToad();
 
         /// <summary>
         /// summary text.
         /// </summary>
-        public static bool CanDefeatSkullKid() => CanDefeatMiniboss.CanDefeatSkullKid();
+        public static bool CanDefeatSkullKid() => CanDefeatMiniBoss.CanDefeatSkullKid();
 
         /// <summary>
         /// summary text.
         /// </summary>
         public static bool CanDefeatKingBulblinBridge()
         {
-            return CanDefeatMiniboss.CanDefeatKingBulblinBridge();
+            return CanDefeatMiniBoss.CanDefeatKingBulblinBridge();
         }
 
         /// <summary>
@@ -539,7 +536,7 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDefeatKingBulblinDesert()
         {
-            return CanDefeatMiniboss.CanDefeatKingBulblinDesert();
+            return CanDefeatMiniBoss.CanDefeatKingBulblinDesert();
         }
 
         /// <summary>
@@ -547,23 +544,23 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanDefeatKingBulblinCastle()
         {
-            return CanDefeatMiniboss.CanDefeatKingBulblinCastle();
+            return CanDefeatMiniBoss.CanDefeatKingBulblinCastle();
         }
 
         /// <summary>
         /// summary text.
         /// </summary>
-        public static bool CanDefeatDeathSword() => CanDefeatMiniboss.CanDefeatDeathSword();
+        public static bool CanDefeatDeathSword() => CanDefeatMiniBoss.CanDefeatDeathSword();
 
         /// <summary>
         /// summary text.
         /// </summary>
-        public static bool CanDefeatDarkhammer() => CanDefeatMiniboss.CanDefeatDarkhammer();
+        public static bool CanDefeatDarkhammer() => CanDefeatMiniBoss.CanDefeatDarkhammer();
 
         /// <summary>
         /// summary text.
         /// </summary>
-        public static bool CanDefeatPhantomZant() => CanDefeatMiniboss.CanDefeatPhantomZant();
+        public static bool CanDefeatPhantomZant() => CanDefeatMiniBoss.CanDefeatPhantomZant();
         #endregion
 
         #region CanDefeatBoss
