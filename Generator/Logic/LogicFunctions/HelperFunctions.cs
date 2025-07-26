@@ -9,16 +9,6 @@ namespace LogicFunctionsNS
 {
     public class HelperFunctions
     {
-        public static bool HasDamagingItem()
-        {
-            return HasSwordLevel.HasSword()
-                || CUU.CanUse(Item.Ball_and_Chain)
-                || CUU.CanUse(Item.Progressive_Bow)
-                || BombUtils.HasBombs()
-                || CUU.CanUse(Item.Shadow_Crystal)
-                || CUU.CanUse(Item.Spinner);
-        }
-
         public static Item ConvertStrToItem(string item) => Enum.Parse<Item>(item);
 
         /// <summary>

@@ -133,7 +133,12 @@ namespace TPRandomizer
 
         public static bool CanCutHangingWeb() => MIU.CanCutHangingWeb();
 
-        public static bool HasDamagingItem() => HLF.HasDamagingItem();
+        public static bool HasDamagingItem()
+        {
+            // Iron boots is often treated as a niche item, and is never used in the logic fns,
+            // but to return it to how it's originally coded. - Lupa
+            return HasDamagingItemUtils.HasDamagingItem() || CUU.CanUse(Item.Iron_Boots);
+        }
 
         public static bool CanUseWaterBombs() => BU.CanUseWaterBombs();
         #endregion
