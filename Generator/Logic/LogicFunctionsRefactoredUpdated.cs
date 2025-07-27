@@ -108,13 +108,6 @@ namespace TPRandomizer
         #endregion
 
         #region KnownNeeded
-        public static bool CanCompleteGoronMines() => CanCompleteDungeon.CanCompleteGoronMines();
-
-        public static bool CanCompleteSnowpeakRuins() =>
-            CanCompleteDungeon.CanCompleteSnowpeakRuins();
-
-        public static bool CanCompleteTempleofTime() =>
-            CanCompleteDungeon.CanCompleteTempleofTime();
 
         public static bool HasRangedItem() => MiscItemUtils.HasRangedItem();
 
@@ -717,6 +710,35 @@ namespace TPRandomizer
                 && CanCompleteEldinTwilight()
                 && CanCompleteLanayruTwilight();
         }
+        #endregion
+
+        #region Dungeons
+
+        public static bool CanCompleteForestTemple() =>
+            CanCompleteDungeon.CanCompleteForestTemple();
+
+        public static bool CanCompleteGoronMines() => CanCompleteDungeon.CanCompleteGoronMines();
+
+        public static bool CanCompleteLakebedTemple() =>
+            CanCompleteDungeon.CanCompleteLakebedTemple();
+
+        public static bool CanCompleteArbitersGrounds() =>
+            CanCompleteDungeon.CanCompleteArbitersGrounds();
+
+        public static bool CanCompleteSnowpeakRuins() =>
+            CanCompleteDungeon.CanCompleteSnowpeakRuins();
+
+        public static bool CanCompleteTempleofTime() =>
+            CanCompleteDungeon.CanCompleteTempleofTime();
+
+        public static bool CanCompleteCityinTheSky() =>
+            CanCompleteDungeon.CanCompleteCityinTheSky();
+
+        public static bool CanCompletePalaceofTwilight() =>
+            CanCompleteDungeon.CanCompletePalaceofTwilight();
+
+        public static bool CanCompleteAllDungeons() => CanCompleteDungeon.CanCompleteAllDungeons();
+
         #endregion
 
         // START OF GLITCHED LOGIC
