@@ -142,6 +142,8 @@ namespace TPRandomizer
         }
 
         public static bool CanUseWaterBombs() => BombUtils.CanUseWaterBombs();
+
+        public static bool CanBuyMagicArmor() => MiscItemUtils.CanBuyMagicArmor();
         #endregion
 
         // TODO: If option to not have bug models replaced becomes a thing, this function can be useful
