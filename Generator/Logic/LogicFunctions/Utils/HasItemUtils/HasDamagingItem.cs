@@ -17,7 +17,7 @@ namespace LogicFunctionsNS
         // Wrapper for adding items to the list for HAI
         private static List<Item> AddItemsToBase(params Item[] itemToAdd)
         {
-            return (List<Item>)baseItems.Concat(itemToAdd);
+            return baseItems.Concat(itemToAdd).ToList();
         }
 
         // A placeholder for the bomb bag to be recognized
