@@ -23,10 +23,6 @@ namespace TPRandomizer
 
         public static bool CanGetHotSpringWater() => BottleUtils.CanGetHotSpringWater();
 
-        public static bool CanBurnWebs() => CanUseItemUtils.CanBurnWebs();
-
-        public static bool CanCutHangingWeb() => CanUseItemUtils.CanCutHangingWeb();
-
         public static bool HasDamagingItem()
         {
             // Iron boots is often treated as a niche item, and is never used in the logic fns,
@@ -36,7 +32,6 @@ namespace TPRandomizer
 
         public static bool CanUseWaterBombs() => BombUtils.CanUseWaterBombs();
 
-        public static bool CanBuyMagicArmor() => CanUseItemUtils.CanBuyMagicArmor();
         #endregion
 
         // TODO: If option to not have bug models replaced becomes a thing, this function can be useful
@@ -483,6 +478,12 @@ namespace TPRandomizer
         #endregion
 
         #region CanDoStuff
+        public static bool CanBuyMagicArmor() => CanDoStuff.CanBuyMagicArmor();
+
+        public static bool CanBurnWebs() => CanDoStuff.CanBurnWebs();
+
+        public static bool CanCutHangingWeb() => CanDoStuff.CanCutHangingWeb();
+
         public static bool CanChangeTime() => CanDoStuff.CanChangeTime();
 
         /// <summary>

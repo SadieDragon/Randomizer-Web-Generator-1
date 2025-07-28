@@ -1,4 +1,5 @@
 using TPRandomizer;
+using TPRandomizer.SSettings.Enums;
 
 namespace LogicFunctionsNS
 {
@@ -27,7 +28,7 @@ namespace LogicFunctionsNS
         {
             return HasDamagingItemUtils.HasDamagingItemIClawshot()
                 || CanUseUtils.CanUse(Item.Iron_Boots)
-                || (SettingUtils.CanDoNicheStuff() && CanUseItemUtils.CanShieldAttack());
+                || (SettingUtils.CanDoNicheStuff() && CanShieldAttack());
         }
 
         public static bool CanPressMinesSwitch()
@@ -46,7 +47,7 @@ namespace LogicFunctionsNS
                         && (BombUtils.HasBombs() || CanUseUtils.CanUse(Item.Iron_Boots))
                     )
                 )
-                && CanUseItemUtils.CanBurnWebs()
+                && CanBurnWebs()
                 && CanUseUtils.CanUse(Item.Boomerang)
                 && CanDefeatCommonEnemy.CanDefeatBokoblin()
                 && (
@@ -86,6 +87,45 @@ namespace LogicFunctionsNS
         public static bool CanMidnaCharge()
         {
             return CanDoStoryStuff.CanCompleteMDH() || CanCompleteTwilight.CanCompleteAllTwilight();
+        }
+
+        public static bool CanShieldAttack()
+        {
+            return CanUseItemUtils.HasShield() && HasHiddenSkillLevel.HasShieldAttack();
+        }
+
+        public static bool CanBurnWebs()
+        {
+            return CanUseUtils.CanUse(Item.Lantern)
+                || BombUtils.HasBombs()
+                || CanUseUtils.CanUse(Item.Ball_and_Chain);
+        }
+
+        public static bool CanCutHangingWeb()
+        {
+            return CanUseUtils.CanUse(Item.Progressive_Clawshot)
+                || CanUseUtils.CanUse(Item.Progressive_Bow)
+                || CanUseUtils.CanUse(Item.Boomerang)
+                || CanUseUtils.CanUse(Item.Ball_and_Chain);
+        }
+
+        public static bool CanBuyMagicArmor()
+        {
+            switch (Randomizer.SSettings.walletSize)
+            {
+                case WalletSize.Reduced:
+                {
+                    return CanUseUtils.GetItemCount(Item.Progressive_Wallet) >= 2;
+                }
+                case WalletSize.Vanilla:
+                {
+                    return CanUseUtils.CanUse(Item.Progressive_Wallet);
+                }
+                default:
+                {
+                    return true;
+                }
+            }
         }
 
         #region Glitched
