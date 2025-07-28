@@ -9,9 +9,9 @@ namespace TPRandomizer
     {
         // Evaluate the tokenized settings to their respective values that are set by the settings string.
 
-        #region KnownNeeded
+        #region ItemUtils
 
-        public static bool HasRangedItem() => MiscItemUtils.HasRangedItem();
+        public static bool HasRangedItem() => CanUseItemUtils.HasRangedItem();
 
         public static bool HasBombs() => BombUtils.HasBombs();
 
@@ -23,9 +23,9 @@ namespace TPRandomizer
 
         public static bool CanGetHotSpringWater() => BottleUtils.CanGetHotSpringWater();
 
-        public static bool CanBurnWebs() => MiscItemUtils.CanBurnWebs();
+        public static bool CanBurnWebs() => CanUseItemUtils.CanBurnWebs();
 
-        public static bool CanCutHangingWeb() => MiscItemUtils.CanCutHangingWeb();
+        public static bool CanCutHangingWeb() => CanUseItemUtils.CanCutHangingWeb();
 
         public static bool HasDamagingItem()
         {
@@ -36,7 +36,7 @@ namespace TPRandomizer
 
         public static bool CanUseWaterBombs() => BombUtils.CanUseWaterBombs();
 
-        public static bool CanBuyMagicArmor() => MiscItemUtils.CanBuyMagicArmor();
+        public static bool CanBuyMagicArmor() => CanUseItemUtils.CanBuyMagicArmor();
         #endregion
 
         // TODO: If option to not have bug models replaced becomes a thing, this function can be useful

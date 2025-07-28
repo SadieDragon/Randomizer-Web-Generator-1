@@ -6,7 +6,7 @@ using TPRandomizer.SSettings.Enums;
 
 namespace LogicFunctionsNS
 {
-    public class MiscItemUtils
+    public class CanUseItemUtils
     {
         public static bool HasShield()
         {

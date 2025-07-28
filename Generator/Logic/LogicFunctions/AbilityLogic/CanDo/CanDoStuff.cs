@@ -27,7 +27,7 @@ namespace LogicFunctionsNS
         {
             return HasDamagingItemUtils.HasDamagingItemIClawshot()
                 || CanUseUtils.CanUse(Item.Iron_Boots)
-                || (SettingUtils.CanDoNicheStuff() && MiscItemUtils.CanShieldAttack());
+                || (SettingUtils.CanDoNicheStuff() && CanUseItemUtils.CanShieldAttack());
         }
 
         public static bool CanPressMinesSwitch()
@@ -46,7 +46,7 @@ namespace LogicFunctionsNS
                         && (BombUtils.HasBombs() || CanUseUtils.CanUse(Item.Iron_Boots))
                     )
                 )
-                && MiscItemUtils.CanBurnWebs()
+                && CanUseItemUtils.CanBurnWebs()
                 && CanUseUtils.CanUse(Item.Boomerang)
                 && CanDefeatCommonEnemy.CanDefeatBokoblin()
                 && (

@@ -86,7 +86,7 @@ namespace LogicFunctionsNS
                 && (
                     HasSwordLevel.HasSword()
                     || CanUseUtils.CanUse(Item.Progressive_Clawshot)
-                    || MiscItemUtils.CanShieldAttack()
+                    || CanUseItemUtils.CanShieldAttack()
                 );
         }
 
@@ -141,7 +141,7 @@ namespace LogicFunctionsNS
         public static bool CanDefeatDekuBaba()
         {
             return HasDamagingItemUtils.HasDamagingItemECrystal()
-                || MiscItemUtils.CanShieldAttack()
+                || CanUseItemUtils.CanShieldAttack()
                 || CanUseUtils.CanUse(Item.Slingshot)
                 || CanUseUtils.CanUse(Item.Progressive_Clawshot)
                 || NicheLogicUtils.CanDoNicheCombat();
@@ -194,7 +194,7 @@ namespace LogicFunctionsNS
         public static bool CanDefeatGoron()
         {
             return HasDamagingItemUtils.HasDamagingItemECrystal()
-                || MiscItemUtils.CanShieldAttack()
+                || CanUseItemUtils.CanShieldAttack()
                 || CanUseUtils.CanUse(Item.Slingshot)
                 || CanUseUtils.CanUse(Item.Progressive_Clawshot)
                 || (SettingUtils.CanDoDifficultCombat() && CanUseUtils.CanUse(Item.Lantern))
@@ -330,7 +330,7 @@ namespace LogicFunctionsNS
         public static bool CanDefeatShadowDekuBaba()
         {
             return HasDamagingItemUtils.HasDamagingItemECrystal()
-                || MiscItemUtils.CanShieldAttack()
+                || CanUseItemUtils.CanShieldAttack()
                 || CanUseUtils.CanUse(Item.Slingshot)
                 || CanUseUtils.CanUse(Item.Progressive_Clawshot)
                 || NicheLogicUtils.CanDoNicheCombat();
@@ -411,7 +411,7 @@ namespace LogicFunctionsNS
             return HasSwordLevel.HasSword()
                 || CanUseUtils.CanUse(Item.Ball_and_Chain)
                 || CanUseUtils.CanUse(Item.Progressive_Bow)
-                || MiscItemUtils.CanShieldAttack()
+                || CanUseItemUtils.CanShieldAttack()
                 || DifficultCombatLogicUtils.CanUseShadowCrystalInDC();
         }
 

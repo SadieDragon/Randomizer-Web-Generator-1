@@ -136,7 +136,7 @@ namespace LogicFunctionsNS
             return CanDoMoonBoots()
                 && HasHiddenSkillLevel.HasHelmSplitter()
                 && HasSwordLevel.HasSword()
-                && MiscItemUtils.HasShield();
+                && CanUseItemUtils.HasShield();
         }
 
         /// <summary>

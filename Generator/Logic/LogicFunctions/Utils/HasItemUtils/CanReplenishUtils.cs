@@ -55,7 +55,7 @@ namespace LogicFunctionsNS
                 )
                 || (
                     ERLogicFunctions.HasReachedRoom("Eldin Lantern Cave")
-                    && MiscItemUtils.CanBurnWebs()
+                    && CanUseItemUtils.CanBurnWebs()
                     && CanDefeatCommonEnemy.CanDefeatChu()
                 );
         }
