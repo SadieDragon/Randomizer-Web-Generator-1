@@ -19,8 +19,6 @@ namespace TPRandomizer
 
         public static bool CanSmash() => BombUtils.CanSmash();
 
-        public static bool CanChangeTime() => CanDoStuff.CanChangeTime();
-
         public static bool CanLaunchBombs() => BombUtils.CanLaunchBombs();
 
         public static bool CanGetHotSpringWater() => BottleUtils.CanGetHotSpringWater();
@@ -485,6 +483,8 @@ namespace TPRandomizer
         #endregion
 
         #region CanDoStuff
+        public static bool CanChangeTime() => CanDoStuff.CanChangeTime();
+
         /// <summary>
         /// summary text.
         /// </summary>
