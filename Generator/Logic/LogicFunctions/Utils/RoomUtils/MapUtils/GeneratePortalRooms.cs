@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using TPRandomizer;
 
@@ -19,17 +18,26 @@ namespace LogicFunctionsNS
                 return portalRooms;
             }
 
+            // Helper function for the check for open map, and for the check of any room in the map
+            //  being reached.
+            bool CanUnlockMapUtil(List<string> roomsInMap)
+            {
+                return SettingUtils.IsOpenMap() || ERLogicFunctions.HasReachedAnyRooms(roomsInMap);
+            }
+
             // Helper function to wrap the foreach loop
             // Essentially, using a dict is like saying "if this key, then add this value" in this case,
             //   with less if statements.
             // Furthermore, I am checking within the function if the map can be unlocked, further reducing
             //   repeated if statements.
             void AddToPortalRooms(
-                Func<bool> canUnlockMap,
+                // Func<bool> canUnlockMap,
+                bool canUnlockMap,
                 params (Item portal, string room)[] entries
             )
             {
-                if (!canUnlockMap())
+                // if (!canUnlockMap())
+                if (canUnlockMap)
                 {
                     // Console.WriteLine(
                     //     $"Cannot access this map, not adding rooms for it. {canUnlockMap}"
@@ -50,14 +58,14 @@ namespace LogicFunctionsNS
 
             // With sewers no longer a thing, the player starts with Ordon Portal (until we find a way to randomize it)
             // AddToPortalRooms(LogicFunctions.CanUnlockOrdonaMap(), (Item.Ordon_Portal, "Ordon Spring"));
-            if (CanUnlockMap.CanUnlockOrdonaMap())
+            if (CanUnlockMapUtil(RoomFunctions.OrdonaMapRooms))
             {
                 portalRooms.Add(Randomizer.Rooms.RoomDict["Ordon Spring"]);
             }
 
             // Faron
             AddToPortalRooms(
-                CanUnlockMap.CanUnlockFaronMap,
+                CanUnlockMapUtil(RoomFunctions.FaronMapRooms),
                 (Item.South_Faron_Portal, "South Faron Woods"),
                 (Item.North_Faron_Portal, "North Faron Woods"),
                 (Item.Sacred_Grove_Portal, "Sacred Grove Lower")
@@ -65,7 +73,7 @@ namespace LogicFunctionsNS
 
             // Eldin
             AddToPortalRooms(
-                CanUnlockMap.CanUnlockEldinMap,
+                CanUnlockMapUtil(RoomFunctions.EldinMapRooms),
                 (Item.Kakariko_Village_Portal, "Lower Kakariko Village"),
                 (Item.Kakariko_Gorge_Portal, "Kakariko Gorge"),
                 (Item.Death_Mountain_Portal, "Death Mountain Volcano"),
@@ -74,7 +82,7 @@ namespace LogicFunctionsNS
 
             // Lanayru
             AddToPortalRooms(
-                CanUnlockMap.CanUnlockLanayruMap,
+                CanUnlockMapUtil(RoomFunctions.LanayruMapRooms),
                 (Item.Lake_Hylia_Portal, "Lake Hylia"),
                 (Item.Castle_Town_Portal, "Outside Castle Town West"),
                 (Item.Zoras_Domain_Portal, "Zoras Domain Throne Room"),
@@ -82,14 +90,20 @@ namespace LogicFunctionsNS
             );
 
             // Snowpeak
+            bool CanUnlockSnowpeakMap()
+            {
+                return SettingUtils.HasSkippedSnowpeakEntrance()
+                    || CanUnlockMapUtil(RoomFunctions.SnowpeakMapRooms);
+            }
+
             AddToPortalRooms(
-                CanUnlockMap.CanUnlockSnowpeakMap,
+                CanUnlockSnowpeakMap(),
                 (Item.Snowpeak_Portal, "Snowpeak Summit Upper")
             );
 
             // Desert
             AddToPortalRooms(
-                CanUnlockMap.CanUnlockGerudoMap,
+                CanUnlockMapUtil(RoomFunctions.GerudoMapRooms),
                 (Item.Gerudo_Desert_Portal, "Gerudo Desert Cave of Ordeals Plateau"),
                 (Item.Mirror_Chamber_Portal, "Mirror Chamber Upper")
             );
