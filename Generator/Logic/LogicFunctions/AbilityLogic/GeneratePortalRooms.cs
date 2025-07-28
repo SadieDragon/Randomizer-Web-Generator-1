@@ -30,11 +30,7 @@ namespace LogicFunctionsNS
             //   with less if statements.
             // Furthermore, I am checking within the function if the map can be unlocked, further reducing
             //   repeated if statements.
-            void AddToPortalRooms(
-                // Func<bool> canUnlockMap,
-                bool canUnlockMap,
-                params (Item portal, string room)[] entries
-            )
+            void AddToPortalRooms(bool canUnlockMap, params (Item portal, string room)[] entries)
             {
                 // if (!canUnlockMap())
                 if (canUnlockMap)
