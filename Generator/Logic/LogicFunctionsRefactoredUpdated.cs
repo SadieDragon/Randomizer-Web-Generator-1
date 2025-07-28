@@ -1,7 +1,4 @@
-using System;
-using System.Linq;
 using LogicFunctionsNS;
-using TPRandomizer.SSettings.Enums;
 
 namespace TPRandomizer
 {
@@ -10,97 +7,7 @@ namespace TPRandomizer
     /// </summary>
     public class LogicFunctionsUpdatedRefactored
     {
-        private static readonly SharedSettings sharedSettings = SettingUtils.sharedSettings;
-
         // Evaluate the tokenized settings to their respective values that are set by the settings string.
-        #region ToRefactor
-        // New functions that have been added since I started that I need to sort out.
-        public static bool CanBreakHCBarrier()
-        {
-            int requirementCount = sharedSettings.castleRequirementCount;
-
-            switch (sharedSettings.castleRequirements)
-            {
-                case CastleRequirements.Open:
-                {
-                    return true;
-                }
-                case CastleRequirements.Fused_Shadows:
-                {
-                    return CanUseUtils.VerifyItemQuantity(
-                        Item.Progressive_Fused_Shadow,
-                        requirementCount
-                    );
-                }
-                case CastleRequirements.Mirror_Shards:
-                {
-                    return CanUseUtils.VerifyItemQuantity(
-                        Item.Progressive_Mirror_Shard,
-                        requirementCount
-                    );
-                }
-                case CastleRequirements.Dungeons:
-                {
-                    return Randomizer.Items.BossItems.Count(CanUseUtils.CanUse) >= requirementCount;
-                }
-                case CastleRequirements.Vanilla:
-                {
-                    return CanCompleteDungeon.CanCompletePalaceofTwilight();
-                }
-                case CastleRequirements.Poe_Souls:
-                {
-                    return CanUseUtils.VerifyItemQuantity(Item.Poe_Soul, requirementCount);
-                }
-                case CastleRequirements.Hearts:
-                {
-                    return HelperFunctions.GetPlayerHealth() >= requirementCount;
-                }
-            }
-
-            return false;
-        }
-
-        public static bool CanOpenHCBKGate()
-        {
-            int requirementCount = sharedSettings.castleBKRequirementCount;
-
-            switch (sharedSettings.castleBKRequirements)
-            {
-                case CastleBKRequirements.None:
-                {
-                    return true;
-                }
-                case CastleBKRequirements.Fused_Shadows:
-                {
-                    return CanUseUtils.VerifyItemQuantity(
-                        Item.Progressive_Fused_Shadow,
-                        requirementCount
-                    );
-                }
-                case CastleBKRequirements.Mirror_Shards:
-                {
-                    return CanUseUtils.VerifyItemQuantity(
-                        Item.Progressive_Mirror_Shard,
-                        requirementCount
-                    );
-                }
-                case CastleBKRequirements.Dungeons:
-                {
-                    return Randomizer.Items.BossItems.Count(CanUseUtils.CanUse) >= requirementCount;
-                }
-                case CastleBKRequirements.Poe_Souls:
-                {
-                    return CanUseUtils.VerifyItemQuantity(Item.Poe_Soul, requirementCount);
-                }
-                case CastleBKRequirements.Hearts:
-                {
-                    return HelperFunctions.GetPlayerHealth() >= requirementCount;
-                }
-            }
-
-            return false;
-        }
-        #endregion
 
         #region KnownNeeded
 
@@ -649,6 +556,12 @@ namespace TPRandomizer
 
         public static bool CanCompleteAllTwilight() => CanCompleteTwilight.CanCompleteAllTwilight();
 
+        #endregion
+
+        #region CanAccess
+        public static bool CanBreakHCBarrier() => CanAccess.CanBreakHCBarrier();
+
+        public static bool CanOpenHCBKGate() => CanAccess.CanOpenHCBKGate();
         #endregion
 
         #region Dungeons
