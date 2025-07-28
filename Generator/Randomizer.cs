@@ -26,7 +26,7 @@ namespace TPRandomizer
         /// <summary>
         /// A reference to all logic functions that need to be used by the randomizer.
         /// </summary>
-        public static readonly LogicFunctions Logic = new();
+        public static readonly LogicFunctionsUpdatedRefactored Logic = new();
 
         /// <summary>
         /// A reference to all check-related functions that need to be used by the randomizer.
