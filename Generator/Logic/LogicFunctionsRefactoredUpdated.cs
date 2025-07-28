@@ -615,9 +615,9 @@ namespace TPRandomizer
         // TODO: Goes with story stuff, as it is a 1-time use to change ZD from ice to not
         public static bool CanWarpMeteor()
         {
-            return CanCompleteLanayruTwilight()
+            return CanCompleteTwilight.CanCompleteLanayruTwilight()
                 || (
-                    CanCompleteEldinTwilight()
+                    CanCompleteTwilight.CanCompleteEldinTwilight()
                     && ERLogicFunctions.HasReachedRoom("Zoras Domain Throne Room")
                     && CanUseUtils.CanUse(Item.Shadow_Crystal)
                 );
@@ -659,52 +659,25 @@ namespace TPRandomizer
         {
             return (CanCompleteDungeon.CanCompleteForestTemple() || SettingUtils.IsOpenWoods())
                 && CanCompletePrologue()
-                && CanCompleteFaronTwilight();
+                && CanCompleteTwilight.CanCompleteFaronTwilight();
         }
         #endregion
 
         // Twilights, Dungeons, and Maps should probably be their own files in a RF dir
 
         #region Twilights
-        /// <summary>
-        /// Can complete Faron twilight
-        /// </summary>
-        public static bool CanCompleteFaronTwilight()
-        {
-            return SettingUtils.HasSkippedFaronTwilight()
-                || (
-                    CanCompletePrologue()
-                    && HelperFunctions.CanCompleteTwilight(RoomFunctions.faronTwilightRooms)
-                );
-        }
 
-        /// <summary>
-        /// Can complete Eldin twilight
-        /// </summary>
-        public static bool CanCompleteEldinTwilight()
-        {
-            return SettingUtils.HasSkippedEldinTwilight()
-                || HelperFunctions.CanCompleteTwilight(RoomFunctions.eldinTwilightRooms);
-        }
+        public static bool CanCompleteFaronTwilight() =>
+            CanCompleteTwilight.CanCompleteFaronTwilight();
 
-        public static bool CanCompleteLanayruTwilight()
-        {
-            return SettingUtils.HasSkippedLanayruTwilight()
-                || (
-                    HelperFunctions.CanCompleteTwilight(RoomFunctions.lanayruTwilightRooms)
-                    && (
-                        ERLogicFunctions.HasReachedRoom("North Eldin Field")
-                        || CanUseUtils.CanUse(Item.Shadow_Crystal)
-                    )
-                );
-        }
+        public static bool CanCompleteEldinTwilight() =>
+            CanCompleteTwilight.CanCompleteEldinTwilight();
 
-        public static bool CanCompleteAllTwilight()
-        {
-            return CanCompleteFaronTwilight()
-                && CanCompleteEldinTwilight()
-                && CanCompleteLanayruTwilight();
-        }
+        public static bool CanCompleteLanayruTwilight() =>
+            CanCompleteTwilight.CanCompleteLanayruTwilight();
+
+        public static bool CanCompleteAllTwilight() => CanCompleteTwilight.CanCompleteAllTwilight();
+
         #endregion
 
         #region Dungeons

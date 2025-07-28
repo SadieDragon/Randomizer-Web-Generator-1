@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using TPRandomizer;
 
 namespace LogicFunctionsNS
@@ -7,19 +6,6 @@ namespace LogicFunctionsNS
     public class HelperFunctions
     {
         public static Item ConvertStrToItem(string item) => Enum.Parse<Item>(item);
-
-        /// <summary>
-        /// Checks for the ability to survive damage done by bonks in OHKO mode.
-        /// </summary>
-        /// /// <returns>`true` if so, else `false`.</returns>
-        public static bool CanSurviveBonkDamage()
-        {
-            return !SettingUtils.BonksDamageEnabled()
-                || (
-                    SettingUtils.BonksDamageEnabled()
-                    && (!SettingUtils.IsOHKO() || BottleUtils.CanUseBottledFairies())
-                );
-        }
 
         public static int GetPlayerHealth()
         {
@@ -30,11 +16,6 @@ namespace LogicFunctionsNS
             playerHealth += CanUseUtils.GetItemCount(Item.Heart_Container);
 
             return (int)playerHealth;
-        }
-
-        public static bool CanCompleteTwilight(List<string> roomsInTwilight)
-        {
-            return CanSurviveBonkDamage() && ERLogicFunctions.HasReachedAllRooms(roomsInTwilight);
         }
     }
 }
