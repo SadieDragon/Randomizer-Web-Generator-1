@@ -1,12 +1,7 @@
-// Untested; not hooked to anything; scratchpad ish file.
-
-// using LogicFunctionsNS;
 using System;
 using System.Linq;
 using LogicFunctionsNS;
 using TPRandomizer.SSettings.Enums;
-
-// maybe add a helper for llc - GLL `CanSmash & Lantern` GL `CanSmash`?
 
 namespace TPRandomizer
 {
