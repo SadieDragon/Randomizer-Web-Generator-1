@@ -717,66 +717,30 @@ namespace TPRandomizer
         /// <summary>
         /// Check for if you Can do Hidden Village (glitched)
         /// </summary>
-        public static bool CanDoHiddenVillageGlitched()
-        {
-            return CanUseUtils.CanUse(Item.Progressive_Bow)
-                || CanUseUtils.CanUse(Item.Ball_and_Chain)
-                || (
-                    CanUseUtils.CanUse(Item.Slingshot)
-                    && (
-                        CanUseUtils.CanUse(Item.Shadow_Crystal)
-                        || HasSwordLevel.HasSword()
-                        || BombUtils.HasBombs()
-                        || CanUseUtils.CanUse(Item.Iron_Boots)
-                        || CanUseUtils.CanUse(Item.Spinner)
-                    )
-                );
-        }
+        public static bool CanDoHiddenVillageGlitched() =>
+            CanDoStoryStuff.CanDoHiddenVillageGlitched();
 
         /// <summary>
         /// Check for if you Can get passed FT windless bridge room (glitched)
         /// </summary>
-        public static bool CanDoFTWindlessBridgeRoom()
-        {
-            return BombUtils.HasBombs()
-                || GlitchedLogicUtils.CanDoBSMoonBoots()
-                || GlitchedLogicUtils.CanDoJSMoonBoots();
-        }
+        public static bool CanDoFTWindlessBridgeRoom() => CanDoStuff.CanDoFTWindlessBridgeRoom();
 
         // TODO: Combine this into the overall CanClearForest.
         // This requires the changes noted about TDM.
-        public static bool CanClearForestGlitched()
-        {
-            return CanDoStoryStuff.CanCompletePrologue()
-                && (
-                    SettingUtils.IsOpenWoods()
-                    || CanCompleteDungeon.CanCompleteForestTemple()
-                    || GlitchedLogicUtils.CanDoLJA()
-                    || GlitchedLogicUtils.CanDoMapGlitch()
-                );
-        }
+        public static bool CanClearForestGlitched() => CanDoStoryStuff.CanClearForestGlitched();
 
         /// <summary>
         /// Check for if Eldin twilight Can be completed (glitched). Check this for if map warp Can be obtained
         /// </summary>
         // TODO: This Can probably be removed once CanClearForest is simplified.
-        public static bool CanCompleteEldinTwilightGlitched()
-        {
-            return SettingUtils.HasSkippedEldinTwilight() || CanClearForestGlitched();
-        }
+        public static bool CanCompleteEldinTwilightGlitched() =>
+            CanCompleteTwilight.CanCompleteEldinTwilightGlitched();
 
         /// <summary>
         /// Check for if you need the key for getting to Lakebed Deku Toad
         ///
-        public static bool CanSkipKeyToDekuToad()
-        {
-            return SettingUtils.IsKeysy()
-                || HasHiddenSkillLevel.HasBackslice()
-                || CanDoBSMoonBoots()
-                || CanDoJSMoonBoots()
-                || CanDoLJA()
-                || (HasBombs() && (HasHeavyMod() || HasHiddenSkillLevel.HasBackslice()));
-        }
+        public static bool CanSkipKeyToDekuToad() => CanDoStuff.CanSkipKeyToDekuToad();
+
         #endregion
         // END OF GLITCHED LOGIC
     }

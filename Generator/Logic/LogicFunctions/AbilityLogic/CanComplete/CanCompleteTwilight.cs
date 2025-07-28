@@ -57,5 +57,13 @@ namespace LogicFunctionsNS
                 && CanCompleteEldinTwilight()
                 && CanCompleteLanayruTwilight();
         }
+
+        #region Glitched
+        public static bool CanCompleteEldinTwilightGlitched()
+        {
+            return SettingUtils.HasSkippedEldinTwilight()
+                || CanDoStoryStuff.CanClearForestGlitched();
+        }
+        #endregion
     }
 }

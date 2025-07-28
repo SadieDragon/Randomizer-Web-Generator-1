@@ -43,5 +43,34 @@ namespace LogicFunctionsNS
                     && ERLogicFunctions.HasReachedRoom("Castle Town South")
                 );
         }
+
+        #region Glitched
+        public static bool CanClearForestGlitched()
+        {
+            return CanCompletePrologue()
+                && (
+                    SettingUtils.IsOpenWoods()
+                    || CanCompleteDungeon.CanCompleteForestTemple()
+                    || GlitchedLogicUtils.CanDoLJA()
+                    || GlitchedLogicUtils.CanDoMapGlitch()
+                );
+        }
+
+        public static bool CanDoHiddenVillageGlitched()
+        {
+            return CanUseUtils.CanUse(Item.Progressive_Bow)
+                || CanUseUtils.CanUse(Item.Ball_and_Chain)
+                || (
+                    CanUseUtils.CanUse(Item.Slingshot)
+                    && (
+                        CanUseUtils.CanUse(Item.Shadow_Crystal)
+                        || HasSwordLevel.HasSword()
+                        || BombUtils.HasBombs()
+                        || CanUseUtils.CanUse(Item.Iron_Boots)
+                        || CanUseUtils.CanUse(Item.Spinner)
+                    )
+                );
+        }
+        #endregion
     }
 }

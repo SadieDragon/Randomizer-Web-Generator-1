@@ -87,5 +87,27 @@ namespace LogicFunctionsNS
         {
             return CanDoStoryStuff.CanCompleteMDH() || CanCompleteTwilight.CanCompleteAllTwilight();
         }
+
+        #region Glitched
+        public static bool CanDoFTWindlessBridgeRoom()
+        {
+            return BombUtils.HasBombs()
+                || GlitchedLogicUtils.CanDoBSMoonBoots()
+                || GlitchedLogicUtils.CanDoJSMoonBoots();
+        }
+
+        public static bool CanSkipKeyToDekuToad()
+        {
+            return SettingUtils.IsKeysy()
+                || HasHiddenSkillLevel.HasBackslice()
+                || GlitchedLogicUtils.CanDoBSMoonBoots()
+                || GlitchedLogicUtils.CanDoJSMoonBoots()
+                || GlitchedLogicUtils.CanDoLJA()
+                || (
+                    BombUtils.HasBombs()
+                    && (GlitchedLogicUtils.HasHeavyMod() || HasHiddenSkillLevel.HasBackslice())
+                );
+        }
+        #endregion
     }
 }
