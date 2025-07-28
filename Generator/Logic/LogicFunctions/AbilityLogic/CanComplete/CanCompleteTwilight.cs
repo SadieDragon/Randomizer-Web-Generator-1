@@ -3,7 +3,7 @@ using TPRandomizer;
 
 namespace LogicFunctionsNS
 {
-    public class CanCompleteTwilight
+    public static class CanCompleteTwilight
     {
         private static bool CanCompleteTwilightUtil(List<string> roomsInTwilight)
         {
