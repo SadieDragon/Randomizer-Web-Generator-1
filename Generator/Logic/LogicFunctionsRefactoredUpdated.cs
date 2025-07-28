@@ -612,58 +612,29 @@ namespace TPRandomizer
 
         public static bool CanStrikePedestal() => SettingUtils.CanStrikePedestal();
 
-        // TODO: Goes with story stuff, as it is a 1-time use to change ZD from ice to not
-        public static bool CanWarpMeteor()
-        {
-            return CanCompleteTwilight.CanCompleteLanayruTwilight()
-                || (
-                    CanCompleteTwilight.CanCompleteEldinTwilight()
-                    && ERLogicFunctions.HasReachedRoom("Zoras Domain Throne Room")
-                    && CanUseUtils.CanUse(Item.Shadow_Crystal)
-                );
-        }
         #endregion
 
         #region CanDoStoryStuff
-        /// <summary>
-        /// summary text.
-        /// </summary>
-        public static bool CanCompletePrologue()
-        {
-            return SettingUtils.HasSkippedPrologue()
-                || (ERLogicFunctions.HasReachedRoom("North Faron Woods") && CanDefeatBokoblin());
-        }
-
-        public static bool CanCompleteGoats1()
-        {
-            return CanCompletePrologue() || ERLogicFunctions.HasReachedRoom("Ordon Ranch");
-        }
+        public static bool CanWarpMeteor() => CanDoStoryStuff.CanWarpMeteor();
 
         /// <summary>
         /// summary text.
         /// </summary>
-        public static bool CanCompleteMDH()
-        {
-            return SettingUtils.HasSkippedMDH()
-                || (
-                    CanCompleteDungeon.CanCompleteLakebedTemple()
-                    && ERLogicFunctions.HasReachedRoom("Castle Town South")
-                );
-            //return (CanCompleteLakebedTemple() || (Randomizer.SSettings.skipMdh == true));
-        }
+        public static bool CanCompletePrologue() => CanDoStoryStuff.CanCompletePrologue();
+
+        public static bool CanCompleteGoats1() => CanDoStoryStuff.CanCompleteGoats1();
 
         /// <summary>
         /// summary text.
         /// </summary>
-        public static bool CanClearForest()
-        {
-            return (CanCompleteDungeon.CanCompleteForestTemple() || SettingUtils.IsOpenWoods())
-                && CanCompletePrologue()
-                && CanCompleteTwilight.CanCompleteFaronTwilight();
-        }
+        public static bool CanCompleteMDH() => CanDoStoryStuff.CanCompleteMDH();
+
+        /// <summary>
+        /// summary text.
+        /// </summary>
+        public static bool CanClearForest() => CanDoStoryStuff.CanClearForest();
+
         #endregion
-
-        // Twilights, Dungeons, and Maps should probably be their own files in a RF dir
 
         #region Twilights
 
@@ -776,7 +747,7 @@ namespace TPRandomizer
         // This requires the changes noted about TDM.
         public static bool CanClearForestGlitched()
         {
-            return CanCompletePrologue()
+            return CanDoStoryStuff.CanCompletePrologue()
                 && (
                     SettingUtils.IsOpenWoods()
                     || CanCompleteDungeon.CanCompleteForestTemple()

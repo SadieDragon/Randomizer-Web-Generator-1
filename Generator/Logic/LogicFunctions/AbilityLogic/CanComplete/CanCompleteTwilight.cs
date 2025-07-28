@@ -25,7 +25,7 @@ namespace LogicFunctionsNS
         {
             return SettingUtils.HasSkippedFaronTwilight()
                 || (
-                    LogicFunctionsUpdatedRefactored.CanCompletePrologue()
+                    CanDoStoryStuff.CanCompletePrologue()
                     && CanCompleteTwilightUtil(RoomFunctions.faronTwilightRooms)
                 );
         }

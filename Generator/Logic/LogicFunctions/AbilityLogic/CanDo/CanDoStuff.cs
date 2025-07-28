@@ -85,8 +85,7 @@ namespace LogicFunctionsNS
 
         public static bool CanMidnaCharge()
         {
-            return LogicFunctionsUpdatedRefactored.CanCompleteMDH()
-                || CanCompleteTwilight.CanCompleteAllTwilight();
+            return CanDoStoryStuff.CanCompleteMDH() || CanCompleteTwilight.CanCompleteAllTwilight();
         }
     }
 }
