@@ -1535,6 +1535,12 @@ ul.picrossExplanation ul > li {
   border-color: #f5c6cb;
 }
 
+.alert-success-light {
+  color: #155724;
+  background-color: #d4edda;
+  border-color: #c3e6cb;
+}
+
 .queuePosText {
   font-size: 20px;
   font-weight: bold;

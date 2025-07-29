@@ -7,8 +7,7 @@ const presetsMgr = (function () {
   const SYSTEM_PRESETS = [
     {
       name: 'Default',
-      // origSettingsStr: '6s1M9m000201W21600109z3__-',
-      origSettingsStr: '6s1M9m000201W21600109z3__asdf-',
+      origSettingsStr: '6s1M9m000201W21600109z3__-',
       description:
         'Aimed towards players who may have played the vanilla game but are not as familiar with the world. No timesavers are enabled and only the absolute minimum amount of checks are randomized.',
     },
@@ -237,6 +236,28 @@ const presetsMgr = (function () {
     return error;
   }
 
+  function getDebugStr(outArr) {
+    return new Promise((resolve) => {
+      try {
+        const str = localStorage.getItem('customSettingsPresets');
+        navigator.clipboard.writeText(str).then(
+          () => {
+            resolve('');
+          },
+          (err) => {
+            resolve('Failed to copy');
+          }
+        );
+        return '';
+      } catch (e) {
+        const msg = 'Failed to create presets debug string.';
+        console.error(msg);
+        console.error(e);
+        resolve(msg);
+      }
+    });
+  }
+
   return {
     init,
     getPresetsByType,
@@ -245,6 +266,7 @@ const presetsMgr = (function () {
     renamePreset,
     deletePreset,
     loadSettings,
+    getDebugStr,
   };
 })();
 
@@ -1608,10 +1630,12 @@ function initManagePresetsModal() {
   const $nameInputError = $('#managePresetsModal-nameInputError');
   const $editError = $('#managePresetsModal-editError');
   const $deleteError = $('#managePresetsModal-deleteError');
+  const $mainDebugAlert = $('#managePresetsModal-mainDebugAlert');
 
   let selectedPresetName = null;
 
   function setPage(pageName) {
+    $mainDebugAlert.hide();
     $pageMain.toggle(pageName === 'main');
     $pageEdit.toggle(pageName === 'edit');
     $pageDelete.toggle(pageName === 'delete');
@@ -1620,6 +1644,22 @@ function initManagePresetsModal() {
   function showPresetSelectError(msg) {
     $selectError.text(msg).show();
   }
+
+  $('#managePresetsModal-debug').on('click', () => {
+    $mainDebugAlert.hide();
+    presetsMgr.getDebugStr().then((errorMsg) => {
+      if (errorMsg) {
+        $mainDebugAlert.text(errorMsg);
+      } else {
+        $mainDebugAlert.text('Copied debug string.');
+      }
+
+      $mainDebugAlert
+        .toggleClass('alert-success-light', !errorMsg)
+        .toggleClass('alert-error-light', Boolean(errorMsg))
+        .show();
+    });
+  });
 
   $editBtn.on('click', function () {
     if (!selectedPresetName) {
