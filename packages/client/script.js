@@ -186,6 +186,39 @@ const presetsMgr = (function () {
     return '';
   }
 
+  function deletePreset(name) {
+    if (!customByName[name]) {
+      return 'Did not find preset to delete.';
+    }
+
+    // Filter out name when creating newCustomByName obj.
+    let newCustomByName = {};
+    const keys = Object.keys(customByName);
+    for (let i = 0; i < keys.length; i++) {
+      const key = keys[i];
+      if (key !== name) {
+        newCustomByName[key] = customByName[key];
+      }
+    }
+
+    // Try to write to localStorage
+    try {
+      localStorage.setItem(
+        'customSettingsPresets',
+        JSON.stringify(newCustomByName)
+      );
+      customByName = newCustomByName;
+    } catch (e) {
+      const msg =
+        'Could not save custom settings to localStorage during delete.';
+      console.error(msg);
+      console.error(e);
+      return msg;
+    }
+
+    return '';
+  }
+
   function loadSettings(name) {
     let settingsStr = '';
 
@@ -210,6 +243,7 @@ const presetsMgr = (function () {
     isNameTaken,
     savePreset,
     renamePreset,
+    deletePreset,
     loadSettings,
   };
 })();
@@ -1569,15 +1603,18 @@ function initManagePresetsModal() {
   const $selectError = $('#managePresetsModal-selectError');
   const $pageMain = $('#managePresetsModal-pageMain');
   const $pageEdit = $('#managePresetsModal-pageEdit');
+  const $pageDelete = $('#managePresetsModal-pageDelete');
   const nameInput = document.getElementById('managePresetsModal-nameInput');
   const $nameInputError = $('#managePresetsModal-nameInputError');
   const $editError = $('#managePresetsModal-editError');
+  const $deleteError = $('#managePresetsModal-deleteError');
 
   let selectedPresetName = null;
 
   function setPage(pageName) {
     $pageMain.toggle(pageName === 'main');
     $pageEdit.toggle(pageName === 'edit');
+    $pageDelete.toggle(pageName === 'delete');
   }
 
   function showPresetSelectError(msg) {
@@ -1609,11 +1646,33 @@ function initManagePresetsModal() {
       showPresetSelectError('Select a preset');
       return;
     }
+
+    setPage('delete');
+    $deleteError.hide();
+    $('#managePresetsModal-deleteInfo').text(
+      `Are you sure you want to delete "${selectedPresetName}"?`
+    );
   });
 
-  $('#managePresetsModal-editBack').on('click', () => {
-    setPage('main');
+  $('#managePresetsModal-deleteConfirm').on('click', () => {
+    $deleteError.hide();
+
+    const errorMsg = presetsMgr.deletePreset(selectedPresetName);
+    if (errorMsg) {
+      $deleteError.text(errorMsg).show();
+    } else {
+      $modal.hide();
+      showPresetToast(`Deleted preset "${selectedPresetName}"`);
+      updatePresetsSelect();
+    }
   });
+
+  $('#managePresetsModal-editBack, #managePresetsModal-deleteBack').on(
+    'click',
+    () => {
+      setPage('main');
+    }
+  );
 
   $('#managePresetsModal-editSave').on('click', () => {
     $nameInputError.hide();
@@ -2362,53 +2421,6 @@ function testProgressFunc(id) {
       console.error('/api/seed/progress error');
       console.error(err);
     });
-}
-
-// Preset handling
-const MAX_PRESET_NAME_LENGTH = 20;
-
-function savePresets(presets) {
-  localStorage.setItem('settingsPresets', JSON.stringify(presets));
-}
-
-function getPresets() {
-  clearPresetError();
-
-  try {
-    return JSON.parse(localStorage.getItem('settingsPresets')) || [];
-  } catch {
-    return [];
-  }
-}
-
-function saveCurrentAsPreset() {
-  clearPresetError();
-
-  const name = prompt('Enter preset name (must be below 20 characters):')
-    ?.trim()
-    .slice(0, MAX_PRESET_NAME_LENGTH);
-  if (!name) {
-    return;
-  }
-
-  // To save the cosmetics string:
-  // Get the value of the cosmetics string field, and push it in the presets array to be saved to local storage.
-
-  const settingsString = $('#combinedSettingsString').text().trim();
-  if (!settingsString) {
-    showPresetError('No settings string to save.');
-    return;
-  }
-
-  const presets = getPresets();
-  if (presets.some((p) => p.name === name)) {
-    showPresetError('A preset with this name already exists.');
-    return;
-  }
-
-  presets.push({ name, settingsString });
-  savePresets(presets);
-  updatePresetDropdown(name);
 }
 
 function showPresetToast(msg, isError) {
