@@ -373,7 +373,7 @@ function onDomContentLoaded() {
   cleanInvalidUserPresets(defaultSettingsString);
 
   updatePresetDropdown();
-  updatePresetDropdown2();
+  updatePresetsSelect();
 
   $('#presetDropdown').on('change', function () {
     const selected = $(this).val();
@@ -1762,7 +1762,8 @@ function initSavePresetModal() {
             origSettingsStr: $('#combinedSettingsString').text().trim(),
           });
           if (success) {
-            // $modal.hide();
+            updatePresetsSelect(name);
+            $modal.hide();
           } else {
             showError('Failed to save preset');
           }
@@ -2458,8 +2459,12 @@ function updatePresetDropdown(selectedValue = null) {
   dropdown.trigger('change');
 }
 
-function updatePresetDropdown2() {
+function updatePresetsSelect(defaultToValue) {
   const $select = $('#presetsSelect');
+
+  if ($select.data('select2')) {
+    $select.select2('destroy').off('change', handleChange);
+  }
 
   const presetsByType = presetsMgr.getPresetsByType();
 
@@ -2494,33 +2499,42 @@ function updatePresetDropdown2() {
 
   let skipListener = false;
 
+  function handleChange(e) {
+    if (skipListener) {
+      return;
+    }
+
+    const val = e.target.value;
+    console.log(`val: "${val}"`);
+    if (val) {
+      const error = presetsMgr.loadSettings(val);
+      if (error) {
+        showPresetUpdateStatus('Failed to load preset', true);
+      }
+
+      // Changing settings in the UI will always reset the presets select, so
+      // change its value back to the selection without triggering another
+      // load.
+      skipListener = true;
+      $select.val(val).trigger('change');
+      skipListener = false;
+    }
+  }
+
   $select
     .select2({
       allowClear: true,
       default: null,
       placeholder: 'Select preset',
     })
-    .on('change', function (e) {
-      if (skipListener) {
-        return;
-      }
+    .on('change', handleChange);
 
-      const val = e.target.value;
-      console.log(`val: "${val}"`);
-      if (val) {
-        const error = presetsMgr.loadSettings(val);
-        if (error) {
-          showPresetUpdateStatus('Failed to load preset', true);
-        }
-
-        // Changing settings in the UI will always reset the presets select, so
-        // change its value back to the selection without triggering another
-        // load.
-        skipListener = true;
-        $select.val(val).trigger('change');
-        skipListener = false;
-      }
-    });
+  // For showing newly created custom option as the current selection.
+  if (defaultToValue) {
+    skipListener = true;
+    $select.val(defaultToValue).trigger('change');
+    skipListener = false;
+  }
 }
 
 function showPresetError(msg) {
