@@ -164,10 +164,6 @@ const presetsMgr = (function () {
     origCommit,
     latestSettingsStr,
   }) {
-    if (isNameTaken(name)) {
-      return false;
-    }
-
     customByName[name] = {
       name,
       description,
@@ -1666,8 +1662,10 @@ function initSavePresetModal() {
   const $nameInputBlock = $('#savePresetModal-nameInputBlock');
   const $warning = $('#savePresetModal-warning');
 
+  let newPresetValue = null;
+
   function handlePresetChange(optionValue) {
-    const newPresetSelected = optionValue === 'new_preset';
+    const newPresetSelected = optionValue === newPresetValue;
     $nameInputBlock.toggle(newPresetSelected);
     $warning.toggle(!newPresetSelected);
     hideErrors();
@@ -1678,10 +1676,14 @@ function initSavePresetModal() {
         const option = $option[0];
         const optionText = option.textContent.trim();
         $warning.text(
-          `You will be overwriting your custom preset "${optionText}"!`
+          `This will overwrite your custom preset "${optionText}"!`
         );
       }
     }
+  }
+
+  function presetChangeListener(e) {
+    handlePresetChange(e.target.value);
   }
 
   function showError(msg) {
@@ -1697,13 +1699,45 @@ function initSavePresetModal() {
     $fieldErrorText.hide();
   }
 
-  $presetSelect
-    .select2({
-      minimumResultsForSearch: 10,
-    })
-    .on('change', function (e) {
-      handlePresetChange(e.target.value);
-    });
+  function initPresetSelect() {
+    if ($presetSelect.data('select2')) {
+      $presetSelect.select2('destroy').off('change', presetChangeListener);
+    }
+
+    // Set values
+    $presetSelect.empty();
+
+    const takenValues = {};
+
+    const customPresets = presetsMgr.getPresetsByType().custom;
+    if (customPresets.length > 0) {
+      for (let i = 0; i < customPresets.length; i++) {
+        const preset = customPresets[i];
+        const option = document.createElement('option');
+        option.setAttribute('value', preset.name);
+        option.textContent = preset.name;
+        $presetSelect.append(option);
+        takenValues[preset.name] = true;
+      }
+    }
+
+    // Ensure unique value to know we are creating a new preset as opposed to
+    // updating an existing preset.
+    while (newPresetValue == null || takenValues[newPresetValue]) {
+      newPresetValue = String(Math.random());
+    }
+    $presetSelect.prepend(
+      $(`<option value="${newPresetValue}">(New preset)</option>`)
+    );
+
+    $presetSelect
+      .select2({
+        minimumResultsForSearch: 10,
+      })
+      .on('change', presetChangeListener)
+      .val(newPresetValue)
+      .trigger('change');
+  }
 
   input.addEventListener('input', () => {
     hideErrors();
@@ -1711,13 +1745,12 @@ function initSavePresetModal() {
 
   // When the user clicks the button, open the modal
   btn.addEventListener('click', () => {
-    // Note: will default to whatever preset was selected when modal was last
-    // open (default: "new_preset").
     input.value = '';
     handlePresetChange($presetSelect.val());
 
     $modal.show();
 
+    initPresetSelect();
     input.focus();
   });
 
@@ -1736,40 +1769,41 @@ function initSavePresetModal() {
     .addEventListener('click', () => {
       hideErrors();
 
-      const name = input.value.trim();
-      if (name.length < 4) {
-        showNameError('Name must be at least 4 characters.');
-      } else if (name.length > 50) {
-        showNameError('Name must be at most 50 characters.');
-      } else {
-        const presetTakenResult = presetsMgr.isNameTaken(name);
-        if (presetTakenResult) {
-          if (presetTakenResult === 'custom') {
-            showNameError('A custom preset with this name already exists.');
-          } else {
-            showNameError('A system preset with this name already exists.');
-          }
+      let name = $presetSelect.val();
+      if (name === newPresetValue) {
+        // Saving new preset. Otherwise we're updating an existing one.
+        name = input.value.trim();
+        if (name.length < 1) {
+          showNameError('Name is required.');
           return;
-        }
-
-        const val = $presetSelect.val();
-        if (val === 'new_preset') {
-          // Save to new preset
-          const success = presetsMgr.savePreset({
-            name,
-            description: '',
-            origCommit: $('#envGitCommit').val(),
-            origSettingsStr: $('#combinedSettingsString').text().trim(),
-          });
-          if (success) {
-            updatePresetsSelect(name);
-            $modal.hide();
-          } else {
-            showError('Failed to save preset');
-          }
+        } else if (name.length > 50) {
+          showNameError('Name must be at most 50 characters.');
+          return;
         } else {
-          // Update existing preset
+          const presetTakenResult = presetsMgr.isNameTaken(name);
+          if (presetTakenResult) {
+            if (presetTakenResult === 'custom') {
+              showNameError('A custom preset with this name already exists.');
+            } else {
+              showNameError('A system preset with this name already exists.');
+            }
+            return;
+          }
         }
+      }
+
+      const success = presetsMgr.savePreset({
+        name,
+        description: '',
+        origCommit: $('#envGitCommit').val(),
+        origSettingsStr: $('#combinedSettingsString').text().trim(),
+      });
+      if (success) {
+        updatePresetsSelect(name);
+        $modal.hide();
+        showPresetUpdateStatus(`Saved preset "${name}"`);
+      } else {
+        showError('Failed to save preset');
       }
     });
 

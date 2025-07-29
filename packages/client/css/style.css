@@ -449,7 +449,6 @@ ul {
   border: 1px solid #444;
   border-radius: 4px;
   white-space: nowrap;
-  z-index: 100;
   display: none;
   pointer-events: none;
   opacity: 0;
