@@ -1572,7 +1572,6 @@ function initPresetsModal() {
   const $copySuccessText = $('#modalFieldCopiedText');
   const fieldErrorText = document.getElementById('modalFieldError');
   const input = document.getElementById('modalSettingsStringInput');
-  const currentSettings = document.getElementById('modalCurrentSettings');
 
   input.addEventListener('input', () => {
     $copySuccessText.hide();
