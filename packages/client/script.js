@@ -50,6 +50,12 @@ const presetsMgr = (function () {
       origSettingsStr: '',
       description: '',
     },
+    {
+      name: 'Season 1',
+      origSettingsStr:
+        '5sQ3g2kPC_-CfeJ8HaX7cJny-NoYqQZKQc7IwNIwNIwN0u70u70u70u70u70u70u71_qwFLTZK61gbCq2Z80-pphmuHTHbBB1BaDknYf_AxydhLmPgSZZbUoyNT5KTnKnI8b6WSbx66LYROE-5GjUYcccP9CNGx20M_b6WAXskPHcrbw8PUjs-vEAKmKvfKLWdIa4eJUDhKdJMGx1QMhM69tq6YE6yvHGff3dsMtKCbWX_m',
+      description: '',
+    },
   ];
 
   let inited = false;
@@ -230,6 +236,12 @@ const presetsMgr = (function () {
           settingsStr = systemPreset.origSettingsStr;
         }
       }
+    }
+
+    if (!settingsStr) {
+      const msg = 'Settings string was empty.';
+      console.error(msg);
+      return msg;
     }
 
     const error = populateFromSettingsString(settingsStr);
