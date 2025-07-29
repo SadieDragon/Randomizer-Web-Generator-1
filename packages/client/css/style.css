@@ -440,7 +440,7 @@ ul {
 .preset-toast {
   position: absolute;
   top: -24px;
-  right: 0;
+  left: 120px;
   background: #1e1e1e;
   color: #8f8;
   padding: 4px 8px;
@@ -454,6 +454,10 @@ ul {
   pointer-events: none;
   opacity: 0;
   transition: opacity 0.2s ease;
+}
+
+.preset-toast.preset-toast-error {
+  color: #ff3333;
 }
 
 .preset-toast.show {
@@ -614,13 +618,6 @@ ul {
   font-size: 1.5rem;
 
   font-size: 1.25rem;
-}
-
-.settingsEditBtnPos {
-  /* position: absolute;
-  top: 50%;
-  left: 100%; */
-  margin-right: 8px;
 }
 
 /* Temp basic modal start */
@@ -1527,6 +1524,18 @@ ul.picrossExplanation ul > li {
   border-color: rgb(172, 129, 0);
 }
 
+.alert-warning-light {
+  color: #856404;
+  background-color: #fff3cd;
+  border-color: #ffeeba;
+}
+
+.alert-error-light {
+  color: #721c24;
+  background-color: #f8d7da;
+  border-color: #f5c6cb;
+}
+
 .queuePosText {
   font-size: 20px;
   font-weight: bold;
@@ -1883,11 +1892,6 @@ input[type='file']:disabled::file-selector-button {
   color: #000;
 }
 
-/* These 2 rules disable scrolling with a mouse through presets. Doing this would overwrite settings accidently and is not wanted behavior. */
-#presetDropdownModal {
-  pointer-events: none;
-}
-
-#presetDropdownModal:focus {
-  pointer-events: auto;
+.modal-field {
+  margin: 4px 0;
 }

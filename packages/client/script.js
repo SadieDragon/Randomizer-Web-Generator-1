@@ -51,6 +51,173 @@ const DEFAULT_PRESETS = [
 let userJwt;
 let generateCallInProgress = false;
 
+const presetsMgr = (function () {
+  const SYSTEM_PRESETS = [
+    {
+      name: 'Default',
+      // origSettingsStr: '6s1M9m000201W21600109z3__-',
+      origSettingsStr: '6s1M9m000201W21600109z3__asdf-',
+      description:
+        'Aimed towards players who may have played the vanilla game but are not as familiar with the world. No timesavers are enabled and only the absolute minimum amount of checks are randomized.',
+    },
+    {
+      name: 'Easy',
+      origSettingsStr: '6s1M9m80W201W21701109z3__-',
+      description:
+        'Aimed towards players who are familiar with randomizers and want a little more randomness. Many of the story timesavers are skipped and the world is much more random. A number of time-intensive checks are excluded.',
+    },
+    {
+      name: 'Experienced',
+      origSettingsStr: '6s1M3m80W201W21701109z3__-',
+      description:
+        'These settings are aimed towards players who have a lot of seeds under their belt and are looking for a new challenge. A majority of timesavers are enabled, all check types are randomized, and no checks are excluded.',
+    },
+    {
+      name: 'Nightmare',
+      origSettingsStr: '6s1M9m000201W21600109z3__-',
+      description:
+        'These settings are designed to cause pain. Everything is randomized and settings such as One-Hit-KO, Bonks Do Damage, and Nightmare trap items are enabled. These seeds rely on glitchless logic to be beatable. Good luck.',
+    },
+    {
+      name: 'Nightmare²',
+      origSettingsStr: '6s1M9m000201W21600109z3__-',
+      description:
+        'Was the previous Nightmare setting too easy for you? These settings take things to the next level by setting the logical requirements to Glitched.',
+    },
+    {
+      name: 'Bingo',
+      origSettingsStr: '6s1M9m000201W21600109z3__-',
+      description: '',
+    },
+    {
+      name: 'Glitched',
+      origSettingsStr: '6s1M9m000201W21600109z3__-',
+      description: '',
+    },
+    {
+      name: 'No Logic',
+      origSettingsStr: '',
+      description: '',
+    },
+  ];
+
+  let inited = false;
+  const customByName = {};
+
+  function init() {
+    if (inited) {
+      return;
+    }
+    inited = true;
+
+    try {
+      const str = localStorage.getItem('customSettingsPresets');
+      if (str != null) {
+        const byName = JSON.parse(str);
+        Object.keys(byName).forEach((key) => {
+          const obj = byName[key];
+          // Only retrieve objects which have expected properties, and only
+          // retrive expected properties.
+          if (obj.name && obj.origSettingsStr) {
+            customByName[key] = {
+              name: obj.name,
+              description: obj.description,
+              origSettingsStr: obj.origSettingsStr,
+              origCommit: obj.origCommit,
+              latestSettingsStr: obj.latestSettingsStr,
+            };
+          }
+        });
+      }
+    } catch (e) {
+      console.error(
+        'Failed to retrieve customSettingsPresets from localStorage.'
+      );
+      console.error(e);
+    }
+  }
+
+  function getPresetsByType() {
+    return {
+      system: SYSTEM_PRESETS,
+      custom: Object.values(customByName),
+    };
+  }
+
+  function isNameTaken(name) {
+    if (customByName[name]) {
+      return 'custom';
+    }
+    for (let i = 0; i < SYSTEM_PRESETS.length; i++) {
+      const systemPreset = SYSTEM_PRESETS[i];
+      if (systemPreset.name === name) {
+        return 'system';
+      }
+    }
+    return '';
+  }
+
+  function savePreset({
+    name,
+    description,
+    origSettingsStr,
+    origCommit,
+    latestSettingsStr,
+  }) {
+    if (isNameTaken(name)) {
+      return false;
+    }
+
+    customByName[name] = {
+      name,
+      description,
+      origSettingsStr,
+      origCommit,
+      latestSettingsStr,
+    };
+
+    // Try to write to localStorage
+    try {
+      localStorage.setItem(
+        'customSettingsPresets',
+        JSON.stringify(customByName)
+      );
+    } catch (e) {
+      console.error('Could not save custom settings to localStorage.');
+      console.error(e);
+      return false;
+    }
+
+    return true;
+  }
+
+  function loadSettings(name) {
+    let settingsStr = '';
+
+    if (customByName[name]) {
+      settingsStr = customByName[name].origSettingsStr;
+    } else {
+      for (let i = 0; i < SYSTEM_PRESETS.length; i++) {
+        const systemPreset = SYSTEM_PRESETS[i];
+        if (systemPreset.name === name) {
+          settingsStr = systemPreset.origSettingsStr;
+        }
+      }
+    }
+
+    const error = populateFromSettingsString(settingsStr);
+    return error;
+  }
+
+  return {
+    init,
+    getPresetsByType,
+    isNameTaken,
+    savePreset,
+    loadSettings,
+  };
+})();
+
 function normalizeStringToMax128Bytes(inputStr, doTrims) {
   // substring to save lodash some work potentially. 256 because some
   // characters like emojis have length 2, and we want to leave at least 128
@@ -167,6 +334,7 @@ function onDomContentLoaded() {
   initDevFooter();
 
   initTabButtons();
+  presetsMgr.init();
 
   // Set default settings string in UI.
   const defaultSettingsString = setSettingsString();
@@ -183,6 +351,8 @@ function onDomContentLoaded() {
   }
 
   initSettingsModal();
+  initPresetsModal();
+  initSavePresetModal();
   initGeneratingModal();
 
   document.getElementById('seed').addEventListener('input', (e) => {
@@ -203,6 +373,7 @@ function onDomContentLoaded() {
   cleanInvalidUserPresets(defaultSettingsString);
 
   updatePresetDropdown();
+  updatePresetDropdown2();
 
   $('#presetDropdown').on('change', function () {
     const selected = $(this).val();
@@ -832,6 +1003,8 @@ function setSettingsString() {
   document.getElementById('combinedSettingsString').textContent =
     combinedSettingsString;
 
+  $('#presetsSelect').val('').trigger('change');
+
   return combinedSettingsString;
 }
 
@@ -1308,7 +1481,7 @@ $('#generateRaceSeed').on('click', () => {
 function initSettingsModal() {
   $('#copySettingsBtn').on('click', copySettingsString);
   $('#saveAsPreset').on('click', saveCurrentAsPreset);
-  $('#managePresets').on('click', openManagePresetsModal);
+  $('#presetSave').on('click', saveCurrentAsPreset);
 
   // Init modal
   const modal = document.getElementById('myModal');
@@ -1390,6 +1563,223 @@ function initSettingsModal() {
     .on('mouseup', function (e) {
       if (canHide && e.target === this) {
         $(modal).hide();
+      }
+    });
+}
+
+function initPresetsModal() {
+  // Init modal
+  const modal = document.getElementById('presetModal');
+  const $modal = $(modal);
+  const btn = document.getElementById('managePresets');
+  const span = modal.querySelector('.modal-close');
+  const $copySuccessText = $('#modalFieldCopiedText');
+  const fieldErrorText = document.getElementById('modalFieldError');
+  const input = document.getElementById('modalSettingsStringInput');
+  const currentSettings = document.getElementById('modalCurrentSettings');
+
+  input.addEventListener('input', () => {
+    $copySuccessText.hide();
+    $(fieldErrorText).hide();
+  });
+
+  // When the user clicks the button, open the modal
+  btn.addEventListener('click', () => {
+    // // Prepare modal
+    // currentSettings.textContent =
+    //   window.tpr.shared.genSSettingsFromUi() +
+    //   window.tpr.shared.genPSettingsFromUi();
+    // $copySuccessText.hide();
+    // $(fieldErrorText).hide();
+    // input.value = '';
+
+    $modal.show();
+
+    // input.focus();
+  });
+
+  span.addEventListener('click', () => {
+    $modal.hide();
+  });
+
+  document.getElementById('presetModalCancel').addEventListener('click', () => {
+    $modal.hide();
+  });
+
+  // document.getElementById('modalImport').addEventListener('click', () => {
+  //   if (!input.value) {
+  //     $(modal).hide();
+  //     return;
+  //   }
+
+  //   const error = populateFromSettingsString(input.value);
+
+  //   if (error) {
+  //     $(fieldErrorText)
+  //       .text(
+  //         'Unable to understand those settings. Do you have the correct string?'
+  //       )
+  //       .show();
+  //   } else {
+  //     $(modal).hide();
+  //   }
+  // });
+
+  // document.getElementById('modalCopy').addEventListener('click', () => {
+  //   $copySuccessText.hide();
+  //   $(fieldErrorText).hide();
+
+  //   const text = currentSettings.textContent;
+  //   navigator.clipboard.writeText(text).then(
+  //     () => {
+  //       $copySuccessText.show();
+  //     },
+  //     (err) => {
+  //       $(fieldErrorText).text('Failed to copy text.').show();
+  //     }
+  //   );
+  // });
+
+  let canHide = true;
+
+  $modal
+    .on('mousedown', function (e) {
+      canHide = e.target === this;
+    })
+    .on('mouseup', function (e) {
+      if (canHide && e.target === this) {
+        $modal.hide();
+      }
+    });
+}
+
+function initSavePresetModal() {
+  // Init modal
+  const modal = document.getElementById('savePresetModal');
+  const $modal = $(modal);
+  const btn = document.getElementById('savePreset');
+  const span = modal.querySelector('.modal-close');
+  const $fieldErrorText = $('#savePresetModal-nameError');
+  const $error = $('#savePresetModal-error');
+  const input = document.getElementById('savePresetModal-nameInput');
+  const $presetSelect = $('#savePresetModal-selectPreset');
+  const $nameInputBlock = $('#savePresetModal-nameInputBlock');
+  const $warning = $('#savePresetModal-warning');
+
+  function handlePresetChange(optionValue) {
+    const newPresetSelected = optionValue === 'new_preset';
+    $nameInputBlock.toggle(newPresetSelected);
+    $warning.toggle(!newPresetSelected);
+    hideErrors();
+
+    if (!newPresetSelected) {
+      const $option = $presetSelect.find(`option[value="${optionValue}"]`);
+      if ($option.length > 0) {
+        const option = $option[0];
+        const optionText = option.textContent.trim();
+        $warning.text(
+          `You will be overwriting your custom preset "${optionText}"!`
+        );
+      }
+    }
+  }
+
+  function showError(msg) {
+    $error.text(msg).show();
+  }
+
+  function showNameError(msg) {
+    $fieldErrorText.text(msg).show();
+  }
+
+  function hideErrors() {
+    $error.hide();
+    $fieldErrorText.hide();
+  }
+
+  $presetSelect
+    .select2({
+      minimumResultsForSearch: 10,
+    })
+    .on('change', function (e) {
+      handlePresetChange(e.target.value);
+    });
+
+  input.addEventListener('input', () => {
+    hideErrors();
+  });
+
+  // When the user clicks the button, open the modal
+  btn.addEventListener('click', () => {
+    // Note: will default to whatever preset was selected when modal was last
+    // open (default: "new_preset").
+    input.value = '';
+    handlePresetChange($presetSelect.val());
+
+    $modal.show();
+
+    input.focus();
+  });
+
+  span.addEventListener('click', () => {
+    $modal.hide();
+  });
+
+  document
+    .getElementById('savePresetModal-cancel')
+    .addEventListener('click', () => {
+      $modal.hide();
+    });
+
+  document
+    .getElementById('savePresetModal-save')
+    .addEventListener('click', () => {
+      hideErrors();
+
+      const name = input.value.trim();
+      if (name.length < 4) {
+        showNameError('Name must be at least 4 characters.');
+      } else if (name.length > 50) {
+        showNameError('Name must be at most 50 characters.');
+      } else {
+        const presetTakenResult = presetsMgr.isNameTaken(name);
+        if (presetTakenResult) {
+          if (presetTakenResult === 'custom') {
+            showNameError('A custom preset with this name already exists.');
+          } else {
+            showNameError('A system preset with this name already exists.');
+          }
+          return;
+        }
+
+        const val = $presetSelect.val();
+        if (val === 'new_preset') {
+          // Save to new preset
+          const success = presetsMgr.savePreset({
+            name,
+            description: '',
+            origCommit: $('#envGitCommit').val(),
+            origSettingsStr: $('#combinedSettingsString').text().trim(),
+          });
+          if (success) {
+            // $modal.hide();
+          } else {
+            showError('Failed to save preset');
+          }
+        } else {
+          // Update existing preset
+        }
+      }
+    });
+
+  let canHide = true;
+  $modal
+    .on('mousedown', function (e) {
+      canHide = e.target === this;
+    })
+    .on('mouseup', function (e) {
+      if (canHide && e.target === this) {
+        $modal.hide();
       }
     });
 }
@@ -1987,9 +2377,12 @@ function updateCurrentPreset() {
   showPresetUpdateStatus(`Preset "${name}" updated.`);
 }
 
-function showPresetUpdateStatus(msg) {
+function showPresetUpdateStatus(msg, isError) {
   const $toast = $('#presetUpdateStatus');
-  $toast.text(msg).css('display', 'block');
+  $toast
+    .toggleClass('preset-toast-error', Boolean(isError))
+    .text(msg)
+    .css('display', 'block');
 
   // Allow time for display to apply before adding transition class
   requestAnimationFrame(() => {
@@ -2063,6 +2456,71 @@ function updatePresetDropdown(selectedValue = null) {
   }
 
   dropdown.trigger('change');
+}
+
+function updatePresetDropdown2() {
+  const $select = $('#presetsSelect');
+
+  const presetsByType = presetsMgr.getPresetsByType();
+
+  $select.empty();
+  $select.append($(`<option value=""></option>`));
+
+  const presetTypes = Object.keys(presetsByType);
+  for (let typeIdx = 0; typeIdx < presetTypes.length; typeIdx++) {
+    const presetType = presetTypes[typeIdx];
+    const label = presetType === 'system' ? 'System' : 'Custom';
+    const presets = presetsByType[presetType];
+
+    const optGroup = document.createElement('optgroup');
+    if (typeIdx === 0) {
+      optGroup.setAttribute('label', 'System');
+    } else {
+      optGroup.setAttribute('label', 'Custom');
+    }
+
+    for (let i = 0; i < presets.length; i++) {
+      const preset = presets[i];
+      const option = document.createElement('option');
+      option.setAttribute('value', preset.name);
+      option.textContent = preset.name;
+      optGroup.append(option);
+    }
+
+    if (presets.length > 0) {
+      $select.append(optGroup);
+    }
+  }
+
+  let skipListener = false;
+
+  $select
+    .select2({
+      allowClear: true,
+      default: null,
+      placeholder: 'Select preset',
+    })
+    .on('change', function (e) {
+      if (skipListener) {
+        return;
+      }
+
+      const val = e.target.value;
+      console.log(`val: "${val}"`);
+      if (val) {
+        const error = presetsMgr.loadSettings(val);
+        if (error) {
+          showPresetUpdateStatus('Failed to load preset', true);
+        }
+
+        // Changing settings in the UI will always reset the presets select, so
+        // change its value back to the selection without triggering another
+        // load.
+        skipListener = true;
+        $select.val(val).trigger('change');
+        skipListener = false;
+      }
+    });
 }
 
 function showPresetError(msg) {
