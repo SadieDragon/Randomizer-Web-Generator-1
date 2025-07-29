@@ -248,7 +248,7 @@ const presetsMgr = (function () {
     return error;
   }
 
-  function getDebugStr(outArr) {
+  function getDebugStr() {
     return new Promise((resolve) => {
       try {
         const str = localStorage.getItem('customSettingsPresets');
@@ -1797,62 +1797,18 @@ function initManagePresetsModal() {
 
   // When the user clicks the button, open the modal
   btn.addEventListener('click', () => {
-    // // Prepare modal
-    // currentSettings.textContent =
-    //   window.tpr.shared.genSSettingsFromUi() +
-    //   window.tpr.shared.genPSettingsFromUi();
-    // $copySuccessText.hide();
-    // $(fieldErrorText).hide();
-    // input.value = '';
-
     setPage('main');
 
     $modal.show();
 
     initPresetSelect();
-    // input.focus();
   });
 
   span.addEventListener('click', () => {
     $modal.hide();
   });
 
-  // document.getElementById('modalImport').addEventListener('click', () => {
-  //   if (!input.value) {
-  //     $(modal).hide();
-  //     return;
-  //   }
-
-  //   const error = populateFromSettingsString(input.value);
-
-  //   if (error) {
-  //     $(fieldErrorText)
-  //       .text(
-  //         'Unable to understand those settings. Do you have the correct string?'
-  //       )
-  //       .show();
-  //   } else {
-  //     $(modal).hide();
-  //   }
-  // });
-
-  // document.getElementById('modalCopy').addEventListener('click', () => {
-  //   $copySuccessText.hide();
-  //   $(fieldErrorText).hide();
-
-  //   const text = currentSettings.textContent;
-  //   navigator.clipboard.writeText(text).then(
-  //     () => {
-  //       $copySuccessText.show();
-  //     },
-  //     (err) => {
-  //       $(fieldErrorText).text('Failed to copy text.').show();
-  //     }
-  //   );
-  // });
-
   let canHide = true;
-
   $modal
     .on('mousedown', function (e) {
       canHide = e.target === this;
@@ -1865,7 +1821,6 @@ function initManagePresetsModal() {
 }
 
 function initSavePresetModal() {
-  // Init modal
   const modal = document.getElementById('savePresetModal');
   const $modal = $(modal);
   const btn = document.getElementById('savePreset');
@@ -2571,9 +2526,3 @@ function updatePresetsSelect(defaultToValue) {
     skipListener = false;
   }
 }
-
-function showPresetError(msg) {
-  $('#presetError').text(msg).show();
-}
-
-// Preset modal
