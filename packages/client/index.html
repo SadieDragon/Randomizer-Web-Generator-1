@@ -1171,27 +1171,6 @@
             </svg>
           </button>
           <select id="presetsSelect" style="min-width: 200px"></select>
-          <div class="preset-controls" style="margin: 8px">
-            <select id="presetDropdown">
-              <option disabled selected>Select preset</option>
-            </select>
-
-            <button
-              id="saveAsPreset"
-              data-tooltip-text="Save string as a named preset. A preset will be deleted when a new version of the generator is released."
-            >
-              Save string as preset
-            </button>
-            <button
-              id="updatePresetBtn"
-              onclick="updateCurrentPreset()"
-              style="display: none"
-              data-tooltip-text="Update the selected preset with the new selected settings."
-            >
-              Update preset
-            </button>
-          </div>
-          <br />
           <span id="combinedSettingsString" class="settingsStringValue"></span>
 
           <div id="presetUpdateStatus" class="preset-toast">Preset updated</div>
@@ -1369,7 +1348,9 @@
 
         <div class="modalButtonsWrapper">
           <button id="modalImport" type="button">Import</button>
-          <button id="modalCancel" type="button">Cancel</button>
+          <button id="modalCancel" type="button" style="margin-right: 16px">
+            Cancel
+          </button>
           <button id="modalCopy" type="button" style="margin-right: auto">
             Copy settings
           </button>
@@ -1438,31 +1419,95 @@
       </div>
     </div>
 
-    <!-- Preset modal -->
-    <div id="presetModal" class="modal" style="display: none">
+    <!-- Manage presets modal -->
+    <div id="managePresetsModal" class="modal" style="display: none">
       <div class="modal-content">
         <span class="modal-close">&times;</span>
         <div class="modalTitle">Manage Presets</div>
 
-        <div style="margin-top: 12px">
-          <label for="presetDropdownModal">Select preset:</label>
-          <select id="presetDropdownModal">
-            <option disabled selected>Select preset</option>
-          </select>
+        <div id="managePresetsModal-pageMain" style="display: none">
+          <div class="labelValueGroup">
+            <div class="settingsStringLabel settingsStringLabelLight">
+              Custom preset
+            </div>
+            <div class="modal-field">
+              <select
+                id="managePresetsModal-selectPreset"
+                style="min-width: 200px"
+              ></select>
+            </div>
+            <div
+              id="managePresetsModal-selectError"
+              class="fieldErrorText"
+              style="display: none"
+            ></div>
+          </div>
+
+          <div class="modalButtonsWrapper">
+            <button id="managePresetsModal-edit" type="button">Edit</button>
+            <button
+              id="managePresetsModal-delete"
+              type="button"
+              style="margin-right: 16px"
+            >
+              Delete
+            </button>
+            <button
+              id="managePresetsModal-debug"
+              type="button"
+              style="margin-right: auto"
+            >
+              Copy debug info
+            </button>
+          </div>
+
+          <div
+            id="presetModalError"
+            class="modalError"
+            style="display: none"
+          ></div>
         </div>
 
-        <div class="modalActions">
-          <button onclick="handleRenamePreset()">Rename</button>
-          <button onclick="handleDeletePreset()">Delete</button>
+        <div id="managePresetsModal-pageEdit" style="display: none">
+          <div id="managePresetsModal-editInfo" style="margin-bottom: 24px">
+            Editing "name"
+          </div>
+
+          <div>
+            <div class="settingsStringLabel settingsStringLabelLight">Name</div>
+            <div class="modal-field">
+              <input
+                id="managePresetsModal-nameInput"
+                type="text"
+                class="modalSettingsStringInput"
+                maxlength="50"
+              />
+            </div>
+
+            <div
+              id="managePresetsModal-nameInputError"
+              class="fieldErrorText"
+              style="display: none"
+            ></div>
+          </div>
+
+          <div
+            id="managePresetsModal-editError"
+            class="alert alert-error-light"
+            style="margin-top: 16px; display: none"
+          ></div>
+
+          <div class="modalButtonsWrapper">
+            <button id="managePresetsModal-editSave" type="button">Save</button>
+            <button
+              id="managePresetsModal-editBack"
+              type="button"
+              style="margin-right: 16px"
+            >
+              Back
+            </button>
+          </div>
         </div>
-
-        <div
-          id="presetModalError"
-          class="modalError"
-          style="display: none"
-        ></div>
-
-        <button id="presetModalCancel" style="margin-top: 16px">Close</button>
       </div>
     </div>
 
