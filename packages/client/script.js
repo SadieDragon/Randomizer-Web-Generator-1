@@ -1516,7 +1516,7 @@ function initSettingsModal() {
         showPresetToast('Copied settings');
       },
       (err) => {
-        showPresetToast('Failed to copy');
+        showPresetToast('Failed to copy', true);
       }
     );
   });
@@ -2340,7 +2340,7 @@ function populateSSettings(s) {
   $('#hcShortcutCheckbox').prop('checked', s.hcShortcut);
   $('#iliaQuestFieldset').val(s.iliaQuest);
   $('#mirrorChamberFieldset').val(s.mirrorChamber);
-  $('#dungeonERFieldset').val(s.dungeonER);
+  $('#dungeonERFieldset').val(s.dungeonER).trigger('change');
   $('#unpairedEntrancesCheckbox').prop('checked', s.upairEntrances);
   $('#decoupleEntrancesCheckbox').prop('checked', s.decoupleEntrances);
   $('#freestandingRupeeCheckbox').prop('checked', s.freestandingRupees);
