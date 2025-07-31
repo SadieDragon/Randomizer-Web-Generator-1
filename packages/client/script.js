@@ -2340,7 +2340,7 @@ function populateSSettings(s) {
   $('#hcShortcutCheckbox').prop('checked', s.hcShortcut);
   $('#iliaQuestFieldset').val(s.iliaQuest);
   $('#mirrorChamberFieldset').val(s.mirrorChamber);
-  $('#dungeonERFieldset').val(s.dungeonER);
+  $('#dungeonERFieldset').val(s.dungeonER).trigger('change');
   $('#unpairedEntrancesCheckbox').prop('checked', s.upairEntrances);
   $('#decoupleEntrancesCheckbox').prop('checked', s.decoupleEntrances);
   $('#freestandingRupeeCheckbox').prop('checked', s.freestandingRupees);
