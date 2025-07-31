@@ -1516,7 +1516,7 @@ function initSettingsModal() {
         showPresetToast('Copied settings');
       },
       (err) => {
-        showPresetToast('Failed to copy');
+        showPresetToast('Failed to copy', true);
       }
     );
   });
