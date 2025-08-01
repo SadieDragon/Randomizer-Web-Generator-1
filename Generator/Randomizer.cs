@@ -1587,12 +1587,11 @@ namespace TPRandomizer
             // Example, if 2 Fused Shadows are required to complete the seed and the is one in Forest, one in Mines, and one in City, we want all 3 dungeons to be listed as required because they do contain an item required to complete the seed.
             for (int i = 0; i < listOfRequiredDungeons.GetLength(0); i++)
             {
-                requiredDungeons reqDungeon = listOfRequiredDungeons[i];
                 // We can skip checking to mark a dungeon as required when it is
                 // already marked as required.
-                if (!reqDungeon.isRequired)
+                if (!listOfRequiredDungeons[i].isRequired)
                 {
-                    foreach (string dungeonCheck in reqDungeon.requirementChecks)
+                    foreach (string dungeonCheck in listOfRequiredDungeons[i].requirementChecks)
                     {
                         Check check = Randomizer.Checks.CheckDict[dungeonCheck];
                         // Note: we must confirm the itemWasPlaced so we don't
@@ -1601,7 +1600,7 @@ namespace TPRandomizer
                         // assigned an item.
                         if (check.itemWasPlaced && requiredItems.Contains(check.itemId))
                         {
-                            reqDungeon.isRequired = true;
+                            listOfRequiredDungeons[i].isRequired = true;
                             break;
                         }
                     }
