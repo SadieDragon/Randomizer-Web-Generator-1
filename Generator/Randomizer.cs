@@ -1542,7 +1542,6 @@ namespace TPRandomizer
             Console.WriteLine("Checking Required Dungeons!");
             // Now loop through all dungeons and validate the necessity of every check related to the dungeon.
 
-
             Dictionary<string, Item> checkData = new();
             List<Item> requiredItems = new();
             for (int i = 0; i < listOfRequiredDungeons.GetLength(0); i++)
