@@ -1214,7 +1214,11 @@ namespace TPRandomizer
 
                     Randomizer.Rooms.RoomDict[bossRoomName].Region = newRegion;
 
-                    if (!Randomizer.SSettings.decoupleEntrances)
+                    // If entrances are decoupled or unpaired, we don't want to potentially send the player somewhere they haven't been before after defeating a boss.
+                    if (
+                        !Randomizer.SSettings.decoupleEntrances
+                        && !Randomizer.SSettings.unpairEntrances
+                    )
                     {
                         newEntrance = newEntrance.GetReverse().GetReplacedEntrance();
                     }
