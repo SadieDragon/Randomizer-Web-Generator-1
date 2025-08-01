@@ -1542,30 +1542,37 @@ namespace TPRandomizer
             Console.WriteLine("Checking Required Dungeons!");
             // Now loop through all dungeons and validate the necessity of every check related to the dungeon.
 
+
             Dictionary<string, Item> checkData = new();
             List<Item> requiredItems = new();
             for (int i = 0; i < listOfRequiredDungeons.GetLength(0); i++)
             {
                 foreach (string dungeonCheck in listOfRequiredDungeons[i].requirementChecks)
                 {
-                    Item checkItem = Randomizer.Checks.CheckDict[dungeonCheck].itemId;
-
-                    Randomizer.Checks.CheckDict[dungeonCheck].itemId = Item.Recovery_Heart;
-                    bool isBeatable = BackendFunctions.ValidatePlaythroughBeatable(
-                        startingRoom,
-                        false
-                    );
-
-                    // If the world is no longer completable we want to put the item back and mark the dungeon as required
-                    if (!isBeatable)
+                    Check check = Randomizer.Checks.CheckDict[dungeonCheck];
+                    // We can skip over verifying any checks for which an item
+                    // has not yet been placed.
+                    if (check.itemWasPlaced)
                     {
-                        Randomizer.Checks.CheckDict[dungeonCheck].itemId = checkItem;
-                        requiredItems.Add(checkItem);
-                        listOfRequiredDungeons[i].isRequired = true;
-                    }
-                    else
-                    {
-                        checkData.Add(dungeonCheck, checkItem);
+                        Item checkItem = check.itemId;
+
+                        check.itemId = Item.Recovery_Heart;
+                        bool isBeatable = BackendFunctions.ValidatePlaythroughBeatable(
+                            startingRoom,
+                            false
+                        );
+
+                        // If the world is no longer completable we want to put the item back and mark the dungeon as required
+                        if (!isBeatable)
+                        {
+                            check.itemId = checkItem;
+                            requiredItems.Add(checkItem);
+                            listOfRequiredDungeons[i].isRequired = true;
+                        }
+                        else
+                        {
+                            checkData.Add(dungeonCheck, checkItem);
+                        }
                     }
                 }
             }
@@ -1580,12 +1587,23 @@ namespace TPRandomizer
             // Example, if 2 Fused Shadows are required to complete the seed and the is one in Forest, one in Mines, and one in City, we want all 3 dungeons to be listed as required because they do contain an item required to complete the seed.
             for (int i = 0; i < listOfRequiredDungeons.GetLength(0); i++)
             {
-                foreach (string dungeonCheck in listOfRequiredDungeons[i].requirementChecks)
+                requiredDungeons reqDungeon = listOfRequiredDungeons[i];
+                // We can skip checking to mark a dungeon as required when it is
+                // already marked as required.
+                if (!reqDungeon.isRequired)
                 {
-                    if (requiredItems.Contains(Randomizer.Checks.CheckDict[dungeonCheck].itemId))
+                    foreach (string dungeonCheck in reqDungeon.requirementChecks)
                     {
-                        listOfRequiredDungeons[i].isRequired = true;
-                        break;
+                        Check check = Randomizer.Checks.CheckDict[dungeonCheck];
+                        // Note: we must confirm the itemWasPlaced so we don't
+                        // mark a dungeon as required when it still has its
+                        // original dungeon reward because it has not yet been
+                        // assigned an item.
+                        if (check.itemWasPlaced && requiredItems.Contains(check.itemId))
+                        {
+                            reqDungeon.isRequired = true;
+                            break;
+                        }
                     }
                 }
             }
