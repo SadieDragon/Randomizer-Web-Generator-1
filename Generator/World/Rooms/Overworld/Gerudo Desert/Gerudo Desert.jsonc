@@ -234,6 +234,7 @@
     "Exits":
     [
       {
+        // Dynamic logic for this connection can be found in EntranceRando.cs
         "ConnectedArea": "Arbiters Grounds Boss Room",
         "Requirements": "Room.Arbiters_Grounds_Boss_Room and CanDefeatStallord",
         "GlitchedRequirements": "Room.Arbiters_Grounds_Boss_Room and CanDefeatStallord"
