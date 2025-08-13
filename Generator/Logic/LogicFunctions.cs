@@ -36,43 +36,20 @@ namespace TPRandomizer
         /// </summary>
         public static bool CanUse(Item item)
         {
-            if (Randomizer.Items.heldItems.Contains(item) && CanReplenishItem(item))
-            {
-                return true;
-            }
-            return false;
+            return Randomizer.Items.heldItems.Contains(item) && CanReplenishItem(item);
         }
 
         public static bool CanReplenishItem(Item item)
         {
-            bool replenish = false;
             switch (item)
             {
                 case Item.Lantern:
-                {
-                    if (CanRefillOil())
-                    {
-                        replenish = true;
-                    }
-                    break;
-                }
-
+                    return CanRefillOil();
                 case Item.Progressive_Bow:
-                {
-                    if (CanGetArrows())
-                    {
-                        replenish = true;
-                    }
-                    break;
-                }
-
+                    return CanGetArrows();
                 default:
-                {
-                    replenish = true;
-                    break;
-                }
+                    return true;
             }
-            return replenish;
         }
 
         /// <summary>
@@ -1452,6 +1429,11 @@ namespace TPRandomizer
             return CanUse(Item.Lantern) || HasBombs() || CanUse(Item.Ball_and_Chain);
         }
 
+        public static bool CanDestroyWebsWithoutLantern()
+        {
+            return HasBombs() || CanUse(Item.Ball_and_Chain);
+        }
+
         /// <summary>
         /// summary text.
         /// </summary>
@@ -1697,6 +1679,12 @@ namespace TPRandomizer
 
         public static bool CanRefillOil()
         {
+            // Note: we need to assume the worse-case scenario that the player
+            // has run out of oil when checking if they can refill the Lantern.
+            // This also prevents stack overflows where we check if they can
+            // refill oil in order to use Lantern in order to refill oil, etc.
+            // So for going through giant webs in order to find oil refills,
+            // using the Lantern is not valid.
             return (
                 Randomizer.Rooms.RoomDict["North Faron Woods"].ReachedByPlaythrough
                 || Randomizer.Rooms.RoomDict["South Faron Woods"].ReachedByPlaythrough
@@ -1726,7 +1714,7 @@ namespace TPRandomizer
                 )
                 || (
                     Randomizer.Rooms.RoomDict["Eldin Lantern Cave"].ReachedByPlaythrough
-                    && CanBurnWebs()
+                    && CanDestroyWebsWithoutLantern()
                     && CanDefeatChu()
                 )
             );

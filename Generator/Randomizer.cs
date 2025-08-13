@@ -377,7 +377,7 @@ namespace TPRandomizer
 
             // TODO: review if the above comment needs a little revision
 
-            SeedGenResults.Builder builder = new();
+            SeedGenResults.Builder builder = new(SSettings);
             // inputs
             builder.settingsString = settingsString;
             builder.seed = seed;
@@ -1435,17 +1435,21 @@ namespace TPRandomizer
 
         private static void CheckUnrequiredDungeons(Room startingRoom)
         {
-            List<string>[] listOfAffectedChecks = new List<string>[]
-            {
-                CheckFunctions.palaceRequirementChecks,
-                CheckFunctions.cityRequirementChecks,
-                CheckFunctions.totRequirementChecks,
-                CheckFunctions.snowpeakRequirementChecks,
-                CheckFunctions.arbitersRequirementChecks,
-                CheckFunctions.lakebedRequirementChecks,
-                CheckFunctions.minesRequirementChecks,
-                CheckFunctions.forestRequirementChecks,
-            };
+            // Use shallow copies of the requirementChecks lists since we mutate
+            // them here and we may need to run this function multiple times.
+            // This change was to fix a bug.
+            List<List<string>> listOfAffectedChecks =
+                new()
+                {
+                    new(CheckFunctions.palaceRequirementChecks),
+                    new(CheckFunctions.cityRequirementChecks),
+                    new(CheckFunctions.totRequirementChecks),
+                    new(CheckFunctions.snowpeakRequirementChecks),
+                    new(CheckFunctions.arbitersRequirementChecks),
+                    new(CheckFunctions.lakebedRequirementChecks),
+                    new(CheckFunctions.minesRequirementChecks),
+                    new(CheckFunctions.forestRequirementChecks),
+                };
 
             // Create the dungeon entries
             requiredDungeons forestTemple = new("Forest Temple", false, null);
@@ -1505,19 +1509,19 @@ namespace TPRandomizer
                     if (bRoom.Region == DungeonNames[i])
                     {
                         listOfAffectedChecks[i].AddRange(bRoom.Checks);
-                        switch (DungeonNames[i])
+                        switch (bossRoom)
                         {
-                            case "Goron Mines":
+                            case "Goron Mines Boss Room":
                             {
                                 listOfAffectedChecks[i].AddRange(CheckFunctions.postFyrusChecks);
                                 break;
                             }
-                            case "Snowpeak Ruins":
+                            case "Snowpeak Ruins Boss Room":
                             {
                                 listOfAffectedChecks[i].AddRange(CheckFunctions.postBlizettaChecks);
                                 break;
                             }
-                            case "Temple of Time":
+                            case "Temple of Time Boss Room":
                             {
                                 listOfAffectedChecks[i].AddRange(
                                     CheckFunctions.postArmogohmaChecks
